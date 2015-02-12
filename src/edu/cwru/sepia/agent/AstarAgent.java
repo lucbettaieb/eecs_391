@@ -264,8 +264,12 @@ public class AstarAgent extends Agent {
     }
     
     private boolean shouldReplanPath(State.StateView state, History.HistoryView history, Stack<MapLocation> currentPath) {
-    	Tuple goal = new Tuple(state.getUnit(townhallID).getXPosition() - state.getUnit(footmanID).getXPosition(), state.getUnit(townhallID).getYPosition() - state.getUnit(footmanID).getYPosition());
-    	Tuple replan = new Tuple(state.getUnit(enemyFootmanID).getXPosition() - state.getUnit(footmanID).getXPosition(), state.getUnit(enemyFootmanID).getYPosition() - state.getUnit(footmanID).getYPosition());
+    	if(state.getUnit(townhallID) == null) return false;
+    	
+    	Tuple goal = new Tuple(state.getUnit(townhallID).getXPosition() - state.getUnit(footmanID).getXPosition(), 
+    			state.getUnit(townhallID).getYPosition() - state.getUnit(footmanID).getYPosition());
+    	Tuple replan = new Tuple(state.getUnit(enemyFootmanID).getXPosition() - state.getUnit(footmanID).getXPosition(), 
+    			state.getUnit(enemyFootmanID).getYPosition() - state.getUnit(footmanID).getYPosition());
     	
     	// TODO: Account for no more goal! :)
     	return unit(goal).equals(unit(replan)) || magnitude(replan) < 2;
