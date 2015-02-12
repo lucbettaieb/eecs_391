@@ -384,7 +384,8 @@ public class AstarAgent extends Agent {
      * @return set of valid moves
      */
     private Set<MapLocation> possibleMoves(MapLocation parent, Set<MapLocation> blocks, int xExtent, int yExtent){
-        Set<MapLocation> returnVar = new HashSet<MapLocation>();
+        
+    	Set<MapLocation> returnVar = new HashSet<MapLocation>();
         returnVar.add(new MapLocation(parent.x+1, parent.y+1, parent, 1f));
         returnVar.add(new MapLocation(parent.x+1, parent.y, parent, 1f));
         returnVar.add(new MapLocation(parent.x+1, parent.y-1, parent, 1f));
@@ -402,7 +403,7 @@ public class AstarAgent extends Agent {
             } else {
                 for(MapLocation block: blocks){
                     //collision with resource or block
-                    if(child.x == block.x && child.y == block.y)invalidLocations.add(child);
+                    if(block != null && child.x == block.x && child.y == block.y)invalidLocations.add(child);
                     //no backtracking
                     if(child.x == parent.x && child.y == parent.y) invalidLocations.add(child);
                 }
