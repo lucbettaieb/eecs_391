@@ -15,11 +15,11 @@ import java.util.*;
 public class AstarAgent extends Agent {
 
     /**
-     * object used to render a node on the map.
+     * object used to render a node on the map
      * Added A* values to it (f,c,h)
      * Added a parent, to allow for backtracking
      */
-    class MapLocation {
+    class MapLocation implements Comparable {
         public int x, y;
         public int f = 0, c = 0, h = 0;
         private MapLocation parent;
@@ -54,6 +54,13 @@ public class AstarAgent extends Agent {
             String cost = String.format("Cost: %d\n", this.c);
             return String.format("%s%s%s", position, function, cost);
         }
+        
+        @Override
+        public int compareTo(Object o){
+        	if (!( o instanceof MapLocation)) return -1;
+        	return this.f - ((MapLocation)o).f;
+        }
+        
     }
 
     Stack<MapLocation> path;
@@ -303,7 +310,7 @@ public class AstarAgent extends Agent {
     			replanProbability += 1/i;
     		}
     	}
-    	if(replanProbability == pastReplanProbability) replanProbability -= 0.1f;
+    	if(replanProbability == pastReplanProbability) replanProbability -= 0.25f;
     	if(replanProbability < 0 || replanProbability > 2) replanProbability = 0;
     	return (replanProbability > 0.4f);
     }
@@ -341,42 +348,32 @@ public class AstarAgent extends Agent {
         return AstarSearch(startLoc, goalLoc, state.getXExtent(), state.getYExtent(), footmanLoc, resourceLocations);
     }
 
-    /**
+    /** O(7*n*n)
      * This is the method you will implement for the assignment. Your implementation
      * will use the A* algorithm to compute the optimum path from the start position to
      * a position adjacent to the goal position.
-     * <p/>
      * You will return a Stack of positions with the top of the stack being the first space to move to
      * and the bottom of the stack being the last space to move to. If there is no path to the townhall
      * then return null from the method and the agent will print a message and do nothing.
      * The code to execute the plan is provided for you in the middleStep method.
-     * <p/>
      * As an example consider the following simple map
-     * <p/>
      * F - - - -
      * x x x - x
      * H - - - -
-     * <p/>
      * F is the footman
      * H is the townhall
      * x's are occupied spaces
-     * <p/>
      * xExtent would be 5 for this map with valid X coordinates in the range of [0, 4]
      * x=0 is the left most column and x=4 is the right most column
-     * <p/>
      * yExtent would be 3 for this map with valid Y coordinates in the range of [0, 2]
      * y=0 is the top most row and y=2 is the bottom most row
-     * <p/>
      * resourceLocations would be {(0,1), (1,1), (2,1), (4,1)}
-     * <p/>
      * The path would be
-     * <p/>
      * (1,0)
      * (2,0)
      * (3,1)
      * (2,2)
      * (1,2)
-     * <p/>
      * Notice how the initial footman position and the townhall position are not included in the path stack
      *
      * @param start             Starting position of the footman
@@ -389,21 +386,24 @@ public class AstarAgent extends Agent {
     private Stack<MapLocation> AstarSearch(MapLocation start, MapLocation goal, int xExtent, int yExtent,
                                            MapLocation enemyFootmanLoc, Set<MapLocation> resourceLocations) {
         Queue<MapLocation> closedSet = new LinkedList<MapLocation>();//nodes already considered
-        HashSet<MapLocation> openSet = new HashSet<MapLocation>();//nodes to consider
-        openSet.add(start.setc(0));//gotta add the starting position to the open set
+        PriorityQueue<MapLocation> fastOpenSet = new PriorityQueue<MapLocation>();
+        fastOpenSet.add(start);//gotta add the starting position to the open set
         
-        while(openSet.size()>0){
-            MapLocation q = getMinF(openSet);//grab the minimum node, and pop it off the open set
+        while(fastOpenSet.size()>0){
+            MapLocation fastQ = fastOpenSet.poll();
+            
             Set<MapLocation> blocks = new HashSet<MapLocation>();
             blocks.addAll(resourceLocations);
             blocks.add(enemyFootmanLoc);//combine footmen and resources as 'things that can block me'
-            for(MapLocation successor: possibleMoves(q, blocks, xExtent, yExtent)){
+            for(MapLocation successor: possibleMoves(fastQ, blocks, xExtent, yExtent)){
                 //for all possible moves from here:
                 if(successor.x == goal.x && successor.y == goal.y) return generatePath(successor);//we're done!
-                successor.setc(q.c+1).seth(crowsDistance(successor, goal));//f value is automagically calculated.
-                if(shouldAddToOpenSet(successor, closedSet, openSet)) openSet.add(successor);
+                successor.setc(fastQ.c+1).seth(crowsDistance(successor, goal));//f value is automagically calculated.
+                if(shouldAddToOpenSet(successor, closedSet, fastOpenSet)) {
+                	fastOpenSet.add(successor);
+                }
             }
-            closedSet.add(q);
+            closedSet.add(fastQ);
         }
         //No path was found.  Someone else will know this and exit.
         System.err.println("ERROR: NO PATH");
@@ -411,28 +411,28 @@ public class AstarAgent extends Agent {
         return null;//silly compiler, you know this won't execute...
     }
 
-    /**
+    /** O(openSet + closedSet)
      * Computes whether the given successor should be added to the open set of nodes to consider
      * @param successor node in consideration
      * @param closedSet nodes already considered
      * @param openSet nodes to consider
      * @return whether successor should be added to the open set
      */
-    private boolean shouldAddToOpenSet(MapLocation successor, Queue<MapLocation> closedSet, HashSet<MapLocation> openSet){
+    private boolean shouldAddToOpenSet(MapLocation successor, Queue<MapLocation> closedSet, PriorityQueue<MapLocation> openSet){
         boolean shouldAdd = true;
 
         for(MapLocation node: openSet){
             //skip: already going to visit it, with a better path
-            if(successor.x == node.x && successor.y == node.y && node.f < successor.f) shouldAdd = false;
+            if(node.f < successor.f && successor.x == node.x && successor.y == node.y) shouldAdd = false;
         }
         for(MapLocation node: closedSet){
             //skip: already visited it, with a better path
-            if(successor.x == node.x && successor.y == node.y && node.f < successor.f) shouldAdd = false;
+            if(node.f < successor.f && successor.x == node.x && successor.y == node.y) shouldAdd = false;
         }
         return shouldAdd;
     }
 
-    /**
+    /** O(n)
      * makes a path by recursively following the parent link from destination to source 
      * @param destination final position in the path
      * @return the path from source (on top) to destination, as a Stack of MapLocations
@@ -448,7 +448,7 @@ public class AstarAgent extends Agent {
         return path;
     }
 
-    /**
+    /** O(7*blocks)
      * returns the list of possible moves from the given location 
      * @param parent node to create moves from
      * @param blocks list of invalid locations
@@ -463,7 +463,6 @@ public class AstarAgent extends Agent {
         returnVar.add(new MapLocation(parent.x+1, parent.y, parent, 1f));
         returnVar.add(new MapLocation(parent.x+1, parent.y-1, parent, 1f));
         returnVar.add(new MapLocation(parent.x, parent.y+1, parent, 1f));
-        returnVar.add(new MapLocation(parent.x, parent.y, parent, 1f));
         returnVar.add(new MapLocation(parent.x, parent.y-1, parent, 1f));
         returnVar.add(new MapLocation(parent.x-1, parent.y+1, parent, 1f));
         returnVar.add(new MapLocation(parent.x-1, parent.y, parent, 1f));
@@ -477,8 +476,6 @@ public class AstarAgent extends Agent {
                 for(MapLocation block: blocks){
                     //collision with resource or block
                     if(block != null && child.x == block.x && child.y == block.y)invalidLocations.add(child);
-                    //no backtracking
-                    if(child.x == parent.x && child.y == parent.y) invalidLocations.add(child);
                 }
             } 
         }
@@ -488,10 +485,12 @@ public class AstarAgent extends Agent {
         return returnVar;
     }
 
-    /**
+    /** O(n)
      * grabs the minimum 'f' value node in the given set.
+     * TODO: change to priority queue?  
      * @param openSet the set to remove and return the minimum value from
      * @return the minimum value of the given set
+     * 
      */
     private MapLocation getMinF(HashSet<MapLocation> openSet){
         MapLocation currentMin = null;
@@ -514,9 +513,9 @@ public class AstarAgent extends Agent {
      * @return the crow flies distance, rounded down to an integer.
      */
     private int crowsDistance(MapLocation source, MapLocation destination) {
-        int xDiff = Math.abs(source.x - destination.x);
-        int yDiff = Math.abs(source.y - destination.y);
-        return (int) Math.sqrt(xDiff*xDiff+ yDiff*yDiff);
+        int xDiff = source.x - destination.x;
+        int yDiff = source.y - destination.y;
+        return xDiff*xDiff+ yDiff*yDiff;
     }
 
     /**
