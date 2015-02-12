@@ -235,8 +235,40 @@ public class AstarAgent extends Agent {
      * @param currentPath remaining steps in the current path
      * @return whether the path should be recalculated
      */
+    
+    private class Tuple { 
+    	private static final float EPSILON = 0.00001f;
+    	public float x,y; 
+    	
+    	public Tuple(float x, float y) { 
+    		this.x = x; 
+    	    this.y = y; 
+    	  } 
+    	  
+    	public boolean equals(Object c){
+    		if(! (c instanceof Tuple)) return false;
+    		Tuple comparedTo = (Tuple) c;
+    		
+    		return (Math.abs(this.x - comparedTo.x) < EPSILON) && (Math.abs(this.y - comparedTo.y) < EPSILON);
+    	}
+    }
+    private Tuple unit(Tuple t){
+    	Tuple unit = new Tuple(t.x, t.y);
+    	float mag = (float) Math.sqrt(t.x*t.x + t.y*t.y);
+    	unit.x /= mag;
+    	unit.y /= mag;
+    	return unit;
+    }
+    private float magnitude(Tuple t){
+    	return (float) Math.sqrt(t.x*t.x + t.y*t.y);
+    }
+    
     private boolean shouldReplanPath(State.StateView state, History.HistoryView history, Stack<MapLocation> currentPath) {
-        return false;
+    	Tuple goal = new Tuple(state.getUnit(townhallID).getXPosition() - state.getUnit(footmanID).getXPosition(), state.getUnit(townhallID).getYPosition() - state.getUnit(footmanID).getYPosition());
+    	Tuple replan = new Tuple(state.getUnit(enemyFootmanID).getXPosition() - state.getUnit(footmanID).getXPosition(), state.getUnit(enemyFootmanID).getYPosition() - state.getUnit(footmanID).getYPosition());
+    	
+    	// TODO: Account for no more goal! :)
+    	return unit(goal).equals(unit(replan)) || magnitude(replan) < 2;
     }
 
     /**
