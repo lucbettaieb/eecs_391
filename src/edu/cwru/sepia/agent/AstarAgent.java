@@ -325,7 +325,8 @@ public class AstarAgent extends Agent {
         
         while(openSet.size()>0){
             MapLocation q = getMinF(openSet);//grab the minimum node, and pop it off the open set
-            Set<MapLocation> blocks = resourceLocations;
+            Set<MapLocation> blocks = new HashSet<MapLocation>();
+            blocks.addAll(resourceLocations);
             blocks.add(enemyFootmanLoc);//combine footmen and resources as 'things that can block me'
             for(MapLocation successor: possibleMoves(q, blocks, xExtent, yExtent)){
                 //for all possible moves from here:
