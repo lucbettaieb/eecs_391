@@ -368,8 +368,10 @@ public class AstarAgent extends Agent {
      */
     private Stack<MapLocation> generatePath(MapLocation destination){
         Stack<MapLocation> path = new Stack<MapLocation>();
+        boolean isGoal = true;
         while(destination.parent != null){
-            path.add(destination);
+            if(!isGoal) path.add(destination);
+            isGoal = false;
             destination = destination.getParent();
         }
         return path;
