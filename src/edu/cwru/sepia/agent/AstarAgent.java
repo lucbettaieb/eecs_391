@@ -21,14 +21,15 @@ public class AstarAgent extends Agent {
      */
     class MapLocation {
         public int x, y;
-        private int f, c, h;
+        public int f = 0, c = 0, h = 0;
         private MapLocation parent;
 
         public MapLocation(int x, int y, MapLocation cameFrom, float cost) {
             this.x = x;
             this.y = y;
             this.parent = cameFrom;
-            this.c = parent.getc() + (int)cost;
+            //if(this.parent != null) this.c = this.parent.getc() + (int)cost;
+            this.c = (this.parent != null) ? this.parent.getc() + (int)cost : (int) cost;
         }
 
         public MapLocation setc(int givenC) {
