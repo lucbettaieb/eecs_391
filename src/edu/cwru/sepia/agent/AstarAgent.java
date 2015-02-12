@@ -28,8 +28,7 @@ public class AstarAgent extends Agent {
             this.x = x;
             this.y = y;
             this.parent = cameFrom;
-            //if(this.parent != null) this.c = this.parent.getc() + (int)cost;
-            this.c = (this.parent != null) ? this.parent.getc() + (int)cost : (int) cost;
+            this.c = (this.parent != null) ? this.parent.c + (int)cost : (int) cost;
         }
 
         public MapLocation setc(int givenC) {
@@ -38,18 +37,10 @@ public class AstarAgent extends Agent {
             return this;
         }
 
-        public int getc() {
-            return this.c;
-        }
-
         public MapLocation seth(int givenH) {
             this.h = givenH;
             this.f = this.c + this.h;
             return this;
-        }
-
-        public int getf() {
-            return this.f;
         }
 
         public MapLocation getParent() {
@@ -223,19 +214,11 @@ public class AstarAgent extends Agent {
 
     }
 
+
     /**
-     * You will implement this method.
-     * <p/>
-     * This method should return true when the path needs to be replanned
-     * and false otherwise. This will be necessary on the dynamic map where the
-     * footman will move to block your unit.
-     *
-     * @param state
-     * @param history
-     * @param currentPath remaining steps in the current path
-     * @return whether the path should be recalculated
+     * little object to represent vectors.
+     * it's used to compare vector from me to obstacle, and from me to goal
      */
-    
     private class Tuple { 
     	private static final float EPSILON = 0.00001f;
     	public float x,y; 
@@ -248,31 +231,61 @@ public class AstarAgent extends Agent {
     	public boolean equals(Object c){
     		if(! (c instanceof Tuple)) return false;
     		Tuple comparedTo = (Tuple) c;
-    		
     		return (Math.abs(this.x - comparedTo.x) < EPSILON) && (Math.abs(this.y - comparedTo.y) < EPSILON);
     	}
-    }
-    private Tuple unit(Tuple t){
-    	Tuple unit = new Tuple(t.x, t.y);
-    	float mag = (float) Math.sqrt(t.x*t.x + t.y*t.y);
-    	unit.x /= mag;
-    	unit.y /= mag;
-    	return unit;
-    }
-    private float magnitude(Tuple t){
-    	return (float) Math.sqrt(t.x*t.x + t.y*t.y);
+    	
+    	public Tuple unit(){
+    		Tuple unit = new Tuple(x, y);
+    		float mag = this.magnitude();
+        	unit.x /= mag;
+        	unit.y /= mag;
+        	return unit;
+    	}
+    	
+    	public float magnitude(){
+    		return (float) Math.sqrt(x*x+y*y);
+    	}
     }
     
+    /**
+     * You will implement this method.
+     * <p/>
+     * This method should return true when the path needs to be replanned
+     * and false otherwise. This will be necessary on the dynamic map where the
+     * footman will move to block your unit.
+     *
+     * @param state
+     * @param history
+     * @param currentPath remaining steps in the current path
+     * @return whether the path should be recalculated
+     */
     private boolean shouldReplanPath(State.StateView state, History.HistoryView history, Stack<MapLocation> currentPath) {
-    	if(state.getUnit(townhallID) == null) return false;
+    	//if we have no path, then we have no need to replan.  We're done.
+    	if(currentPath.size() <= 0) return false;
     	
-    	Tuple goal = new Tuple(state.getUnit(townhallID).getXPosition() - state.getUnit(footmanID).getXPosition(), 
-    			state.getUnit(townhallID).getYPosition() - state.getUnit(footmanID).getYPosition());
-    	Tuple replan = new Tuple(state.getUnit(enemyFootmanID).getXPosition() - state.getUnit(footmanID).getXPosition(), 
-    			state.getUnit(enemyFootmanID).getYPosition() - state.getUnit(footmanID).getYPosition());
     	
-    	// TODO: Account for no more goal! :)
-    	return unit(goal).equals(unit(replan)) || magnitude(replan) < 2;
+        Unit.UnitView townhallUnit = state.getUnit(townhallID);
+        Unit.UnitView footmanUnit = state.getUnit(footmanID);
+        Unit.UnitView enemyFootmanUnit = state.getUnit(enemyFootmanID);
+        
+        boolean useVectorMethod = false;
+        
+        if(useVectorMethod){
+        	//compare the vectors and replan if they're equal, or if enemy's location is within a predefined radius.
+        	Tuple goal = new Tuple(townhallUnit.getXPosition() - footmanUnit.getXPosition(), townhallUnit.getYPosition() - footmanUnit.getYPosition());
+        	Tuple replan = new Tuple(enemyFootmanUnit.getXPosition() - footmanUnit.getXPosition(), enemyFootmanUnit.getYPosition() - footmanUnit.getYPosition());
+        	
+        	return goal.unit().equals(replan.unit()) || replan.magnitude() < 2;
+        } else {
+        	//check if enemy's location is within our planned path
+        	@SuppressWarnings("unchecked")//it works, ya dingus compiler.
+    		Stack<MapLocation> path = (Stack<MapLocation>) currentPath.clone();
+        	for(int i = 0; i<2 && !path.isEmpty(); i++){
+        		MapLocation location = path.pop();
+        		if(location.x == enemyFootmanUnit.getXPosition() && location.y == enemyFootmanUnit.getYPosition()) return true;
+        	}
+        	return false;
+        }
     }
 
     /**
@@ -367,7 +380,7 @@ public class AstarAgent extends Agent {
             for(MapLocation successor: possibleMoves(q, blocks, xExtent, yExtent)){
                 //for all possible moves from here:
                 if(successor.x == goal.x && successor.y == goal.y) return generatePath(successor);//we're done!
-                successor.setc(q.getc()+1).seth(chebyshevDistance(successor, goal));//f value is automagically calculated.
+                successor.setc(q.c+1).seth(crowsDistance(successor, goal));//f value is automagically calculated.
                 if(shouldAddToOpenSet(successor, closedSet, openSet)) openSet.add(successor);
             }
             closedSet.add(q);
@@ -390,11 +403,11 @@ public class AstarAgent extends Agent {
 
         for(MapLocation node: openSet){
             //skip: already going to visit it, with a better path
-            if(successor.x == node.x && successor.y == node.y && node.getf() < successor.getf()) shouldAdd = false;
+            if(successor.x == node.x && successor.y == node.y && node.f < successor.f) shouldAdd = false;
         }
         for(MapLocation node: closedSet){
             //skip: already visited it, with a better path
-            if(successor.x == node.x && successor.y == node.y && node.getf() < successor.getf()) shouldAdd = false;
+            if(successor.x == node.x && successor.y == node.y && node.f < successor.f) shouldAdd = false;
         }
         return shouldAdd;
     }
@@ -457,32 +470,17 @@ public class AstarAgent extends Agent {
 
     /**
      * grabs the minimum 'f' value node in the given set.
-     * @param openSet
-     * @return
+     * @param openSet the set to remove and return the minimum value from
+     * @return the minimum value of the given set
      */
     private MapLocation getMinF(HashSet<MapLocation> openSet){
         MapLocation currentMin = null;
         for(MapLocation position: openSet){
             if(currentMin == null) currentMin = position;
-            if(position.getf() < currentMin.getf()) currentMin = position;
+            if(position.f < currentMin.f) currentMin = position;
         }
         openSet.remove(currentMin);
         return currentMin;
-    }
-
-    /**
-     * returns the Chebyshev heuristic value of the distance between two given nodes
-     *
-     * @param source      the beginning or current node on the map
-     * @param destination the desired destination on the map
-     * @return the Chebyshev heuristic distance between the nodes
-     */
-    private int chebyshevDistance(MapLocation source, MapLocation destination) {
-    	return crowsDistance(source, destination);
-//        int xDiff = Math.abs(source.x - destination.x);
-//        int yDiff = Math.abs(source.y - destination.y);
-//        return Math.max(xDiff, yDiff);
-        //TODO: subtract 1 because we go beside the goal?
     }
 
     /**
@@ -495,11 +493,10 @@ public class AstarAgent extends Agent {
      * @param destination   the desired destination on the map
      * @return the crow flies distance, rounded down to an integer.
      */
-    private int crowsDistance(MapLocation source, MapLocation destination){
+    private int crowsDistance(MapLocation source, MapLocation destination) {
         int xDiff = Math.abs(source.x - destination.x);
         int yDiff = Math.abs(source.y - destination.y);
-        return (int) Math.sqrt(Math.pow(xDiff,2)+ Math.pow(yDiff,2));
-        //TODO: subtract 1 because we go beside the goal?
+        return (int) Math.sqrt(xDiff*xDiff+ yDiff*yDiff);
     }
 
     /**
