@@ -337,6 +337,8 @@ public class AstarAgent extends Agent {
             closedSet.add(q);
         }
         //No path was found.  Someone else will know this and exit.
+        System.err.println("ERROR: NO PATH");
+        System.exit(1);
         return null;
     }
 
@@ -440,9 +442,10 @@ public class AstarAgent extends Agent {
      * @return the Chebyshev heuristic distance between the nodes
      */
     private int chebyshevDistance(MapLocation source, MapLocation destination) {
-        int xDiff = Math.abs(source.x - destination.x);
-        int yDiff = Math.abs(source.y - destination.y);
-        return Math.max(xDiff, yDiff);
+    	return crowsDistance(source, destination);
+//        int xDiff = Math.abs(source.x - destination.x);
+//        int yDiff = Math.abs(source.y - destination.y);
+//        return Math.max(xDiff, yDiff);
         //TODO: subtract 1 because we go beside the goal?
     }
 
