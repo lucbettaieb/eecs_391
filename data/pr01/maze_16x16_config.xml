@@ -1,5 +1,5 @@
 <Configuration>
-  <Map>pr01/data/maze_16x16.xml</Map>
+  <Map>data/pr01/maze_16x16.xml</Map>
   <Player Id="0">
     <AgentClass>
       <ClassName>edu.cwru.sepia.agent.AstarAgent</ClassName>
