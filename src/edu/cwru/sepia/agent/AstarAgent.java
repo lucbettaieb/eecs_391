@@ -62,6 +62,8 @@ public class AstarAgent extends Agent {
 
     private long totalPlanTime = 0; // nsecs
     private long totalExecutionTime = 0; //nsecs
+    
+    private float replanProbability = 0f;
 
     public AstarAgent(int playernum) {
         super(playernum);
@@ -260,16 +262,17 @@ public class AstarAgent extends Agent {
      * @return whether the path should be recalculated
      */
     private boolean shouldReplanPath(State.StateView state, History.HistoryView history, Stack<MapLocation> currentPath) {
+    	boolean test = true;
+    	if(test) return newShouldReplanPath(state,history,currentPath);
+    	
     	//if we have no path, then we have no need to replan.  We're done.
     	if(currentPath.size() <= 0) return false;
-    	
     	
         Unit.UnitView townhallUnit = state.getUnit(townhallID);
         Unit.UnitView footmanUnit = state.getUnit(footmanID);
         Unit.UnitView enemyFootmanUnit = state.getUnit(enemyFootmanID);
         
-        boolean useVectorMethod = false;
-        
+        boolean useVectorMethod = true;
         if(useVectorMethod){
         	//compare the vectors and replan if they're equal, or if enemy's location is within a predefined radius.
         	Tuple goal = new Tuple(townhallUnit.getXPosition() - footmanUnit.getXPosition(), townhallUnit.getYPosition() - footmanUnit.getYPosition());
@@ -286,6 +289,23 @@ public class AstarAgent extends Agent {
         	}
         	return false;
         }
+    }//end of shouldReplanPath method
+    
+    private boolean newShouldReplanPath(State.StateView state, History.HistoryView history, Stack<MapLocation> currentPath){
+    	@SuppressWarnings("unchecked")//it works, ya dingus compiler.
+		Stack<MapLocation> path = (Stack<MapLocation>) currentPath.clone();
+    	Unit.UnitView enemyFootmanUnit = state.getUnit(enemyFootmanID);
+    	float pastReplanProbability = replanProbability;
+    	
+    	for(int i = 1; i<= 5 && ! path.isEmpty(); i++){
+    		MapLocation inQuestion  = path.pop();
+    		if(inQuestion.x == enemyFootmanUnit.getXPosition() && inQuestion.y == enemyFootmanUnit.getYPosition()){
+    			replanProbability += 1/i;
+    		}
+    	}
+    	if(replanProbability == pastReplanProbability) replanProbability -= 0.1f;
+    	if(replanProbability < 0 || replanProbability > 2) replanProbability = 0;
+    	return (replanProbability > 0.4f);
     }
 
     /**
@@ -388,7 +408,7 @@ public class AstarAgent extends Agent {
         //No path was found.  Someone else will know this and exit.
         System.err.println("ERROR: NO PATH");
         System.exit(1);
-        return null;
+        return null;//silly compiler, you know this won't execute...
     }
 
     /**
@@ -528,7 +548,6 @@ public class AstarAgent extends Agent {
         } else if (xDiff == -1 && yDiff == -1) {
             return Direction.NORTHWEST;
         }
-
         System.err.println("Invalid path. Could not determine direction");
         return null;
     }
