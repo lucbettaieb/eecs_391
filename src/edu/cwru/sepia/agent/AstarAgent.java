@@ -399,7 +399,7 @@ public class AstarAgent extends Agent {
             for(MapLocation successor: possibleMoves(fastQ, blocks, xExtent, yExtent)){
                 //for all possible moves from here:
                 if(successor.x == goal.x && successor.y == goal.y) return generatePath(successor);//we're done!
-                successor.setc(fastQ.c+1).seth(crowsDistance(successor, goal));//f value is automagically calculated.
+                successor.setc(fastQ.c+1).seth(chebyshev(successor, goal));//f value is automagically calculated.
                 if(shouldAddToOpenSet(successor, closedSet, fastOpenSet)) {
                 	fastOpenSet.add(successor);
                 }
@@ -504,19 +504,18 @@ public class AstarAgent extends Agent {
     }
 
     /**
-     * the Chebyshev heuristic underestimates too much in my opinion.
-     * By using a hypotenuse of the points, we can more closely estimate the true cost.
-     * This is a much more accurate method for 8-direction traversal, where diagonals are possible
-     * The possible downside is that each heuristic calculation is more processor intensive, due to
-     *      squaring and rooting
+     * The Chebyshev heuristic 
+     * Returns the chebyshev distance
+     * 
      * @param source        the beginning or current node on the map
      * @param destination   the desired destination on the map
-     * @return the crow flies distance, rounded down to an integer.
+     * @return the Chebyshev distance, rounded down to an integer.
      */
-    private int crowsDistance(MapLocation source, MapLocation destination) {
-        int xDiff = source.x - destination.x;
-        int yDiff = source.y - destination.y;
-        return xDiff*xDiff+ yDiff*yDiff;
+    private int chebyshev(MapLocation source, MapLocation destination) {
+        int xDiff = Math.abs(source.x - destination.x);
+        int yDiff = Math.abs(source.y - destination.y);
+        
+        return Math.max(xDiff, yDiff);
     }
 
     /**
@@ -529,7 +528,7 @@ public class AstarAgent extends Agent {
      * @return A Direction instance (e.g. SOUTHWEST) or null in the case of error
      */
     private Direction getNextDirection(int xDiff, int yDiff) {
-
+    	//System.out.println("x dif: "+xDiff + " y dif: " + yDiff);
         // figure out the direction the footman needs to move in
         if (xDiff == 1 && yDiff == 1) {
             return Direction.SOUTHEAST;
