@@ -302,6 +302,7 @@ public class AstarAgent extends Agent {
     	@SuppressWarnings("unchecked")//it works, ya dingus compiler.
 		Stack<MapLocation> path = (Stack<MapLocation>) currentPath.clone();
     	Unit.UnitView enemyFootmanUnit = state.getUnit(enemyFootmanID);
+    	if(enemyFootmanUnit == null) return false;
     	float pastReplanProbability = replanProbability;
     	
     	for(int i = 1; i<= 5 && ! path.isEmpty(); i++){
