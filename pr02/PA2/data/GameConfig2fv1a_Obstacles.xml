@@ -1,0 +1,40 @@
+<Configuration>
+	<Map>data/Game2fv1a_Obstacles.xml</Map>
+	<Player Id="0">
+		<AgentClass>
+			<ClassName>edu.cwru.sepia.agent.minimax.MinimaxAlphaBeta</ClassName>
+			<Argument>5</Argument>
+		</AgentClass>
+	</Player>
+	<Player Id="0">
+		<AgentClass>
+			<ClassName>edu.cwru.sepia.agent.visual.VisualAgent</ClassName>
+			<Argument>true</Argument>
+			<Argument>false</Argument>
+		</AgentClass>
+	</Player>
+	<Player Id="1">
+		<AgentClass>
+			<ClassName>edu.cwru.sepia.agent.ArcherAgent</ClassName>
+			<Argument>1</Argument>
+		</AgentClass>
+	</Player>
+	<ModelParameters>
+		<Conquest>true</Conquest>
+		<Midas>false</Midas>
+		<ManifestDestiny>false</ManifestDestiny>
+		<TimeLimit>100000</TimeLimit>
+	</ModelParameters>
+	<Runner>
+		<RunnerClass>edu.cwru.sepia.experiment.SimpleModelEpisodicRunner</RunnerClass>
+		<Parameter Name="experiment.NumEpisodes" Value="1"/>
+		<Parameter Name="experiment.EpisodesPerSave" Value="1"/>
+		<Parameter Name="experiment.SaveAgents" Value="false"/>
+		<Parameter Name="experiment.episodesperagentsave" Value="4" />
+		<Parameter Name="experiment.episodesperreplaysave" Value="4" />
+		<Parameter Name="experiment.save.replaydirectory" Value="saves/test1" />
+		<Parameter Name="experiment.save.agentdirectory" Value="saves/test1" />
+		<Parameter Name="experiment.temp.thing" Value="saves/test1" />
+		<Parameter Name="environment.model.class" Value="edu.cwru.sepia.environment.model.BestEffortModel" />
+	</Runner>
+</Configuration>
