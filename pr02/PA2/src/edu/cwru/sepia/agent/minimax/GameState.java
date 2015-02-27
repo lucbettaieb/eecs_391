@@ -128,7 +128,10 @@ public class GameState {
      * @return All possible actions and their associated resulting game state
      */
     public List<GameStateChild> getChildren() {
-        
+        //use COMPOUNDATTACK to move then attack once.
+        //  Action.createCompoundAttack(sourceID, destinationID)
+        //use PRIMITIVEATTACK to attack once. will fail if out of range.
+        //  Action.createPrimitiveAttack(sourceID, destinationID)
         
         //moves:
         for(Direction direction : Direction.values()){

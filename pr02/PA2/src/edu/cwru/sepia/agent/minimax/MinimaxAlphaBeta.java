@@ -8,12 +8,14 @@ import edu.cwru.sepia.environment.model.state.State;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collections;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 
 public class MinimaxAlphaBeta extends Agent {
 
     private final int numPlys;
+    private boolean AMIMAX = false;
 
     public MinimaxAlphaBeta(int playernum, String[] args)
     {
@@ -74,9 +76,45 @@ public class MinimaxAlphaBeta extends Agent {
      * @return The best child of this node with updated values
      */
     public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta)
-    {
-        return node;
-    }
+    {/*         minimax:
+         http://en.wikipedia.org/wiki/Minimax#Pseudocode
+        
+                pruning:
+         http://www.cs.trincoll.edu/~ram/cpsc352/notes/minimax.html
+         http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
+        */
+        this.AMIMAX = !AMIMAX;//initialized to false, so first flip sets it true
+        
+        if(depth == 0 || node.state.getChildren().isEmpty()) return node;
+        GameStateChild returnVar = null;
+        if(AMIMAX){//MAX is playing
+            double value = Double.NEGATIVE_INFINITY;
+            for(GameStateChild child: node.state.getChildren()){
+                GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+                double childValue = childResult.state.getUtility();
+                if(childValue > value){
+                    value = childValue;
+                    returnVar = childResult;
+                }
+                alpha = Math.max(value, alpha);
+                if(beta <= alpha) break; //beta-pruned
+            }
+            return returnVar;
+        } else {//MIN is playing
+            double value = Double.POSITIVE_INFINITY;
+            for(GameStateChild child: node.state.getChildren()){
+                GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+                double childValue = childResult.state.getUtility();
+                if(childValue < value){
+                    value = childValue;
+                    returnVar = childResult;
+                }
+                beta = Math.min(value, beta);
+                if(beta <= alpha) break; //alpha-pruned
+            }
+            return returnVar;
+        }
+    }//end of minimax
 
     /**
      * You will implement this.
