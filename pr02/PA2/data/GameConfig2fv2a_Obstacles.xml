@@ -15,7 +15,7 @@
 	</Player>
 	<Player Id="1">
 		<AgentClass>
-			<ClassName>edu.cwru.sepia.agent.ArcherAgent</ClassName>
+			<ClassName>ArcherAgent</ClassName>
 			<Argument>1</Argument>
 		</AgentClass>
 	</Player>
