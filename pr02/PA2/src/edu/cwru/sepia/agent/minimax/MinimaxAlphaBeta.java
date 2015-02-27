@@ -7,6 +7,7 @@ import edu.cwru.sepia.environment.model.state.State;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -87,11 +88,39 @@ public class MinimaxAlphaBeta extends Agent {
      *
      * Include a good comment about what your heuristics are and why you chose them.
      *
-     * @param children
+     * @param children the children nodes to sort
      * @return The list of children sorted by your heuristic.
      */
     public List<GameStateChild> orderChildrenWithHeuristics(List<GameStateChild> children)
     {
-        return children;
+        //orders nodes with higher utility first.
+        /*
+         * Insertion sort.  Because it has low overhead and complexity doesn't matter much on small search sizes
+          *  for i = 1 to length(A) - 1
+                x = A[i]
+                j = i
+                while j > 0 and A[j-1] > x
+                    A[j] = A[j-1]
+                    j = j - 1
+                A[j] = x*
+         */
+        
+        int i = 0;
+        List<GameStateChild> sorted = children;
+        //gotta work on a copy of the list because you can't play with
+        //the variable you're iterating through in a for-each loop
+        
+        for(GameStateChild child: children){//stand back kids, we're rolling our own for loop
+            if(i++==0) continue;//cool, I've never used a continue before.  It skips the current loop iteration.
+            GameStateChild x = child;
+            int j = i;
+            while(j>0 && sorted.get(j-1).state.getUtility()>x.state.getUtility()){
+                sorted.set(j, sorted.get(j-1));
+                j--;
+            }
+            sorted.set(j, x);
+        }
+        Collections.reverse(sorted);//the sorting algorithm put lowest utility first.  Flip it.
+        return sorted;
     }
 }
