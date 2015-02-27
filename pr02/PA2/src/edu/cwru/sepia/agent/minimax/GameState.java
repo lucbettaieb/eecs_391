@@ -4,6 +4,7 @@ import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionType;
 import edu.cwru.sepia.action.DirectedAction;
 import edu.cwru.sepia.action.TargetedAction;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
@@ -19,7 +20,10 @@ import java.util.*;
  * but do not delete or change the signatures of the provided methods.
  */
 public class GameState {
-
+    
+    protected int xExtent, yExtent;
+    protected List<Integer> blockIDs;
+    
     /**
      * You will implement this constructor. It will
      * extract all of the needed state information from the built in
@@ -42,6 +46,10 @@ public class GameState {
      * @param state Current state of the episode
      */
     public GameState(State.StateView state) {
+        this.xExtent = state.getXExtent();
+        this.yExtent = state.getYExtent();
+        this.blockIDs = state.getAllResourceIds();
+        //state.getResourceNode(Integer resourceID): Return a ResourceView for the given ID
     }
 
     /**
@@ -64,6 +72,12 @@ public class GameState {
      */
     public double getUtility() {
         return 0.0;
+    }
+    
+    //delta x plus delta y, aka taxicab distance
+    private int manhattanDistance(ResourceNode source, ResourceNode destination){
+        return Math.abs(source.getxPosition()-destination.getxPosition())+
+                Math.abs(source.getyPosition()-destination.getyPosition());
     }
 
     /**
