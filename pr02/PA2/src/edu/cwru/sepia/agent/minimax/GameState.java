@@ -55,7 +55,11 @@ public class GameState {
 
         this.stateView = state;//just reference the whole damn thing.
     }
-    
+
+    /**
+     * I take the 'units' field, and use it to fill 
+     * the 'footmen' and 'archers' fields.
+     */
     private void parseUnits(){
         for (Unit.UnitView unit : this.units) {//categorize dem units
             if (unit.getTemplateView().getName().equals("Footman")) {//I'm guessing here.
@@ -65,7 +69,6 @@ public class GameState {
             }
         }
     }
-        //state.getResourceNode(Integer resourceID): Return a ResourceView for the given ID
     
 
     /**
@@ -105,7 +108,11 @@ public class GameState {
         return goodHealth-badHealth+distance;
     }
     
-    //delta x plus delta y, aka taxicab distance
+    /**
+     * * delta x plus delta y, aka taxicab distance
+     * you give me a source and destination UnitView, 
+     * I give you their manhattan distance 
+     */
     private int manhattanDistance(Unit.UnitView source, Unit.UnitView destination){
         return Math.abs(source.getXPosition()-destination.getXPosition())+
                 Math.abs(source.getYPosition()-destination.getYPosition());

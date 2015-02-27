@@ -85,7 +85,7 @@ public class MinimaxAlphaBeta extends Agent {
         */
         this.AMIMAX = !AMIMAX;//initialized to false, so first flip sets it true
         
-        if(depth == 0 || node.state.getChildren().isEmpty()) return node;
+        if(depth == 0 || node.state.getChildren()==null || node.state.getChildren().isEmpty()) return node;
         GameStateChild returnVar = null;
         if(AMIMAX){//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
