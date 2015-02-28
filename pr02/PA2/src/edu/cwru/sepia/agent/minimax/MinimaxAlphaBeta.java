@@ -81,6 +81,7 @@ public class MinimaxAlphaBeta extends Agent {
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
         this.AMIMAX = !AMIMAX;//initialized to false, so first flip sets it true
+        node.state.flipPlayer();
         
         if(depth == 0 || node.state.getChildren()==null || node.state.getChildren().isEmpty()) return node;
         GameStateChild returnVar = null;

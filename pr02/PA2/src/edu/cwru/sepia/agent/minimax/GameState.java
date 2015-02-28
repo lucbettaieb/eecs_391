@@ -24,7 +24,7 @@ public class GameState {
     protected List<Unit.UnitView> units;
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
-    protected boolean isMAX = false;
+    protected boolean AMIMAX = false;
 
     /**
      * You will implement this constructor. It will
@@ -136,7 +136,7 @@ public class GameState {
      * @return All possible actions and their associated resulting game state
      */
     /**
-     * NOTE: isMAX field is required to be set for this.  We need to know if footmen or archers are being played 
+     * NOTE: AMIMAX field is required to be set for this.  We need to know if footmen or archers are being played
      * @return the possible future game states from the current state
      */
     public List<GameStateChild> getChildren() {//TODO: add memoization?  (is this called more than once per state?)
@@ -147,7 +147,7 @@ public class GameState {
         ArrayList<Map<Integer, Action>> actions = new ArrayList<Map<Integer, Action>>();
         // combination of uniActions and unitIDs into one data structure, but unitActions is flattened.
 
-        if (isMAX) {
+        if (AMIMAX) {
             for (Unit.UnitView footman : footmen) {
                 unitIDs.add(footman.getID());//populate the ID array entry
                 unitActions.add(getActions(footman, archers));//all actions possible from this footman to the enemies
@@ -222,10 +222,7 @@ public class GameState {
      * @return whether the move is projected to succeed
      */
     private boolean isLegalMove(int x, int y){
-        for(ResourceNode.ResourceView block :blockObjects){
-            if (block.getXPosition() == x && block.getYPosition() == y) return false;
-        }//if nothing's blocking it, then just make sure it's within bounds
-        return stateView.inBounds(x,y);
+        return (stateView.isResourceAt(x,y) || stateView.isUnitAt(x,y)) && stateView.inBounds(x,y);
     }
 
     /**
@@ -258,7 +255,7 @@ public class GameState {
         List<Unit.UnitView> enemies;
         List<Unit.UnitView> enemiesInRange = new ArrayList<Unit.UnitView>();
 
-        if (isMAX) {
+        if (AMIMAX) {
             enemies = archers;
             range = 1;
         } else {
@@ -279,7 +276,7 @@ public class GameState {
      * @return this, for ease of chaining
      */
     public GameState flipPlayer(){
-        this.isMAX = !this.isMAX;
+        this.AMIMAX = !this.AMIMAX;
         return this;
     }
 }
