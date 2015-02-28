@@ -129,8 +129,8 @@ public class MinimaxAlphaBeta extends Agent {
      * @param children the children nodes to sort
      * @return The list of children sorted by your heuristic.
      */
-    public List<GameStateChild> orderChildrenWithHeuristics(List<GameStateChild> children)
-    {
+    public static List<GameStateChild> orderChildrenWithHeuristics(List<GameStateChild> children)
+    {//this is static, and actually gets called on child generation, instead of at search time
         //orders nodes with higher utility first.
         /*
          * Insertion sort.  Because it has low overhead and complexity doesn't matter much on small search sizes

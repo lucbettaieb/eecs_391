@@ -134,16 +134,30 @@ public class GameState {
      *
      * @return All possible actions and their associated resulting game state
      */
-    public List<GameStateChild> getChildren() {
+    public List<GameStateChild> getChildren() {//TODO: add memoization?
+        /*
+            Archers:
+            for each footman in footmen:
+                if footman is within firing radius
+                    attack
+                    break
+            
+            footmen:
+            for each footman in footmen:
+                if we're mid-execution of some compound movement, make sure it will still work, and break
+                find the cheapest-pathed footman
+                    if path is 0 (we're next to it) PRIMITIVEATTACK
+                    else (we gotta walk to them) COMPOUNDATTACK
+         */
         //use COMPOUNDATTACK to move then attack once.
         //  Action.createCompoundAttack(sourceID, destinationID)
         //use PRIMITIVEATTACK to attack once. will fail if out of range.
         //  Action.createPrimitiveAttack(sourceID, destinationID)
         
         //moves:
-        for(Direction direction : Direction.values()){
-            
-        }
-        return null;
+        for(Direction direction : Direction.values()){}
+        
+        List<GameStateChild> returnVar = new ArrayList<GameStateChild>();
+        return MinimaxAlphaBeta.orderChildrenWithHeuristics(returnVar);
     }
 }
