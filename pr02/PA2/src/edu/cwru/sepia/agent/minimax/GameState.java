@@ -187,6 +187,7 @@ public class GameState {
         for (Map<Integer, Action> actionMap : actions) {
             children.add(new GameStateChild(actionMap, this));
         }
+        children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
         return children;
     }
 
@@ -271,5 +272,14 @@ public class GameState {
             if (range >= (xDiff + yDiff))  enemiesInRange.add(enemy);
         }
         return enemiesInRange;
+    }
+
+    /**
+     * swaps the current player (MAX or MIN) 
+     * @return this, for ease of chaining
+     */
+    public GameState flipPlayer(){
+        this.isMAX = !this.isMAX;
+        return this;
     }
 }

@@ -7,10 +7,7 @@ import edu.cwru.sepia.environment.model.state.State;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Collections;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MinimaxAlphaBeta extends Agent {
 
@@ -129,7 +126,7 @@ public class MinimaxAlphaBeta extends Agent {
      * @param children the children nodes to sort
      * @return The list of children sorted by your heuristic.
      */
-    public static List<GameStateChild> orderChildrenWithHeuristics(List<GameStateChild> children)
+    public static ArrayList<GameStateChild> orderChildrenWithHeuristics(ArrayList<GameStateChild> children)
     {//this is static, and actually gets called on child generation, instead of at search time
         //orders nodes with higher utility first.
         /*
@@ -144,12 +141,15 @@ public class MinimaxAlphaBeta extends Agent {
          */
         
         int i = 0;
-        List<GameStateChild> sorted = children;
+        ArrayList<GameStateChild> sorted = children;
         //gotta work on a copy of the list because you can't play with
         //the variable you're iterating through in a for-each loop
         
         for(GameStateChild child: children){//stand back kids, we're rolling our own for loop
-            if(i++==0) continue;//cool, I've never used a continue before.  It skips the current loop iteration.
+            if(i==0){
+                i++;
+                continue;//cool, I've never used a continue before.  It skips the current loop iteration.
+            }
             GameStateChild x = child;
             int j = i;
             while(j>0 && sorted.get(j-1).state.getUtility()>x.state.getUtility()){
@@ -157,6 +157,7 @@ public class MinimaxAlphaBeta extends Agent {
                 j--;
             }
             sorted.set(j, x);
+            i++;
         }
         Collections.reverse(sorted);//the sorting algorithm put lowest utility first.  Flip it.
         return sorted;
