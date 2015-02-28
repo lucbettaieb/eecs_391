@@ -1,9 +1,12 @@
 package edu.cwru.sepia.agent.minimax;
 
+import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
+import edu.cwru.sepia.environment.model.state.StateCreator;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
+import edu.cwru.sepia.util.DistanceMetrics;
 
 import java.util.*;
 
@@ -98,12 +101,12 @@ public class GameState {
         
         for(Unit.UnitView footman: this.footmen){
             goodHealth += footman.getHP();//popped it into the loop to prevent 2 extra instructions...
-            int mindistance = Integer.MAX_VALUE;
+            int minDistance = Integer.MAX_VALUE;
             for(Unit.UnitView archer: this.archers){
                 int currentDistance = manhattanDistance(footman, archer);
-                if(currentDistance<mindistance) mindistance = currentDistance;
+                if(currentDistance < minDistance) minDistance = currentDistance;
             }
-            distance += mindistance;
+            distance += minDistance;
         }
         return goodHealth-badHealth+distance;
     }
@@ -135,6 +138,31 @@ public class GameState {
      * @return All possible actions and their associated resulting game state
      */
     public List<GameStateChild> getChildren() {//TODO: add memoization?
+        
+        
+        //TODO: Is this supposed to model both archer and footman actions?
+        //are these actions supposed to be atomic, or can they be higher level?
+        
+        
+        List<GameStateChild> returnVar = new ArrayList<GameStateChild>();
+        Map<Integer, Action> actionMap = new HashMap<Integer, Action>();
+        
+        /*
+                    Archers:
+            for each archer in archers:
+                find the closest footman
+                shoot at it.
+         */
+        for(Unit.UnitView archer: archers){//archer possible moves
+            int shortest = Integer.MAX_VALUE; //distance to closest target
+            int shortestID = 0; //closest target's ID
+            for(Unit.UnitView footman: footmen){
+                if(manhattanDistance(archer, footman) < shortest) shortestID = footman.getID();
+            }
+            actionMap.put(archer.getID(), Action.createCompoundAttack(archer.getID(), shortestID));
+            
+        }
+        
         /*
             Archers:
             for each footman in footmen:
@@ -156,8 +184,6 @@ public class GameState {
         
         //moves:
         for(Direction direction : Direction.values()){}
-        
-        List<GameStateChild> returnVar = new ArrayList<GameStateChild>();
         return MinimaxAlphaBeta.orderChildrenWithHeuristics(returnVar);
     }
 }
