@@ -177,6 +177,7 @@ public class GameState {
         for (List<Action> unitActionList : unitActions) {//for every unit's set of actions
             for (Action unitAction : unitActionList) {//for every action within that set
                 for (Map<Integer, Action> unitActionMap : actions) {//for every state's possible action set
+                    //TODO: sweet baby jesus I need to fix this complexity
                     unitActionMap.put(unitIDs.get(0), unitAction);//combine them all.
                 }
             }
@@ -194,10 +195,10 @@ public class GameState {
     /**
      *  you give me a player and its enemy set, I give you the list of all actions that player can take
      * @param player source player
-     * @param enemies destination enemies
+     * @param givenEnemies destination enemies
      * @return legal moves that the source player can make onto the destination enemies
      */
-    private List<Action> getActions(Unit.UnitView player, List<Unit.UnitView> enemies) {
+    private List<Action> getActions(Unit.UnitView player, List<Unit.UnitView> givenEnemies) {
         List<Action> actions = new ArrayList<Action>();
         
         // Add all possible moves to the action list for this player
@@ -208,7 +209,7 @@ public class GameState {
         }
 
         // Add all possible attacks to the action list for this player
-        for (Unit.UnitView enemy : enemiesInRange(player)) {
+        for (Unit.UnitView enemy : enemiesInRange(player, AMIMAX ? archers : footmen)) {
             actions.add(Action.createCompoundAttack(player.getID(), enemy.getID()));
         }
         return actions;
@@ -248,20 +249,10 @@ public class GameState {
      * @param player player we're working from
      * @return list of enemies within attacking range
      */
-    private List<Unit.UnitView> enemiesInRange(Unit.UnitView player) {
-        int range = 0;
-        int xDiff = 0;
-        int yDiff = 0;
-        List<Unit.UnitView> enemies;
+    private List<Unit.UnitView> enemiesInRange(Unit.UnitView player, List<Unit.UnitView> enemies) {
+        int range, xDiff, yDiff = 0;
         List<Unit.UnitView> enemiesInRange = new ArrayList<Unit.UnitView>();
-
-        if (AMIMAX) {
-            enemies = archers;
-            range = 1;
-        } else {
-            enemies = footmen;
-            range = 15;//yay magic numbers!
-        }
+        range = AMIMAX ? 1 : 15;//if I'm MAX, I'm footmen, who have range of 1. Else, archers with range 15.
 
         for (Unit.UnitView enemy : enemies) {
             xDiff = deltaX(player, enemy);
