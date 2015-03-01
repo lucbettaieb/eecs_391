@@ -74,7 +74,7 @@ public class GameState {
 
     /**
      * You will implement this function.
-     * <p/>
+     *
      * You should use weighted linear combination of features.
      * The features may be primitives from the state (such as hp of a unit)
      * or they may be higher level summaries of information from the state such
@@ -90,7 +90,7 @@ public class GameState {
      *
      * @return The weighted linear combination of the features
      */
-    public double getUtility() {//I'll say I'm MAX, and I use footmen.
+    public double getUtility() {
         double goodHealth = 0d;//health of footmen
         double badHealth = 0d;//health of archers
         int distance = 0;//distance between each footman, and what's probably its target
@@ -106,7 +106,7 @@ public class GameState {
             }
             distance += minDistance;
         }
-        return goodHealth - badHealth + distance;
+        return goodHealth - badHealth - distance;
     }
 
     /**
@@ -144,7 +144,7 @@ public class GameState {
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
         ArrayList<Integer> unitIDs = new ArrayList<Integer>();//index-aligned IDs for the units
-        ArrayList<Map<Integer, Action>> actions = new ArrayList<Map<Integer, Action>>();
+        ArrayList<Map<Integer, Action>> actionMapList = new ArrayList<Map<Integer, Action>>();
         // combination of uniActions and unitIDs into one data structure, but unitActions is flattened.
 
         if (AMIMAX) {
@@ -167,7 +167,7 @@ public class GameState {
                 //temprary map that's gonna get added to the actions arrayList
                 unitActionMap.put(unitIDs.get(i), unitAction);
                 //NOTE: This is a crappy scheme.  Each hashmap will be a single tuple.
-                actions.add(unitActionMap);//put the single tuple into the actions list.
+                actionMapList.add(unitActionMap);//put the single tuple into the actions list.
             }
             i++;
         }
@@ -176,16 +176,16 @@ public class GameState {
         i = 0;
         for (List<Action> unitActionList : unitActions) {//for every unit's set of actions
             for (Action unitAction : unitActionList) {//for every action within that set
-                for (Map<Integer, Action> unitActionMap : actions) {//for every state's possible action set
+                for (Map<Integer, Action> unitActionMap : actionMapList) {//for every state's possible action set
                     //TODO: sweet baby jesus I need to fix this complexity
-                    unitActionMap.put(unitIDs.get(0), unitAction);//combine them all.
+                    unitActionMap.put(unitIDs.get(i), unitAction);//combine them all.
                 }
             }
             i++;
         }
 
         ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
-        for (Map<Integer, Action> actionMap : actions) {
+        for (Map<Integer, Action> actionMap : actionMapList) {
             children.add(new GameStateChild(actionMap, this));
         }
         children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
@@ -250,7 +250,7 @@ public class GameState {
      * @return list of enemies within attacking range
      */
     private List<Unit.UnitView> enemiesInRange(Unit.UnitView player, List<Unit.UnitView> enemies) {
-        int range, xDiff, yDiff = 0;
+        int range, xDiff, yDiff;
         List<Unit.UnitView> enemiesInRange = new ArrayList<Unit.UnitView>();
         range = AMIMAX ? 1 : 15;//if I'm MAX, I'm footmen, who have range of 1. Else, archers with range 15.
 
