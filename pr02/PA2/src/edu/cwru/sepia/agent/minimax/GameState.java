@@ -180,7 +180,7 @@ public class GameState {
 
         ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
         for (Map<Integer, Action> actionMap : actionMapList) {
-            children.add(new GameStateChild(actionMap, this));
+            children.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(actionMap, this.stateView))));
         }
         children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
         return children;
@@ -203,7 +203,7 @@ public class GameState {
 
         // Add all possible attacks to the action list for this player
         for (Unit.UnitView enemy : enemiesInRange(player, AMIMAX ? archers : footmen)) {
-            actions.add(Action.createCompoundAttack(player.getID(), enemy.getID()));
+            actions.add(Action.createPrimitiveAttack(player.getID(), enemy.getID()));
         }
         return actions;
 

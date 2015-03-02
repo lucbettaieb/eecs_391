@@ -1,0 +1,9 @@
+lab149
+rac158
+
+EECS391 pr02
+
+TODO:
+    apply actions to states, making a new state from it.
+        clone 'this', then manually make the changes.
+        
