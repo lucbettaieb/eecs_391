@@ -80,7 +80,7 @@ public class MinimaxAlphaBeta extends Agent {
          http://www.cs.trincoll.edu/~ram/cpsc352/notes/minimax.html
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
-        this.AMIMAX = !AMIMAX;//initialized to false, so first flip sets it true
+        this.flipPlayer();//initialized to false, so first flip sets it true
         node.state.flipPlayer();
         
         if(depth == 0 || node.state.getChildren()==null || node.state.getChildren().isEmpty()) return node;
@@ -163,4 +163,6 @@ public class MinimaxAlphaBeta extends Agent {
         Collections.reverse(sorted);//the sorting algorithm put lowest utility first.  Flip it.
         return sorted;
     }
+    
+    private void flipPlayer(){this.AMIMAX = !AMIMAX;}
 }

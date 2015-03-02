@@ -52,8 +52,6 @@ public class GameState {
         this.blockObjects = state.getAllResourceNodes();
         this.units = state.getAllUnits();
         parseUnits();//puts the archers and footmen into their own lists
-
-
         this.stateView = state;//just reference the whole damn thing.
     }
 
@@ -70,8 +68,7 @@ public class GameState {
             }
         }
     }
-
-
+    
     /**
      * You will implement this function.
      *
@@ -133,9 +130,6 @@ public class GameState {
      * x += direction.xComponent()
      * y += direction.yComponent()
      *
-     * @return All possible actions and their associated resulting game state
-     */
-    /**
      * NOTE: AMIMAX field is required to be set for this.  We need to know if footmen or archers are being played
      * @return the possible future game states from the current state
      */
@@ -150,12 +144,12 @@ public class GameState {
         if (AMIMAX) {
             for (Unit.UnitView footman : footmen) {
                 unitIDs.add(footman.getID());//populate the ID array entry
-                unitActions.add(getActions(footman, archers));//all actions possible from this footman to the enemies
+                unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
             }
         } else {
             for (Unit.UnitView archer : archers) {
                 unitIDs.add(archer.getID());//populate the current index with the ID
-                unitActions.add(getActions(archer, footmen));//populate the aligned index with the list of possible actions
+                unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
             }
         }//end of move creation
 
@@ -193,12 +187,11 @@ public class GameState {
     }
 
     /**
-     *  you give me a player and its enemy set, I give you the list of all actions that player can take
+     *  you give me a player (and set AMIMAX), I give you the list of all actions that player can take
      * @param player source player
-     * @param givenEnemies destination enemies
      * @return legal moves that the source player can make onto the destination enemies
      */
-    private List<Action> getActions(Unit.UnitView player, List<Unit.UnitView> givenEnemies) {
+    private List<Action> getActions(Unit.UnitView player) {
         List<Action> actions = new ArrayList<Action>();
         
         // Add all possible moves to the action list for this player
@@ -223,7 +216,7 @@ public class GameState {
      * @return whether the move is projected to succeed
      */
     private boolean isLegalMove(int x, int y){
-        return (stateView.isResourceAt(x,y) || stateView.isUnitAt(x,y)) && stateView.inBounds(x,y);
+        return !stateView.isResourceAt(x,y) && !stateView.isUnitAt(x,y) && stateView.inBounds(x,y);
     }
 
     /**
@@ -252,7 +245,8 @@ public class GameState {
     private List<Unit.UnitView> enemiesInRange(Unit.UnitView player, List<Unit.UnitView> enemies) {
         int range, xDiff, yDiff;
         List<Unit.UnitView> enemiesInRange = new ArrayList<Unit.UnitView>();
-        range = AMIMAX ? 1 : 15;//if I'm MAX, I'm footmen, who have range of 1. Else, archers with range 15.
+        
+        range = player.getTemplateView().getRange();
 
         for (Unit.UnitView enemy : enemies) {
             xDiff = deltaX(player, enemy);
