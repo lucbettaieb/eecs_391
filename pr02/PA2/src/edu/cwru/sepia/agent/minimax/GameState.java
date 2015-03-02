@@ -88,22 +88,30 @@ public class GameState {
      * @return The weighted linear combination of the features
      */
     public double getUtility() {
-        double goodHealth = 0d;//health of footmen
-        double badHealth = 0d;//health of archers
-        int distance = 0;//distance between each footman, and what's probably its target
 
-        for (Unit.UnitView archer : this.archers) badHealth += archer.getHP();
+        int footmanHP = 0;
+        for (Unit.UnitView footman : footmen) footmanHP += footman.getHP();
 
-        for (Unit.UnitView footman : this.footmen) {
-            goodHealth += footman.getHP();//popped it into the loop to prevent 2 extra instructions...
-            int minDistance = Integer.MAX_VALUE;
-            for (Unit.UnitView archer : this.archers) {
-                int currentDistance = manhattanDistance(footman, archer);
-                if (currentDistance < minDistance) minDistance = currentDistance;
+        int archerHP = 0;
+        for (Unit.UnitView archer : archers)  archerHP += archer.getHP();
+
+        int footmenAlive = footmen.size();
+        int archersAlive = archers.size();
+
+        int distance = 0;
+        for (Unit.UnitView footman : footmen) {
+            int x = footman.getXPosition();
+            int y = footman.getYPosition();
+
+            List<Integer> distances = new ArrayList<Integer>();
+            for (Unit.UnitView archer : archers) {
+                distances.add(Math.max(
+                        Math.abs(x - archer.getXPosition()),
+                        Math.abs(y - archer.getYPosition())));
             }
-            distance += minDistance;
+            distance += distances.isEmpty() ? 0 : Collections.min(distances);
         }
-        return goodHealth - badHealth - distance;
+        return  footmanHP - distance - 10 * archerHP + 10 * footmenAlive - 100 * archersAlive;
     }
 
     /**
@@ -111,7 +119,7 @@ public class GameState {
      * you give me a source and destination UnitView,
      * I give you their manhattan distance
      */
-    private int manhattanDistance(Unit.UnitView source, Unit.UnitView destination) {
+    public static int manhattanDistance(Unit.UnitView source, Unit.UnitView destination) {
         return Math.abs(source.getXPosition() - destination.getXPosition()) +
                 Math.abs(source.getYPosition() - destination.getYPosition());
     }

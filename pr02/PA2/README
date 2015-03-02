@@ -3,7 +3,13 @@ rac158
 
 EECS391 pr02
 
+
+Current State:
+    Things move.
+    They move slowly (1 frame per 15 seconds or so)
+    They walk into walls, or run away.
+    
 TODO:
-    apply actions to states, making a new state from it.
-        clone 'this', then manually make the changes.
-        
+    don't generate full states on child generation.  Use a placeholder(?)
+    generate the full state when you want to explore it.  This way you avoid generating pruned states.
+    

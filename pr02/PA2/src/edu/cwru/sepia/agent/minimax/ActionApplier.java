@@ -14,6 +14,8 @@ import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -92,5 +94,74 @@ public class ActionApplier {
     private static void applyMove(int sourceID, Direction direction, State postActionState){
         Unit source = postActionState.getUnit(sourceID);
         postActionState.moveUnit(source, direction);
+    }
+
+    /**
+     * don't go through the heavy process of cloning a state, just to find its heuristic. 
+     * @param givenActionMap actions to take
+     * @param givenPreActionState state actions are taken on
+     * @return heuristic value
+     */
+    private static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
+        List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
+        List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
+        for (Unit.UnitView unit : givenPreActionState.getAllUnits()) {//categorize dem units
+            if (unit.getTemplateView().getName().equals("Footman")) {
+                footmen.add(unit);
+            } else if (unit.getTemplateView().getName().equals("Archer")) {
+                archers.add(unit);
+            }
+        }
+        
+        double goodHealth = 0d;//health of footmen
+        double badHealth = 0d;//health of archers
+        int distance1 = 0;//distance between each footman, and what's probably its target
+        
+        //apply attacks to HP
+        //apply moves to distance
+        
+        for(Unit.UnitView footman: footmen){
+            Action action = givenActionMap.get(footman.getID());
+            if (action instanceof DirectedAction){
+                DirectedAction directedAction = (DirectedAction) action;
+                int x = directedAction.getDirection().xComponent() + footman.getXPosition();
+                int y = directedAction.getDirection().yComponent() + footman.getYPosition();
+                int minDistance = Integer.MAX_VALUE;
+                for (Unit.UnitView archer : archers) {
+                    int currentDistance = manhattanImmediate(archer, x,y);
+                    if (currentDistance < minDistance) minDistance = currentDistance;
+                }
+                distance1 += minDistance;
+            } else if (action instanceof TargetedAction){
+                TargetedAction targetedAction = (TargetedAction) action;
+                badHealth += givenPreActionState.getUnit(targetedAction.getTargetId()).getHP()
+                        - footman.getTemplateView().getBasicAttack();
+            }
+        }
+        int distance2 = 0;
+        for(Unit.UnitView archer: archers){
+            Action action = givenActionMap.get(archer.getID());
+            if (action instanceof DirectedAction){
+                DirectedAction directedAction = (DirectedAction) action;
+                int x = directedAction.getDirection().xComponent() + archer.getXPosition();
+                int y = directedAction.getDirection().yComponent() + archer.getYPosition();
+                int minDistance = Integer.MAX_VALUE;
+                for (Unit.UnitView footman : footmen) {
+                    int currentDistance = manhattanImmediate(footman, x,y);
+                    if (currentDistance < minDistance) minDistance = currentDistance;
+                }
+                distance2 += minDistance;
+            } else if (action instanceof TargetedAction){
+                TargetedAction targetedAction = (TargetedAction) action;
+                goodHealth += givenPreActionState.getUnit(targetedAction.getTargetId()).getHP()
+                        - archer.getTemplateView().getBasicAttack();
+            }
+        }
+        
+        return goodHealth - badHealth - (distance1+distance2);
+    }
+    
+    private static int manhattanImmediate(Unit.UnitView loc1, int x, int y){
+        return Math.abs(loc1.getXPosition() - x) +  Math.abs(loc1.getYPosition() - y);
     }
 }
