@@ -6,10 +6,10 @@ EECS391 pr02
 
 Current State:
     Things move.
-    They move slowly (1 frame per 15 seconds or so)
     They walk into walls, or run away.
     
 TODO:
-    don't generate full states on child generation.  Use a placeholder(?)
-    generate the full state when you want to explore it.  This way you avoid generating pruned states.
-    
+    make AI less retarded.  Something to do with move generation.
+    only sort children when we look at them, not at generation.
+        move the call from getChildren to alphaBetaSearch
+    move each GameState heuristic weight magic number into a 'final const int' global declaration

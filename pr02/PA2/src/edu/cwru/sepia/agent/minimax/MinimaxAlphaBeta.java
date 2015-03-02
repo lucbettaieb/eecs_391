@@ -71,6 +71,10 @@ public class MinimaxAlphaBeta extends Agent {
      * @param alpha The current best value for the maximizing node from this node to the root
      * @param beta The current best value for the minimizing node from this node to the root
      * @return The best child of this node with updated values
+     * 
+     * There's some dirty tricks in here that lead to incredible improvements.
+     *      Minimax doesn't care about the state, just its heuristic.  I only care about
+     *      the best state.  So only generate the state if we're redefining the best
      */
     public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta)
     {/*         minimax:
@@ -92,12 +96,11 @@ public class MinimaxAlphaBeta extends Agent {
         GameStateChild returnVar = null;
         if(AMIMAX){//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
-            for(GameStateChild child: node.state.getUnappliedChildren()){
-                //GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+            for(GameStateChild child: node.state.getUnappliedChildren()){//action,state tuple.  Action unapplied to state
                 double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
                 if(childValue > value){
                     value = childValue;
-                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);
+                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
                 }
                 alpha = Math.max(value, alpha);
                 if(beta <= alpha) break; //beta-pruned
@@ -105,12 +108,11 @@ public class MinimaxAlphaBeta extends Agent {
             return returnVar;
         } else {//MIN is playing
             double value = Double.POSITIVE_INFINITY;
-            for(GameStateChild child: node.state.getUnappliedChildren()){
-                //GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+            for(GameStateChild child: node.state.getUnappliedChildren()){//action,state tuple.  Action unapplied to state
                 double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
                 if(childValue < value){
                     value = childValue;
-                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);
+                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
                 }
                 beta = Math.min(value, beta);
                 if(beta <= alpha) break; //alpha-pruned

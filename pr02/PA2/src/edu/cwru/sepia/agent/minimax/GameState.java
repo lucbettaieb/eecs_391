@@ -18,13 +18,11 @@ import java.util.*;
  */
 public class GameState {
 
-    protected int xExtent, yExtent;
-    protected List<ResourceNode.ResourceView> blockObjects;//things that will get in your way
-    protected State.StateView stateView;
+    protected State.StateView stateView;//nice for function calls
     protected List<Unit.UnitView> units;
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
-    protected boolean AMIMAX = false;
+    private boolean AMIMAX = false;
 
     /**
      * You will implement this constructor. It will
@@ -47,12 +45,10 @@ public class GameState {
      * @param state Current state of the episode
      */
     public GameState(State.StateView state) {
-        this.xExtent = state.getXExtent();
-        this.yExtent = state.getYExtent();
-        this.blockObjects = state.getAllResourceNodes();
         this.units = state.getAllUnits();
         parseUnits();//puts the archers and footmen into their own lists
         this.stateView = state;//just reference the whole damn thing.
+                                //but actually, it's super useful for function calls
     }
 
     /**
@@ -100,18 +96,13 @@ public class GameState {
 
         int distance = 0;
         for (Unit.UnitView footman : footmen) {
-            int x = footman.getXPosition();
-            int y = footman.getYPosition();
-
+            
             List<Integer> distances = new ArrayList<Integer>();
-            for (Unit.UnitView archer : archers) {
-                distances.add(Math.max(
-                        Math.abs(x - archer.getXPosition()),
-                        Math.abs(y - archer.getYPosition())));
-            }
-            distance += distances.isEmpty() ? 0 : Collections.min(distances);
+            for (Unit.UnitView archer : archers) distances.add(manhattanDistance(footman, archer));
+            distance += distances.isEmpty() ? 0 : Collections.min(distances);//NPE protection
         }
         return  footmanHP - distance - 10 * archerHP + 10 * footmenAlive - 100 * archersAlive;
+                //TODO: abstract magic number weighting.
     }
 
     /**
@@ -151,7 +142,12 @@ public class GameState {
         }
         return children;
     }
-    
+
+    /**
+     * gets all State/desired actionMap tuples possible from this state.
+     * NOTE: the returned GameStateChild's state is BEFORE the actionMap has been performed
+     * @return all possible GameStateChildren, with unapplied actions (i.e. state returned is this)
+     */
     public List<GameStateChild> getUnappliedChildren(){
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array

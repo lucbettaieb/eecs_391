@@ -1,6 +1,5 @@
 /*
         TODO LIST
-    -break down compound actions into their atomic (called primitive) forms
     -remove player if its HP is at or below zero
  */
 package edu.cwru.sepia.agent.minimax;
@@ -18,12 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by aidan on 3/1/15.
- */
+
 public class ActionApplier {
 
-    
+    /**
+     * entry point for full state generation 
+     * @param givenActionMap action map to apply to the state
+     * @param givenPreActionState state to apply actions to
+     * @return resultant state
+     */
     public static State apply(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         State postActionState = null;
         try {
@@ -32,6 +34,7 @@ public class ActionApplier {
             //TODO: this isn't even duct-tape-quality code...
             //HOW THE HELL DO YOU MAKE A STATE OR STATEVIEW IN A DECENT MANNER?
             //I JUST WANT A NEW STATE OUT OF A STATE + ACTION
+            //THIS IS A STUPID AMOUNT OF CODE FOR WHAT SHOULD BE AN API CALL
             
             for(Integer key: givenActionMap.keySet()){//apply all the actions
                 applyNextAtomicAction(key, givenActionMap, postActionState);
@@ -39,37 +42,35 @@ public class ActionApplier {
             
         } catch (IOException e){
             System.err.println("ERROR WHILE CLONING STATE");
-            //System.exit(1);
         }
-        
-        
         return (postActionState==null)?null: postActionState;
     }
-    
-    
-    private static void applyNextAtomicAction(int playerID, Map<Integer, Action> actionMap , State postActionState){
-        if(!actionMap.containsKey(playerID)) return;//bad call.
-        Action mappedAction = actionMap.get(playerID);
+
+    /**
+     *  you give me a unit's ID, the ID/Action map, and the state
+     *      I categorize the action and make the proper call to change the state  
+     * @param unitID ID of unit performing the action
+     * @param actionMap action map containing unit's desired action
+     * @param postActionState state to perform the action on
+     */
+    private static void applyNextAtomicAction(int unitID, Map<Integer, Action> actionMap , State postActionState){
+        if(!actionMap.containsKey(unitID)) return;//bad call.
+        Action mappedAction = actionMap.get(unitID);
         if(mappedAction instanceof DirectedAction){//PrimitiveMove
             DirectedAction directedAction = (DirectedAction) mappedAction;
-            applyMove(playerID, directedAction.getDirection(), postActionState);
+            applyMove(unitID, directedAction.getDirection(), postActionState);
         } else if (mappedAction instanceof TargetedAction){//Compound/Primitive Attack
             TargetedAction targetedAction = (TargetedAction) mappedAction;
-            
-            if(targetedAction.getType() == ActionType.PRIMITIVEATTACK) {//I doubt anyone uses primitive attacks.
-                applyAttack(playerID, targetedAction.getTargetId(), postActionState);
+            if(targetedAction.getType() == ActionType.PRIMITIVEATTACK) {//I'm only using primitive attacks.
+                applyAttack(unitID, targetedAction.getTargetId(), postActionState);
             } else{
                 System.err.println("ERROR: COULD NOT EXECUTE COMPOUND ACTION: "+targetedAction.toString()+'\n');
             }
-            //TODO:
-            //I need the next primitive in the (possibly) compound action.
-            //if it's a move I have to get the direction, else I can make up the attack.
         } else{
             System.err.println("ERROR: ACTION COULD NOT BE PARSED\n\t"+mappedAction.toString()+"\n");
         }
     }
-
-
+    
     /**
      * Applies an attack from the source unit to the destination unit, subtracting health from ths destination unit
      * There is no check for death, I assume that some other portion of the code will handle that. 
@@ -160,7 +161,14 @@ public class ActionApplier {
         
         return goodHealth - badHealth - (distance1+distance2);
     }
-    
+
+    /**
+     * manhattan Distance with an immediate location.  Useful for calculating distance without moving unit 
+     * @param loc1 location of unit 1
+     * @param x x location of unit 2
+     * @param y y location of unit 2
+     * @return manhattan distance between points
+     */
     private static int manhattanImmediate(Unit.UnitView loc1, int x, int y){
         return Math.abs(loc1.getXPosition() - x) +  Math.abs(loc1.getYPosition() - y);
     }
