@@ -24,7 +24,7 @@ import java.util.Map;
 public class ActionApplier {
 
     
-    public static State.StateView apply(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
+    public static State apply(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         State postActionState = null;
         try {
             
@@ -43,7 +43,7 @@ public class ActionApplier {
         }
         
         
-        return (postActionState==null)?null: postActionState.getView(givenPreActionState.getPlayerNumbers()[0]);
+        return (postActionState==null)?null: postActionState;
     }
     
     
@@ -102,7 +102,7 @@ public class ActionApplier {
      * @param givenPreActionState state actions are taken on
      * @return heuristic value
      */
-    private static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
+    public static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
         List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
         for (Unit.UnitView unit : givenPreActionState.getAllUnits()) {//categorize dem units

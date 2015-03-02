@@ -80,6 +80,11 @@ public class MinimaxAlphaBeta extends Agent {
          http://www.cs.trincoll.edu/~ram/cpsc352/notes/minimax.html
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
+        if(node.action != null){//this node has an outstanding action.  Perform it to get the node.
+            node = new GameStateChild(node.action, new GameState(ActionApplier.apply(
+                    node.action, node.state.stateView).getView(node.state.stateView.getPlayerNumbers()[0])));
+        }
+        
         this.flipPlayer();//initialized to false, so first flip sets it true
         node.state.flipPlayer();
         
@@ -87,12 +92,12 @@ public class MinimaxAlphaBeta extends Agent {
         GameStateChild returnVar = null;
         if(AMIMAX){//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
-            for(GameStateChild child: node.state.getChildren()){
-                GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
-                double childValue = childResult.state.getUtility();
+            for(GameStateChild child: node.state.getUnappliedChildren()){
+                //GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+                double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
                 if(childValue > value){
                     value = childValue;
-                    returnVar = childResult;
+                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);
                 }
                 alpha = Math.max(value, alpha);
                 if(beta <= alpha) break; //beta-pruned
@@ -100,12 +105,12 @@ public class MinimaxAlphaBeta extends Agent {
             return returnVar;
         } else {//MIN is playing
             double value = Double.POSITIVE_INFINITY;
-            for(GameStateChild child: node.state.getChildren()){
-                GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
-                double childValue = childResult.state.getUtility();
+            for(GameStateChild child: node.state.getUnappliedChildren()){
+                //GameStateChild childResult = alphaBetaSearch(child, depth-1, alpha, beta);
+                double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
                 if(childValue < value){
                     value = childValue;
-                    returnVar = childResult;
+                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);
                 }
                 beta = Math.min(value, beta);
                 if(beta <= alpha) break; //alpha-pruned

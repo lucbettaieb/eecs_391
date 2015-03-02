@@ -142,7 +142,17 @@ public class GameState {
      * @return the possible future game states from the current state
      */
     public List<GameStateChild> getChildren() {//TODO: add memoization?  (is this called more than once per state?)
-
+        //new GameState(ActionApplier.apply(actionMap, this.stateView))
+        ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
+        for(GameStateChild unapplied: getUnappliedChildren()) {
+            Map<Integer, Action> actionMap = unapplied.action;
+            children.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(
+                            actionMap, unapplied.state.stateView).getView(unapplied.state.stateView.getPlayerNumbers()[0]))));
+        }
+        return children;
+    }
+    
+    public List<GameStateChild> getUnappliedChildren(){
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
         ArrayList<Integer> unitIDs = new ArrayList<Integer>();//index-aligned IDs for the units
@@ -188,7 +198,7 @@ public class GameState {
 
         ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
         for (Map<Integer, Action> actionMap : actionMapList) {
-            children.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(actionMap, this.stateView))));
+            children.add(new GameStateChild(actionMap, this));
         }
         children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
         return children;
