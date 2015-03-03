@@ -1,7 +1,6 @@
 package edu.cwru.sepia.agent.minimax;
 
 import edu.cwru.sepia.action.Action;
-import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
@@ -23,7 +22,7 @@ public class GameState {
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
     private boolean AMIMAX = false;
-    private boolean childrenGenerated = false;
+    private boolean areChildrenGenerated = false;
     private List<GameStateChild> children;
     
     /**
@@ -135,7 +134,7 @@ public class GameState {
      * @return the possible future game states from the current state
      */
     public List<GameStateChild> getChildren() {
-        if(childrenGenerated) return children;
+        if(areChildrenGenerated) return children;
         
         ArrayList<GameStateChild> generatedChildren = new ArrayList<GameStateChild>();
         for(GameStateChild unapplied: getUnappliedChildren()) {
@@ -144,6 +143,7 @@ public class GameState {
                     actionMap, unapplied.state.stateView).getView(unapplied.state.stateView.getPlayerNumbers()[0]))));
         }
         this.children = generatedChildren;
+        areChildrenGenerated = true;
         return generatedChildren;
     }
 
@@ -181,9 +181,6 @@ public class GameState {
                 actionMapList.add(unitActionMap);//put the single tuple into the actions list.
             }
         }
-
-        //time to mix-and-match to create all possible combinations
-        //TODO: this code is wrong.
         
         /*
             okay, so to make every combination of something, you choose one, lock it, and iterate through the others.
@@ -197,15 +194,16 @@ public class GameState {
             Actions, and generate unique sets from there.
             The problem with this approach is not assigning two actions to a single unit at once.
          */
-        int i = 0;
         for (List<Action> unitActionList : unitActions) {//for every unit's set of actions (usually 2 units)
+            //every unit in question (e.g. every footman) will be considered here
             for (Action unitAction : unitActionList) {//for every action within that set (~8 moves)
+                //unit's every action (e.g. move northwest) will be considered here
                 for (Map<Integer, Action> unitActionMap : actionMapList) {//for every state's possible action set
                     //TODO: sweet baby jesus I need to fix this complexity
-                    unitActionMap.put(unitIDs.get(i), unitAction);//combine them all.
+                    unitActionMap.put(unitAction.getUnitId(), unitAction);//combine them all.
                 }
             }
-            i++;
+            
         }
 
         ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
