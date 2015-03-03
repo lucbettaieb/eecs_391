@@ -193,6 +193,9 @@ public class GameState {
             Because Actions have a sourceID (Action.getUnitId()), it could be possible to keep a flat set of
             Actions, and generate unique sets from there.
             The problem with this approach is not assigning two actions to a single unit at once.
+            
+            We don't want the power set.  We want the combinations.  There's no reason one unit should move and the
+            other(s) don't.
          */
         for (List<Action> unitActionList : unitActions) {//for every unit's set of actions (usually 2 units)
             //every unit in question (e.g. every footman) will be considered here
@@ -200,10 +203,12 @@ public class GameState {
                 //unit's every action (e.g. move northwest) will be considered here
                 for (Map<Integer, Action> unitActionMap : actionMapList) {//for every state's possible action set
                     //TODO: sweet baby jesus I need to fix this complexity
-                    unitActionMap.put(unitAction.getUnitId(), unitAction);//combine them all.
+                    if(!unitActionMap.containsKey(unitAction.getUnitId())){
+                        //if it's not a copy, put it in there
+                        unitActionMap.put(unitAction.getUnitId(), unitAction);
+                    }
                 }
             }
-            
         }
 
         ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
@@ -224,6 +229,8 @@ public class GameState {
         
         // Add all possible moves to the action list for this player
         for (Direction direction : Direction.values()) {
+            //we're only allowing cardinal directions, so ignore diagonals.
+            if(direction.xComponent() != 0 && direction.yComponent() != 0) continue;
             if (isLegalMove(player.getXPosition() + direction.xComponent(), player.getYPosition() + direction.yComponent())) {
                 actions.add(Action.createPrimitiveMove(player.getID(), direction));
             }
