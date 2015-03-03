@@ -23,7 +23,9 @@ public class GameState {
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
     private boolean AMIMAX = false;
-
+    private boolean childrenGenerated = false;
+    private List<GameStateChild> children;
+    
     /**
      * You will implement this constructor. It will
      * extract all of the needed state information from the built in
@@ -132,15 +134,17 @@ public class GameState {
      * NOTE: AMIMAX field is required to be set for this.  We need to know if footmen or archers are being played
      * @return the possible future game states from the current state
      */
-    public List<GameStateChild> getChildren() {//TODO: add memoization?  (is this called more than once per state?)
-        //new GameState(ActionApplier.apply(actionMap, this.stateView))
-        ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
+    public List<GameStateChild> getChildren() {
+        if(childrenGenerated) return children;
+        
+        ArrayList<GameStateChild> generatedChildren = new ArrayList<GameStateChild>();
         for(GameStateChild unapplied: getUnappliedChildren()) {
             Map<Integer, Action> actionMap = unapplied.action;
-            children.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(
-                            actionMap, unapplied.state.stateView).getView(unapplied.state.stateView.getPlayerNumbers()[0]))));
+            generatedChildren.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(
+                    actionMap, unapplied.state.stateView).getView(unapplied.state.stateView.getPlayerNumbers()[0]))));
         }
-        return children;
+        this.children = generatedChildren;
+        return generatedChildren;
     }
 
     /**
@@ -168,22 +172,34 @@ public class GameState {
         }//end of move creation
 
         //add the moves to the full map
-        int i = 0;
         for (List<Action> unitActionList : unitActions) {
             for (Action unitAction : unitActionList) {//fill the map with this unit's actions
                 HashMap<Integer, Action> unitActionMap = new HashMap<Integer, Action>();
                 //temprary map that's gonna get added to the actions arrayList
-                unitActionMap.put(unitIDs.get(i), unitAction);
+                unitActionMap.put(unitAction.getUnitId(), unitAction);
                 //NOTE: This is a crappy scheme.  Each hashmap will be a single tuple.
                 actionMapList.add(unitActionMap);//put the single tuple into the actions list.
             }
-            i++;
         }
 
         //time to mix-and-match to create all possible combinations
-        i = 0;
-        for (List<Action> unitActionList : unitActions) {//for every unit's set of actions
-            for (Action unitAction : unitActionList) {//for every action within that set
+        //TODO: this code is wrong.
+        
+        /*
+            okay, so to make every combination of something, you choose one, lock it, and iterate through the others.
+            hmm. maybe that's if ordering matters.
+            
+            any unit can take a set of actions.  This is represented as a list of Actions
+            because we have several units, we make a list of these lists.  This metalist is "unitActions"
+            So right off the bat, to iterate through all actions, it's a double-for loop
+            
+            Because Actions have a sourceID (Action.getUnitId()), it could be possible to keep a flat set of
+            Actions, and generate unique sets from there.
+            The problem with this approach is not assigning two actions to a single unit at once.
+         */
+        int i = 0;
+        for (List<Action> unitActionList : unitActions) {//for every unit's set of actions (usually 2 units)
+            for (Action unitAction : unitActionList) {//for every action within that set (~8 moves)
                 for (Map<Integer, Action> unitActionMap : actionMapList) {//for every state's possible action set
                     //TODO: sweet baby jesus I need to fix this complexity
                     unitActionMap.put(unitIDs.get(i), unitAction);//combine them all.

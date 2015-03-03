@@ -1,7 +1,3 @@
-/*
-        TODO LIST
-    -remove player if its HP is at or below zero
- */
 package edu.cwru.sepia.agent.minimax;
 
 import edu.cwru.sepia.action.Action;
@@ -83,6 +79,7 @@ public class ActionApplier {
         Unit destination = postActionState.getUnit(destinationID);
         int attackAmount = source.getTemplate().getBasicAttack();
         destination.setHP(destination.getCurrentHealth()-attackAmount);
+        if(destination.getCurrentHealth() <= 0) postActionState.removeUnit(destinationID);
     }
 
     /**
