@@ -114,11 +114,13 @@ public class ActionApplier {
         double goodHealth = 0d;//health of footmen
         double badHealth = 0d;//health of archers
         int distance1 = 0;//distance between each footman, and what's probably its target
+        int footmenAlive = 0, archersAlive = 0;
         
         //apply attacks to HP
         //apply moves to distance
         
         for(Unit.UnitView footman: footmen){
+            footmenAlive++;
             Action action = givenActionMap.get(footman.getID());
             if (action instanceof DirectedAction){
                 DirectedAction directedAction = (DirectedAction) action;
@@ -138,6 +140,7 @@ public class ActionApplier {
         }
         int distance2 = 0;
         for(Unit.UnitView archer: archers){
+            archersAlive++;
             Action action = givenActionMap.get(archer.getID());
             if (action instanceof DirectedAction){
                 DirectedAction directedAction = (DirectedAction) action;
@@ -156,7 +159,7 @@ public class ActionApplier {
             }
         }
         
-        return goodHealth - badHealth - (distance1+distance2);
+        return goodHealth + footmenAlive*10 - 10*badHealth - (distance1+distance2) - archersAlive*100;
     }
 
     /**
