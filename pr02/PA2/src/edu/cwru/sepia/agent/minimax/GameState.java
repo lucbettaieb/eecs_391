@@ -155,33 +155,20 @@ public class GameState {
     public List<GameStateChild> getUnappliedChildren(){
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
-        ArrayList<Map<Integer, Action>> actionMapList = new ArrayList<Map<Integer, Action>>();
-        // combination of uniActions and unitIDs into one data structure.
-        //each element of this arrayList represents a possible ID/Action pair to generate a new state
-        ArrayList<Integer> idList = new ArrayList<Integer>();
+        ArrayList<Integer> idList = new ArrayList<Integer>();//list of IDs, used for making actionCombos
         
             for (Unit.UnitView footman : footmen) {
                 if(AMIMAX) unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
                 idList.add(footman.getID());
             }
             for (Unit.UnitView archer : archers) {
-                if(AMIMAX) unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                if(!AMIMAX) unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
                 idList.add(archer.getID());
             }
-
-        //add the moves to the full map
-        for (List<Action> unitActionList : unitActions) {
-            for (Action unitAction : unitActionList) {//fill the map with this unit's actions
-                HashMap<Integer, Action> unitActionMap = new HashMap<Integer, Action>();
-                //temporary map that's gonna get added to the actions arrayList
-                unitActionMap.put(unitAction.getUnitId(), unitAction);
-                //NOTE: This is a crappy scheme.  Each hashmap will be a single tuple.
-                actionMapList.add(unitActionMap);//put the single tuple into the actions list.
-            }
-        }
-        Map<Integer, LinkedList<Action>> flattenedActions = flattenActions(unitActions);
+        
         List<Action[]> actionCombos = new ArrayList<Action[]>();
-        generateActionCombos(idList, flattenedActions, actionCombos, 0, new Action[idList.size()]);
+        
+        generateActionCombos(idList, flattenActions(unitActions), actionCombos, 0, new Action[idList.size()]);
 
         //actionCombos is now filled and useful
         
@@ -195,6 +182,9 @@ public class GameState {
     private Map<Integer, Action> makeTupleFromActions(Action[] actions){
         Map<Integer, Action> returnVar = new HashMap<Integer, Action>();
         for(Action action: actions){
+            if(action == null){
+                continue;
+            }
             returnVar.put(action.getUnitId(), action);
         }
         return returnVar;
@@ -237,9 +227,9 @@ public class GameState {
             return;
         }
         LinkedList<Action> currentUnitsActions = unitsAndActions.get(unitIDs.get(depth));
-        for(int i = 0; i < currentUnitsActions.size(); i++){//TODO: change to foreach
-            current[depth] = currentUnitsActions.get(i);
-            generateActionCombos(unitIDs, unitsAndActions, actionCombos , depth+1, current);
+        for (Action currentUnitsAction : currentUnitsActions) {
+            current[depth] = currentUnitsAction;
+            generateActionCombos(unitIDs, unitsAndActions, actionCombos, depth + 1, current);
         }
     }
 
