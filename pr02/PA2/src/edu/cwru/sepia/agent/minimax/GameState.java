@@ -97,10 +97,9 @@ public class GameState {
 
         int distance = 0;
         for (Unit.UnitView footman : footmen) {
-            
             List<Integer> distances = new ArrayList<Integer>();
             for (Unit.UnitView archer : archers) distances.add(manhattanDistance(footman, archer));
-            distance += distances.isEmpty() ? 0 : Collections.min(distances);//NPE protection
+            distance = distances.isEmpty() ? 0 : Collections.max(distances);//NPE protection
         }
         return  footmanHP - distance - 10 * archerHP + 10 * footmenAlive - 100 * archersAlive;
                 //TODO: abstract magic number weighting.
@@ -155,18 +154,15 @@ public class GameState {
     public List<GameStateChild> getUnappliedChildren(){
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
-        ArrayList<Integer> unitIDs = new ArrayList<Integer>();//index-aligned IDs for the units
         ArrayList<Map<Integer, Action>> actionMapList = new ArrayList<Map<Integer, Action>>();
         // combination of uniActions and unitIDs into one data structure, but unitActions is flattened.
 
         if (AMIMAX) {
             for (Unit.UnitView footman : footmen) {
-                unitIDs.add(footman.getID());//populate the ID array entry
                 unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
             }
         } else {
             for (Unit.UnitView archer : archers) {
-                unitIDs.add(archer.getID());//populate the current index with the ID
                 unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
             }
         }//end of move creation
@@ -175,7 +171,7 @@ public class GameState {
         for (List<Action> unitActionList : unitActions) {
             for (Action unitAction : unitActionList) {//fill the map with this unit's actions
                 HashMap<Integer, Action> unitActionMap = new HashMap<Integer, Action>();
-                //temprary map that's gonna get added to the actions arrayList
+                //temporary map that's gonna get added to the actions arrayList
                 unitActionMap.put(unitAction.getUnitId(), unitAction);
                 //NOTE: This is a crappy scheme.  Each hashmap will be a single tuple.
                 actionMapList.add(unitActionMap);//put the single tuple into the actions list.
@@ -197,6 +193,20 @@ public class GameState {
             We don't want the power set.  We want the combinations.  There's no reason one unit should move and the
             other(s) don't.
          */
+
+        actionMapList = (ArrayList) actuallyGenerateActionCombos(unitActions, actionMapList);
+
+        ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
+        for (Map<Integer, Action> actionMap : actionMapList) {
+            children.add(new GameStateChild(actionMap, this));
+        }
+        children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
+        return children;
+    }
+    
+    private List<Map<Integer, Action>> actuallyGenerateActionCombos(List<List<Action>> unitActions, 
+                                                                         List<Map<Integer, Action>> actionMapList){
+
         for (List<Action> unitActionList : unitActions) {//for every unit's set of actions (usually 2 units)
             //every unit in question (e.g. every footman) will be considered here
             for (Action unitAction : unitActionList) {//for every action within that set (~8 moves)
@@ -210,38 +220,31 @@ public class GameState {
                 }
             }
         }
-
-        ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
-        for (Map<Integer, Action> actionMap : actionMapList) {
-            children.add(new GameStateChild(actionMap, this));
-        }
-        children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
-        return children;
+        return actionMapList;
     }
 
     /**
      *  you give me a player (and set AMIMAX), I give you the list of all actions that player can take
-     * @param player source player
+     * @param unit source player
      * @return legal moves that the source player can make onto the destination enemies
      */
-    private List<Action> getActions(Unit.UnitView player) {
-        List<Action> actions = new ArrayList<Action>();
+    private List<Action> getActions(Unit.UnitView unit) {
+        List<Action> legalUnitActions = new ArrayList<Action>();
         
         // Add all possible moves to the action list for this player
         for (Direction direction : Direction.values()) {
             //we're only allowing cardinal directions, so ignore diagonals.
-            if(direction.xComponent() != 0 && direction.yComponent() != 0) continue;
-            if (isLegalMove(player.getXPosition() + direction.xComponent(), player.getYPosition() + direction.yComponent())) {
-                actions.add(Action.createPrimitiveMove(player.getID(), direction));
+            if(direction.xComponent() != 0 && direction.yComponent() != 0) continue;//skip diagonals
+            if (isLegalMove(unit.getXPosition() + direction.xComponent(), unit.getYPosition() + direction.yComponent())) {
+                legalUnitActions.add(Action.createPrimitiveMove(unit.getID(), direction));
             }
         }
 
         // Add all possible attacks to the action list for this player
-        for (Unit.UnitView enemy : enemiesInRange(player, AMIMAX ? archers : footmen)) {
-            actions.add(Action.createPrimitiveAttack(player.getID(), enemy.getID()));
+        for (Unit.UnitView enemy : enemiesInRange(unit, AMIMAX ? archers : footmen)) {
+            legalUnitActions.add(Action.createPrimitiveAttack(unit.getID(), enemy.getID()));
         }
-        return actions;
-
+        return legalUnitActions;
     }
 
     /**
