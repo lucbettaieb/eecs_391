@@ -89,8 +89,7 @@ public class MinimaxAlphaBeta extends Agent {
                     node.action, node.state.stateView).getView(node.state.stateView.getPlayerNumbers()[0])));
         }
         
-        this.flipPlayer();//initialized to false, so first flip sets it true
-        node.state.flipPlayer();
+        this.flipPlayer(node);//initialized to false, so first flip sets it true
         
         if(depth == 0) return node;
         GameStateChild returnVar = null;
@@ -172,5 +171,8 @@ public class MinimaxAlphaBeta extends Agent {
         return children;
     }
     
-    private void flipPlayer(){this.AMIMAX = !AMIMAX;}
+    private void flipPlayer(GameStateChild node){
+        this.AMIMAX = !AMIMAX;
+        node.state.AMIMAX = this.AMIMAX;
+    }
 }

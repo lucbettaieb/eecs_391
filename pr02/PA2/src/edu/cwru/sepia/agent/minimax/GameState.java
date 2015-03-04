@@ -21,9 +21,8 @@ public class GameState {
     protected List<Unit.UnitView> units;
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
-    private boolean AMIMAX = false;
+    protected boolean AMIMAX = false;
     private ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
-    protected double heuristicUtility = Double.NEGATIVE_INFINITY;
     
     /**
      * You will implement this constructor. It will
@@ -152,7 +151,9 @@ public class GameState {
                 idList.add(footman.getID());
             }
             for (Unit.UnitView archer : archers) {
-                if(!AMIMAX) unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                if(!AMIMAX) {
+                    unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                }
                 idList.add(archer.getID());
             }
         
@@ -217,6 +218,9 @@ public class GameState {
             return;
         }
         LinkedList<Action> currentUnitsActions = unitsAndActions.get(unitIDs.get(depth));
+        if(currentUnitsActions == null) {
+            return;
+        }
         for (Action currentUnitsAction : currentUnitsActions) {
             current[depth] = currentUnitsAction;
             generateActionCombos(unitIDs, unitsAndActions, actionCombos, depth + 1, current);
