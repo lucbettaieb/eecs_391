@@ -17,11 +17,9 @@ import java.util.Map;
 
 
 public class ActionApplier {
-    private static final int TREE_CONSTANT = 3;
+    private static final double TREE_CONSTANT = -1;
     private static final int FOOTMEN_HP = 1;
     private static final int ARCHER_HP = -2;
-    private static final int FOOTMEN_ALIVE = 10;
-    private static final int ARCHER_ALIVE = -15;
     private static final int DISTANCE = -2;
     
     
@@ -123,8 +121,7 @@ public class ActionApplier {
         for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
         for(Unit.UnitView archer : archers) archerHP.put(archer.getID(), archer.getHP());
         
-        //apply attacks to HP
-        //apply moves to distance
+        //apply attacks to HP, and moves to distance
         Integer distance1 = estimateActionHeuristics(footmen, givenActionMap, archers, archerHP);
         Integer distance2 = estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP);
 
@@ -134,10 +131,8 @@ public class ActionApplier {
 
         //sum them all up, and turn it in
         double heuristic = FOOTMEN_HP * sum(footmenHP);
-        heuristic += FOOTMEN_ALIVE * footmen.size();
         heuristic += ARCHER_HP * sum(archerHP);
         heuristic += DISTANCE * (distance1+distance2);
-        heuristic += ARCHER_ALIVE * archers.size();
         heuristic += TREE_CONSTANT * treeFactor;
         return heuristic;
     }
@@ -233,4 +228,114 @@ public class ActionApplier {
         }
         return returnVar;
     }
+    
+    
+    private class Vector{
+        int i, j, x, y;
+        double magnitude;
+        
+        public Vector(Unit.UnitView source, Unit.UnitView destination){
+            this.x = source.getXPosition();
+            this.y = source.getYPosition();
+            this.i = GameState.deltaX(source, destination);
+            this.j = GameState.deltaY(source, destination);
+            this.magnitude = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+        }
+        
+        public boolean checkNorth(State.StateView stateView){
+            boolean goodDirection = true;
+            for(int i = 0; i<magnitude; i++){
+                if(stateView.isResourceAt(x,y+i) || stateView.isUnitAt(x,y+i) || !stateView.inBounds(x,y+i)){
+                    goodDirection = false;
+                }
+            }
+            return goodDirection;
+        }
+
+        public boolean checkSouth(State.StateView stateView){
+            boolean goodDirection = true;
+            for(int i = 0; i<magnitude; i++){
+                if(stateView.isResourceAt(x,y-i) || stateView.isUnitAt(x,y-i) || !stateView.inBounds(x,y-i)){
+                    goodDirection = false;
+                }
+            }
+            return goodDirection;
+        }
+
+        public boolean checkEast(State.StateView stateView){
+            boolean goodDirection = true;
+            for(int i = 0; i<magnitude; i++){
+                if(stateView.isResourceAt(x+i,y) || stateView.isUnitAt(x+i,y) || !stateView.inBounds(x+i,y)){
+                    goodDirection = false;
+                }
+            }
+            return goodDirection;
+        }
+
+        public boolean checkWest(State.StateView stateView){
+            boolean goodDirection = true;
+            for(int i = 0; i<magnitude; i++){
+                if(stateView.isResourceAt(x-i,y) || stateView.isUnitAt(x-i,y) || !stateView.inBounds(x-i,y)){
+                    goodDirection = false;
+                }
+            }
+            return goodDirection;
+        }
+        
+        public List<Direction> intendedNextDirections(){
+            Map<Integer, Direction> directionOrder = new HashMap<Integer, Direction>();//1 is most wanted, 4 is least wanted
+            List<Direction> returnVar = new ArrayList<Direction>();
+            
+            if(Math.abs(i)>= Math.abs(j)){//i(x) value matters
+                if(i / Math.abs(i) == -1) {
+                    directionOrder.put(1, Direction.SOUTH);
+                    directionOrder.put(4, Direction.NORTH);
+                    if (j / Math.abs(j) == -1) {
+                        directionOrder.put(2,Direction.WEST);
+                        directionOrder.put(3, Direction.EAST);
+                    } else {
+                        directionOrder.put(3, Direction.EAST);
+                        directionOrder.put(2, Direction.WEST);
+                    }
+                }
+                else {
+                    directionOrder.put(1,Direction.NORTH);
+                    directionOrder.put(4, Direction.SOUTH);
+                    if (j / Math.abs(j) == -1) {
+                        directionOrder.put(2,Direction.WEST);
+                        directionOrder.put(3, Direction.EAST);
+                    } else {
+                        directionOrder.put(3, Direction.EAST);
+                        directionOrder.put(2, Direction.WEST);
+                    }
+                }
+            } else {
+                if (j / Math.abs(j) == -1) {
+                    directionOrder.put(1,Direction.WEST);
+                    directionOrder.put(4, Direction.EAST);
+                    if (i / Math.abs(i) == -1) {
+                        directionOrder.put(2,Direction.SOUTH);
+                        directionOrder.put(3, Direction.NORTH);
+                    } else {
+                        directionOrder.put(3, Direction.NORTH);
+                        directionOrder.put(2, Direction.SOUTH);
+                    }
+                } else {
+                    directionOrder.put(1, Direction.EAST);
+                    directionOrder.put(4, Direction.WEST);
+                    if (i / Math.abs(i) == -1) {
+                        directionOrder.put(2,Direction.SOUTH);
+                        directionOrder.put(3, Direction.NORTH);
+                    } else {
+                        directionOrder.put(3, Direction.NORTH);
+                        directionOrder.put(2, Direction.SOUTH);
+                    }
+                }
+            }
+            //yes, I know that's an atrocious way of doing things.  I'm just trying to make this work first.
+            for(int i =1; i<=4; i++) returnVar.add(directionOrder.get(i));
+            return returnVar;
+        }
+        
+    }//end of vector class
 }

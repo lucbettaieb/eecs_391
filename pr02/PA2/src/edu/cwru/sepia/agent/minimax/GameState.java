@@ -252,7 +252,7 @@ public class GameState {
      * @param loc2 source location 2
      * @return difference in x-coordinates of the locations
      */
-    private int deltaX(Unit.UnitView loc1, Unit.UnitView loc2){
+    public static int deltaX(Unit.UnitView loc1, Unit.UnitView loc2){
         return Math.abs(loc1.getXPosition() - loc2.getXPosition());
     }
 
@@ -261,7 +261,7 @@ public class GameState {
      * @param loc2 source location 2
      * @return difference in y-coordinates of the locations
      */
-    private int deltaY(Unit.UnitView loc1, Unit.UnitView loc2){
+    public static int deltaY(Unit.UnitView loc1, Unit.UnitView loc2){
         return Math.abs(loc1.getYPosition() - loc2.getYPosition());
     }
 
