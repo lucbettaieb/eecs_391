@@ -11,6 +11,7 @@ import edu.cwru.sepia.util.Direction;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,11 @@ public class ActionApplier {
      */
     public static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>(); //list of all footmen
+        Map<Integer, Integer> footmenHP = new HashMap<Integer, Integer>();
+            for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
         List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>(); //list of all archers
+        Map<Integer, Integer> archerHP = new HashMap<Integer, Integer>();
+            for(Unit.UnitView archer: archers) archerHP.put(archer.getID(), archer.getHP());
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
 
 
@@ -115,14 +120,12 @@ public class ActionApplier {
                 archers.add(unit);
             }
         }
-        
-        double goodHealth = 0d;//health of footmen
-        double badHealth = 0d;//health of archers
         int distance1 = 0;//distance between each footman, and what's probably its target
         int footmenAlive = 0, archersAlive = 0;
         
         //apply attacks to HP
         //apply moves to distance
+        //TODO: HP is conditionally calculated.  Make temporary bits, then sum them up?
         
         for(Unit.UnitView footman: footmen){
             footmenAlive++;
@@ -139,8 +142,8 @@ public class ActionApplier {
                 distance1 += minDistance;
             } else if (action instanceof TargetedAction){
                 TargetedAction targetedAction = (TargetedAction) action;
-                badHealth += givenPreActionState.getUnit(targetedAction.getTargetId()).getHP()
-                        - footman.getTemplateView().getBasicAttack();
+                archerHP.put(targetedAction.getTargetId(), archerHP.get(targetedAction.getTargetId()) 
+                        - footman.getTemplateView().getBasicAttack());
             }
         }
         int distance2 = 0;
@@ -159,8 +162,8 @@ public class ActionApplier {
                 distance2 += minDistance;
             } else if (action instanceof TargetedAction){
                 TargetedAction targetedAction = (TargetedAction) action;
-                goodHealth += givenPreActionState.getUnit(targetedAction.getTargetId()).getHP()
-                        - archer.getTemplateView().getBasicAttack();
+                footmenHP.put(targetedAction.getTargetId(), footmenHP.get(targetedAction.getTargetId() - 
+                        archer.getTemplateView().getBasicAttack()));
             }
         }
 
@@ -174,7 +177,7 @@ public class ActionApplier {
             }
         }
 
-        double heuristic = goodHealth + footmenAlive*10 - 10*badHealth - (distance1+distance2) - archersAlive*100 + 10*treeFactor;
+        double heuristic = sum(footmenHP) + footmenAlive*10 - 10 * sum(archerHP) - (distance1+distance2) - archersAlive*100 + 10*treeFactor;
 //hi
         return heuristic;
     }
@@ -188,5 +191,11 @@ public class ActionApplier {
      */
     private static int manhattanImmediate(Unit.UnitView loc1, int x, int y){
         return Math.abs(loc1.getXPosition() - x) +  Math.abs(loc1.getYPosition() - y);
+    }
+    
+    private static int sum(Map<Integer, Integer> toSum){
+        int returnVar = 0;
+        for(Integer key : toSum.keySet()) returnVar += toSum.get(key);
+        return returnVar;
     }
 }

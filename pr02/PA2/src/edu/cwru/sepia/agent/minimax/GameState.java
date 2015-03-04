@@ -83,26 +83,8 @@ public class GameState {
      *
      * @return The weighted linear combination of the features
      */
-    public double getUtility() {
-
-        int footmanHP = 0;
-        for (Unit.UnitView footman : footmen) footmanHP += footman.getHP();
-
-        int archerHP = 0;
-        for (Unit.UnitView archer : archers)  archerHP += archer.getHP();
-
-        int footmenAlive = footmen.size();
-        int archersAlive = archers.size();
-
-        int distance = 0;
-        for (Unit.UnitView footman : footmen) {
-            List<Integer> distances = new ArrayList<Integer>();
-            for (Unit.UnitView archer : archers) distances.add(manhattanDistance(footman, archer));
-            distance = distances.isEmpty() ? 0 : Collections.min(distances);//NPE protection
-            //also, the minimum distance is more important because we want to pay attention to the closer one
-        }
-        return  footmanHP - distance - 10 * archerHP + 10 * footmenAlive - 100 * archersAlive;
-                //TODO: abstract magic number weighting.
+    public void getUtility() {
+        // see ActionApplier's applyHeuristic.
     }
 
     /**
