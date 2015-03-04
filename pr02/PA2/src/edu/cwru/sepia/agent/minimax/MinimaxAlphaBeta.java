@@ -149,26 +149,24 @@ public class MinimaxAlphaBeta extends Agent {
          */
         
         int i = 0;
-        ArrayList<GameStateChild> sorted = children;
         //gotta work on a copy of the list because you can't play with
         //the variable you're iterating through in a for-each loop
         
-        for(GameStateChild child: children){//stand back kids, we're rolling our own for loop
+        for(GameStateChild x: children){//stand back kids, we're rolling our own for loop
             if(i==0){
                 i++;
                 continue;//cool, I've never used a continue before.  It skips the current loop iteration.
             }
-            GameStateChild x = child;
             int j = i;
-            while(j>0 && sorted.get(j-1).state.getUtility()>x.state.getUtility()){
-                sorted.set(j, sorted.get(j-1));
+            while(j>0 && children.get(j-1).state.getUtility()>x.state.getUtility()){
+                children.set(j, children.get(j-1));
                 j--;
             }
-            sorted.set(j, x);
+            children.set(j, x);
             i++;
         }
-        Collections.reverse(sorted);//the sorting algorithm put lowest utility first.  Flip it.
-        return sorted;
+        Collections.reverse(children);//the sorting algorithm put lowest utility first.  Flip it.
+        return children;
     }
     
     private void flipPlayer(){this.AMIMAX = !AMIMAX;}

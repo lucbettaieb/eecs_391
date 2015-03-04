@@ -23,7 +23,7 @@ public class GameState {
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
     private boolean AMIMAX = false;
     private boolean areChildrenGenerated = false;
-    private List<GameStateChild> children;
+    private ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
     
     /**
      * You will implement this constructor. It will
@@ -99,7 +99,8 @@ public class GameState {
         for (Unit.UnitView footman : footmen) {
             List<Integer> distances = new ArrayList<Integer>();
             for (Unit.UnitView archer : archers) distances.add(manhattanDistance(footman, archer));
-            distance = distances.isEmpty() ? 0 : Collections.max(distances);//NPE protection
+            distance = distances.isEmpty() ? 0 : Collections.min(distances);//NPE protection
+            //also, the minimum distance is more important because we want to pay attention to the closer one
         }
         return  footmanHP - distance - 10 * archerHP + 10 * footmenAlive - 100 * archersAlive;
                 //TODO: abstract magic number weighting.
@@ -155,17 +156,18 @@ public class GameState {
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
         ArrayList<Map<Integer, Action>> actionMapList = new ArrayList<Map<Integer, Action>>();
-        // combination of uniActions and unitIDs into one data structure, but unitActions is flattened.
-
-        if (AMIMAX) {
+        // combination of uniActions and unitIDs into one data structure.
+        //each element of this arrayList represents a possible ID/Action pair to generate a new state
+        ArrayList<Integer> idList = new ArrayList<Integer>();
+        
             for (Unit.UnitView footman : footmen) {
-                unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
+                if(AMIMAX) unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
+                idList.add(footman.getID());
             }
-        } else {
             for (Unit.UnitView archer : archers) {
-                unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                if(AMIMAX) unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                idList.add(archer.getID());
             }
-        }//end of move creation
 
         //add the moves to the full map
         for (List<Action> unitActionList : unitActions) {
@@ -177,51 +179,70 @@ public class GameState {
                 actionMapList.add(unitActionMap);//put the single tuple into the actions list.
             }
         }
+        Map<Integer, LinkedList<Action>> flattenedActions = flattenActions(unitActions);
+        List<Action[]> actionCombos = new ArrayList<Action[]>();
+        generateActionCombos(idList, flattenedActions, actionCombos, 0, new Action[idList.size()]);
+
+        //actionCombos is now filled and useful
         
-        /*
-            okay, so to make every combination of something, you choose one, lock it, and iterate through the others.
-            hmm. maybe that's if ordering matters.
-            
-            any unit can take a set of actions.  This is represented as a list of Actions
-            because we have several units, we make a list of these lists.  This metalist is "unitActions"
-            So right off the bat, to iterate through all actions, it's a double-for loop
-            
-            Because Actions have a sourceID (Action.getUnitId()), it could be possible to keep a flat set of
-            Actions, and generate unique sets from there.
-            The problem with this approach is not assigning two actions to a single unit at once.
-            
-            We don't want the power set.  We want the combinations.  There's no reason one unit should move and the
-            other(s) don't.
-         */
-
-        actionMapList = (ArrayList) actuallyGenerateActionCombos(unitActions, actionMapList);
-
-        ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
-        for (Map<Integer, Action> actionMap : actionMapList) {
-            children.add(new GameStateChild(actionMap, this));
+        for (Action[] stateActions : actionCombos) {
+            children.add(new GameStateChild(makeTupleFromActions(stateActions), this));
         }
         children = MinimaxAlphaBeta.orderChildrenWithHeuristics(children);
         return children;
     }
     
-    private List<Map<Integer, Action>> actuallyGenerateActionCombos(List<List<Action>> unitActions, 
-                                                                         List<Map<Integer, Action>> actionMapList){
+    private Map<Integer, Action> makeTupleFromActions(Action[] actions){
+        Map<Integer, Action> returnVar = new HashMap<Integer, Action>();
+        for(Action action: actions){
+            returnVar.put(action.getUnitId(), action);
+        }
+        return returnVar;
+    }
 
-        for (List<Action> unitActionList : unitActions) {//for every unit's set of actions (usually 2 units)
-            //every unit in question (e.g. every footman) will be considered here
-            for (Action unitAction : unitActionList) {//for every action within that set (~8 moves)
-                //unit's every action (e.g. move northwest) will be considered here
-                for (Map<Integer, Action> unitActionMap : actionMapList) {//for every state's possible action set
-                    //TODO: sweet baby jesus I need to fix this complexity
-                    if(!unitActionMap.containsKey(unitAction.getUnitId())){
-                        //if it's not a copy, put it in there
-                        unitActionMap.put(unitAction.getUnitId(), unitAction);
-                    }
+    /**
+     * you give me a list of list of actions, I give you an ID/actionList key/pair map 
+     * @param unitActions 2D list of actions, first being by ID, second an unordered set.
+     * @return an ID/List of actions map
+     */
+    private Map<Integer, LinkedList<Action>> flattenActions(ArrayList<List<Action>> unitActions){
+        
+        Map<Integer, LinkedList<Action>> flattenedActions = new HashMap<Integer, LinkedList<Action>>();
+        for(List<Action> unitsActions : unitActions){
+            for(Action individualAction: unitsActions){
+                if(flattenedActions.containsKey(individualAction.getUnitId())){//an action is already there
+                    flattenedActions.get(individualAction.getUnitId()).add(individualAction);
+                } else {//this is the first action, gotta add a LinkedList
+                    LinkedList<Action> temp = new LinkedList<Action>();
+                    temp.add(individualAction);
+                    flattenedActions.put(individualAction.getUnitId(), temp);
                 }
             }
         }
-        return actionMapList;
+        return flattenedActions;
     }
+
+    /* initial call:
+        unitIDs is all IDs (req'd)
+        unitsAndActions is unitID/actionList key/pair combo (req'd)
+        actionCombos is all (thus far) unique action combinations (new empty list)
+        depth is recursion level ( 0 )
+        current is empty array
+     */
+    private void generateActionCombos(ArrayList<Integer> unitIDs, Map<Integer, LinkedList<Action>> unitsAndActions,
+                                      List<Action[]> actionCombos,int depth, Action[] current){
+
+        if(depth >= unitsAndActions.keySet().size()){
+            actionCombos.add(current.clone());
+            return;
+        }
+        LinkedList<Action> currentUnitsActions = unitsAndActions.get(unitIDs.get(depth));
+        for(int i = 0; i < currentUnitsActions.size(); i++){//TODO: change to foreach
+            current[depth] = currentUnitsActions.get(i);
+            generateActionCombos(unitIDs, unitsAndActions, actionCombos , depth+1, current);
+        }
+    }
+
 
     /**
      *  you give me a player (and set AMIMAX), I give you the list of all actions that player can take
