@@ -12,4 +12,3 @@ Current State:
 TODO:
     don't walk into walls
         -do a directional lookaround?
-    move each GameState heuristic weight magic number into a 'final const int' global declaration

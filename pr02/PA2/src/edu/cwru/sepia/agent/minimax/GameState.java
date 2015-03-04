@@ -84,7 +84,7 @@ public class GameState {
      * @return The weighted linear combination of the features
      */
     public void getUtility() {
-        // see ActionApplier's applyHeuristic.
+        // see ActionApplier's applyHeuristic for actual use
         /**
          * Why did we do this?
          * We were never given, nor could we find or ask, a way to make a new state in a cheap manner.
@@ -121,6 +121,8 @@ public class GameState {
      * @return the possible future game states from the current state
      */
     public List<GameStateChild> getChildren() {
+        //see getUnappliedChildren for details
+        //unused.  See getUtility for details.
         return getUnappliedChildren();
     }
 
@@ -161,9 +163,6 @@ public class GameState {
     private Map<Integer, Action> makeTupleFromActions(Action[] actions){
         Map<Integer, Action> returnVar = new HashMap<Integer, Action>();
         for(Action action: actions){
-            if(action == null){
-                continue;
-            }
             returnVar.put(action.getUnitId(), action);
         }
         return returnVar;
@@ -283,14 +282,5 @@ public class GameState {
             if (range >= (xDiff + yDiff))  enemiesInRange.add(enemy);
         }
         return enemiesInRange;
-    }
-
-    /**
-     * swaps the current player (MAX or MIN) 
-     * @return this, for ease of chaining
-     */
-    public GameState flipPlayer(){
-        this.AMIMAX = !this.AMIMAX;
-        return this;
     }
 }

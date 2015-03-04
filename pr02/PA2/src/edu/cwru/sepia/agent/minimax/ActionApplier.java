@@ -18,6 +18,13 @@ import java.util.Map;
 
 public class ActionApplier {
     private static final int TREE_CONSTANT = 3;
+    private static final int FOOTMEN_HP = 1;
+    private static final int ARCHER_HP = -2;
+    private static final int FOOTMEN_ALIVE = 10;
+    private static final int ARCHER_ALIVE = -15;
+    private static final int DISTANCE = -2;
+    
+    
 
     /**
      * entry point for full state generation 
@@ -114,7 +121,7 @@ public class ActionApplier {
         
         //populate their HP maps
         for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
-        for(Unit.UnitView archer: archers) archerHP.put(archer.getID(), archer.getHP());
+        for(Unit.UnitView archer : archers) archerHP.put(archer.getID(), archer.getHP());
         
         //apply attacks to HP
         //apply moves to distance
@@ -126,7 +133,12 @@ public class ActionApplier {
         int treeFactor = generateTreeFactor(footmen, trees);
 
         //sum them all up, and turn it in
-        double heuristic = sum(footmenHP) + footmen.size()*10 - 10 * sum(archerHP) - (distance1+distance2) - archers.size()*100 + 10*treeFactor;
+        double heuristic = FOOTMEN_HP * sum(footmenHP);
+        heuristic += FOOTMEN_ALIVE * footmen.size();
+        heuristic += ARCHER_HP * sum(archerHP);
+        heuristic += DISTANCE * (distance1+distance2);
+        heuristic += ARCHER_ALIVE * archers.size();
+        heuristic += TREE_CONSTANT * treeFactor;
         return heuristic;
     }
 
