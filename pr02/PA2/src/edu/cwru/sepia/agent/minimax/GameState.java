@@ -147,14 +147,16 @@ public class GameState {
         ArrayList<Integer> idList = new ArrayList<Integer>();//list of IDs, used for making actionCombos
         
             for (Unit.UnitView footman : footmen) {
-                if(AMIMAX) unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
-                idList.add(footman.getID());
+                if(AMIMAX) {
+                    unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
+                    idList.add(footman.getID());
+                }
             }
             for (Unit.UnitView archer : archers) {
                 if(!AMIMAX) {
                     unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                    idList.add(archer.getID());
                 }
-                idList.add(archer.getID());
             }
         
         List<Action[]> actionCombos = new ArrayList<Action[]>();
@@ -218,9 +220,7 @@ public class GameState {
             return;
         }
         LinkedList<Action> currentUnitsActions = unitsAndActions.get(unitIDs.get(depth));
-        if(currentUnitsActions == null) {
-            return;
-        }
+
         for (Action currentUnitsAction : currentUnitsActions) {
             current[depth] = currentUnitsAction;
             generateActionCombos(unitIDs, unitsAndActions, actionCombos, depth + 1, current);
