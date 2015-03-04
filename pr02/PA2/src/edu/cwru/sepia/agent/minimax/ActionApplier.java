@@ -192,9 +192,12 @@ public class ActionApplier {
     }
     
     private static int sum(Map<Integer, Integer> toSum){
-        if(toSum == null) return 0;
+        if(toSum == null || toSum.keySet().isEmpty()) return 0;
         int returnVar = 0;
-        for(Integer key : toSum.keySet()) returnVar += toSum.get(key);
+        for(Integer key : toSum.keySet()) {
+            Integer value = toSum.get(key);
+            returnVar += value == null ? 0 : value;
+        }
         return returnVar;
     }
 }
