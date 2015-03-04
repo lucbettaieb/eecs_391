@@ -4,6 +4,7 @@ import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionType;
 import edu.cwru.sepia.action.DirectedAction;
 import edu.cwru.sepia.action.TargetedAction;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 
 public class ActionApplier {
+    private static final int TREE_CONSTANT = 3;
 
     /**
      * entry point for full state generation 
@@ -101,8 +103,11 @@ public class ActionApplier {
      * @return heuristic value
      */
     public static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
-        List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
-        List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
+        List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>(); //list of all footmen
+        List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>(); //list of all archers
+        List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
+
+
         for (Unit.UnitView unit : givenPreActionState.getAllUnits()) {//categorize dem units
             if (unit.getTemplateView().getName().equals("Footman")) {
                 footmen.add(unit);
@@ -158,8 +163,20 @@ public class ActionApplier {
                         - archer.getTemplateView().getBasicAttack();
             }
         }
-        
-        return goodHealth + footmenAlive*10 - 10*badHealth - (distance1+distance2) - archersAlive*100;
+
+        int treeFactor = 0;
+
+        for(int j = 0; j < footmen.size(); j++) { //this may not be accounting for dead footmen
+            for (int i = 0; i < trees.size(); i++) {
+                if (manhattanImmediate(footmen.get(j), trees.get(i).getXPosition(), trees.get(i).getYPosition()) < TREE_CONSTANT) {
+                    treeFactor++;
+                }
+            }
+        }
+
+        double heuristic = goodHealth + footmenAlive*10 - 10*badHealth - (distance1+distance2) - archersAlive*100 + 10*treeFactor;
+//hi
+        return heuristic;
     }
 
     /**
