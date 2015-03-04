@@ -116,11 +116,9 @@ public class ActionApplier {
         
         //apply attacks to HP
         //apply moves to distance
-        Integer distance1 = 0;
-        estimateActionHeuristics(footmen, givenActionMap, archers, archerHP, distance1);
+        Integer distance1 = estimateActionHeuristics(footmen, givenActionMap, archers, archerHP);
         
-        Integer distance2 = 0;
-        estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP, distance2);
+        Integer distance2 = estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP);
 
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
         int treeFactor = generateTreeFactor(footmen, trees);
@@ -166,33 +164,34 @@ public class ActionApplier {
 
     /**
      * estimates the footmen heuristics (health, damage, distance)
+     * returns distance.
      * @param attackers units that are performing actions
      * @param givenActionMap total actions that are being taken in this state
      * @param attackees units that are receiving actions
      * @param attackeeHP HP of units receiving actions (set on return)
-     * @param attackerAttackeeDistance minimum distance between attacker and attackee (set on return)
      */
-    private static void estimateActionHeuristics(List<Unit.UnitView> attackers, Map<Integer, Action> givenActionMap,
-                                                 List<Unit.UnitView> attackees, Map<Integer, Integer> attackeeHP,
-                                                 Integer attackerAttackeeDistance){
-        for(Unit.UnitView footman: attackers){
-            Action action = givenActionMap.get(footman.getID());
+    private static int estimateActionHeuristics(List<Unit.UnitView> attackers, Map<Integer, Action> givenActionMap,
+                                                 List<Unit.UnitView> attackees, Map<Integer, Integer> attackeeHP){
+        int attackerAttackeeDistance = 0;
+        for(Unit.UnitView attacker: attackers){
+            Action action = givenActionMap.get(attacker.getID());
             if (action instanceof DirectedAction){
                 DirectedAction directedAction = (DirectedAction) action;
-                int x = directedAction.getDirection().xComponent() + footman.getXPosition();
-                int y = directedAction.getDirection().yComponent() + footman.getYPosition();
+                int x = directedAction.getDirection().xComponent() + attacker.getXPosition();
+                int y = directedAction.getDirection().yComponent() + attacker.getYPosition();
                 int minDistance = Integer.MAX_VALUE;
-                for (Unit.UnitView archer : attackees) {
-                    int currentDistance = manhattanImmediate(archer, x,y);
+                for (Unit.UnitView attackee : attackees) {
+                    int currentDistance = manhattanImmediate(attackee, x,y);
                     if (currentDistance < minDistance) minDistance = currentDistance;
                 }
                 attackerAttackeeDistance += minDistance;
             } else if (action instanceof TargetedAction){
                 TargetedAction targetedAction = (TargetedAction) action;
                 attackeeHP.put(targetedAction.getTargetId(), attackeeHP.get(targetedAction.getTargetId())
-                        - footman.getTemplateView().getBasicAttack());
+                        - attacker.getTemplateView().getBasicAttack());
             }
         }
+        return attackerAttackeeDistance;
     }
     /**
      * manhattan Distance with an immediate location.  Useful for calculating distance without moving unit 
