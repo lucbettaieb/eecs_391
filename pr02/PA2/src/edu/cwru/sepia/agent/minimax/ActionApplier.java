@@ -106,10 +106,8 @@ public class ActionApplier {
     public static double applyHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>(); //list of all footmen
         Map<Integer, Integer> footmenHP = new HashMap<Integer, Integer>();
-            for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
         List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>(); //list of all archers
         Map<Integer, Integer> archerHP = new HashMap<Integer, Integer>();
-            for(Unit.UnitView archer: archers) archerHP.put(archer.getID(), archer.getHP());
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
 
 
@@ -120,6 +118,8 @@ public class ActionApplier {
                 archers.add(unit);
             }
         }
+        for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
+        for(Unit.UnitView archer: archers) archerHP.put(archer.getID(), archer.getHP());
         int distance1 = 0;//distance between each footman, and what's probably its target
         int footmenAlive = 0, archersAlive = 0;
         
