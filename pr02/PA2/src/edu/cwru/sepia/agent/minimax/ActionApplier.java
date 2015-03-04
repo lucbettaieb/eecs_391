@@ -125,7 +125,6 @@ public class ActionApplier {
         
         //apply attacks to HP
         //apply moves to distance
-        //TODO: HP is conditionally calculated.  Make temporary bits, then sum them up?
         
         for(Unit.UnitView footman: footmen){
             footmenAlive++;
@@ -169,16 +168,15 @@ public class ActionApplier {
 
         int treeFactor = 0;
 
-        for(int j = 0; j < footmen.size(); j++) { //this may not be accounting for dead footmen
-            for (int i = 0; i < trees.size(); i++) {
-                if (manhattanImmediate(footmen.get(j), trees.get(i).getXPosition(), trees.get(i).getYPosition()) < TREE_CONSTANT) {
+        for (Unit.UnitView aFootmen : footmen) { //this may not be accounting for dead footmen
+            for (ResourceNode.ResourceView tree : trees) {
+                if (manhattanImmediate(aFootmen, tree.getXPosition(), tree.getYPosition()) < TREE_CONSTANT) {
                     treeFactor++;
                 }
             }
         }
 
         double heuristic = sum(footmenHP) + footmenAlive*10 - 10 * sum(archerHP) - (distance1+distance2) - archersAlive*100 + 10*treeFactor;
-//hi
         return heuristic;
     }
 
@@ -194,6 +192,7 @@ public class ActionApplier {
     }
     
     private static int sum(Map<Integer, Integer> toSum){
+        if(toSum == null) return 0;
         int returnVar = 0;
         for(Integer key : toSum.keySet()) returnVar += toSum.get(key);
         return returnVar;
