@@ -85,6 +85,12 @@ public class GameState {
      */
     public void getUtility() {
         // see ActionApplier's applyHeuristic.
+        /**
+         * Why did we do this?
+         * We were never given, nor could we find or ask, a way to make a new state in a cheap manner.
+         * So the utility is calculated from a previous state, and the actions left to apply.
+         * Then, once we actually explore that state, we fully generate it.
+         */
     }
 
     /**
@@ -128,23 +134,21 @@ public class GameState {
         //we keep a list of every action for every unit.  Making it a 2D array
         ArrayList<Integer> idList = new ArrayList<Integer>();//list of IDs, used for making actionCombos
         
-            for (Unit.UnitView footman : footmen) {
-                if(AMIMAX) {
-                    unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
-                    idList.add(footman.getID());
-                }
+        if(AMIMAX){
+            for(Unit.UnitView footman: footmen){
+                unitActions.add(getActions(footman));//all actions possible from this footman to the enemies
+                idList.add(footman.getID());
             }
-            for (Unit.UnitView archer : archers) {
-                if(!AMIMAX) {
-                    unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
-                    idList.add(archer.getID());
-                }
+        } else {
+            for(Unit.UnitView archer: archers){
+                unitActions.add(getActions(archer));//populate the aligned index with the list of possible actions
+                idList.add(archer.getID());
             }
+        }
         
+        //create all the action combinations
         List<Action[]> actionCombos = new ArrayList<Action[]>();
-        
         generateActionCombos(idList, flattenActions(unitActions), actionCombos, 0, new Action[idList.size()]);
-
         //actionCombos is now filled and useful
         
         for (Action[] stateActions : actionCombos) {

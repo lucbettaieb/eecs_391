@@ -108,21 +108,24 @@ public class ActionApplier {
         Map<Integer, Integer> footmenHP = new HashMap<Integer, Integer>();//ID/HP map for footmen (for temporary calculation)
         List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>(); //list of all archers
         Map<Integer, Integer> archerHP = new HashMap<Integer, Integer>();//ID/HP map for archers
-
+        
+        //populate footmen and archers
         parseUnits(givenPreActionState.getAllUnits(), footmen, archers);
         
+        //populate their HP maps
         for(Unit.UnitView footman : footmen) footmenHP.put(footman.getID(), footman.getHP());
         for(Unit.UnitView archer: archers) archerHP.put(archer.getID(), archer.getHP());
         
         //apply attacks to HP
         //apply moves to distance
         Integer distance1 = estimateActionHeuristics(footmen, givenActionMap, archers, archerHP);
-        
         Integer distance2 = estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP);
 
+        //we don't like trees, so gotta play around with those, too
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
         int treeFactor = generateTreeFactor(footmen, trees);
 
+        //sum them all up, and turn it in
         double heuristic = sum(footmenHP) + footmen.size()*10 - 10 * sum(archerHP) - (distance1+distance2) - archers.size()*100 + 10*treeFactor;
         return heuristic;
     }

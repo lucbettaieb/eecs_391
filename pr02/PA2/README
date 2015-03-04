@@ -7,11 +7,9 @@ EECS391 pr02
 Current State:
     Things move.
     They walk into walls.
-    They will hug enemies instead of stabbing them
+    They are capable of cold-blooded killing
     
 TODO:
-    make AI actually attack
     don't walk into walls
-    only sort children when we look at them, not at generation.
-        move the call from getChildren to alphaBetaSearch, change to reference ActionApplier's applyHeuristic
+        -do a directional lookaround?
     move each GameState heuristic weight magic number into a 'final const int' global declaration
