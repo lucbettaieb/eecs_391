@@ -12,7 +12,6 @@ Current State:
 TODO:
     make AI actually attack
     don't walk into walls
-    fix runtime error with archers running
     only sort children when we look at them, not at generation.
         move the call from getChildren to alphaBetaSearch, change to reference ActionApplier's applyHeuristic
     move each GameState heuristic weight magic number into a 'final const int' global declaration
