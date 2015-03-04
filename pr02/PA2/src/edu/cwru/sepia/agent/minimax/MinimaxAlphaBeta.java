@@ -158,7 +158,10 @@ public class MinimaxAlphaBeta extends Agent {
                 continue;//cool, I've never used a continue before.  It skips the current loop iteration.
             }
             int j = i;
-            while(j>0 && children.get(j-1).state.getUtility()>x.state.getUtility()){
+            double xUtility = ActionApplier.applyHeuristic(x.action, x.state.stateView);
+            GameStateChild child = children.get(j-1);
+            double childUtility = ActionApplier.applyHeuristic(child.action, child.state.stateView);
+            while(j>0 && childUtility>xUtility){
                 children.set(j, children.get(j-1));
                 j--;
             }

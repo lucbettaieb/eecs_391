@@ -22,8 +22,8 @@ public class GameState {
     protected List<Unit.UnitView> footmen = new ArrayList<Unit.UnitView>();
     protected List<Unit.UnitView> archers = new ArrayList<Unit.UnitView>();
     private boolean AMIMAX = false;
-    private boolean areChildrenGenerated = false;
     private ArrayList<GameStateChild> children = new ArrayList<GameStateChild>();
+    protected double heuristicUtility = Double.NEGATIVE_INFINITY;
     
     /**
      * You will implement this constructor. It will
@@ -134,17 +134,7 @@ public class GameState {
      * @return the possible future game states from the current state
      */
     public List<GameStateChild> getChildren() {
-        if(areChildrenGenerated) return children;
-        
-        ArrayList<GameStateChild> generatedChildren = new ArrayList<GameStateChild>();
-        for(GameStateChild unapplied: getUnappliedChildren()) {
-            Map<Integer, Action> actionMap = unapplied.action;
-            generatedChildren.add(new GameStateChild(actionMap, new GameState(ActionApplier.apply(
-                    actionMap, unapplied.state.stateView).getView(unapplied.state.stateView.getPlayerNumbers()[0]))));
-        }
-        this.children = generatedChildren;
-        areChildrenGenerated = true;
-        return generatedChildren;
+        return getUnappliedChildren();
     }
 
     /**
