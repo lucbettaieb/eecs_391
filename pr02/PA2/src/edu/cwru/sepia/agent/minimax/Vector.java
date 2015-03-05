@@ -1,5 +1,6 @@
 package edu.cwru.sepia.agent.minimax;
 
+import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
@@ -26,8 +27,8 @@ public class Vector {
                   List<ResourceNode.ResourceView> blocks, int xExtent, int yExtent){
         this.x = source.getXPosition();
         this.y = source.getYPosition();
-        this.i = GameState.deltaX(source, destination);
-        this.j = GameState.deltaY(source, destination);
+        this.i = source.getXPosition() - destination.getXPosition();
+        this.j = source.getYPosition() - destination.getYPosition();
         this.magnitude = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
         this.blocks = blocks;
         this.xExtent = xExtent;
@@ -121,44 +122,11 @@ public class Vector {
      */
     private List<Direction> intendedNextDirections(){
         Map<Integer, Direction> directionOrder = new HashMap<Integer, Direction>();//1 is most wanted, 4 is least wanted
-        boolean izero = false;
-        boolean jzero = false;
-        if(i == 0) {
-            i = 1;
-            izero = true;
-        }
-        if(j == 0) {
-            j = 1;
-            jzero = true;
-        }
-        if(Math.abs(i)>= Math.abs(j)){//i(x) value matters
-            if(i / Math.abs(i) == -1) {
-                directionOrder.put(1, Direction.SOUTH);
-                directionOrder.put(4, Direction.NORTH);
-                if (j / Math.abs(j) == -1) {
-                    directionOrder.put(2,Direction.WEST);
-                    directionOrder.put(3, Direction.EAST);
-                } else {
-                    directionOrder.put(3, Direction.EAST);
-                    directionOrder.put(2, Direction.WEST);
-                }
-            }
-            else {
-                directionOrder.put(1,Direction.NORTH);
-                directionOrder.put(4, Direction.SOUTH);
-                if (j / Math.abs(j) == -1) {
-                    directionOrder.put(2,Direction.WEST);
-                    directionOrder.put(3, Direction.EAST);
-                } else {
-                    directionOrder.put(3, Direction.EAST);
-                    directionOrder.put(2, Direction.WEST);
-                }
-            }
-        } else {
-            if (j / Math.abs(j) == -1) {
-                directionOrder.put(1,Direction.WEST);
+        if(Math.abs(i)>= Math.abs(j)){//delta x > delta y
+            if(i < 0) {
+                directionOrder.put(1, Direction.WEST);
                 directionOrder.put(4, Direction.EAST);
-                if (i / Math.abs(i) == -1) {
+                if (j < 0) {
                     directionOrder.put(2,Direction.SOUTH);
                     directionOrder.put(3, Direction.NORTH);
                 } else {
@@ -166,19 +134,39 @@ public class Vector {
                     directionOrder.put(2, Direction.SOUTH);
                 }
             } else {
-                directionOrder.put(1, Direction.EAST);
+                directionOrder.put(1,Direction.EAST);
                 directionOrder.put(4, Direction.WEST);
-                if (i / Math.abs(i) == -1) {
-                    directionOrder.put(2,Direction.SOUTH);
-                    directionOrder.put(3, Direction.NORTH);
+                if (j < 0) {
+                    directionOrder.put(2,Direction.NORTH);
+                    directionOrder.put(3, Direction.SOUTH);
                 } else {
-                    directionOrder.put(3, Direction.NORTH);
-                    directionOrder.put(2, Direction.SOUTH);
+                    directionOrder.put(3, Direction.SOUTH);
+                    directionOrder.put(2, Direction.NORTH);
+                }
+            }
+        } else {
+            if (j < 0) {
+                directionOrder.put(1,Direction.SOUTH);
+                directionOrder.put(4, Direction.NORTH);
+                if (i < 0) {
+                    directionOrder.put(2,Direction.WEST);
+                    directionOrder.put(3, Direction.EAST);
+                } else {
+                    directionOrder.put(3, Direction.EAST);
+                    directionOrder.put(2, Direction.WEST);
+                }
+            } else {
+                directionOrder.put(1, Direction.NORTH);
+                directionOrder.put(4, Direction.SOUTH);
+                if (i < 0) {
+                    directionOrder.put(2,Direction.WEST);
+                    directionOrder.put(3, Direction.EAST);
+                } else {
+                    directionOrder.put(3, Direction.EAST);
+                    directionOrder.put(2, Direction.WEST);
                 }
             }
         }
-        i = izero? 0 : i;
-        j = jzero ? 0 : j;
         //yes, I know that's an atrocious way of doing things.  I'm just trying to make this work first.
         List<Direction> returnVar = new ArrayList<Direction>();
         for(int i =1; i<=4; i++) returnVar.add(directionOrder.get(i));
@@ -226,6 +214,7 @@ public class Vector {
         }
         double rankings[] = new double[]{northRanking, southRanking, eastRanking, westRanking};
         Arrays.sort(rankings);
+        reverse(rankings);
         Map<Double, Direction> rankingMap = new HashMap<Double, Direction>();
         rankingMap.put(northRanking, Direction.NORTH);
         rankingMap.put(southRanking, Direction.SOUTH);
@@ -237,6 +226,22 @@ public class Vector {
             bestCrowsDirection.add(rankingMap.get(key));
         }
         return bestCrowsDirection;
+    }
+    
+    private static void reverse(double[] data) {
+        int left = 0;
+        int right = data.length - 1;
+
+        while( left < right ) {
+            // swap the values at the left and right indices
+            double temp = data[left];
+            data[left] = data[right];
+            data[right] = temp;
+
+            // move the left and right index pointers in toward the center
+            left++;
+            right--;
+        }
     }
     
 }

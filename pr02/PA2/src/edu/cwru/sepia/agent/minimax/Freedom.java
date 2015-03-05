@@ -1,7 +1,8 @@
 package edu.cwru.sepia.agent.minimax;
 
 /**
- * Created by aidan on 3/4/15.
+ * Needed an object to pass around an int value.
+ * Integer is immutable, so it didn't work.  This does.
  */
 public class Freedom {
     int freedom;
