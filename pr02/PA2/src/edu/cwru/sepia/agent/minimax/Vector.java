@@ -27,8 +27,8 @@ public class Vector {
                   List<ResourceNode.ResourceView> blocks, int xExtent, int yExtent){
         this.x = source.getXPosition();
         this.y = source.getYPosition();
-        this.i = source.getXPosition() - destination.getXPosition();
-        this.j = source.getYPosition() - destination.getYPosition();
+        this.i = destination.getXPosition() - source.getXPosition();
+        this.j = -1*(destination.getYPosition() - source.getYPosition());
         this.magnitude = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
         this.blocks = blocks;
         this.xExtent = xExtent;
@@ -130,8 +130,8 @@ public class Vector {
                     directionOrder.put(2,Direction.SOUTH);
                     directionOrder.put(3, Direction.NORTH);
                 } else {
-                    directionOrder.put(3, Direction.NORTH);
-                    directionOrder.put(2, Direction.SOUTH);
+                    directionOrder.put(2, Direction.NORTH);
+                    directionOrder.put(3, Direction.SOUTH);
                 }
             } else {
                 directionOrder.put(1,Direction.EAST);
@@ -140,8 +140,8 @@ public class Vector {
                     directionOrder.put(2,Direction.NORTH);
                     directionOrder.put(3, Direction.SOUTH);
                 } else {
-                    directionOrder.put(3, Direction.SOUTH);
-                    directionOrder.put(2, Direction.NORTH);
+                    directionOrder.put(2, Direction.SOUTH);
+                    directionOrder.put(3, Direction.NORTH);
                 }
             }
         } else {
@@ -152,8 +152,8 @@ public class Vector {
                     directionOrder.put(2,Direction.WEST);
                     directionOrder.put(3, Direction.EAST);
                 } else {
-                    directionOrder.put(3, Direction.EAST);
-                    directionOrder.put(2, Direction.WEST);
+                    directionOrder.put(2, Direction.EAST);
+                    directionOrder.put(3, Direction.WEST);
                 }
             } else {
                 directionOrder.put(1, Direction.NORTH);
@@ -162,8 +162,8 @@ public class Vector {
                     directionOrder.put(2,Direction.WEST);
                     directionOrder.put(3, Direction.EAST);
                 } else {
-                    directionOrder.put(3, Direction.EAST);
-                    directionOrder.put(2, Direction.WEST);
+                    directionOrder.put(2, Direction.EAST);
+                    directionOrder.put(3, Direction.WEST);
                 }
             }
         }
