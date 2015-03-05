@@ -64,8 +64,8 @@ public class Vector {
      * between source and destination 
      */
     private double checkNorth(){
-        for(int i = 0; i<magnitude; i++){
-            if(isBlockAt(x,y+i) || !isInBounds(x, y + i)){
+        for(int i = 0; i<=magnitude; i++){
+            if(isBlockAt(x,y-i) || !isInBounds(x, y - i)){
                 return i;
             }
         }
@@ -78,8 +78,8 @@ public class Vector {
      * between source and destination 
      */
     private double checkSouth(){
-        for(int i = 0; i<magnitude; i++){
-            if(isBlockAt(x, y - i) || !isInBounds(x,y-i)){
+        for(int i = 0; i<=magnitude; i++){
+            if(isBlockAt(x, y + i) || !isInBounds(x,y+i)){
                 return i;
             }
         }
@@ -92,7 +92,7 @@ public class Vector {
      * between source and destination 
      */
     private double checkEast(){
-        for(int i = 0; i<magnitude; i++){
+        for(int i = 0; i<=magnitude; i++){
             if(isBlockAt(x + i, y) || !isInBounds(x+i,y)){
                 return i;
             }
@@ -106,7 +106,7 @@ public class Vector {
      * between source and destination 
      */
     private double checkWest(){
-        for(int i = 0; i<magnitude; i++){
+        for(int i = 0; i<=magnitude; i++){
             if(isBlockAt(x - i, y) || !isInBounds(x-i,y)){
                 return i;
             }
@@ -194,7 +194,7 @@ public class Vector {
         double westRanking = 0d;
         //0 to 1, depending on how clear the path is.
         
-        int weightArray[] = new int[]{5,2,-2,-5};//index aligned with bestCrowsDirection
+        int weightArray[] = new int[]{4,2,-2,-4};//index aligned with bestCrowsDirection
         
         for(int i = 0; i<bestCrowsDirection.size(); i++){
             switch (bestCrowsDirection.get(i)){
