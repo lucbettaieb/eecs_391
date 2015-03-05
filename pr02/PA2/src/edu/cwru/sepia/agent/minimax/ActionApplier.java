@@ -8,6 +8,7 @@ import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
+import edu.cwru.sepia.util.DistanceMetrics;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,9 +19,10 @@ import java.util.Map;
 
 public class ActionApplier {
     private static final double TREE_CONSTANT = -1;
-    private static final int FOOTMEN_HP = 1;
-    private static final int ARCHER_HP = -2;
+    private static final double FOOTMEN_HP = 0.2;
+    private static final double ARCHER_HP = -0.6;
     private static final double DISTANCE = -0.5;
+    private static final double FREEDOM = 0.05;
     
     
 
@@ -122,8 +124,8 @@ public class ActionApplier {
         for(Unit.UnitView archer : archers) archerHP.put(archer.getID(), archer.getHP());
         
         //apply attacks to HP, and moves to distance
-        Integer distance1 = estimateActionHeuristics(footmen, givenActionMap, archers, archerHP);
-        Integer distance2 = estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP);
+        int distance1 = estimateActionHeuristics(footmen, givenActionMap, archers, archerHP);
+        int distance2 = estimateActionHeuristics(archers, givenActionMap, footmen, footmenHP);
 
         //we don't like trees, so gotta play around with those, too
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
@@ -140,14 +142,56 @@ public class ActionApplier {
             raycastQuadrant(Direction.SOUTH, Direction.EAST, 8,0, footman.getXPosition(),
                     footman.getYPosition(), trees, freedom);
         }
+        
+        double correctMovement = estimateMovementHeuristic(givenActionMap, givenPreActionState);
 
         //sum them all up, and turn it in
         double heuristic = FOOTMEN_HP * sum(footmenHP);
         heuristic += ARCHER_HP * sum(archerHP);
         heuristic += DISTANCE * (distance1+distance2);
         heuristic += TREE_CONSTANT * treeFactor;
-        heuristic += freedom.getFreedom();
+        heuristic += FREEDOM * freedom.getFreedom();
+        heuristic += correctMovement;
         return heuristic;
+    }
+    
+    public static double estimateMovementHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
+        List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
+        int xExtent = givenPreActionState.getXExtent();
+        int yExtent = givenPreActionState.getYExtent();
+        List<Unit.UnitView> allUnits = givenPreActionState.getAllUnits();
+        double returnVar = 0;
+
+        for(Integer i: givenActionMap.keySet()){
+            if(givenPreActionState.getUnit(i).getTemplateView().getName().equals("Archer")) continue;
+            if(givenActionMap.get(i) instanceof DirectedAction){
+                DirectedAction directedAction = (DirectedAction) givenActionMap.get(i);
+                Vector bestAttack = new Vector(givenPreActionState.getUnit(i), 
+                        closestEnemy(givenPreActionState.getUnit(i), allUnits), trees, xExtent, yExtent);
+                List<Direction> directionList = bestAttack.getBestNextDirection();
+                for(int j = 0; j < directionList.size(); j++){
+                    if (directedAction.getDirection() == directionList.get(j)){
+                        switch (j){
+                            case 0:
+                                returnVar += 5;
+                                break;
+                            case 1:
+                                returnVar += 2;
+                                break;
+                            case 2:
+                                returnVar -=2;
+                                break;
+                            case 3:
+                                returnVar -= 5;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        return returnVar;
     }
 
     /**
@@ -203,11 +247,16 @@ public class ActionApplier {
                 int x = directedAction.getDirection().xComponent() + attacker.getXPosition();
                 int y = directedAction.getDirection().yComponent() + attacker.getYPosition();
                 int minDistance = Integer.MAX_VALUE;
+                Unit.UnitView closestAttackee = null;
                 for (Unit.UnitView attackee : attackees) {
                     int currentDistance = manhattanImmediate(attackee, x,y);
-                    if (currentDistance < minDistance) minDistance = currentDistance;
+                    if (currentDistance < minDistance) {
+                        minDistance = currentDistance;
+                        closestAttackee = attackee;
+                    }
                 }
                 attackerAttackeeDistance += minDistance;
+                
             } else if (action instanceof TargetedAction){
                 TargetedAction targetedAction = (TargetedAction) action;
                 attackeeHP.put(targetedAction.getTargetId(), attackeeHP.get(targetedAction.getTargetId())
@@ -242,141 +291,43 @@ public class ActionApplier {
         return returnVar;
     }
     
-    
-    private class Vector{
-        int i, j, x, y;
-        double magnitude;
-        
-        public Vector(Unit.UnitView source, Unit.UnitView destination){
-            this.x = source.getXPosition();
-            this.y = source.getYPosition();
-            this.i = GameState.deltaX(source, destination);
-            this.j = GameState.deltaY(source, destination);
-            this.magnitude = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-        }
-        
-        public boolean checkNorth(State.StateView stateView){
-            boolean goodDirection = true;
-            for(int i = 0; i<magnitude; i++){
-                if(stateView.isResourceAt(x,y+i) || stateView.isUnitAt(x,y+i) || !stateView.inBounds(x,y+i)){
-                    goodDirection = false;
-                }
-            }
-            return goodDirection;
-        }
-
-        public boolean checkSouth(State.StateView stateView){
-            boolean goodDirection = true;
-            for(int i = 0; i<magnitude; i++){
-                if(stateView.isResourceAt(x,y-i) || stateView.isUnitAt(x,y-i) || !stateView.inBounds(x,y-i)){
-                    goodDirection = false;
-                }
-            }
-            return goodDirection;
-        }
-
-        public boolean checkEast(State.StateView stateView){
-            boolean goodDirection = true;
-            for(int i = 0; i<magnitude; i++){
-                if(stateView.isResourceAt(x+i,y) || stateView.isUnitAt(x+i,y) || !stateView.inBounds(x+i,y)){
-                    goodDirection = false;
-                }
-            }
-            return goodDirection;
-        }
-
-        public boolean checkWest(State.StateView stateView){
-            boolean goodDirection = true;
-            for(int i = 0; i<magnitude; i++){
-                if(stateView.isResourceAt(x-i,y) || stateView.isUnitAt(x-i,y) || !stateView.inBounds(x-i,y)){
-                    goodDirection = false;
-                }
-            }
-            return goodDirection;
-        }
-        
-        public List<Direction> intendedNextDirections(){
-            Map<Integer, Direction> directionOrder = new HashMap<Integer, Direction>();//1 is most wanted, 4 is least wanted
-            List<Direction> returnVar = new ArrayList<Direction>();
-            
-            if(Math.abs(i)>= Math.abs(j)){//i(x) value matters
-                if(i / Math.abs(i) == -1) {
-                    directionOrder.put(1, Direction.SOUTH);
-                    directionOrder.put(4, Direction.NORTH);
-                    if (j / Math.abs(j) == -1) {
-                        directionOrder.put(2,Direction.WEST);
-                        directionOrder.put(3, Direction.EAST);
-                    } else {
-                        directionOrder.put(3, Direction.EAST);
-                        directionOrder.put(2, Direction.WEST);
-                    }
-                }
-                else {
-                    directionOrder.put(1,Direction.NORTH);
-                    directionOrder.put(4, Direction.SOUTH);
-                    if (j / Math.abs(j) == -1) {
-                        directionOrder.put(2,Direction.WEST);
-                        directionOrder.put(3, Direction.EAST);
-                    } else {
-                        directionOrder.put(3, Direction.EAST);
-                        directionOrder.put(2, Direction.WEST);
-                    }
-                }
-            } else {
-                if (j / Math.abs(j) == -1) {
-                    directionOrder.put(1,Direction.WEST);
-                    directionOrder.put(4, Direction.EAST);
-                    if (i / Math.abs(i) == -1) {
-                        directionOrder.put(2,Direction.SOUTH);
-                        directionOrder.put(3, Direction.NORTH);
-                    } else {
-                        directionOrder.put(3, Direction.NORTH);
-                        directionOrder.put(2, Direction.SOUTH);
-                    }
-                } else {
-                    directionOrder.put(1, Direction.EAST);
-                    directionOrder.put(4, Direction.WEST);
-                    if (i / Math.abs(i) == -1) {
-                        directionOrder.put(2,Direction.SOUTH);
-                        directionOrder.put(3, Direction.NORTH);
-                    } else {
-                        directionOrder.put(3, Direction.NORTH);
-                        directionOrder.put(2, Direction.SOUTH);
-                    }
-                }
-            }
-            //yes, I know that's an atrocious way of doing things.  I'm just trying to make this work first.
-            for(int i =1; i<=4; i++) returnVar.add(directionOrder.get(i));
-            return returnVar;
-        }
-        
-    }//end of vector class
-    
     private static void raycastQuadrant(Direction primary, Direction secondary, int radius, int depth,
                                  int startX, int startY, List<ResourceNode.ResourceView> trees, Freedom freedom){
         if(isBlocked(startX, startY, trees) || depth>radius)return;//don't wanna start off on the wrong foot now
         int i = 0;
-        while(!isBlocked(startX+primary.xComponent()*i, startY+primary.yComponent()*i, trees) && i <=radius){
+        while(!isBlocked(startX + primary.xComponent() * i, startY + primary.yComponent() * i, trees) && i <=radius){
             freedom.add();
             i++;
         }
         i = 0;
-        while(isBlocked(startX+primary.xComponent()*i+secondary.xComponent(),
-                startY+primary.yComponent()*i+secondary.yComponent(), trees)){
+        while(isBlocked(startX + primary.xComponent() * i + secondary.xComponent(),
+                startY + primary.yComponent() * i + secondary.yComponent(), trees)){
             i++;
         }
         //recurse
-        raycastQuadrant(secondary, primary, radius - 1, depth + 1,startX+primary.xComponent()*i+secondary.xComponent(),
+        raycastQuadrant(secondary, primary, radius, depth + 1,startX+primary.xComponent()*i+secondary.xComponent(),
                 startY+primary.yComponent()*i+secondary.yComponent(), trees, freedom);
     }
-    
-    private static boolean isLegalMove(int x, int y, State.StateView stateView){
-        return ! (stateView.isResourceAt(x,y) || stateView.isUnitAt(x,y) || !stateView.inBounds(x,y));
-    }
+
     private static boolean isBlocked(int x, int y, List<ResourceNode.ResourceView> blocks){
         for(ResourceNode.ResourceView block:blocks){
             if(block.getXPosition() == x && block.getYPosition() == y) return true;
         }
         return false;
+    }
+    private static int chebyshevDistance(Unit.UnitView loc1, Unit.UnitView loc2){
+        return DistanceMetrics.chebyshevDistance(loc1.getXPosition(), loc1.getYPosition(), loc2.getXPosition(), loc2.getYPosition());
+    }
+    private static Unit.UnitView closestEnemy(Unit.UnitView source, List<Unit.UnitView> units){
+        int minDistance = Integer.MAX_VALUE;
+        Unit.UnitView minEnemy = null;
+        for(Unit.UnitView possibleEnemy: units){
+            if(possibleEnemy.getTemplateView().getName().equals(source.getTemplateView().getName())) continue;
+            if(chebyshevDistance(source, possibleEnemy) < minDistance){
+                minDistance = chebyshevDistance(source, possibleEnemy);
+                minEnemy = possibleEnemy;
+            }
+        }
+        return minEnemy;
     }
 }
