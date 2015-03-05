@@ -4,6 +4,32 @@ rac158
 EECS391 pr02
 
 
+Minimax (with pruning) implemented from pseudocode at
+    http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
+
+Actual documentation on sepia would have been awesome for this project.  
+    How was I supposed to make a new State for GameStateChild?
+    How was I supposed to make an action?
+    How was I supposed to apply an action onto the State?
+    What movements are legal, and where are they prevented?
+
+But anyways, 95% of the code is trying to win the game, and 5% is minimax.
+    Applying actions and calculating heuristics is where most of the code is.
+    The important thing to note is: generated children aren't new states.
+    They are the current state, and an outstanding action map.
+    Because it's expensive to generate the new state, we only generate it once the child is explored.
+    This means we generate the new state at the beginning of each minimax recursion.
+    
+Our heuristic was so many things:
+    hp of footmen
+    hp of archers
+    surrounding free spaces before a tree
+    requested move vs optimal move,
+        where optimal move is based on distance and free spaces in that direction
+    number of trees within a radius
+
+
+
 Current State:
     Things move.
     They walk into walls.
@@ -11,4 +37,6 @@ Current State:
     
 TODO:
     don't walk into walls
-        -do a directional lookaround?
+        -Soumya says A* is fine
+        -He also indicated that minimax was way more important than actual game results, and
+            only a couple points would be deducted for not winning.
