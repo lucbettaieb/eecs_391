@@ -77,28 +77,21 @@ public class MinimaxAlphaBeta extends Agent {
      *      the best state.  So only generate the state if we're redefining the best
      */
     public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta)
-    {/*         minimax:
-         http://en.wikipedia.org/wiki/Minimax#Pseudocode
-        
-                pruning:
-         http://www.cs.trincoll.edu/~ram/cpsc352/notes/minimax.html
+    {/*             minimax with alpha beta pruning.
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
-        if(node.action != null){//this node has an outstanding action.  Perform it to get the node.
-            node = new GameStateChild(node.action, new GameState(ActionApplier.apply(
-                    node.action, node.state.stateView).getView(node.state.stateView.getPlayerNumbers()[0])));
-        }
+        node = compileGameStateChild(node); //this node has an outstanding action.  Perform it to get the node's actual state.
         
         this.flipPlayer(node);//initialized to false, so first flip sets it true
         
-        if(depth == 0) return node;
+        if(depth == 0) return node;//base case
         GameStateChild returnVar = null;
         if(AMIMAX){//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
-            for(GameStateChild child: node.state.getUnappliedChildren()){//action,state tuple.  Action unapplied to state
-                double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
-                if(childValue > value){
-                    value = childValue;
+            for(GameStateChild child: getChildren(node)){//action,state tuple.  Action unapplied to state
+                double childUtility = getChildUtility(child);
+                if(childUtility > value){
+                    value = childUtility;
                     returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
                 }
                 alpha = Math.max(value, alpha);
@@ -107,10 +100,10 @@ public class MinimaxAlphaBeta extends Agent {
             return returnVar;
         } else {//MIN is playing
             double value = Double.POSITIVE_INFINITY;
-            for(GameStateChild child: node.state.getUnappliedChildren()){//action,state tuple.  Action unapplied to state
-                double childValue = ActionApplier.applyHeuristic(child.action, child.state.stateView);
-                if(childValue < value){
-                    value = childValue;
+            for(GameStateChild child: getChildren(node)){//action,state tuple.  Action unapplied to state
+                double childUtility = getChildUtility(child);
+                if(childUtility < value){
+                    value = childUtility;
                     returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
                 }
                 beta = Math.min(value, beta);
@@ -119,6 +112,21 @@ public class MinimaxAlphaBeta extends Agent {
             return returnVar;
         }
     }//end of minimax
+    
+    private GameStateChild compileGameStateChild(GameStateChild node){
+        if(node.action != null){//this node has an outstanding action.  Perform it to get the node's actual state.
+            return new GameStateChild(node.action, new GameState(ActionApplier.apply(
+                    node.action, node.state.stateView).getView(node.state.stateView.getPlayerNumbers()[0])));
+        } else return node;
+    }
+    
+    private double getChildUtility(GameStateChild child){
+        return ActionApplier.applyHeuristic(child.action, child.state.stateView);
+    }
+    
+    private List<GameStateChild> getChildren(GameStateChild node){
+        return node.state.getUnappliedChildren();
+    }
 
     /**
      * You will implement this.
