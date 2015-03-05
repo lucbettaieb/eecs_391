@@ -7,7 +7,14 @@ import edu.cwru.sepia.util.Direction;
 import java.util.*;
 
 /**
- * Created by aidan on 3/4/15.
+ * a Vector implementation for pathfinding with vectors
+ * 
+ * The crowflies path is considered optimal, but movement restrictions and blocks make 
+ * execution of this path impossible.  So this object is designed to help implementation.
+ * You give it a source, destination, and information on the map.
+ * 
+ * It will rank what it thinks the best next moves are, based on the crowflies vector
+ * and the congestion around you on the map 
  */
 public class Vector {
     int i, j, x, y;
@@ -26,18 +33,35 @@ public class Vector {
         this.xExtent = xExtent;
         this.yExtent = yExtent;
     }
-    
+
+    /**
+     * you give me a position, I tell you if something's occupying that position 
+     * @param x x coordinate in question
+     * @param y y coordinate in question
+     * @return whether the coordinate pair is occupied
+     */
     private boolean isBlockAt(int x, int y){
         for(ResourceNode.ResourceView block: blocks){
             if(block.getXPosition() == x && block.getYPosition() == y) return true;
         }
         return false;
     }
-    
+
+    /**
+     * you give me a coordinate pair, I tell you if that position is in bounds 
+     * @param x x coordinate in question
+     * @param y y coordinate in question
+     * @return whether the coordinate pair is in bounds
+     */
     private boolean isInBounds(int x, int y){
         return !(x>xExtent || y>yExtent|| x<0 || y<0);
     }
 
+    /**
+     * checks the northward direction for trees 
+     * @return distance until a tree was seen, capped at the magnitude of the vector
+     * between source and destination 
+     */
     private double checkNorth(){
         for(int i = 0; i<magnitude; i++){
             if(isBlockAt(x,y+i) || !isInBounds(x, y + i)){
@@ -47,6 +71,11 @@ public class Vector {
         return magnitude;
     }
 
+    /**
+     * checks the southward direction for trees 
+     * @return distance until a tree was seen, capped at the magnitude of the vector
+     * between source and destination 
+     */
     private double checkSouth(){
         for(int i = 0; i<magnitude; i++){
             if(isBlockAt(x, y - i) || !isInBounds(x,y-i)){
@@ -56,6 +85,11 @@ public class Vector {
         return magnitude;
     }
 
+    /**
+     * checks the eastward direction for trees 
+     * @return distance until a tree was seen, capped at the magnitude of the vector
+     * between source and destination 
+     */
     private double checkEast(){
         for(int i = 0; i<magnitude; i++){
             if(isBlockAt(x + i, y) || !isInBounds(x+i,y)){
@@ -65,6 +99,11 @@ public class Vector {
         return magnitude;
     }
 
+    /**
+     * checks the westward direction for trees 
+     * @return distance until a tree was seen, capped at the magnitude of the vector
+     * between source and destination 
+     */
     private double checkWest(){
         for(int i = 0; i<magnitude; i++){
             if(isBlockAt(x - i, y) || !isInBounds(x-i,y)){
@@ -74,6 +113,12 @@ public class Vector {
         return magnitude;
     }
 
+    /**
+     * gets the best crowflies next actions, ranked by their utility
+     * i.e. the first direction is guaranteed to get you closer, while the
+     * last is guaranteed to take you further from your destination 
+     * @return a list of directions, ordered by their desirability
+     */
     private List<Direction> intendedNextDirections(){
         Map<Integer, Direction> directionOrder = new HashMap<Integer, Direction>();//1 is most wanted, 4 is least wanted
         boolean izero = false;
@@ -139,7 +184,13 @@ public class Vector {
         for(int i =1; i<=4; i++) returnVar.add(directionOrder.get(i));
         return returnVar;
     }
-    
+
+    /**
+     * heuristically ranks the directions.  Takes the crowflies direction ranking
+     * (intendedNextDirections), and weights them based on the congestion of the map in that direction
+     * 
+     * @return a list of directions, ordered by their desirability
+     */
     public List<Direction> getBestNextDirection(){
         
         List<Direction> bestCrowsDirection = intendedNextDirections();

@@ -154,7 +154,13 @@ public class ActionApplier {
         heuristic += correctMovement;
         return heuristic;
     }
-    
+
+    /**
+     * estimates the heuristic value of a move along a straight line, taking blocks into consideration 
+     * @param givenActionMap unitID/Action tuples to be applied to the state
+     * @param givenPreActionState the state being traversed
+     * @return heuristic value of the move set
+     */
     public static double estimateMovementHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState){
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
         int xExtent = givenPreActionState.getXExtent();
@@ -290,7 +296,18 @@ public class ActionApplier {
         }
         return returnVar;
     }
-    
+
+    /**
+     * performs a recursive 2D raycast(ish) search of a quadrant.  I'm proud of this one
+     * @param primary initial search direction
+     * @param secondary direction 90 degrees to the left of primary
+     * @param radius search depth
+     * @param depth current depth in the search
+     * @param startX initial searching source X position
+     * @param startY initial searching source Y position
+     * @param trees list of blocks on the map
+     * @param freedom an Object (byRef) to represent the freedom (free spots I can see before a wall)
+     */
     private static void raycastQuadrant(Direction primary, Direction secondary, int radius, int depth,
                                  int startX, int startY, List<ResourceNode.ResourceView> trees, Freedom freedom){
         if(isBlocked(startX, startY, trees) || depth>radius)return;//don't wanna start off on the wrong foot now
@@ -309,15 +326,37 @@ public class ActionApplier {
                 startY+primary.yComponent()*i+secondary.yComponent(), trees, freedom);
     }
 
+    /**
+     *  you give me a position, and a list of things that could be blocking you,
+     *  I tell you whether one of the blocks is in that position  
+     * @param x x coordinate in question
+     * @param y y coordinate in question
+     * @param blocks list of things that could block that position
+     * @return whether the position is blocked by anything on the blocks list
+     */
     private static boolean isBlocked(int x, int y, List<ResourceNode.ResourceView> blocks){
         for(ResourceNode.ResourceView block:blocks){
             if(block.getXPosition() == x && block.getYPosition() == y) return true;
         }
         return false;
     }
+
+    /**
+     * wrapper for DistanceMetric's chebyshev calculator 
+     * @param loc1 unitView 1
+     * @param loc2 unitView 2
+     * @return chebyshev distance between the units
+     */
     private static int chebyshevDistance(Unit.UnitView loc1, Unit.UnitView loc2){
         return DistanceMetrics.chebyshevDistance(loc1.getXPosition(), loc1.getYPosition(), loc2.getXPosition(), loc2.getYPosition());
     }
+
+    /**
+     * You give me a source unit, I give you the closest unit that's not my type
+     * @param source unit to search from
+     * @param units all units on map
+     * @return closest unit
+     */
     private static Unit.UnitView closestEnemy(Unit.UnitView source, List<Unit.UnitView> units){
         int minDistance = Integer.MAX_VALUE;
         Unit.UnitView minEnemy = null;
