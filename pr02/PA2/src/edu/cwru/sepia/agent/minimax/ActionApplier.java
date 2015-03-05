@@ -20,7 +20,7 @@ public class ActionApplier {
     private static final double TREE_CONSTANT = -1;
     private static final int FOOTMEN_HP = 1;
     private static final int ARCHER_HP = -2;
-    private static final int DISTANCE = -2;
+    private static final double DISTANCE = -0.5;
     
     
 
@@ -128,12 +128,25 @@ public class ActionApplier {
         //we don't like trees, so gotta play around with those, too
         List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
         int treeFactor = generateTreeFactor(footmen, trees);
+        
+        Freedom freedom = new Freedom();
+        for(Unit.UnitView footman: footmen){
+            raycastQuadrant(Direction.EAST, Direction.NORTH, 8,0, footman.getXPosition(),
+                    footman.getYPosition(), trees, freedom);
+            raycastQuadrant(Direction.NORTH, Direction.WEST, 8,0, footman.getXPosition(),
+                    footman.getYPosition(), trees, freedom);
+            raycastQuadrant(Direction.WEST, Direction.SOUTH, 8,0, footman.getXPosition(),
+                    footman.getYPosition(), trees, freedom);
+            raycastQuadrant(Direction.SOUTH, Direction.EAST, 8,0, footman.getXPosition(),
+                    footman.getYPosition(), trees, freedom);
+        }
 
         //sum them all up, and turn it in
         double heuristic = FOOTMEN_HP * sum(footmenHP);
         heuristic += ARCHER_HP * sum(archerHP);
         heuristic += DISTANCE * (distance1+distance2);
         heuristic += TREE_CONSTANT * treeFactor;
+        heuristic += freedom.getFreedom();
         return heuristic;
     }
 
@@ -338,4 +351,32 @@ public class ActionApplier {
         }
         
     }//end of vector class
+    
+    private static void raycastQuadrant(Direction primary, Direction secondary, int radius, int depth,
+                                 int startX, int startY, List<ResourceNode.ResourceView> trees, Freedom freedom){
+        if(isBlocked(startX, startY, trees) || depth>radius)return;//don't wanna start off on the wrong foot now
+        int i = 0;
+        while(!isBlocked(startX+primary.xComponent()*i, startY+primary.yComponent()*i, trees) && i <=radius){
+            freedom.add();
+            i++;
+        }
+        i = 0;
+        while(isBlocked(startX+primary.xComponent()*i+secondary.xComponent(),
+                startY+primary.yComponent()*i+secondary.yComponent(), trees)){
+            i++;
+        }
+        //recurse
+        raycastQuadrant(secondary, primary, radius - 1, depth + 1,startX+primary.xComponent()*i+secondary.xComponent(),
+                startY+primary.yComponent()*i+secondary.yComponent(), trees, freedom);
+    }
+    
+    private static boolean isLegalMove(int x, int y, State.StateView stateView){
+        return ! (stateView.isResourceAt(x,y) || stateView.isUnitAt(x,y) || !stateView.inBounds(x,y));
+    }
+    private static boolean isBlocked(int x, int y, List<ResourceNode.ResourceView> blocks){
+        for(ResourceNode.ResourceView block:blocks){
+            if(block.getXPosition() == x && block.getYPosition() == y) return true;
+        }
+        return false;
+    }
 }
