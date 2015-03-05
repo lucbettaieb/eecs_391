@@ -14,12 +14,10 @@ public class MinimaxAlphaBeta extends Agent {
     private final int numPlys;
     private boolean AMIMAX = false;
 
-    public MinimaxAlphaBeta(int playernum, String[] args)
-    {
+    public MinimaxAlphaBeta(int playernum, String[] args) {
         super(playernum);
 
-        if(args.length < 1)
-        {
+        if (args.length < 1) {
             System.err.println("You must specify the number of plys");
             System.exit(1);
         }
@@ -66,65 +64,64 @@ public class MinimaxAlphaBeta extends Agent {
      * Try to keep the logic in this function as abstract as possible (i.e. move as much SEPIA specific
      * code into other functions and methods)
      *
-     * @param node The action and state to search from
+     * @param node  The action and state to search from
      * @param depth The remaining number of plys under this node
      * @param alpha The current best value for the maximizing node from this node to the root
-     * @param beta The current best value for the minimizing node from this node to the root
+     * @param beta  The current best value for the minimizing node from this node to the root
      * @return The best child of this node with updated values
-     * 
+     *
      * There's some dirty tricks in here that lead to incredible improvements.
-     *      Minimax doesn't care about the state, just its heuristic.  I only care about
-     *      the best state.  So only generate the state if we're redefining the best
+     * Minimax doesn't care about the state, just its heuristic.  I only care about
+     * the best state.  So only generate the state if we're redefining the best
      */
-    public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta)
-    {/*             minimax with alpha beta pruning.
+    public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta) {/*             minimax with alpha beta pruning.
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
         node = compileGameStateChild(node); //this node has an outstanding action.  Perform it to get the node's actual state.
-        
+
         this.flipPlayer(node);//initialized to false, so first flip sets it true
-        
-        if(depth == 0) return node;//base case
+
+        if (depth == 0) return node;//base case
         GameStateChild returnVar = null;
-        if(AMIMAX){//MAX is playing
+        if (AMIMAX) {//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
-            for(GameStateChild child: getChildren(node)){//action,state tuple.  Action unapplied to state
+            for (GameStateChild child : getChildren(node)) {//action,state tuple.  Action unapplied to state
                 double childUtility = getChildUtility(child);
-                if(childUtility > value){
+                if (childUtility > value) {
                     value = childUtility;
-                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
+                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);//actually make the state only if we have to
                 }
                 alpha = Math.max(value, alpha);
-                if(beta <= alpha) break; //beta-pruned
+                if (beta <= alpha) break; //beta-pruned
             }
             return returnVar;
         } else {//MIN is playing
             double value = Double.POSITIVE_INFINITY;
-            for(GameStateChild child: getChildren(node)){//action,state tuple.  Action unapplied to state
+            for (GameStateChild child : getChildren(node)) {//action,state tuple.  Action unapplied to state
                 double childUtility = getChildUtility(child);
-                if(childUtility < value){
+                if (childUtility < value) {
                     value = childUtility;
-                    returnVar = alphaBetaSearch(child, depth-1, alpha, beta);//actually make the state only if we have to
+                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);//actually make the state only if we have to
                 }
                 beta = Math.min(value, beta);
-                if(beta <= alpha) break; //alpha-pruned
+                if (beta <= alpha) break; //alpha-pruned
             }
             return returnVar;
         }
     }//end of minimax
-    
-    private GameStateChild compileGameStateChild(GameStateChild node){
-        if(node.action != null){//this node has an outstanding action.  Perform it to get the node's actual state.
+
+    private GameStateChild compileGameStateChild(GameStateChild node) {
+        if (node.action != null) {//this node has an outstanding action.  Perform it to get the node's actual state.
             return new GameStateChild(node.action, new GameState(ActionApplier.apply(
                     node.action, node.state.stateView).getView(node.state.stateView.getPlayerNumbers()[0])));
         } else return node;
     }
-    
-    private double getChildUtility(GameStateChild child){
+
+    private double getChildUtility(GameStateChild child) {
         return ActionApplier.applyHeuristic(child.action, child.state.stateView);
     }
-    
-    private List<GameStateChild> getChildren(GameStateChild node){
+
+    private List<GameStateChild> getChildren(GameStateChild node) {
         return node.state.getUnappliedChildren();
     }
 
@@ -141,8 +138,7 @@ public class MinimaxAlphaBeta extends Agent {
      * @param children the children nodes to sort
      * @return The list of children sorted by your heuristic.
      */
-    public static ArrayList<GameStateChild> orderChildrenWithHeuristics(ArrayList<GameStateChild> children)
-    {//this is static, and actually gets called on child generation, instead of at search time
+    public static ArrayList<GameStateChild> orderChildrenWithHeuristics(ArrayList<GameStateChild> children) {
         //orders nodes with higher utility first.
         /*
          * Insertion sort.  Because it has low overhead and complexity doesn't matter much on small search sizes
@@ -154,32 +150,32 @@ public class MinimaxAlphaBeta extends Agent {
                     j = j - 1
                 A[j] = x*
          */
-        
+
         int i = 0;
         //gotta work on a copy of the list because you can't play with
         //the variable you're iterating through in a for-each loop
-        
-        for(GameStateChild x: children){//stand back kids, we're rolling our own for loop
-            if(i==0){
+
+        for (GameStateChild x : children) {//stand back kids, we're rolling our own for loop
+            if (i == 0) {
                 i++;
                 continue;//cool, I've never used a continue before.  It skips the current loop iteration.
             }
             int j = i;
             double xUtility = ActionApplier.applyHeuristic(x.action, x.state.stateView);
-            GameStateChild child = children.get(j-1);
+            GameStateChild child = children.get(j - 1);
             double childUtility = ActionApplier.applyHeuristic(child.action, child.state.stateView);
-            while(j>0 && childUtility>xUtility){
-                children.set(j, children.get(j-1));
+            while (j > 0 && childUtility > xUtility) {
+                children.set(j, children.get(j - 1));
                 j--;
             }
             children.set(j, x);
             i++;
         }
-        Collections.reverse(children);//the sorting algorithm put lowest utility first.  Flip it.
+        Collections.reverse(children);//because I'm lazy
         return children;
     }
-    
-    private void flipPlayer(GameStateChild node){
+
+    private void flipPlayer(GameStateChild node) {
         this.AMIMAX = !AMIMAX;
         node.state.AMIMAX = this.AMIMAX;
     }
