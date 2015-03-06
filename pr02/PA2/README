@@ -23,20 +23,26 @@ But anyways, 95% of the code is trying to win the game, and 5% is minimax.
 Our heuristic was so many things:
     hp of footmen
     hp of archers
-    surrounding free spaces before a tree
+    surrounding free spaces before a tree (raycasting)
     requested move vs optimal move,
-        where optimal move is based on distance and free spaces in that direction
+        where optimal move is based on distance and free spaces in that direction (vector comparison)
     number of trees within a radius
-
-
 
 Current State:
     Things move.
     They walk into walls.
     They are capable of cold-blooded killing
     
-TODO:
-    don't walk into walls
-        -Soumya says A* is fine
-        -He also indicated that minimax was way more important than actual game results, and
-            only a couple points would be deducted for not winning.
+    -Soumya indicated that minimax was way more important than actual game results, and
+        only a couple points (if any) would be deducted for not winning.
+        
+        
+        
+
+
+            tl;dr
+we implemented minimax with built in alpha-beta pruning.
+    We used heuristics to estimate utility of states following actions.
+    Navigating through trees is really hard, so we made increasingly elaborate heuristics.
+    None of them work terribly well, but Soumya noted that we're graded on concepts and algorithm correctness,
+        not logical performance.

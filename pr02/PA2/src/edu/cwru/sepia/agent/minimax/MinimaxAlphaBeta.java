@@ -74,22 +74,22 @@ public class MinimaxAlphaBeta extends Agent {
      * Minimax doesn't care about the state, just its heuristic.  I only care about
      * the best state.  So only generate the state if we're redefining the best
      */
-    public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta) {/*             minimax with alpha beta pruning.
+    public GameStateChild alphaBetaSearch(GameStateChild node, int depth, double alpha, double beta) {
+    /*             minimax with alpha beta pruning.
          http://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning#Pseudocode
         */
         node = compileGameStateChild(node); //this node has an outstanding action.  Perform it to get the node's actual state.
-
         this.flipPlayer(node);//initialized to false, so first flip sets it true
 
         if (depth == 0) return node;//base case
         GameStateChild returnVar = null;
         if (AMIMAX) {//MAX is playing
             double value = Double.NEGATIVE_INFINITY;
-            for (GameStateChild child : getChildren(node)) {//action,state tuple.  Action unapplied to state
-                double childUtility = getChildUtility(child);
+            for (GameStateChild child : getChildren(node)) {
+                double childUtility = getUtilityOf(child);
                 if (childUtility > value) {
                     value = childUtility;
-                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);//actually make the state only if we have to
+                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);
                 }
                 alpha = Math.max(value, alpha);
                 if (beta <= alpha) break; //beta-pruned
@@ -97,11 +97,11 @@ public class MinimaxAlphaBeta extends Agent {
             return returnVar;
         } else {//MIN is playing
             double value = Double.POSITIVE_INFINITY;
-            for (GameStateChild child : getChildren(node)) {//action,state tuple.  Action unapplied to state
-                double childUtility = getChildUtility(child);
+            for (GameStateChild child : getChildren(node)) {
+                double childUtility = getUtilityOf(child);
                 if (childUtility < value) {
                     value = childUtility;
-                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);//actually make the state only if we have to
+                    returnVar = alphaBetaSearch(child, depth - 1, alpha, beta);
                 }
                 beta = Math.min(value, beta);
                 if (beta <= alpha) break; //alpha-pruned
@@ -110,6 +110,11 @@ public class MinimaxAlphaBeta extends Agent {
         }
     }//end of minimax
 
+    /**
+     * Condenses the GameStateChild's state and Action into a new state. (i.e. it executes the outstanding actions) 
+     * @param node GameStateChild to recalculate
+     * @return the given node, after the outstanding Actions have been taken
+     */
     private GameStateChild compileGameStateChild(GameStateChild node) {
         if (node.action != null) {//this node has an outstanding action.  Perform it to get the node's actual state.
             return new GameStateChild(node.action, new GameState(ActionApplier.apply(
@@ -117,10 +122,21 @@ public class MinimaxAlphaBeta extends Agent {
         } else return node;
     }
 
-    private double getChildUtility(GameStateChild child) {
-        return ActionApplier.applyHeuristic(child.action, child.state.stateView);
+    /**
+     * simple abstraction to make minimax more readable, and make the grader's life easier
+     * @param child GameStateChild to get the utility of
+     * @return the utility of the given GameStateChild, as a double value
+     */
+    private double getUtilityOf(GameStateChild child) {
+        return ActionApplier.estimateHeuristic(child.action, child.state.stateView);
     }
 
+    /**
+     * You give me a GameStateChild, I give you all possible states (GameStateChild)s reachable from the
+     * given node. 
+     * @param node given GameSpaceChild to search from
+     * @return all possible resultant states after any set of legal actions have been taken
+     */
     private List<GameStateChild> getChildren(GameStateChild node) {
         return node.state.getUnappliedChildren();
     }
@@ -161,9 +177,9 @@ public class MinimaxAlphaBeta extends Agent {
                 continue;//cool, I've never used a continue before.  It skips the current loop iteration.
             }
             int j = i;
-            double xUtility = ActionApplier.applyHeuristic(x.action, x.state.stateView);
+            double xUtility = ActionApplier.estimateHeuristic(x.action, x.state.stateView);
             GameStateChild child = children.get(j - 1);
-            double childUtility = ActionApplier.applyHeuristic(child.action, child.state.stateView);
+            double childUtility = ActionApplier.estimateHeuristic(child.action, child.state.stateView);
             while (j > 0 && childUtility > xUtility) {
                 children.set(j, children.get(j - 1));
                 j--;
@@ -175,6 +191,10 @@ public class MinimaxAlphaBeta extends Agent {
         return children;
     }
 
+    /**
+     * flips minimax between min and max, ensuring that the GameStateChild in question is aligned
+     * @param node GameStateChild to align with the overall minimax search
+     */
     private void flipPlayer(GameStateChild node) {
         this.AMIMAX = !AMIMAX;
         node.state.AMIMAX = this.AMIMAX;

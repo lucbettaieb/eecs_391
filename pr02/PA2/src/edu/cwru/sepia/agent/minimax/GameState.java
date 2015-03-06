@@ -84,23 +84,13 @@ public class GameState {
      * @return The weighted linear combination of the features
      */
     public void getUtility() {
-        // see ActionApplier's applyHeuristic for actual use
+        // see ActionApplier's estimateHeuristic for actual use
         /**
          * Why did we do this?
          * We were never given, nor could we find or ask, a way to make a new state in a cheap manner.
          * So the utility is calculated from a previous state, and the actions left to apply.
          * Then, once we actually explore that state, we fully generate it.
          */
-    }
-
-    /**
-     * * delta x plus delta y, aka taxicab distance
-     * you give me a source and destination UnitView,
-     * I give you their manhattan distance
-     */
-    public static int manhattanDistance(Unit.UnitView source, Unit.UnitView destination) {
-        return Math.abs(source.getXPosition() - destination.getXPosition()) +
-                Math.abs(source.getYPosition() - destination.getYPosition());
     }
 
     /**
@@ -136,7 +126,7 @@ public class GameState {
     public List<GameStateChild> getUnappliedChildren() {
         ArrayList<List<Action>> unitActions = new ArrayList<List<Action>>();
         //we keep a list of every action for every unit.  Making it a 2D array
-        ArrayList<Integer> idList = new ArrayList<Integer>();//list of IDs, used for making actionCombos
+        ArrayList<Integer> idList = new ArrayList<Integer>();//list of IDs we're considering, used for making actionCombos
 
         if (AMIMAX) {
             for (Unit.UnitView footman : footmen) {
@@ -162,6 +152,12 @@ public class GameState {
         return children;
     }
 
+    /**
+     * for some reason, sepia seems to like using ID/Action tuples, even though the
+     * unit performing the Action has its ID embedded within the Action
+     * @param actions array of actions to be executed
+     * @return a map of unitIDs to Actions, where the unitID indicates the Action being performed
+     */
     private Map<Integer, Action> makeTupleFromActions(Action[] actions) {
         Map<Integer, Action> returnVar = new HashMap<Integer, Action>();
         for (Action action : actions) {
@@ -216,7 +212,6 @@ public class GameState {
             generateActionCombos(unitIDs, unitsAndActions, actionCombos, depth + 1, current);
         }
     }
-
 
     /**
      * you give me a player (and set AMIMAX), I give you the list of all actions that player can take
