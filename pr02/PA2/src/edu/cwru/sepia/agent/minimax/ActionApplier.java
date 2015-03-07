@@ -58,7 +58,9 @@ public class ActionApplier {
             raycastFromUnit(footman, trees, freedom);
         }
 
-        double correctMovement = estimateMovementHeuristic(givenActionMap, givenPreActionState);
+        //removed vector agreement because it doesn't help on any of the maps, 
+        //and causes a livelock on the 2v2 without trees.
+        //double correctMovement = estimateMovementHeuristic(givenActionMap, givenPreActionState);
 
         //sum them all up, and turn it in
         double heuristic = FOOTMEN_HP * sum(footmenHP);
@@ -66,7 +68,7 @@ public class ActionApplier {
         heuristic += DISTANCE * (distance1 + distance2);
         heuristic += TREE_CONSTANT * treeFactor;
         heuristic += FREEDOM * freedom.getFreedom();
-        heuristic += VECTOR_AGREEMENT * correctMovement;
+        //heuristic += VECTOR_AGREEMENT * correctMovement;
         return heuristic;
     }
     
@@ -92,6 +94,52 @@ public class ActionApplier {
         return (postActionState == null) ? null : postActionState;
     }
 
+    /**
+     * estimates the heuristic value of a move along a straight line, taking blocks into consideration
+     *
+     * @param givenActionMap      unitID/Action tuples to be applied to the state
+     * @param givenPreActionState the state being traversed
+     * @return heuristic value of the move set
+     */
+    public static double estimateMovementHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState) {
+        List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
+        int xExtent = givenPreActionState.getXExtent();
+        int yExtent = givenPreActionState.getYExtent();
+        List<Unit.UnitView> allUnits = givenPreActionState.getAllUnits();
+        double returnVar = 0;
+
+        for (Integer i : givenActionMap.keySet()) {
+            if (givenPreActionState.getUnit(i).getTemplateView().getName().equals("Archer")) continue;
+            if (givenActionMap.get(i) instanceof DirectedAction) {
+                DirectedAction directedAction = (DirectedAction) givenActionMap.get(i);
+                Vector bestAttack = new Vector(givenPreActionState.getUnit(i),
+                        closestEnemy(givenPreActionState.getUnit(i), allUnits), trees, xExtent, yExtent);
+                List<Direction> directionList = bestAttack.getBestNextDirection();
+                for (int j = 0; j < directionList.size(); j++) {
+                    if (directedAction.getDirection() == directionList.get(j)) {
+                        switch (j) {
+                            case 0:
+                                returnVar += 5;
+                                break;
+                            case 1:
+                                returnVar += 2;
+                                break;
+                            case 2:
+                                returnVar -= 2;
+                                break;
+                            case 3:
+                                returnVar -= 5;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        return returnVar;
+    }
+    
     /**
      * you give me a unit's ID, the ID/Action map, and the state
      * I categorize the action and make the proper call to change the state
@@ -147,51 +195,6 @@ public class ActionApplier {
         postActionState.moveUnit(source, direction);
     }
 
-    /**
-     * estimates the heuristic value of a move along a straight line, taking blocks into consideration
-     *
-     * @param givenActionMap      unitID/Action tuples to be applied to the state
-     * @param givenPreActionState the state being traversed
-     * @return heuristic value of the move set
-     */
-    public static double estimateMovementHeuristic(Map<Integer, Action> givenActionMap, State.StateView givenPreActionState) {
-        List<ResourceNode.ResourceView> trees = givenPreActionState.getAllResourceNodes();
-        int xExtent = givenPreActionState.getXExtent();
-        int yExtent = givenPreActionState.getYExtent();
-        List<Unit.UnitView> allUnits = givenPreActionState.getAllUnits();
-        double returnVar = 0;
-
-        for (Integer i : givenActionMap.keySet()) {
-            if (givenPreActionState.getUnit(i).getTemplateView().getName().equals("Archer")) continue;
-            if (givenActionMap.get(i) instanceof DirectedAction) {
-                DirectedAction directedAction = (DirectedAction) givenActionMap.get(i);
-                Vector bestAttack = new Vector(givenPreActionState.getUnit(i),
-                        closestEnemy(givenPreActionState.getUnit(i), allUnits), trees, xExtent, yExtent);
-                List<Direction> directionList = bestAttack.getBestNextDirection();
-                for (int j = 0; j < directionList.size(); j++) {
-                    if (directedAction.getDirection() == directionList.get(j)) {
-                        switch (j) {
-                            case 0:
-                                returnVar += 5;
-                                break;
-                            case 1:
-                                returnVar += 2;
-                                break;
-                            case 2:
-                                returnVar -= 2;
-                                break;
-                            case 3:
-                                returnVar -= 5;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-        return returnVar;
-    }
 
     /**
      * you give me all units, I give you the footmen and archers separated into their lists

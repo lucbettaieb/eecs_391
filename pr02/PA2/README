@@ -23,6 +23,7 @@ But anyways, 95% of the code is trying to win the game, and 5% is minimax.
 Our heuristic was so many things:
     hp of footmen
     hp of archers
+    distance between footman and its target
     surrounding free spaces before a tree (raycasting)
     requested move vs optimal move,
         where optimal move is based on distance and free spaces in that direction (vector comparison)

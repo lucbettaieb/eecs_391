@@ -49,6 +49,8 @@ public class GameState {
         parseUnits();//puts the archers and footmen into their own lists
         this.stateView = state;//just reference the whole damn thing.
         //but actually, it's super useful for function calls
+        //NOTE: using the stateView for function calls causes a bunch of threading contention, and
+        //busy waits occur all the time.  Use it sparingly, and immediately grab what you want from it.
     }
 
     /**
@@ -83,7 +85,7 @@ public class GameState {
      *
      * @return The weighted linear combination of the features
      */
-    public void getUtility() {
+    public double getUtility() {
         // see ActionApplier's estimateHeuristic for actual use
         /**
          * Why did we do this?
@@ -91,6 +93,7 @@ public class GameState {
          * So the utility is calculated from a previous state, and the actions left to apply.
          * Then, once we actually explore that state, we fully generate it.
          */
+        return ActionApplier.estimateHeuristic(null, stateView);
     }
 
     /**
