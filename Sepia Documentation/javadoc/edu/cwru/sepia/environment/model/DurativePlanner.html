@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DurativePlanner &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model" href="package-index.html"/>
+        <link rel="next" title="DurativePlanner.MovePlan" href="DurativePlanner-MovePlan.html"/>
+        <link rel="prev" title="BestEffortModel" href="BestEffortModel.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model</a> &raquo;</li>
+      
+    <li>DurativePlanner</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/DurativePlanner.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="durativeplanner">
+<h1>DurativePlanner<a class="headerlink" href="#durativeplanner" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner">
+public class <code class="descname">DurativePlanner</code> implements <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html" title="java.io.Serializable">Serializable</a><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation of basic planning methods extended to the case of actions that take time to act.</p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>DurativePlanner<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.DurativePlanner(State)">
+public <code class="descname">DurativePlanner</code><span class="sig-paren">(</span><a class="reference internal" href="state/State.html#edu.cwru.sepia.environment.model.state.State" title="edu.cwru.sepia.environment.model.state.State">State</a><em> state</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.DurativePlanner(State)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="calculateattackduration">
+<h3>calculateAttackDuration<a class="headerlink" href="#calculateattackduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateAttackDuration(Unit, Unit)">
+public static int <code class="descname">calculateAttackDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, <a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateAttackDuration(Unit, Unit)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a temporary debug method, remove it when you are done</p>
+</dd></dl>
+
+</div>
+<div class="section" id="calculatedepositduration">
+<h3>calculateDepositDuration<a class="headerlink" href="#calculatedepositduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateDepositDuration(Unit, Unit)">
+public static int <code class="descname">calculateDepositDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, <a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> townhall</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateDepositDuration(Unit, Unit)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the duration of a</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>u</strong> &#8211; </li>
+<li><strong>townhall</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="calculategatherduration">
+<h3>calculateGatherDuration<a class="headerlink" href="#calculategatherduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateGatherDuration(Unit, ResourceNode)">
+public static int <code class="descname">calculateGatherDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, <a class="reference internal" href="state/ResourceNode.html#edu.cwru.sepia.environment.model.state.ResourceNode" title="edu.cwru.sepia.environment.model.state.ResourceNode">ResourceNode</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateGatherDuration(Unit, ResourceNode)" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple calculation for determining the amount</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>u</strong> &#8211; </li>
+<li><strong>target</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="calculatemaxmoveduration">
+<h3>calculateMaxMoveDuration<a class="headerlink" href="#calculatemaxmoveduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateMaxMoveDuration(Unit)">
+public static int <code class="descname">calculateMaxMoveDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateMaxMoveDuration(Unit)" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-python"><div class="highlight"><pre>Calculate the maximum move possible for a Unit.
+These values must tie to
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>u</strong> &#8211; The unit whose maximum move we are probing.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="calculatemoveduration">
+<h3>calculateMoveDuration<a class="headerlink" href="#calculatemoveduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateMoveDuration(Unit, int, int, Direction)">
+public static int <code class="descname">calculateMoveDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, int<em> startingx</em>, int<em> startingy</em>, <a class="reference internal" href="../../util/Direction.html#edu.cwru.sepia.util.Direction" title="edu.cwru.sepia.util.Direction">Direction</a><em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateMoveDuration(Unit, int, int, Direction)" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-python"><div class="highlight"><pre>Calculate the move duration for a unit.
+These values must tie to
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>u</strong> &#8211; </li>
+<li><strong>startingx</strong> &#8211; </li>
+<li><strong>startingy</strong> &#8211; </li>
+<li><strong>d</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="calculateproductionduration">
+<h3>calculateProductionDuration<a class="headerlink" href="#calculateproductionduration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.calculateProductionDuration(Unit, Template)">
+public static int <code class="descname">calculateProductionDuration</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, <a class="reference internal" href="state/Template.html#edu.cwru.sepia.environment.model.state.Template" title="edu.cwru.sepia.environment.model.state.Template">Template</a><em> t</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.calculateProductionDuration(Unit, Template)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a temporary debug method, remove it when you are done</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdirections">
+<h3>getDirections<a class="headerlink" href="#getdirections" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)">
+public <a class="reference internal" href="DurativePlanner-MovePlan.html#edu.cwru.sepia.environment.model.DurativePlanner.MovePlan" title="edu.cwru.sepia.environment.model.DurativePlanner.MovePlan">MovePlan</a> <code class="descname">getDirections</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> u</em>, int<em> startingx</em>, int<em> startingy</em>, int<em> endingx</em>, int<em> endingy</em>, int<em> tolerancedistance</em>, boolean<em> isFirstMove</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-python"><div class="highlight"><pre>Uses A* to calculate the directions to arrive at the specified
+location.
+Returns a path if and only if there is a valid path.
+When you wish upon A* ...
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>u</strong> &#8211; The unit being moved. Necessary for calculating durative actions</li>
+<li><strong>startingx</strong> &#8211; </li>
+<li><strong>startingy</strong> &#8211; </li>
+<li><strong>endingx</strong> &#8211; </li>
+<li><strong>endingy</strong> &#8211; </li>
+<li><strong>tolerancedistance</strong> &#8211; The distance at which to stop trying to seek (IE, 0 is on top of it, 1 is next to it, etc) Note that the distance should count diagonals as 1 dist</li>
+<li><strong>isFirstMove</strong> &#8211; Whether this is the first move in a larger plan (and thus that the current progress toward a move should be included)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A move plan with the success, path, and final x and y coordinates.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="planattack">
+<h3>planAttack<a class="headerlink" href="#planattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planAttack(Unit, Unit)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planAttack</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, <a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planAttack(Unit, Unit)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses <a class="reference internal" href="#edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)" title="edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)"><code class="xref java java-ref docutils literal"><span class="pre">getDirections(StateView,int,int,int,int,int,boolean)</span></code></a> to get directions to the specified place and <a class="reference internal" href="#edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)" title="edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)"><code class="xref java java-ref docutils literal"><span class="pre">planMove(Unit,LinkedList)</span></code></a> to follow them. then adds an attack command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>actor</strong> &#8211; </li>
+<li><strong>target</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A series of actions that move the actor to the target and attacks the target</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>planAttack<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planAttack(int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planAttack</code><span class="sig-paren">(</span>int<em> actor</em>, int<em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planAttack(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="planbuild">
+<h3>planBuild<a class="headerlink" href="#planbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planBuild(Unit, int, int, UnitTemplate)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planBuild</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, int<em> targetX</em>, int<em> targetY</em>, <a class="reference internal" href="state/UnitTemplate.html#edu.cwru.sepia.environment.model.state.UnitTemplate" title="edu.cwru.sepia.environment.model.state.UnitTemplate">UnitTemplate</a><em> template</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planBuild(Unit, int, int, UnitTemplate)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plan a compound build action in which the unit moves to a target and then</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>actor</strong> &#8211; </li>
+<li><strong>targetX</strong> &#8211; </li>
+<li><strong>targetY</strong> &#8211; </li>
+<li><strong>template</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>planBuild<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planBuild(int, int, int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planBuild</code><span class="sig-paren">(</span>int<em> actor</em>, int<em> targetX</em>, int<em> targetY</em>, int<em> template</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planBuild(int, int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="plandeposit">
+<h3>planDeposit<a class="headerlink" href="#plandeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planDeposit(Unit, Unit)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planDeposit</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, <a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planDeposit(Unit, Unit)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plan a compound deposit action in which the unit moves next to the target town hall and then deposits into it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>actor</strong> &#8211; </li>
+<li><strong>target</strong> &#8211; </li>
+<li><strong>distance</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>planDeposit<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planDeposit(int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planDeposit</code><span class="sig-paren">(</span>int<em> actor</em>, int<em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planDeposit(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="planfail">
+<h3>planFail<a class="headerlink" href="#planfail" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planFail(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planFail</code><span class="sig-paren">(</span>int<em> actor</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planFail(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="plangather">
+<h3>planGather<a class="headerlink" href="#plangather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planGather(Unit, ResourceNode)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planGather</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, <a class="reference internal" href="state/ResourceNode.html#edu.cwru.sepia.environment.model.state.ResourceNode" title="edu.cwru.sepia.environment.model.state.ResourceNode">ResourceNode</a><em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planGather(Unit, ResourceNode)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plan a compound gather action in which the unit moves next to the target node and then gathers from it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>actor</strong> &#8211; </li>
+<li><strong>target</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A series of actions that move the actor to the target and gathers from the target</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>planGather<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planGather(int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planGather</code><span class="sig-paren">(</span>int<em> actor</em>, int<em> target</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planGather(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="planmove">
+<h3>planMove<a class="headerlink" href="#planmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planMove(Unit, int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planMove</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, int<em> x</em>, int<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planMove(Unit, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses <a class="reference internal" href="#edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)" title="edu.cwru.sepia.environment.model.DurativePlanner.getDirections(Unit, int, int, int, int, int, boolean)"><code class="xref java java-ref docutils literal"><span class="pre">getDirections(int,int,int,int,int,boolean)</span></code></a> to get directions to the specified place and <a class="reference internal" href="#edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)" title="edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)"><code class="xref java java-ref docutils literal"><span class="pre">planMove(Unit,LinkedList)</span></code></a> to follow them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>actor</strong> &#8211; </li>
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>planMove<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planMove</code><span class="sig-paren">(</span>int<em> i</em>, int<em> x</em>, int<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planMove(int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="planpermanentfail">
+<h3>planPermanentFail<a class="headerlink" href="#planpermanentfail" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planPermanentFail(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planPermanentFail</code><span class="sig-paren">(</span>int<em> actor</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planPermanentFail(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="planproduce">
+<h3>planProduce<a class="headerlink" href="#planproduce" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planProduce(Unit, Template)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planProduce</code><span class="sig-paren">(</span><a class="reference internal" href="state/Unit.html#edu.cwru.sepia.environment.model.state.Unit" title="edu.cwru.sepia.environment.model.state.Unit">Unit</a><em> actor</em>, <a class="reference internal" href="state/Template.html#edu.cwru.sepia.environment.model.state.Template" title="edu.cwru.sepia.environment.model.state.Template">Template</a><em> template</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planProduce(Unit, Template)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>planProduce<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.DurativePlanner.planProduce(int, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/LinkedList.html" title="java.util.LinkedList">LinkedList</a>&lt;<a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt; <code class="descname">planProduce</code><span class="sig-paren">(</span>int<em> actor</em>, int<em> template</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.DurativePlanner.planProduce(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DurativePlanner-MovePlan.html" class="btn btn-neutral float-right" title="DurativePlanner.MovePlan"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="BestEffortModel.html" class="btn btn-neutral" title="BestEffortModel"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

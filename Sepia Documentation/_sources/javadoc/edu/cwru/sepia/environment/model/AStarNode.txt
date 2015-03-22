@@ -1,0 +1,135 @@
+.. java:import:: java.util Arrays
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+AStarNode
+=========
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public class AStarNode implements Comparable<AStarNode>
+
+   Note: compareTo and equals are not equivalently implemented equals checks xs and ys, but no other fields
+
+Fields
+------
+directionfromprevious
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: final Direction directionfromprevious
+   :outertype: AStarNode
+
+durativesteps
+^^^^^^^^^^^^^
+
+.. java:field:: final int durativesteps
+   :outertype: AStarNode
+
+g
+^
+
+.. java:field:: final int g
+   :outertype: AStarNode
+
+hashCode
+^^^^^^^^
+
+.. java:field:: final int hashCode
+   :outertype: AStarNode
+
+previous
+^^^^^^^^
+
+.. java:field:: final AStarNode previous
+   :outertype: AStarNode
+
+value
+^^^^^
+
+.. java:field:: final int value
+   :outertype: AStarNode
+
+x
+^
+
+.. java:field:: final int x
+   :outertype: AStarNode
+
+y
+^
+
+.. java:field:: final int y
+   :outertype: AStarNode
+
+Constructors
+------------
+AStarNode
+^^^^^^^^^
+
+.. java:constructor:: public AStarNode(int x, int y, int g, int value, AStarNode previous, Direction directionfromprevious)
+   :outertype: AStarNode
+
+   Create a nonroot node with fields so for backtracking.
+
+   :param x:
+   :param y:
+   :param g:
+   :param value:
+   :param previous:
+   :param directionfromprevious:
+
+AStarNode
+^^^^^^^^^
+
+.. java:constructor:: public AStarNode(int x, int y, int g, int value, AStarNode previous, Direction directionfromprevious, int durativesteps)
+   :outertype: AStarNode
+
+   Create a nonroot node with fields so for backtracking.
+
+   :param x:
+   :param y:
+   :param g:
+   :param value:
+   :param previous:
+   :param directionfromprevious:
+   :param durativesteps:
+
+AStarNode
+^^^^^^^^^
+
+.. java:constructor:: public AStarNode(int x, int y, int distfromgoal)
+   :outertype: AStarNode
+
+   Create a new root node
+
+   :param x:
+   :param y:
+   :param distfromgoal:
+
+Methods
+-------
+compareTo
+^^^^^^^^^
+
+.. java:method:: public int compareTo(AStarNode other)
+   :outertype: AStarNode
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: AStarNode
+
+hashCode
+^^^^^^^^
+
+.. java:method:: public int hashCode()
+   :outertype: AStarNode
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: AStarNode
+

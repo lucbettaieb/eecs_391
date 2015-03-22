@@ -1,0 +1,68 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: matlabcontrol MatlabProxy
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadCallable
+
+.. java:import:: matlabcontrol MatlabInvocationException
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadProxy
+
+MatlabTypeConverter
+===================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public class MatlabTypeConverter
+
+   Converts between MATLAB and Java types. Currently only supports numeric arrays.  This class is unconditionally thread-safe.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+MatlabTypeConverter
+^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public MatlabTypeConverter(MatlabProxy proxy)
+   :outertype: MatlabTypeConverter
+
+   Constructs the converter.
+
+   :param proxy:
+
+Methods
+-------
+getNumericArray
+^^^^^^^^^^^^^^^
+
+.. java:method:: public MatlabNumericArray getNumericArray(String arrayName) throws MatlabInvocationException
+   :outertype: MatlabTypeConverter
+
+   Retrieves the MATLAB numeric array with the variable name \ ``arrayName``\ .
+
+   :param arrayName:
+   :throws matlabcontrol.MatlabInvocationException: if thrown by the proxy
+   :return: the retrieved numeric array
+
+setNumericArray
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setNumericArray(String arrayName, MatlabNumericArray array) throws MatlabInvocationException
+   :outertype: MatlabTypeConverter
+
+   Stores the \ ``array``\  in MATLAB with the variable name \ ``arrayName``\ .
+
+   :param arrayName: the variable name
+   :param array:
+   :throws matlabcontrol.MatlabInvocationException: if thrown by the proxy
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: MatlabTypeConverter
+
+   Returns a brief description of this converter. The exact details of this representation are unspecified and are subject to change.
+

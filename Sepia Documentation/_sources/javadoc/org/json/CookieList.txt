@@ -1,0 +1,40 @@
+.. java:import:: java.util Iterator
+
+CookieList
+==========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class CookieList
+
+   Convert a web browser cookie list string to a JSONObject and back.
+
+   :author: JSON.org
+
+Methods
+-------
+toJSONObject
+^^^^^^^^^^^^
+
+.. java:method:: public static JSONObject toJSONObject(String string) throws JSONException
+   :outertype: CookieList
+
+   Convert a cookie list into a JSONObject. A cookie list is a sequence of name/value pairs. The names are separated from the values by '='. The pairs are separated by ';'. The names and the values will be unescaped, possibly converting '+' and '%' sequences. To add a cookie to a cooklist, cookielistJSONObject.put(cookieJSONObject.getString("name"), cookieJSONObject.getString("value"));
+
+   :param string: A cookie list string
+   :throws JSONException:
+   :return: A JSONObject
+
+toString
+^^^^^^^^
+
+.. java:method:: public static String toString(JSONObject jo) throws JSONException
+   :outertype: CookieList
+
+   Convert a JSONObject into a cookie list. A cookie list is a sequence of name/value pairs. The names are separated from the values by '='. The pairs are separated by ';'. The characters '%', '+', '=', and ';' in the names and values are replaced by "%hh".
+
+   :param jo: A JSONObject
+   :throws JSONException:
+   :return: A cookie list string
+

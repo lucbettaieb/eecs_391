@@ -1,0 +1,87 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlBirthLogList
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlBirthLogList
+
+   Java class for BirthLogList complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="BirthLogList">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="roundNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="birthLog" type="{}BirthLog"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+birthLog
+^^^^^^^^
+
+.. java:field:: protected List<XmlBirthLog> birthLog
+   :outertype: XmlBirthLogList
+
+roundNumber
+^^^^^^^^^^^
+
+.. java:field:: protected int roundNumber
+   :outertype: XmlBirthLogList
+
+Methods
+-------
+getBirthLog
+^^^^^^^^^^^
+
+.. java:method:: public List<XmlBirthLog> getBirthLog()
+   :outertype: XmlBirthLogList
+
+   Gets the value of the birthLog property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the birthLog property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getBirthLog().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlBirthLog`\
+
+getRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRoundNumber()
+   :outertype: XmlBirthLogList
+
+   Gets the value of the roundNumber property.
+
+setRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setRoundNumber(int value)
+   :outertype: XmlBirthLogList
+
+   Sets the value of the roundNumber property.
+

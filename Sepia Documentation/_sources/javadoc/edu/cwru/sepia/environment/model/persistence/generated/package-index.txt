@@ -1,0 +1,54 @@
+edu.cwru.sepia.environment.model.persistence.generated
+======================================================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+
+.. toctree::
+   :maxdepth: 1
+
+   Adapter1
+   Adapter2
+   Adapter3
+   Adapter4
+   Adapter5
+   ObjectFactory
+   XmlAction
+   XmlActionEntry
+   XmlActionList
+   XmlActionLogger
+   XmlActionResult
+   XmlActionResultEntry
+   XmlActionResultList
+   XmlActionResultLogger
+   XmlBirthLog
+   XmlBirthLogList
+   XmlDamageLog
+   XmlDamageLogList
+   XmlDeathLog
+   XmlDeathLogList
+   XmlDirectedAction
+   XmlEventLogger
+   XmlHistory
+   XmlLocatedAction
+   XmlLocatedProductionAction
+   XmlPlayer
+   XmlPlayerHistory
+   XmlProductionAction
+   XmlResourceDropoffLog
+   XmlResourceDropoffLogList
+   XmlResourceNode
+   XmlResourceNodeExhaustionLog
+   XmlResourceNodeExhaustionLogList
+   XmlResourcePickupLog
+   XmlResourcePickupLogList
+   XmlResourceQuantity
+   XmlRevealedResourceNodeLog
+   XmlState
+   XmlTargetedAction
+   XmlTemplate
+   XmlUnit
+   XmlUnitTemplate
+   XmlUpgradeLog
+   XmlUpgradeLogList
+   XmlUpgradeTemplate
+

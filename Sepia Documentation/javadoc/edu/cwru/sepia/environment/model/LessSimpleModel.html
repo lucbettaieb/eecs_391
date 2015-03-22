@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LessSimpleModel &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model" href="package-index.html"/>
+        <link rel="next" title="Model" href="Model.html"/>
+        <link rel="prev" title="DurativePlanner.MovePlan" href="DurativePlanner-MovePlan.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model</a> &raquo;</li>
+      
+    <li>LessSimpleModel</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/LessSimpleModel.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="lesssimplemodel">
+<h1>LessSimpleModel<a class="headerlink" href="#lesssimplemodel" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel">
+public class <code class="descname">LessSimpleModel</code> implements <a class="reference internal" href="Model.html#edu.cwru.sepia.environment.model.Model" title="edu.cwru.sepia.environment.model.Model">Model</a><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A less simple model that allows consistency, turn-taking and durative actions. No longer supports unit tasks Recalculates compound actions automatically every step. Supports consistent actions* according to the following principles: The order of actions does not affect their results, Sets of actions may not cause invalid states (so some must fail), The effects of one action succeeding may not change based on the actions of others**, An set of actions that fails cannot be made to succeed by adding actions for other units. From this, compound actions may only calculate primitives once in a turn, and only based on the previous state. This makes compound actions much much less effective than in SimpleModel. The particular solution in this makes sure that successes based on ranges (including directional actions with proximity) are calculated based on the previous state. It also ensures that an action may not fail due to a unit involved being attacked for enough damage to kill it. * Production/build actions that make new units fail consistency. The units are placed sequentially in places that were empty last state in such a way as to not disrupt move actions. In the situation where more productions exist than empty spaces that are not being moved into, then only the minimum number of production actions will fail ** More generally, where s is the event &#8220;action has succeeded&#8221; and E is a set of possible results, and O is actions sent to other units, E given s must be independant of O, IE: for all O, P(E|s) = P(E|s,O)*** <a href="#id1"><span class="problematic" id="id2">**</span></a>* as an example that works, attacks, being based on sequential Random variables from a seed, will change exact result, but the distribution of successful attacks does not change based on other actions. As a failing example, random movements that only fail on an actual collision wouldn&#8217;t work, as the action of the other unit affects the distribution of effects.</p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>LessSimpleModel<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.LessSimpleModel(State, int, StateCreator, Configuration)">
+public <code class="descname">LessSimpleModel</code><span class="sig-paren">(</span><a class="reference internal" href="state/State.html#edu.cwru.sepia.environment.model.state.State" title="edu.cwru.sepia.environment.model.state.State">State</a><em> init</em>, int<em> seed</em>, <a class="reference internal" href="state/StateCreator.html#edu.cwru.sepia.environment.model.state.StateCreator" title="edu.cwru.sepia.environment.model.state.StateCreator">StateCreator</a><em> restartTactic</em>, <a class="reference internal" href="../../experiment/Configuration.html#edu.cwru.sepia.experiment.Configuration" title="edu.cwru.sepia.experiment.Configuration">Configuration</a><em> configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.LessSimpleModel(State, int, StateCreator, Configuration)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="addactions">
+<h3>addActions<a class="headerlink" href="#addactions" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.addActions(Map, int)">
+public void <code class="descname">addActions</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>, <a class="reference internal" href="../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a>&gt;<em> actions</em>, int<em> sendingPlayerNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.addActions(Map, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="createnewworld">
+<h3>createNewWorld<a class="headerlink" href="#createnewworld" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.createNewWorld()">
+public void <code class="descname">createNewWorld</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.createNewWorld()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="executestep">
+<h3>executeStep<a class="headerlink" href="#executestep" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.executeStep()">
+public void <code class="descname">executeStep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.executeStep()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main loop of the engine. Removes the old views</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getconfiguration">
+<h3>getConfiguration<a class="headerlink" href="#getconfiguration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.getConfiguration()">
+public <a class="reference internal" href="../../experiment/Configuration.html#edu.cwru.sepia.experiment.Configuration" title="edu.cwru.sepia.experiment.Configuration">Configuration</a> <code class="descname">getConfiguration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.getConfiguration()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gethistory">
+<h3>getHistory<a class="headerlink" href="#gethistory" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.getHistory()">
+public <a class="reference internal" href="history/History.html#edu.cwru.sepia.environment.model.history.History" title="edu.cwru.sepia.environment.model.history.History">History</a> <code class="descname">getHistory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.getHistory()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getstate">
+<h3>getState<a class="headerlink" href="#getstate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.getState()">
+public <a class="reference internal" href="state/State.html#edu.cwru.sepia.environment.model.state.State" title="edu.cwru.sepia.environment.model.state.State">State</a> <code class="descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.getState()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getverbose">
+<h3>getVerbose<a class="headerlink" href="#getverbose" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.getVerbose()">
+public boolean <code class="descname">getVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.getVerbose()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="isterminated">
+<h3>isTerminated<a class="headerlink" href="#isterminated" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.isTerminated()">
+public boolean <code class="descname">isTerminated</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.isTerminated()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="save">
+<h3>save<a class="headerlink" href="#save" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.save(String)">
+public void <code class="descname">save</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> filename</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.save(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setconfiguration">
+<h3>setConfiguration<a class="headerlink" href="#setconfiguration" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.setConfiguration(Configuration)">
+public void <code class="descname">setConfiguration</code><span class="sig-paren">(</span><a class="reference internal" href="../../experiment/Configuration.html#edu.cwru.sepia.experiment.Configuration" title="edu.cwru.sepia.experiment.Configuration">Configuration</a><em> configuration</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.setConfiguration(Configuration)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setturntracker">
+<h3>setTurnTracker<a class="headerlink" href="#setturntracker" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.setTurnTracker(TurnTracker)">
+public void <code class="descname">setTurnTracker</code><span class="sig-paren">(</span><a class="reference internal" href="../TurnTracker.html#edu.cwru.sepia.environment.TurnTracker" title="edu.cwru.sepia.environment.TurnTracker">TurnTracker</a><em> tracker</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.setTurnTracker(TurnTracker)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setverbose">
+<h3>setVerbose<a class="headerlink" href="#setverbose" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.LessSimpleModel.setVerbose(boolean)">
+public void <code class="descname">setVerbose</code><span class="sig-paren">(</span>boolean<em> verbose</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.LessSimpleModel.setVerbose(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Model.html" class="btn btn-neutral float-right" title="Model"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DurativePlanner-MovePlan.html" class="btn btn-neutral" title="DurativePlanner.MovePlan"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

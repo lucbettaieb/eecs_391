@@ -1,0 +1,148 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlDamageLog
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlDamageLog
+
+   Java class for DamageLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="DamageLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="attackerID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="attackerController" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="defenderID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="defenderController" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="damage" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+attackerController
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int attackerController
+   :outertype: XmlDamageLog
+
+attackerID
+^^^^^^^^^^
+
+.. java:field:: protected int attackerID
+   :outertype: XmlDamageLog
+
+damage
+^^^^^^
+
+.. java:field:: protected int damage
+   :outertype: XmlDamageLog
+
+defenderController
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int defenderController
+   :outertype: XmlDamageLog
+
+defenderID
+^^^^^^^^^^
+
+.. java:field:: protected int defenderID
+   :outertype: XmlDamageLog
+
+Methods
+-------
+getAttackerController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAttackerController()
+   :outertype: XmlDamageLog
+
+   Gets the value of the attackerController property.
+
+getAttackerID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getAttackerID()
+   :outertype: XmlDamageLog
+
+   Gets the value of the attackerID property.
+
+getDamage
+^^^^^^^^^
+
+.. java:method:: public int getDamage()
+   :outertype: XmlDamageLog
+
+   Gets the value of the damage property.
+
+getDefenderController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDefenderController()
+   :outertype: XmlDamageLog
+
+   Gets the value of the defenderController property.
+
+getDefenderID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getDefenderID()
+   :outertype: XmlDamageLog
+
+   Gets the value of the defenderID property.
+
+setAttackerController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setAttackerController(int value)
+   :outertype: XmlDamageLog
+
+   Sets the value of the attackerController property.
+
+setAttackerID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setAttackerID(int value)
+   :outertype: XmlDamageLog
+
+   Sets the value of the attackerID property.
+
+setDamage
+^^^^^^^^^
+
+.. java:method:: public void setDamage(int value)
+   :outertype: XmlDamageLog
+
+   Sets the value of the damage property.
+
+setDefenderController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDefenderController(int value)
+   :outertype: XmlDamageLog
+
+   Sets the value of the defenderController property.
+
+setDefenderID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setDefenderID(int value)
+   :outertype: XmlDamageLog
+
+   Sets the value of the defenderID property.
+

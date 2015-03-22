@@ -1,0 +1,60 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing JTable
+
+.. java:import:: javax.swing.event TableModelListener
+
+.. java:import:: javax.swing.table AbstractTableModel
+
+.. java:import:: edu.cwru.sepia.util SwingUtils
+
+AgentTable
+==========
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: @SuppressWarnings public class AgentTable extends JTable
+
+Fields
+------
+tableModel
+^^^^^^^^^^
+
+.. java:field::  AgentTableModel tableModel
+   :outertype: AgentTable
+
+Constructors
+------------
+AgentTable
+^^^^^^^^^^
+
+.. java:constructor:: public AgentTable(TableModelListener listener)
+   :outertype: AgentTable
+
+Methods
+-------
+addRow
+^^^^^^
+
+.. java:method:: public void addRow()
+   :outertype: AgentTable
+
+   Adds a new empty row to the AgentTable
+
+deleteSelectedRows
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void deleteSelectedRows()
+   :outertype: AgentTable
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: AgentTable
+

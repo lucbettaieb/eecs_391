@@ -1,0 +1,72 @@
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent CountDownLatch
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+ThreadIntermediary
+==================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class ThreadIntermediary implements Runnable
+
+   An intermediary allowing for the trading of states and actions between the agent and the environment.
+
+   :author: The Condor
+
+Constructors
+------------
+ThreadIntermediary
+^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ThreadIntermediary(Agent associatedAgent)
+   :outertype: ThreadIntermediary
+
+Methods
+-------
+retrieveActions
+^^^^^^^^^^^^^^^
+
+.. java:method:: public synchronized Map<Integer, Action> retrieveActions()
+   :outertype: ThreadIntermediary
+
+retrieveState
+^^^^^^^^^^^^^
+
+.. java:method:: public synchronized ViewAndNextLatch retrieveState()
+   :outertype: ThreadIntermediary
+
+   Get the current state and a latch to await for the next state.
+
+   :return: A structure with a StateView and a CountDownLatch. The former is null when no state was set before.
+
+run
+^^^
+
+.. java:method:: @Override public void run()
+   :outertype: ThreadIntermediary
+
+submitActions
+^^^^^^^^^^^^^
+
+.. java:method:: public synchronized void submitActions(Map<Integer, Action> actions)
+   :outertype: ThreadIntermediary
+
+submitState
+^^^^^^^^^^^
+
+.. java:method:: public synchronized CountDownLatch submitState(StateView stateView, HistoryView historyView, StateType stateType)
+   :outertype: ThreadIntermediary
+
+   Submit a state and its type, receiving a latch for the agent's action.
+
+   :param stateView:
+   :param stateType:
+   :return: A latch whose countdown indicates that the agent has responded with an action.
+

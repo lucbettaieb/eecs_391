@@ -1,0 +1,104 @@
+MatlabInteractor
+================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  interface MatlabInteractor
+
+   Interacts with a session of MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+eval
+^^^^
+
+.. java:method:: public void eval(String command) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Evaluates a command in MATLAB. This is equivalent to MATLAB's \ ``eval('command')``\ .
+
+   :param command: the command to be evaluated in MATLAB
+   :throws MatlabInvocationException:
+
+feval
+^^^^^
+
+.. java:method:: public void feval(String functionName, Object... args) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Calls a MATLAB function with the name \ ``functionName``\ , returning the result. Arguments to the function may be provided as \ ``args``\ , but are not required if the function needs no arguments.  The function arguments will be converted into MATLAB equivalents as appropriate. Importantly, this means that a \ ``String``\  will be converted to a MATLAB \ ``char``\  array, not a variable name.
+
+   :param functionName: the name of the MATLAB function to call
+   :param args: the arguments to the function
+   :throws MatlabInvocationException:
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: public Object getVariable(String variableName) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Gets the value of \ ``variableName``\  in MATLAB.
+
+   :param variableName:
+   :throws MatlabInvocationException:
+   :return: value
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningEval(String command, int nargout) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Evaluates a command in MATLAB, returning the result. This is equivalent to MATLAB's \ ``eval('command')``\ .  In order for the result of this command to be returned the number of arguments to be returned must be specified by \ ``nargout``\ . This is equivalent in MATLAB to the number of variables placed on the left hand side of an expression. For example, in MATLAB the \ ``inmem``\  function may be used with either 1, 2, or 3 return values each resulting in a different behavior:
+
+   .. parsed-literal::
+
+      M = inmem;
+      [M, X] = inmem;
+      [M, X, J] = inmem;
+
+   The returned \ ``Object``\  array will be of length \ ``nargout``\  with each return argument placed into the corresponding array position.  If the command cannot return the number of arguments specified by \ ``nargout``\  then an exception will be thrown.
+
+   :param command: the command to be evaluated in MATLAB
+   :param nargout: the number of arguments that will be returned from evaluating \ ``command``\
+   :throws MatlabInvocationException:
+   :return: result of MATLAB command, the length of the array will be \ ``nargout``\
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningFeval(String functionName, int nargout, Object... args) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Calls a MATLAB function with the name \ ``functionName``\ , returning the result. Arguments to the function may be provided as \ ``args``\ , but are not required if the function needs no arguments.  The function arguments will be converted into MATLAB equivalents as appropriate. Importantly, this means that a \ ``String``\  will be converted to a MATLAB \ ``char``\  array, not a variable name.  In order for the result of this function to be returned the number of arguments to be returned must be specified by \ ``nargout``\ . This is equivalent in MATLAB to the number of variables placed on the left hand side of an expression. For example, in MATLAB the \ ``inmem``\  function may be used with either 1, 2, or 3 return values each resulting in a different behavior:
+
+   .. parsed-literal::
+
+      M = inmem;
+      [M, X] = inmem;
+      [M, X, J] = inmem;
+
+   The returned \ ``Object``\  array will be of length \ ``nargout``\  with each return argument placed into the corresponding array position.  If the function is not capable of returning the number of arguments specified by \ ``nargout``\  then an exception will be thrown.
+
+   :param functionName: the name of the MATLAB function to call
+   :param nargout: the number of arguments that will be returned by \ ``functionName``\
+   :param args: the arguments to the function
+   :throws MatlabInvocationException:
+   :return: result of MATLAB function, the length of the array will be \ ``nargout``\
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: public void setVariable(String variableName, Object value) throws MatlabInvocationException
+   :outertype: MatlabInteractor
+
+   Sets \ ``variableName``\  to \ ``value``\  in MATLAB, creating the variable if it does not yet exist.
+
+   :param variableName:
+   :param value:
+   :throws MatlabInvocationException:
+

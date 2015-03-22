@@ -1,0 +1,254 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+XmlUnit
+=======
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlUnit
+
+   Java class for Unit complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="Unit">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <all>
+              <element name="ID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="currentHealth" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="xPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="yPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="templateID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="cargoType" type="{}ResourceType"/>
+              <element name="cargoAmount" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="progressPrimitive" type="{}Action"/>
+              <element name="progressAmount" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </all>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+cargoAmount
+^^^^^^^^^^^
+
+.. java:field:: protected int cargoAmount
+   :outertype: XmlUnit
+
+cargoType
+^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ResourceType cargoType
+   :outertype: XmlUnit
+
+currentHealth
+^^^^^^^^^^^^^
+
+.. java:field:: protected int currentHealth
+   :outertype: XmlUnit
+
+id
+^^
+
+.. java:field:: @XmlElement protected int id
+   :outertype: XmlUnit
+
+progressAmount
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int progressAmount
+   :outertype: XmlUnit
+
+progressPrimitive
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected XmlAction progressPrimitive
+   :outertype: XmlUnit
+
+templateID
+^^^^^^^^^^
+
+.. java:field:: protected int templateID
+   :outertype: XmlUnit
+
+xPosition
+^^^^^^^^^
+
+.. java:field:: protected int xPosition
+   :outertype: XmlUnit
+
+yPosition
+^^^^^^^^^
+
+.. java:field:: protected int yPosition
+   :outertype: XmlUnit
+
+Methods
+-------
+getCargoAmount
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getCargoAmount()
+   :outertype: XmlUnit
+
+   Gets the value of the cargoAmount property.
+
+getCargoType
+^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getCargoType()
+   :outertype: XmlUnit
+
+   Gets the value of the cargoType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getCurrentHealth
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentHealth()
+   :outertype: XmlUnit
+
+   Gets the value of the currentHealth property.
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: XmlUnit
+
+   Gets the value of the id property.
+
+getProgressAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getProgressAmount()
+   :outertype: XmlUnit
+
+   Gets the value of the progressAmount property.
+
+getProgressPrimitive
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlAction getProgressPrimitive()
+   :outertype: XmlUnit
+
+   Gets the value of the progressPrimitive property.
+
+   :return: possible object is \ :java:ref:`XmlAction`\
+
+getTemplateID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getTemplateID()
+   :outertype: XmlUnit
+
+   Gets the value of the templateID property.
+
+getXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getXPosition()
+   :outertype: XmlUnit
+
+   Gets the value of the xPosition property.
+
+getYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getYPosition()
+   :outertype: XmlUnit
+
+   Gets the value of the yPosition property.
+
+setCargoAmount
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setCargoAmount(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the cargoAmount property.
+
+setCargoType
+^^^^^^^^^^^^
+
+.. java:method:: public void setCargoType(ResourceType value)
+   :outertype: XmlUnit
+
+   Sets the value of the cargoType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setCurrentHealth
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCurrentHealth(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the currentHealth property.
+
+setID
+^^^^^
+
+.. java:method:: public void setID(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the id property.
+
+setProgressAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setProgressAmount(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the progressAmount property.
+
+setProgressPrimitive
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setProgressPrimitive(XmlAction value)
+   :outertype: XmlUnit
+
+   Sets the value of the progressPrimitive property.
+
+   :param value: allowed object is \ :java:ref:`XmlAction`\
+
+setTemplateID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setTemplateID(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the templateID property.
+
+setXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setXPosition(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the xPosition property.
+
+setYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setYPosition(int value)
+   :outertype: XmlUnit
+
+   Sets the value of the yPosition property.
+

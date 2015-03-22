@@ -1,0 +1,179 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util PriorityQueue
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.action TargetedAction
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+SimplePlanner
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public class SimplePlanner implements Serializable
+
+   An implementation of basic planning methods
+
+   :author: Scott, Tim
+
+Constructors
+------------
+SimplePlanner
+^^^^^^^^^^^^^
+
+.. java:constructor:: public SimplePlanner(State state)
+   :outertype: SimplePlanner
+
+Methods
+-------
+getDirections
+^^^^^^^^^^^^^
+
+.. java:method:: public static LinkedList<Direction> getDirections(StateView state, int startingx, int startingy, int endingx, int endingy, int tolerancedistance, boolean cancollideonfinal)
+   :outertype: SimplePlanner
+
+   Uses A* to calculate the directions to arrive at the specified location. If there is no path, it returns null (it does not do a best effort) When you wish upon A* ...
+
+   :param startingx:
+   :param startingy:
+   :param endingx:
+   :param endingy:
+   :param tolerancedistance: The distance at which to stop trying to seek (IE, 0 is on top of it, 1 is next to it, etc) Note that the distance should count diagonals as 1 dist
+   :param cancollideonfinal: Whether or not to allow a collision on the final move (allowing it to be used for gathering by telling it the last direction)
+   :return: Some primitive (IE, based on directions) moves that bring you within distance of the ending x and y
+
+planAttack
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planAttack(Unit actor, Unit target)
+   :outertype: SimplePlanner
+
+   Uses \ :java:ref:`getDirections(StateView,int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to follow them. then adds an attack command.
+
+   :param actor:
+   :param target:
+   :return: A series of actions that move the actor to the target and attacks the target
+
+planAttack
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planAttack(int actor, int target)
+   :outertype: SimplePlanner
+
+planBuild
+^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planBuild(Unit actor, int targetX, int targetY, UnitTemplate template)
+   :outertype: SimplePlanner
+
+planBuild
+^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planBuild(int actor, int targetX, int targetY, int template)
+   :outertype: SimplePlanner
+
+planDeposit
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planDeposit(Unit actor, Unit target)
+   :outertype: SimplePlanner
+
+   Uses \ :java:ref:`getDirections(int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to move almost there. then Then adds the final direction with a gather.
+
+   :param actor:
+   :param target:
+   :param distance:
+
+planDeposit
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planDeposit(int actor, int target)
+   :outertype: SimplePlanner
+
+planFail
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planFail(int actor)
+   :outertype: SimplePlanner
+
+planGather
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planGather(Unit actor, ResourceNode target)
+   :outertype: SimplePlanner
+
+   Uses \ :java:ref:`getDirections(int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to move almost there. then Then adds the final direction with a gather.
+
+   :param actor:
+   :param target:
+   :param distance:
+   :return: A series of actions that move the actor to the target and gathers from the target
+
+planGather
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planGather(int actor, int target)
+   :outertype: SimplePlanner
+
+planMove
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planMove(Unit actor, int x, int y)
+   :outertype: SimplePlanner
+
+   Uses \ :java:ref:`getDirections(int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to follow them.
+
+   :param actor:
+   :param x:
+   :param y:
+
+planMove
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planMove(int i, int x, int y)
+   :outertype: SimplePlanner
+
+planPermanentFail
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planPermanentFail(int actor)
+   :outertype: SimplePlanner
+
+planProduce
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planProduce(Unit actor, Template template)
+   :outertype: SimplePlanner
+
+planProduce
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planProduce(int actor, int template)
+   :outertype: SimplePlanner
+

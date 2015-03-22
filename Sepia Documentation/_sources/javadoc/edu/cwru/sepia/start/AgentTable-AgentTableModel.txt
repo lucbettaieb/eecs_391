@@ -1,0 +1,101 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing JTable
+
+.. java:import:: javax.swing.event TableModelListener
+
+.. java:import:: javax.swing.table AbstractTableModel
+
+.. java:import:: edu.cwru.sepia.util SwingUtils
+
+AgentTable.AgentTableModel
+==========================
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: static class AgentTableModel extends AbstractTableModel
+   :outertype: AgentTable
+
+Fields
+------
+data
+^^^^
+
+.. java:field::  List<AgentData> data
+   :outertype: AgentTable.AgentTableModel
+
+Constructors
+------------
+AgentTableModel
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public AgentTableModel()
+   :outertype: AgentTable.AgentTableModel
+
+Methods
+-------
+addRow
+^^^^^^
+
+.. java:method:: public void addRow()
+   :outertype: AgentTable.AgentTableModel
+
+deleteRows
+^^^^^^^^^^
+
+.. java:method:: public void deleteRows(int[] rows)
+   :outertype: AgentTable.AgentTableModel
+
+getColumnClass
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Class<?> getColumnClass(int c)
+   :outertype: AgentTable.AgentTableModel
+
+getColumnCount
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public int getColumnCount()
+   :outertype: AgentTable.AgentTableModel
+
+getColumnName
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public String getColumnName(int c)
+   :outertype: AgentTable.AgentTableModel
+
+getRowCount
+^^^^^^^^^^^
+
+.. java:method:: @Override public int getRowCount()
+   :outertype: AgentTable.AgentTableModel
+
+getValueAt
+^^^^^^^^^^
+
+.. java:method:: @Override public Object getValueAt(int row, int col)
+   :outertype: AgentTable.AgentTableModel
+
+isCellEditable
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isCellEditable(int row, int col)
+   :outertype: AgentTable.AgentTableModel
+
+setValueAt
+^^^^^^^^^^
+
+.. java:method:: @Override public void setValueAt(Object value, int row, int col)
+   :outertype: AgentTable.AgentTableModel
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: AgentTable.AgentTableModel
+

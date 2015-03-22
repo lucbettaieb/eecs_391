@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MatlabProxy &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="matlabcontrol" href="package-index.html"/>
+        <link rel="next" title="MatlabProxy.DisconnectionListener" href="MatlabProxy-DisconnectionListener.html"/>
+        <link rel="prev" title="MatlabInvocationException.Reason" href="MatlabInvocationException-Reason.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">matlabcontrol</a> &raquo;</li>
+      
+    <li>MatlabProxy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/javadoc/matlabcontrol/MatlabProxy.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="matlabproxy">
+<h1>MatlabProxy<a class="headerlink" href="#matlabproxy" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="matlabcontrol.MatlabProxy">
+public abstract class <code class="descname">MatlabProxy</code> implements <a class="reference internal" href="MatlabInteractor.html#matlabcontrol.MatlabInteractor" title="matlabcontrol.MatlabInteractor">MatlabInteractor</a><a class="headerlink" href="#matlabcontrol.MatlabProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Communicates with a running MATLAB session. This class cannot be instantiated, it may be created with a <a class="reference internal" href="MatlabProxyFactory.html#matlabcontrol.MatlabProxyFactory" title="matlabcontrol.MatlabProxyFactory"><code class="xref java java-ref docutils literal"><span class="pre">MatlabProxyFactory</span></code></a>. Interaction with MATLAB occurs as if calling <code class="docutils literal"><span class="pre">eval</span></code> and <code class="docutils literal"><span class="pre">feval</span></code> in the MATLAB Command Window.</p>
+<p><strong>Communicating with MATLAB</strong> Methods which interact with MATLAB provide Java objects to the MATLAB environment and retrieve data from the MATLAB environment as Java objects. The following description of how the conversion between MATLAB and Java types occurs is based on tests conducted on versions of MATLAB R2007b through R2010b. Unless otherwise noted the behavior was identical on all tested versions. However, this behavior is not officially documented by The MathWorks and may change for future versions of MATLAB. (matlabcontrol is not compatible with versions prior to MATLAB R2007b.)  <strong>MATLAB to Java</strong> <em>Numeric Classes and Logical Class</em> All MATLAB numeric types whether they are a singular value or an array/matrix (of any dimension) are always converted into a one-dimensional Java <code class="docutils literal"><span class="pre">double[]</span></code>. For complex numbers, only the real component is converted. MATLAB <code class="docutils literal"><span class="pre">logical</span></code>s whether a singular value or an array/matrix (of any dimension) are always converted into a one-dimensional Java <code class="docutils literal"><span class="pre">boolean[]</span></code>. MATLAB arrays are stored in a linear manner, which has been <a class="reference external" href="http://www.mathworks.com/help/techdoc/math/f1-85462.html#f1-85511">documented</a> by The MathWorks. It is in this linear manner that MATLAB arrays are returned to Java. (Sparse matrices are stored differently and are not sent to Java in an easy to use manner.) <em>Character Class</em> MATLAB <code class="docutils literal"><span class="pre">char</span></code> singular values are returned as a Java <code class="docutils literal"><span class="pre">String</span></code>. One-dimensional MATLAB <code class="docutils literal"><span class="pre">char</span></code> arrays are returned as a Java <code class="docutils literal"><span class="pre">String</span></code>. Two-dimensional MATLAB <code class="docutils literal"><span class="pre">char</span></code> arrays are returned as a Java <code class="docutils literal"><span class="pre">String[]</span></code> with each row of the MATLAB array becoming a Java <code class="docutils literal"><span class="pre">String</span></code>. MATLAB <code class="docutils literal"><span class="pre">char</span></code> arrays of more than two dimensions have an inconsistent conversion to a Java type, although all observed conversions are either a Java <code class="docutils literal"><span class="pre">String</span></code> or an array of <code class="docutils literal"><span class="pre">String</span></code>s. <em>Cell and Struct Arrays</em> MATLAB <code class="docutils literal"><span class="pre">cell</span></code> arrays and <code class="docutils literal"><span class="pre">struct</span></code> arrays are converted to a Java <code class="docutils literal"><span class="pre">Object[]</span></code>, often with arrays inside of them. <em>Function Handles and Non-Built-In Classes</em> MATLAB <code class="docutils literal"><span class="pre">function_handle</span></code>s and all non-built-in classes (such as the <code class="docutils literal"><span class="pre">Map</span></code> class or user defined classes) are converted to an instance of <code class="docutils literal"><span class="pre">com.mathworks.jmi.types.MLArrayRef</span></code> that is not <code class="docutils literal"><span class="pre">Serializable</span></code> which prevents it from being transferred to a Java application running outside MATLAB (more information on this can be found in the exception section below).  <strong>Java to MATLAB</strong> <em>Primitives</em> It is not possible to directly send a Java primitive to the MATLAB environment because all methods which interact with MATLAB take in either <code class="docutils literal"><span class="pre">Object</span></code> or <code class="docutils literal"><span class="pre">Object[]</span></code> which results in the Java primitives becoming their auto-boxed class equivalent. (For example <code class="docutils literal"><span class="pre">int</span></code> becomes <code class="docutils literal"><span class="pre">Integer</span></code>.) Java primitive arrays, such as <code class="docutils literal"><span class="pre">int[]</span></code> are <code class="docutils literal"><span class="pre">Object</span></code>s and can therefore be sent to the MATLAB environment. They are converted as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Java Type</th>
+<th class="head">MATLAB Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">boolean[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">logical</span></code> array</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">char[]</span></code></td>
+<td>not supported*</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">byte[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">int8</span></code> array</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">short[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">int16</span></code> array</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">int[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">int32</span></code> array</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">long[]</span></code></td>
+<td>not supported*</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">float[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">single</span></code> array</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">double[]</span></code></td>
+<td><code class="docutils literal"><span class="pre">double</span></code> array</td>
+</tr>
+</tbody>
+</table>
+<p><em>In MATLAB R2009b and higher, MATLAB will throw an exception. In MATLAB R2008b and earlier, MATLAB will segfault. The behavior in MATLAB R2009a is not known. *Numbers</em> Subclasses of <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Number.html" title="java.lang.Number"><code class="xref java java-ref docutils literal"><span class="pre">Number</span></code></a>, which includes all of the auto-boxed versions of Java primitive numeric types, become MATLAB <code class="docutils literal"><span class="pre">double</span></code>s. <em>Booleans</em> <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean"><code class="xref java java-ref docutils literal"><span class="pre">Boolean</span></code></a>s are converted to MATLAB <code class="docutils literal"><span class="pre">logical</span></code>s. <em>Characters</em> <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Character.html" title="java.lang.Character"><code class="xref java java-ref docutils literal"><span class="pre">Character</span></code></a>s are converted to MATLAB <code class="docutils literal"><span class="pre">char</span></code>s. <em>Strings</em> <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><code class="xref java java-ref docutils literal"><span class="pre">String</span></code></a>s are converted to MATLAB <code class="docutils literal"><span class="pre">char</span></code> arrays. <em>Object Arrays</em> Arrays of non-primitive types are converted to MATLAB <code class="docutils literal"><span class="pre">cell</span></code> arrays. The contents of the array are converted according to these same rules. Note that Java&#8217;s multidimensional arrays are not an exception to this rule. For instance a <code class="docutils literal"><span class="pre">double[][]</span></code> is an array of <code class="docutils literal"><span class="pre">double[]</span></code>s and so MATLAB will create a cell array of MATLAB <code class="docutils literal"><span class="pre">double</span></code> arrays. <em>Other Classes</em> Classes not otherwise mentioned remain as their original Java type. Objects contained within that class or instances of that class are not automatically converted by MATLAB, although when fields or methods are accessed in the MATLAB environment they may be converted into MATLAB types as <a class="reference external" href="http://www.mathworks.com/help/techdoc/matlab_external/f6671.html">documented</a> by The MathWorks.  <strong>Behavior of transferred data</strong> How Java objects sent to MATLAB or retrieved from MATLAB behave depends on several factors:  <em>Running outside MATLAB</em> References to Java objects are copies. (There is one exception to this rule. Objects that are <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/rmi/Remote.html" title="java.rmi.Remote"><code class="xref java java-ref docutils literal"><span class="pre">java.rmi.Remote</span></code></a> will act as if they are not copies. This is because matlabcontrol communicates with MATLAB&#8217;s Java Virtual Machine using <a class="reference external" href="http://www.oracle.com/technetwork/java/javase/tech/index-jsp-136424.html">Remote Method Invocation</a>.)  <em>Running inside MATLAB</em> References to Java objects in MATLAB that are returned to Java, reference the same object. When passing a reference to a Java object to MATLAB, if the Java object is not converted to a MATLAB type then it will reference the same object in the MATLAB environment.  <strong>Help transferring data</strong> The <a class="reference internal" href="extensions/MatlabProxyLogger.html#matlabcontrol.extensions.MatlabProxyLogger" title="matlabcontrol.extensions.MatlabProxyLogger"><code class="xref java java-ref docutils literal"><span class="pre">matlabcontrol.extensions.MatlabProxyLogger</span></code></a> exists to record what is being returned from MATLAB. The <a class="reference internal" href="extensions/MatlabTypeConverter.html#matlabcontrol.extensions.MatlabTypeConverter" title="matlabcontrol.extensions.MatlabTypeConverter"><code class="xref java java-ref docutils literal"><span class="pre">matlabcontrol.extensions.MatlabTypeConverter</span></code></a> can convert between complicated Java and MATLAB types. Currently only MATLAB numeric arrays are supported. <strong>Exceptions</strong> Proxy methods that are relayed to MATLAB can throw <a class="reference internal" href="MatlabInvocationException.html#matlabcontrol.MatlabInvocationException" title="matlabcontrol.MatlabInvocationException"><code class="xref java java-ref docutils literal"><span class="pre">MatlabInvocationException</span></code></a>s. They will be thrown if:</p>
+<ul class="simple">
+<li>An internal MATLAB exception occurs. This occurs primarily for two different reasons. The first is anything that would normally cause an error in MATLAB such as trying to use a function improperly or referencing a variable that does not exist. The second is due to the undocumented nature of the underlying Java MATLAB Interface API, such as trying to send a <code class="docutils literal"><span class="pre">long[]</span></code> to MATLAB.</li>
+<li>The proxy has been disconnected via <a class="reference internal" href="#matlabcontrol.MatlabProxy.disconnect()" title="matlabcontrol.MatlabProxy.disconnect()"><code class="xref java java-ref docutils literal"><span class="pre">disconnect()</span></code></a>.</li>
+<li>Communication between this Java Virtual Machine and the one that MATLAB is running in is disrupted (likely due to closing MATLAB).</li>
+<li>The class of an object to be sent or returned is not <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html" title="java.io.Serializable"><code class="xref java java-ref docutils literal"><span class="pre">java.io.Serializable</span></code></a> or <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/rmi/Remote.html" title="java.rmi.Remote"><code class="xref java java-ref docutils literal"><span class="pre">java.rmi.Remote</span></code></a>. <sup>1</sup> Java primitives and arrays behave as if they were <code class="docutils literal"><span class="pre">Serializable</span></code>.</li>
+<li>The class of an object to be returned from MATLAB is not defined in your application and no <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/SecurityManager.html" title="java.lang.SecurityManager"><code class="xref java java-ref docutils literal"><span class="pre">SecurityManager</span></code></a> has been installed.<sup>2</sup></li>
+<li>The class of an object to sent to MATLAB is not defined in MATLAB and the class is not on your application&#8217;s classpath.<sup>3</sup></li>
+<li>The method call is made from the Event Dispatch Thread (EDT) used by AWT and Swing components.<sup>4</sup> (A <a class="reference internal" href="extensions/CallbackMatlabProxy.html#matlabcontrol.extensions.CallbackMatlabProxy" title="matlabcontrol.extensions.CallbackMatlabProxy"><code class="xref java java-ref docutils literal"><span class="pre">matlabcontrol.extensions.CallbackMatlabProxy</span></code></a> may be used to interact with MATLAB on the EDT.) This does not apply to <a class="reference internal" href="#matlabcontrol.MatlabProxy.exit()" title="matlabcontrol.MatlabProxy.exit()"><code class="xref java java-ref docutils literal"><span class="pre">exit()</span></code></a> which may be called from the EDT.</li>
+</ul>
+<p><sup>1</sup>This is a requirement of Remote Method Invocation, which matlabcontrol uses when running outside MATLAB.  <sup>2</sup> This is due to Remote Method Invocation prohibiting loading classes defined in remote Java Virtual Machines unless a <code class="docutils literal"><span class="pre">SecurityManager</span></code> has been set. <a class="reference internal" href="PermissiveSecurityManager.html#matlabcontrol.PermissiveSecurityManager" title="matlabcontrol.PermissiveSecurityManager"><code class="xref java java-ref docutils literal"><span class="pre">PermissiveSecurityManager</span></code></a> exists to provide an easy way to set a security manager without further restricting permissions. Please consult <code class="docutils literal"><span class="pre">PermissiveSecurityManager</span></code>&#8216;s documentation for more information.  <sup>3</sup> MATLAB sessions started by a <code class="docutils literal"><span class="pre">MatlabProxyFactory</span></code> are able to load all classes defined in your application&#8217;s class path as specified by the <code class="docutils literal"><span class="pre">java.class.path</span></code> property. Some frameworks load classes without placing them on the class path, in that case matlabcontrol will not know about them and cannot tell MATLAB how to load them.  <sup>4</sup> This is done to prevent MATLAB from hanging indefinitely. When interacting with MATLAB the calling thread (unless it is the main MATLAB thread) is paused until MATLAB completes the requested operation. When a thread is paused, no work can be done on the thread. MATLAB makes extensive use of the EDT when creating or manipulating figure windows, uicontrols, plots, and other graphical elements. For instance, calling <code class="docutils literal"><span class="pre">plot</span></code> from the EDT would never return because the <code class="docutils literal"><span class="pre">plot</span></code> function waits for the EDT to dispatch its event, which will never occur, because the thread has been paused. A related, but far less critical issue, is that pausing the EDT would make the user interface of MATLAB and any other Java GUI code running inside MATLAB non-responsive until MATLAB completed evaluating the command. <strong>Thread Safety</strong> This proxy is unconditionally thread-safe. Methods which interact with MATLAB may be called concurrently; however they will be completed sequentially on MATLAB&#8217;s main thread. Calls to MATLAB from a given thread will be executed in the order they were invoked. No guarantees are made about the relative ordering of calls made from different threads. This proxy may not be the only thing interacting with MATLAB&#8217;s main thread. One proxy running outside MATLAB and any number of proxies running inside MATLAB may be simultaneously connected. If MATLAB is not hidden from user interaction then a user may also be making use of MATLAB&#8217;s main thread. This means that two sequential calls to the proxy from the same thread that interact with MATLAB will execute in that order, but interactions with MATLAB may occur between the two calls. In typical use it is unlikely this behavior will pose a problem. However, for some uses cases it may be necessary to guarantee that several interactions with MATLAB occur without interruption. Uninterrupted access to MATLAB&#8217;s main thread may be obtained by use of <a class="reference internal" href="JMIWrapperRemoteImpl.html#matlabcontrol.JMIWrapperRemoteImpl.invokeAndWait(MatlabProxy.MatlabThreadCallable)" title="matlabcontrol.JMIWrapperRemoteImpl.invokeAndWait(MatlabProxy.MatlabThreadCallable)"><code class="xref java java-ref docutils literal"><span class="pre">invokeAndWait(...)</span></code></a>. <strong>Threads</strong> When <em>running outside MATLAB</em>, the proxy makes use of multiple internally managed threads. When the proxy becomes disconnected from MATLAB it notifies its disconnection listeners and then terminates all threads it was using internally. A proxy may disconnect from MATLAB without exiting MATLAB by calling <a class="reference internal" href="#matlabcontrol.MatlabProxy.disconnect()" title="matlabcontrol.MatlabProxy.disconnect()"><code class="xref java java-ref docutils literal"><span class="pre">disconnect()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><a class="reference external" href="mailto:nonother&#37;&#52;&#48;gmail&#46;com">Joshua Kaplan</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>See also:</strong> <a class="reference internal" href="MatlabProxyFactory.html#matlabcontrol.MatlabProxyFactory.getProxy()" title="matlabcontrol.MatlabProxyFactory.getProxy()"><code class="xref java java-ref docutils literal"><span class="pre">MatlabProxyFactory.getProxy()</span></code></a>, <a class="reference internal" href="MatlabProxyFactory.html#matlabcontrol.MatlabProxyFactory.requestProxy(RequestCallback)" title="matlabcontrol.MatlabProxyFactory.requestProxy(RequestCallback)"><code class="xref java java-ref docutils literal"><span class="pre">MatlabProxyFactory.requestProxy(matlabcontrol.MatlabProxyFactory.RequestCallback)</span></code></a></p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>MatlabProxy<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.MatlabProxy.MatlabProxy(Identifier, boolean)">
+ <code class="descname">MatlabProxy</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabProxy-Identifier.html#matlabcontrol.MatlabProxy.Identifier" title="matlabcontrol.MatlabProxy.Identifier">Identifier</a><em> id</em>, boolean<em> existingSession</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.MatlabProxy(Identifier, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This constructor is package private to prevent subclasses from outside of this package.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="adddisconnectionlistener">
+<h3>addDisconnectionListener<a class="headerlink" href="#adddisconnectionlistener" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.addDisconnectionListener(DisconnectionListener)">
+public void <code class="descname">addDisconnectionListener</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabProxy-DisconnectionListener.html#matlabcontrol.MatlabProxy.DisconnectionListener" title="matlabcontrol.MatlabProxy.DisconnectionListener">DisconnectionListener</a><em> listener</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.addDisconnectionListener(DisconnectionListener)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a disconnection that will be notified when this proxy becomes disconnected from MATLAB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>listener</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="disconnect">
+<h3>disconnect<a class="headerlink" href="#disconnect" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.disconnect()">
+public abstract boolean <code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.disconnect()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnects the proxy from MATLAB. MATLAB will not exit. After disconnecting, any method sent to MATLAB will throw an exception. A proxy cannot be reconnected. Returns <code class="docutils literal"><span class="pre">true</span></code> if the proxy is now disconnected, <code class="docutils literal"><span class="pre">false</span></code> otherwise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">if disconnected</td>
+</tr>
+</tbody>
+</table>
+<p><strong>See also:</strong> <code class="xref java java-ref docutils literal"><span class="pre">.exit()</span></code>, <code class="xref java java-ref docutils literal"><span class="pre">.isConnected()</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="exit">
+<h3>exit<a class="headerlink" href="#exit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.exit()">
+public abstract void <code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.exit()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exits MATLAB. Attempting to exit MATLAB with either a <code class="docutils literal"><span class="pre">eval</span></code> or <code class="docutils literal"><span class="pre">feval</span></code> command will cause MATLAB to hang indefinitely.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabInvocationException.html#matlabcontrol.MatlabInvocationException" title="matlabcontrol.MatlabInvocationException"><strong>MatlabInvocationException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>See also:</strong> <code class="xref java java-ref docutils literal"><span class="pre">.disconnect()</span></code>, <code class="xref java java-ref docutils literal"><span class="pre">.isConnected()</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="getidentifier">
+<h3>getIdentifier<a class="headerlink" href="#getidentifier" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.getIdentifier()">
+public <a class="reference internal" href="MatlabProxy-Identifier.html#matlabcontrol.MatlabProxy.Identifier" title="matlabcontrol.MatlabProxy.Identifier">Identifier</a> <code class="descname">getIdentifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.getIdentifier()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the unique identifier for this proxy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">identifier</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="invokeandwait">
+<h3>invokeAndWait<a class="headerlink" href="#invokeandwait" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.invokeAndWait(MatlabThreadCallable)">
+public abstract &lt;T&gt; T <code class="descname">invokeAndWait</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabProxy-MatlabThreadCallable.html#matlabcontrol.MatlabProxy.MatlabThreadCallable" title="matlabcontrol.MatlabProxy.MatlabThreadCallable">MatlabThreadCallable</a>&lt;T&gt;<em> callable</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.invokeAndWait(MatlabThreadCallable)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the <code class="docutils literal"><span class="pre">callable</span></code> on MATLAB&#8217;s main thread and waits for it to return its result. This method allows for uninterrupted access to MATLAB&#8217;s main thread between two or more interactions with MATLAB.  If <em>running outside MATLAB</em> the <code class="docutils literal"><span class="pre">callable</span></code> must be <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html" title="java.io.Serializable"><code class="xref java java-ref docutils literal"><span class="pre">java.io.Serializable</span></code></a>; it may not be <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/rmi/Remote.html" title="java.rmi.Remote"><code class="xref java java-ref docutils literal"><span class="pre">java.rmi.Remote</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>&lt;T&gt;</strong> &#8211; </li>
+<li><strong>callable</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="MatlabInvocationException.html#matlabcontrol.MatlabInvocationException" title="matlabcontrol.MatlabInvocationException"><strong>MatlabInvocationException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">result of the callable</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isconnected">
+<h3>isConnected<a class="headerlink" href="#isconnected" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.isConnected()">
+public abstract boolean <code class="descname">isConnected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.isConnected()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this proxy is connected to MATLAB.  The most likely reasons for this method to return <code class="docutils literal"><span class="pre">false</span></code> if the proxy has been disconnected via <a class="reference internal" href="#matlabcontrol.MatlabProxy.disconnect()" title="matlabcontrol.MatlabProxy.disconnect()"><code class="xref java java-ref docutils literal"><span class="pre">disconnect()</span></code></a> or is if MATLAB has been closed (when running outside MATLAB).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">if connected</td>
+</tr>
+</tbody>
+</table>
+<p><strong>See also:</strong> <code class="xref java java-ref docutils literal"><span class="pre">.disconnect()</span></code>, <code class="xref java java-ref docutils literal"><span class="pre">.exit()</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="isexistingsession">
+<h3>isExistingSession<a class="headerlink" href="#isexistingsession" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.isExistingSession()">
+public boolean <code class="descname">isExistingSession</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.isExistingSession()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this proxy is connected to a session of MATLAB that was running previous to the request to create this proxy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">if existing session</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isrunninginsidematlab">
+<h3>isRunningInsideMatlab<a class="headerlink" href="#isrunninginsidematlab" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.isRunningInsideMatlab()">
+public abstract boolean <code class="descname">isRunningInsideMatlab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.isRunningInsideMatlab()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this proxy is running inside of MATLAB.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="notifydisconnectionlisteners">
+<h3>notifyDisconnectionListeners<a class="headerlink" href="#notifydisconnectionlisteners" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.notifyDisconnectionListeners()">
+ void <code class="descname">notifyDisconnectionListeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.notifyDisconnectionListeners()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Notifies the disconnection listeners this proxy has become disconnected.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="removedisconnectionlistener">
+<h3>removeDisconnectionListener<a class="headerlink" href="#removedisconnectionlistener" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.removeDisconnectionListener(DisconnectionListener)">
+public void <code class="descname">removeDisconnectionListener</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabProxy-DisconnectionListener.html#matlabcontrol.MatlabProxy.DisconnectionListener" title="matlabcontrol.MatlabProxy.DisconnectionListener">DisconnectionListener</a><em> listener</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.removeDisconnectionListener(DisconnectionListener)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a disconnection listener. It will no longer be notified.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>listener</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.MatlabProxy.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.MatlabProxy.toString()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a brief description of this proxy. The exact details of this representation are unspecified and are subject to change.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MatlabProxy-DisconnectionListener.html" class="btn btn-neutral float-right" title="MatlabProxy.DisconnectionListener"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MatlabInvocationException-Reason.html" class="btn btn-neutral" title="MatlabInvocationException.Reason"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlAttribute
+
+.. java:import:: javax.xml.bind.annotation XmlSchemaType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlKeyValuePair
+===============
+
+.. java:package:: edu.cwru.sepia.util.config.xml
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlKeyValuePair
+
+   Java class for KeyValuePair complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="KeyValuePair">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <attribute name="Name" type="{http://www.w3.org/2001/XMLSchema}string" />
+            <attribute name="Value" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+name
+^^^^
+
+.. java:field:: @XmlAttribute protected String name
+   :outertype: XmlKeyValuePair
+
+value
+^^^^^
+
+.. java:field:: @XmlAttribute @XmlSchemaType protected String value
+   :outertype: XmlKeyValuePair
+
+Methods
+-------
+getName
+^^^^^^^
+
+.. java:method:: public String getName()
+   :outertype: XmlKeyValuePair
+
+   Gets the value of the name property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getValue
+^^^^^^^^
+
+.. java:method:: public String getValue()
+   :outertype: XmlKeyValuePair
+
+   Gets the value of the value property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setName
+^^^^^^^
+
+.. java:method:: public void setName(String value)
+   :outertype: XmlKeyValuePair
+
+   Sets the value of the name property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setValue
+^^^^^^^^
+
+.. java:method:: public void setValue(String value)
+   :outertype: XmlKeyValuePair
+
+   Sets the value of the value property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

@@ -1,0 +1,25 @@
+.. java:import:: java.io Serializable
+
+ResourceNode.Type
+=================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static enum Type
+   :outertype: ResourceNode
+
+Enum Constants
+--------------
+GOLD_MINE
+^^^^^^^^^
+
+.. java:field:: public static final ResourceNode.Type GOLD_MINE
+   :outertype: ResourceNode.Type
+
+TREE
+^^^^
+
+.. java:field:: public static final ResourceNode.Type TREE
+   :outertype: ResourceNode.Type
+

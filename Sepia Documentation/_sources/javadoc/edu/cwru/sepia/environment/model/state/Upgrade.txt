@@ -1,0 +1,26 @@
+Upgrade
+=======
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class Upgrade
+
+   An instance of an upgrade template. As it has no existence in the game world, all relevant data is stored in its template.
+
+Constructors
+------------
+Upgrade
+^^^^^^^
+
+.. java:constructor:: public Upgrade(UpgradeTemplate template)
+   :outertype: Upgrade
+
+Methods
+-------
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public UpgradeTemplate getTemplate()
+   :outertype: Upgrade
+

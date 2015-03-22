@@ -1,0 +1,157 @@
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event KeyAdapter
+
+.. java:import:: java.awt.event KeyEvent
+
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent Semaphore
+
+.. java:import:: javax.swing SwingUtilities
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+VisualAgent
+===========
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class VisualAgent extends Agent implements ActionListener
+
+   A visual agent This serves two purposes: it allows a human to play the game, and, more importantly, it allows one to look at what the agent is doing through it's effect on the state.
+
+Fields
+------
+actions
+^^^^^^^
+
+.. java:field:: transient Map<Integer, Action> actions
+   :outertype: VisualAgent
+
+controlPanel
+^^^^^^^^^^^^
+
+.. java:field::  ControlPanel controlPanel
+   :outertype: VisualAgent
+
+gamePanel
+^^^^^^^^^
+
+.. java:field::  GamePanel gamePanel
+   :outertype: VisualAgent
+
+humanControllable
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected final boolean humanControllable
+   :outertype: VisualAgent
+
+infoVis
+^^^^^^^
+
+.. java:field:: protected final boolean infoVis
+   :outertype: VisualAgent
+
+screen
+^^^^^^
+
+.. java:field::  GameScreen screen
+   :outertype: VisualAgent
+
+statusPanel
+^^^^^^^^^^^
+
+.. java:field::  StatusPanel statusPanel
+   :outertype: VisualAgent
+
+Constructors
+------------
+VisualAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public VisualAgent(int playernum, String[] otherargs)
+   :outertype: VisualAgent
+
+VisualAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public VisualAgent(int playerNum, boolean humanControllable)
+   :outertype: VisualAgent
+
+   :param playerNum: The player number that this agent watches
+   :param humanControllable: Whether you can use the visual interface to control units.
+
+Methods
+-------
+actionPerformed
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void actionPerformed(ActionEvent e)
+   :outertype: VisualAgent
+
+addAction
+^^^^^^^^^
+
+.. java:method:: public void addAction(Action action)
+   :outertype: VisualAgent
+
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: VisualAgent
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, HistoryView statehistory)
+   :outertype: VisualAgent
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: VisualAgent
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newstate, HistoryView statehistory)
+   :outertype: VisualAgent
+
+refreshStatusPanel
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void refreshStatusPanel(String status)
+   :outertype: VisualAgent
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: VisualAgent
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, HistoryView statehistory)
+   :outertype: VisualAgent
+

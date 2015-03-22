@@ -1,0 +1,85 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlActionEntry
+==============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlActionEntry
+
+   Java class for ActionEntry complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ActionEntry">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="unitID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="action" type="{}Action"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+action
+^^^^^^
+
+.. java:field:: @XmlElement protected XmlAction action
+   :outertype: XmlActionEntry
+
+unitID
+^^^^^^
+
+.. java:field:: protected int unitID
+   :outertype: XmlActionEntry
+
+Methods
+-------
+getAction
+^^^^^^^^^
+
+.. java:method:: public XmlAction getAction()
+   :outertype: XmlActionEntry
+
+   Gets the value of the action property.
+
+   :return: possible object is \ :java:ref:`XmlAction`\
+
+getUnitID
+^^^^^^^^^
+
+.. java:method:: public int getUnitID()
+   :outertype: XmlActionEntry
+
+   Gets the value of the unitID property.
+
+setAction
+^^^^^^^^^
+
+.. java:method:: public void setAction(XmlAction value)
+   :outertype: XmlActionEntry
+
+   Sets the value of the action property.
+
+   :param value: allowed object is \ :java:ref:`XmlAction`\
+
+setUnitID
+^^^^^^^^^
+
+.. java:method:: public void setUnitID(int value)
+   :outertype: XmlActionEntry
+
+   Sets the value of the unitID property.
+

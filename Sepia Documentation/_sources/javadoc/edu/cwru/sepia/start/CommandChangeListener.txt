@@ -1,0 +1,18 @@
+CommandChangeListener
+=====================
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: public interface CommandChangeListener
+
+   Listens for when an event occurs that might change the command being written.
+
+Methods
+-------
+commandChanged
+^^^^^^^^^^^^^^
+
+.. java:method:: public void commandChanged()
+   :outertype: CommandChangeListener
+

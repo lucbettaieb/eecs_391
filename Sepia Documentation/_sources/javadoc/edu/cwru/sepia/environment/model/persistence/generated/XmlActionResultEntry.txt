@@ -1,0 +1,85 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlActionResultEntry
+====================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlActionResultEntry
+
+   Java class for ActionResultEntry complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ActionResultEntry">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="unitID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="actionResult" type="{}ActionResult"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+actionResult
+^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected XmlActionResult actionResult
+   :outertype: XmlActionResultEntry
+
+unitID
+^^^^^^
+
+.. java:field:: protected int unitID
+   :outertype: XmlActionResultEntry
+
+Methods
+-------
+getActionResult
+^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionResult getActionResult()
+   :outertype: XmlActionResultEntry
+
+   Gets the value of the actionResult property.
+
+   :return: possible object is \ :java:ref:`XmlActionResult`\
+
+getUnitID
+^^^^^^^^^
+
+.. java:method:: public int getUnitID()
+   :outertype: XmlActionResultEntry
+
+   Gets the value of the unitID property.
+
+setActionResult
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setActionResult(XmlActionResult value)
+   :outertype: XmlActionResultEntry
+
+   Sets the value of the actionResult property.
+
+   :param value: allowed object is \ :java:ref:`XmlActionResult`\
+
+setUnitID
+^^^^^^^^^
+
+.. java:method:: public void setUnitID(int value)
+   :outertype: XmlActionResultEntry
+
+   Sets the value of the unitID property.
+

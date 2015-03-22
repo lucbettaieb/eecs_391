@@ -1,0 +1,44 @@
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.util UUID
+
+MatlabSessionImpl
+=================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class MatlabSessionImpl implements MatlabSession
+
+   Implementation of \ :java:ref:`MatlabSession`\ . Split into interface and implementation to work properly with RMI.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+connectFromRMI
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public synchronized boolean connectFromRMI(String receiverID, int port)
+   :outertype: MatlabSessionImpl
+
+connectToRunningSession
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static boolean connectToRunningSession(String receiverID, int port)
+   :outertype: MatlabSessionImpl
+
+   Attempts to connect to a running instance of MATLAB. Returns \ ``true``\  if a connection was made, \ ``false``\  otherwise.
+
+   :param receiverID:
+   :param port:
+   :return: if connection was made
+
+getSessionID
+^^^^^^^^^^^^
+
+.. java:method::  String getSessionID()
+   :outertype: MatlabSessionImpl
+
+   The unique identifier for this session.
+

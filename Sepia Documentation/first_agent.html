@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Your First Agent &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Combat Agents" href="combat_agents.html"/>
+        <link rel="prev" title="Running Sepia" href="running_sepia.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javadoc/packages.html">Javadoc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Your First Agent</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/first_agent.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="your-first-agent">
+<h1>Your First Agent<a class="headerlink" href="#your-first-agent" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-the-class">
+<h2>Create the Class<a class="headerlink" href="#create-the-class" title="Permalink to this headline">¶</a></h2>
+<p>All agents in Sepia are subclass of the <code class="docutils literal"><span class="pre">edu.cwru.sepia.agent.Agent</span></code>
+class. To create the class skeleton which we will fill in right click
+on the <code class="docutils literal"><span class="pre">src</span></code> fold and select <code class="docutils literal"><span class="pre">New-&gt;Class</span></code>. This will open a new
+window where you will specify the name and the super class.</p>
+<a class="reference external image-reference" href="_static/eclipse_new_class_screenshot.png"><img alt="_images/eclipse_new_class_screenshot.png" src="_images/eclipse_new_class_screenshot.png" /></a>
+<a class="reference external image-reference" href="_static/eclipse_new_java_class_screenshot.png"><img alt="_images/eclipse_new_java_class_screenshot.png" src="_images/eclipse_new_java_class_screenshot.png" /></a>
+<p>In the <code class="docutils literal"><span class="pre">Name</span></code> field put in the name of your class. In this tutorial
+we will be using the name <code class="docutils literal"><span class="pre">FirstClass</span></code>. Then click the <code class="docutils literal"><span class="pre">Browse</span></code>
+button next to the super class line. This will open a new window. In
+the search line type the word &#8220;agent&#8221; without the quotes. You should
+see a bunch of results and the top one should say
+<code class="docutils literal"><span class="pre">edu.cwru.sepia.agent.Agent</span></code>. Click on this line and then click the
+ok button. You can now close the new class window by clicking Finish.</p>
+<a class="reference external image-reference" href="_static/eclipse_agent_superclass_screenshot.png"><img alt="_images/eclipse_agent_superclass_screenshot.png" src="_images/eclipse_agent_superclass_screenshot.png" /></a>
+<p>You should now have an empty class with five blank methods. Before we
+run our agent we will need to fill in these methods. First thing is
+that your inherited class needs a constructor that takes in an
+integer. This integer specifies the instance&#8217;s player number which is
+important for determining who units belong to. Insert the default
+constructor by mousing over the class name and clicking on the <strong>Add
+constructor</strong> option. You should now have a class that compiles.</p>
+<a class="reference external image-reference" href="_static/add_class_default_constructor.png"><img alt="_images/add_class_default_constructor.png" src="_images/add_class_default_constructor.png" /></a>
+</div>
+<div class="section" id="setup-the-configuration">
+<h2>Setup the Configuration<a class="headerlink" href="#setup-the-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Open the <code class="docutils literal"><span class="pre">FirstAgentConfig.xml</span></code> file from the data file. Change the
+text of the <code class="docutils literal"><span class="pre">&lt;ClassName&gt;</span></code> tag to match the full class path of your
+agent. Save the file.</p>
+<p>Now make a duplicate of one of the run configurations from the
+<a class="reference internal" href="running_sepia.html#sepia-run-configuration-setup"><em>Running Resource Collection Agent Example</em></a> section. Change the configuration
+file to <code class="docutils literal"><span class="pre">FirstAgentConfig.xml</span></code>. You can run this configuration
+now, but your agent will not do anything.</p>
+</div>
+<div class="section" id="basic-agent-api">
+<h2>Basic Agent API<a class="headerlink" href="#basic-agent-api" title="Permalink to this headline">¶</a></h2>
+<p>There are three main methods you need to implement in your agent:
+<code class="docutils literal"><span class="pre">initialStep</span></code>, <code class="docutils literal"><span class="pre">middleStep</span></code>, and <code class="docutils literal"><span class="pre">terminalStep</span></code>. The
+<code class="docutils literal"><span class="pre">initialStep</span></code> method is run once before the start of an
+episode. This is a good method to do any special initialization that
+requires information about the map and your units. You also specify
+your first unit actions in this method. The <code class="docutils literal"><span class="pre">middleStep</span></code> is called
+every other round during an episode. This is where the bulk of your
+agent logic will go. You will be able to look at the current state of
+the game, the history of the game and assign actions to your
+units. Finally <code class="docutils literal"><span class="pre">terminalStep</span></code> is run once after an episode has
+finished. You cannot specify anymore unit actions as the episode is
+over, but you can look at the final state and the game history. This
+is a good place to sum up any statistics and log them.</p>
+<p>Each of these methods is passed two objects: a StateView and a
+HistoryView object. StateView contains all of thei nformation about
+the current state of the game. Normally this includes the entire game
+state, but if fog of war is enabled then you will only be able to see
+information about units near your units. HistoryView contains
+information about events that have occurred on previous turns such as
+HP changes and unit deaths and creations.</p>
+<p>You use the StateView object to access information about your units
+such as their type, ID, location, HP and held resources. You will use
+this information to construct actions to put in the action map. To get
+a list of all of your units you will use the
+<code class="docutils literal"><span class="pre">stateview.getUnitIds(playernum)</span></code> where <code class="docutils literal"><span class="pre">playernum</span></code> is your player
+number or the enemy you are getting information about. Your agent can
+access its playernum via the superclass&#8217;s playernum variable. This
+method will return a list of Integers. To find out what type of unit
+corresponds to each unit ID you will need to get the UnitView and then
+the TemplateView. To get a UnitView given an ID use the method
+<code class="docutils literal"><span class="pre">stateview.getUnit(unitID)</span></code>. To get the TemplateView of a UnitView
+use the method <code class="docutils literal"><span class="pre">unitView.getTemplateView()</span></code>. The TemplateView allows
+you to view default information for given unit types. Here is a small
+code snippet illustrating how to access all units for an agent and
+print their types.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">unitIDs</span> <span class="o">=</span> <span class="n">stateview</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">playernum</span><span class="o">);</span>
+
+<span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">unitID</span> <span class="o">:</span> <span class="n">unitIDs</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="n">UnitView</span> <span class="n">unitView</span> <span class="o">=</span> <span class="n">stateview</span><span class="o">.</span><span class="na">getUnit</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+
+  <span class="n">TemplateView</span> <span class="n">templateView</span> <span class="o">=</span> <span class="n">unitView</span><span class="o">.</span><span class="na">getTemplateView</span><span class="o">();</span>
+
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">templateView</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">unitID</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="useful-unitview-methods">
+<h3>Useful UnitView Methods<a class="headerlink" href="#useful-unitview-methods" title="Permalink to this headline">¶</a></h3>
+<p>All of these methods are called on instances of UnitView.</p>
+<dl class="docutils">
+<dt>getCargoAmount()</dt>
+<dd>Returns the numerical amount of the resource that unit is holding</dd>
+<dt>getCargoType()</dt>
+<dd>Returns the type of resource the unit is holding (either Gold, Wood,
+or nothing)</dd>
+<dt>getHP()</dt>
+<dd>Numerical amount of health remaining. When the unit health reaches 0
+it will die</dd>
+<dt>getXPosition()</dt>
+<dd>X position in the map (starts at 0 with 0 on the left side)</dd>
+<dt>getYPosition()</dt>
+<dd>Y position in the map (starts at 0 with 0 at the top)</dd>
+<dt>getCurrentDurativeAction()</dt>
+<dd>Returns the current action the unit is performing or none.</dd>
+<dt>getCurrentDurativeProgress()</dt>
+<dd>Returns the numerical progress towards completion. The higher the
+number the closer to completion.</dd>
+</dl>
+</div>
+<div class="section" id="useful-map-methods">
+<h3>Useful Map Methods<a class="headerlink" href="#useful-map-methods" title="Permalink to this headline">¶</a></h3>
+<p>All of these methods are called on a StateView object</p>
+<dl class="docutils">
+<dt>getXExtent()</dt>
+<dd>The width of the map</dd>
+<dt>getYExtent()</dt>
+<dd>The height of the map</dd>
+<dt>getResourceNodeIds(&lt;Resource Type&gt;)</dt>
+<dd>Gets a list of resource node ids. This will allow you to access the
+resource nodes on the map. Similar to a UnitView a resource node
+object will allow you to find information about the resources such
+as position and amount remaining. &lt;Resource Type&gt; can be either
+<code class="docutils literal"><span class="pre">Type.GOLD_MINES</span></code> or <code class="docutils literal"><span class="pre">Type.TREE</span></code> to get a list of Gold Mines and
+a list of Trees respectively.</dd>
+</dl>
+<p>Once you have a list of Resource IDs you can get  resource nodes with
+the method <code class="docutils literal"><span class="pre">stateview.getResourceNode(&lt;ID&gt;)</span></code>. Then you can access
+information about the resource with the following methods.</p>
+<dl class="docutils">
+<dt>resource.getXPosition()</dt>
+<dd>X Position on the map of the resource</dd>
+<dt>resourcre.getYPosition()</dt>
+<dd>Y Position on the map of the resource</dd>
+<dt>resource.getAmountRemaining()</dt>
+<dd>Numerical amount of the resource remaining in the resource. Once
+this number reaches 0 the resource will disappear from the map</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h2>
+<p>There are different types of actions and some units can perform. They
+are:</p>
+<dl class="docutils">
+<dt>Production Action</dt>
+<dd><p class="first">Actions that create a unit</p>
+<p class="last">e.g. a town hall making a peasant</p>
+</dd>
+<dt>Targeted Action</dt>
+<dd>Actions that command a unit to go somewhere for some purpose</dd>
+<dt>Located Action</dt>
+<dd>Commands a unit to go to a particular spot</dd>
+<dt>Located Production Action</dt>
+<dd>Commands a unit to go to a particular spot and build a building</dd>
+<dt>Directed Action</dt>
+<dd>A primitive action that involves looking in a particular direction</dd>
+</dl>
+<p>In addition to these action types there are two main action classes:
+<strong>Compound actions</strong>, and <strong>primitive actions</strong>. Compound actions
+combine primitive actions automatically and execute them in the
+necessary order. They can take many turns to execute. Primitive
+actions are a single action that typically take a single turn.</p>
+<p>Many actions require a building or unit template. To access these use
+the method <code class="docutils literal"><span class="pre">stateview.getTemplate(playernum,</span> <span class="pre">&quot;Peasant&quot;).getId()</span></code>
+where you replace <em>Peasant</em> but the appropriate unit or building name.</p>
+<div class="section" id="compound-action-descriptions">
+<h3>Compound Action Descriptions<a class="headerlink" href="#compound-action-descriptions" title="Permalink to this headline">¶</a></h3>
+<p>To create a compound action you will need to construct an
+appropriately typed action. Each of the descriptions lists the proper
+action type. Here is a code snippet demonstrating the construction of
+a compound gather action</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">Action</span> <span class="n">gatherAction</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TargetedAction</span><span class="o">(</span><span class="n">pesantID</span><span class="o">,</span> <span class="n">ActionType</span><span class="o">.</span><span class="na">COMPOUNDGATHER</span><span class="o">,</span> <span class="n">goldMineID</span><span class="o">);</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>COMPOUNDATTACK</dt>
+<dd><ul class="first last simple">
+<li>targeted attack</li>
+<li>parameters: your unit ID and enemy unit ID</li>
+<li>moves into range of the unit and attacks it once</li>
+</ul>
+</dd>
+<dt>COMPOUNDBUILD</dt>
+<dd><ul class="first last simple">
+<li>Located production action</li>
+<li>parameters: your unit ID, building template ID, X and Y</li>
+<li>moves to the specified location and then builds until the building
+is done</li>
+</ul>
+</dd>
+<dt>COMPOUNDDEPOSIT</dt>
+<dd><ul class="first last simple">
+<li>targeted action</li>
+<li>parameters: your unit ID and a town hall ID</li>
+<li>moves next to the town hall and deposits all held resources</li>
+</ul>
+</dd>
+<dt>COMPOUNDGATHER</dt>
+<dd><ul class="first last simple">
+<li>targeted action</li>
+<li>parameters: your unit ID and the ID of the resource node</li>
+<li>moves next to specified resource and gathers as many resources as
+can be held</li>
+</ul>
+</dd>
+<dt>COMPOUNDMOVE</dt>
+<dd><ul class="first last simple">
+<li>located action</li>
+<li>parametesr: your unit ID, X and Y</li>
+<li>moves to the specified location</li>
+</ul>
+</dd>
+<dt>COMPOUNDPRODUCE</dt>
+<dd><ul class="first last simple">
+<li>production action</li>
+<li>parameters: building ID and unit template ID</li>
+<li>does a primitive produce until the unit is complete</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="primitive-action-descriptions">
+<h3>Primitive Action Descriptions<a class="headerlink" href="#primitive-action-descriptions" title="Permalink to this headline">¶</a></h3>
+<p>To create a primitive action you will use the factory methods in the
+Action class. For example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">Action</span> <span class="n">primitiveProduce</span> <span class="o">=</span> <span class="n">Action</span><span class="o">.</span><span class="na">createPrimitiveProduce</span><span class="o">(</span><span class="n">buildingID</span><span class="o">,</span> <span class="n">templateID</span><span class="o">);</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>PRIMITIVEATTACK</dt>
+<dd><ul class="first last simple">
+<li>TargetedAction</li>
+<li>Parameters are your unit&#8217;s ID and the enemy unit&#8217;s ID</li>
+<li>Tries to attack the enemy unit.  If it&#8217;s out of range, nothing happens.</li>
+</ul>
+</dd>
+<dt>PRIMITIVEBUILD</dt>
+<dd><ul class="first last simple">
+<li>ProductionAction</li>
+<li>Parameters are your unit&#8217;s ID and the building template ID.</li>
+<li>Does one turn of work towards building that building on your unit&#8217;s spot.</li>
+<li>When the building finishes, your unit will move off to one side.</li>
+</ul>
+</dd>
+<dt>PRIMITIVEDEPOSIT</dt>
+<dd><ul class="first last simple">
+<li>DirectedAction</li>
+<li>Parameters are your unit&#8217;s ID and a direction (Direction enum, i.e. Direction.NORTH)</li>
+<li>Looks in the direction provided and if there&#8217;s a town hall, deposits resources there.</li>
+</ul>
+</dd>
+<dt>PRIMITIVEGATHER</dt>
+<dd><ul class="first last simple">
+<li>DirectedAction</li>
+<li>Parameters are your unit&#8217;s ID and a direction</li>
+<li>Looks in that direction and tries to gather resources from it.</li>
+</ul>
+</dd>
+<dt>PRIMITIVEMOVE</dt>
+<dd><ul class="first last simple">
+<li>DirectedAction</li>
+<li>Parameters are your unit&#8217;s ID and a direction</li>
+<li>Tries to move in that direction one step.  If there&#8217;s something there, nothing happens.</li>
+</ul>
+</dd>
+<dt>PRIMITIVEPRODUCE</dt>
+<dd><ul class="first last simple">
+<li>ProductionAction</li>
+<li>Parameters are your building&#8217;s ID and the template ID for the unit.</li>
+<li>Does one turn&#8217;s work towards creating the unit specified.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="moving-your-units">
+<h2>Moving Your Units<a class="headerlink" href="#moving-your-units" title="Permalink to this headline">¶</a></h2>
+<p>Here is the code for an agent that takes each peasant and moves it
+repeatedly left. While this agent isn&#8217;t very useful it does provide an
+example of the basic API including how to find your unit IDs and how
+to command your units.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="n">Map</span> <span class="nf">middleStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span> <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// This stores the action that each unit will perform</span>
+        <span class="c1">// if there are no changes to the current actions then this</span>
+        <span class="c1">// map will be empty.</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="n">actions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;();</span>
+
+        <span class="c1">// this will return a list of all of your units</span>
+        <span class="c1">// You will need to check each unit ID to determine the unit&#39;s type</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">myUnitIds</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">playernum</span><span class="o">);</span>
+
+        <span class="c1">// These will store the Unit IDs that are peasants and townhalls respectively</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">peasantIds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">townhallIds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+
+        <span class="c1">// This loop will examine each of our unit IDs and classify them as either</span>
+        <span class="c1">// a Townhall or a Peasant</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">unitID</span> <span class="o">:</span> <span class="n">myUnitIds</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="c1">// UnitViews extract information about a specified unit id</span>
+                <span class="c1">// from the current state. Using a unit view you can determine</span>
+                <span class="c1">// the type of the unit with the given ID as well as other information</span>
+                <span class="c1">// such as health and resources carried.</span>
+                <span class="n">UnitView</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnit</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+
+                <span class="c1">// To find properties that all units of a given type share</span>
+                <span class="c1">// access the UnitTemplateView using the `getTemplateView()`</span>
+                <span class="c1">// method of a UnitView instance. In this case we are getting</span>
+                <span class="c1">// the type name so that we can classify our units as Peasants and Townhalls</span>
+                <span class="n">String</span> <span class="n">unitTypeName</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="na">getTemplateView</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">unitTypeName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;TownHall&quot;</span><span class="o">))</span>
+                        <span class="n">townhallIds</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+                <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">unitTypeName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;Peasant&quot;</span><span class="o">))</span>
+                        <span class="n">peasantIds</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+                <span class="k">else</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Unexpected Unit type: &quot;</span> <span class="o">+</span> <span class="n">unitTypeName</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Now that we know the unit types we can assign our peasants to collect resources</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">peasantID</span> <span class="o">:</span> <span class="n">peasantIds</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="n">actions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">Action</span><span class="o">.</span><span class="na">createPrimitiveMove</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">Direction</span><span class="o">.</span><span class="na">EAST</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collecting-resources">
+<h2>Collecting Resources<a class="headerlink" href="#collecting-resources" title="Permalink to this headline">¶</a></h2>
+<p>Here is the code for an agent that commands the default peasant to
+alternate collecting wood and gold. <a class="reference external" href="_static/agents/FirstAgentv1/FirstAgent.java">Click here to download this
+version of the agent</a></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="n">Map</span> <span class="nf">initialStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span> <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">middleStep</span><span class="o">(</span><span class="n">newstate</span><span class="o">,</span> <span class="n">statehistory</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">Map</span> <span class="nf">middleStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span> <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// This stores the action that each unit will perform</span>
+        <span class="c1">// if there are no changes to the current actions then this</span>
+        <span class="c1">// map will be empty.</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="n">actions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;();</span>
+
+        <span class="c1">// this will return a list of all of your units</span>
+        <span class="c1">// You will need to check each unit ID to determine the unit&#39;s type</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">myUnitIds</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">playernum</span><span class="o">);</span>
+
+        <span class="c1">// These will store the Unit IDs that are peasants and townhalls respectively</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">peasantIds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">townhallIds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+
+        <span class="c1">// This loop will examine each of our unit IDs and classify them as either</span>
+        <span class="c1">// a Townhall or a Peasant</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">unitID</span> <span class="o">:</span> <span class="n">myUnitIds</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="c1">// UnitViews extract information about a specified unit id</span>
+                <span class="c1">// from the current state. Using a unit view you can determine</span>
+                <span class="c1">// the type of the unit with the given ID as well as other information</span>
+                <span class="c1">// such as health and resources carried.</span>
+                <span class="n">UnitView</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnit</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+
+                <span class="c1">// To find properties that all units of a given type share</span>
+                <span class="c1">// access the UnitTemplateView using the `getTemplateView()`</span>
+                <span class="c1">// method of a UnitView instance. In this case we are getting</span>
+                <span class="c1">// the type name so that we can classify our units as Peasants and Townhalls</span>
+                <span class="n">String</span> <span class="n">unitTypeName</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="na">getTemplateView</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">unitTypeName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;TownHall&quot;</span><span class="o">))</span>
+                        <span class="n">townhallIds</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+                <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">unitTypeName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;Peasant&quot;</span><span class="o">))</span>
+                        <span class="n">peasantIds</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">unitID</span><span class="o">);</span>
+                <span class="k">else</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Unexpected Unit type: &quot;</span> <span class="o">+</span> <span class="n">unitTypeName</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// get the amount of wood and gold you have in your Town Hall</span>
+        <span class="kt">int</span> <span class="n">currentGold</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getResourceAmount</span><span class="o">(</span><span class="n">playernum</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">GOLD</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">currentWood</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getResourceAmount</span><span class="o">(</span><span class="n">playernum</span><span class="o">,</span> <span class="n">ResourceType</span><span class="o">.</span><span class="na">WOOD</span><span class="o">);</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">goldMines</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getResourceNodeIds</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">GOLD_MINE</span><span class="o">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">trees</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getResourceNodeIds</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">TREE</span><span class="o">);</span>
+
+        <span class="c1">// Now that we know the unit types we can assign our peasants to collect resources</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">peasantID</span> <span class="o">:</span> <span class="n">peasantIds</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="n">Action</span> <span class="n">action</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">newstate</span><span class="o">.</span><span class="na">getUnit</span><span class="o">(</span><span class="n">peasantID</span><span class="o">).</span><span class="na">getCargoAmount</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="o">{</span>
+                        <span class="c1">// If the agent is carrying cargo then command it to deposit what its carrying at the townhall.</span>
+                        <span class="c1">// Here we are constructing a new TargetedAction. The first parameter is the unit being commanded.</span>
+                        <span class="c1">// The second parameter is the action type, in this case a COMPOUNDDEPOSIT. The actions starting</span>
+                        <span class="c1">// with COMPOUND are convenience actions made up of multiple move actions and another final action</span>
+                        <span class="c1">// in this case DEPOSIT. The moves are determined using A* planning to the location of the unit</span>
+                        <span class="c1">// specified by the 3rd argument of the constructor.</span>
+                        <span class="n">action</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TargetedAction</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">ActionType</span><span class="o">.</span><span class="na">COMPOUNDDEPOSIT</span><span class="o">,</span> <span class="n">townhallIds</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+                <span class="o">}</span>
+                <span class="k">else</span>
+                <span class="o">{</span>
+                        <span class="c1">// If the agent isn&#39;t carrying anything instruct it to go collect either gold or wood</span>
+                        <span class="c1">// whichever you have less of</span>
+                        <span class="k">if</span><span class="o">(</span><span class="n">currentGold</span> <span class="o">&lt;</span> <span class="n">currentWood</span><span class="o">)</span>
+                        <span class="o">{</span>
+                                <span class="n">action</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TargetedAction</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">ActionType</span><span class="o">.</span><span class="na">COMPOUNDGATHER</span><span class="o">,</span> <span class="n">goldMines</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+                        <span class="o">}</span>
+                        <span class="k">else</span>
+                        <span class="o">{</span>
+                                <span class="n">action</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TargetedAction</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">ActionType</span><span class="o">.</span><span class="na">COMPOUNDGATHER</span><span class="o">,</span> <span class="n">trees</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+                        <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="c1">// Put the actions in the action map.</span>
+                <span class="c1">// Without this step your agent will do nothing.</span>
+                <span class="n">actions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">peasantID</span><span class="o">,</span> <span class="n">action</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">terminalStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span> <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Finsihed the episode&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Running this class should print out &#8220;Constructed My First Agent&#8221; in
+the console when SEPIA starts. Clicking play will cause the single
+peasant to alternate between collecting gold and wood.</p>
+</div>
+<div class="section" id="building-units">
+<h2>Building Units<a class="headerlink" href="#building-units" title="Permalink to this headline">¶</a></h2>
+<p>Your townhall&#8217;s are used to build new units. These include peasants,
+footmen, archers and more. Constructing a new unit requires that you
+have the necessary resources. These resources are specified in the
+map file. For these examples the map file is the
+<code class="docutils literal"><span class="pre">data/ResourceCollectionV2.xml</span></code>.</p>
+<p>The first version of FirstAgent shown above uses only a single
+peasant. Lets modify the middle step method to make it build 2 more
+peasants. The code should be placed directly before the return
+statement in the middleStep method. <a class="reference external" href="_static/agents/FirstAgentv2/FirstAgent.java">You can also download this
+version of the agent
+here.</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Trying to build more peasants than this will hit the supply
+cap of food. If you want to experiment and try building more
+peasants you will need to modify the agent to build farms
+using peasants and a <code class="docutils literal"><span class="pre">COMPOUNDBUILD</span></code> action.</p>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">// Build 2 more peasants</span>
+<span class="k">if</span><span class="o">(</span><span class="n">peasantIds</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">{</span>
+        <span class="c1">// only try to build a new peasant if</span>
+        <span class="c1">// the agent possess&#39;s the required resources</span>
+        <span class="c1">// For a peasant that is 400 Gold</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">currentGold</span> <span class="o">&gt;=</span> <span class="mi">400</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="c1">// Get the peasant template&#39;s unique ID</span>
+                <span class="c1">// this is how SEPIA identifies what type of unit to build</span>
+                <span class="n">TemplateView</span> <span class="n">peasantTemplate</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getTemplate</span><span class="o">(</span><span class="n">playernum</span><span class="o">,</span> <span class="s">&quot;Peasant&quot;</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">peasantTemplateID</span> <span class="o">=</span> <span class="n">peasantTemplate</span><span class="o">.</span><span class="na">getID</span><span class="o">();</span>
+
+                <span class="c1">// Grab the first townhall</span>
+                <span class="c1">// this assumes there is at least one townhall in the map</span>
+                <span class="kt">int</span> <span class="n">townhallID</span> <span class="o">=</span> <span class="n">townhallIds</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+                <span class="c1">// create a new CompoundProduction action at the townhall. This instructs the specified townhall</span>
+                <span class="c1">// to build a unit with the peasant template ID.</span>
+                <span class="n">actions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">townhallID</span><span class="o">,</span> <span class="n">Action</span><span class="o">.</span><span class="na">createCompoundProduction</span><span class="o">(</span><span class="n">townhallID</span><span class="o">,</span> <span class="n">peasantTemplateID</span><span class="o">));</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>You should now be capable of building simple resource collecting
+agents. The next tutorial will discuss building combat agents.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="combat_agents.html" class="btn btn-neutral float-right" title="Combat Agents"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="running_sepia.html" class="btn btn-neutral" title="Running Sepia"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+XMLTokener
+==========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class XMLTokener extends JSONTokener
+
+   The XMLTokener extends the JSONTokener to provide additional methods for the parsing of XML texts.
+
+   :author: JSON.org
+
+Fields
+------
+entity
+^^^^^^
+
+.. java:field:: public static final java.util.HashMap entity
+   :outertype: XMLTokener
+
+   The table of entity values. It initially contains Character values for amp, apos, gt, lt, quot.
+
+Constructors
+------------
+XMLTokener
+^^^^^^^^^^
+
+.. java:constructor:: public XMLTokener(String s)
+   :outertype: XMLTokener
+
+   Construct an XMLTokener from a string.
+
+   :param s: A source string.
+
+Methods
+-------
+nextCDATA
+^^^^^^^^^
+
+.. java:method:: public String nextCDATA() throws JSONException
+   :outertype: XMLTokener
+
+   Get the text in the CDATA block.
+
+   :throws JSONException: If the \ ``]]>``\  is not found.
+   :return: The string up to the \ ``]]>``\ .
+
+nextContent
+^^^^^^^^^^^
+
+.. java:method:: public Object nextContent() throws JSONException
+   :outertype: XMLTokener
+
+   Get the next XML outer token, trimming whitespace. There are two kinds of tokens: the '
+
+   :throws JSONException:
+   :return: A string, or a '
+
+nextEntity
+^^^^^^^^^^
+
+.. java:method:: public Object nextEntity(char ampersand) throws JSONException
+   :outertype: XMLTokener
+
+   Return the next entity. These entities are translated to Characters: \ ``&  '  >  <  "``\ .
+
+   :param ampersand: An ampersand character.
+   :throws JSONException: If missing ';' in XML entity.
+   :return: A Character or an entity String if the entity is not recognized.
+
+nextMeta
+^^^^^^^^
+
+.. java:method:: public Object nextMeta() throws JSONException
+   :outertype: XMLTokener
+
+   Returns the next XML meta token. This is used for skipping over and ...?> structures.
+
+   :throws JSONException: If a string is not properly closed or if the XML is badly structured.
+   :return: Syntax characters (\ ``/ = ! ?``\ ) are returned as Character, and strings and names are returned as Boolean. We don't care what the values actually are.
+
+nextToken
+^^^^^^^^^
+
+.. java:method:: public Object nextToken() throws JSONException
+   :outertype: XMLTokener
+
+   Get the next XML Token. These tokens are found inside of angle brackets. It may be one of these characters: \ ``/ > = ! ?``\  or it may be a string wrapped in single quotes or double quotes, or it may be a name.
+
+   :throws JSONException: If the XML is not well formed.
+   :return: a String or a Character.
+
+skipPast
+^^^^^^^^
+
+.. java:method:: public boolean skipPast(String to) throws JSONException
+   :outertype: XMLTokener
+
+   Skip characters until past the requested string. If it is not found, we are left at the end of the source with a result of false.
+
+   :param to: A string to skip past.
+   :throws JSONException:
+

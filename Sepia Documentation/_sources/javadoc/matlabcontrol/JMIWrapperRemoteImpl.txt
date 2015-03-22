@@ -1,0 +1,78 @@
+.. java:import:: java.rmi RemoteException
+
+JMIWrapperRemoteImpl
+====================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class JMIWrapperRemoteImpl extends LocalHostRMIHelper.LocalHostRemoteObject implements JMIWrapperRemote
+
+   Passes method calls off to \ :java:ref:`JMIWrapper`\ .  Methods called on this proxy will be performed inside of the JVM that created this object. This class is only created inside of the MATLAB's JVM and so \ ``JMIWrapper``\ 's calls will be able to communicate with MATLAB.  These methods are documented in \ :java:ref:`MatlabProxy`\ .
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+JMIWrapperRemoteImpl
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public JMIWrapperRemoteImpl() throws RemoteException
+   :outertype: JMIWrapperRemoteImpl
+
+Methods
+-------
+checkConnection
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void checkConnection()
+   :outertype: JMIWrapperRemoteImpl
+
+eval
+^^^^
+
+.. java:method:: @Override public void eval(String command) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+exit
+^^^^
+
+.. java:method:: @Override public void exit()
+   :outertype: JMIWrapperRemoteImpl
+
+feval
+^^^^^
+
+.. java:method:: @Override public void feval(String command, Object... args) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public Object getVariable(String variableName) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public <T> T invokeAndWait(MatlabProxy.MatlabThreadCallable<T> callable) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningEval(String command, int nargout) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningFeval(String command, int nargout, Object... args) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public void setVariable(String variableName, Object value) throws MatlabInvocationException
+   :outertype: JMIWrapperRemoteImpl
+

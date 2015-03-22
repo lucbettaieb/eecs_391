@@ -1,0 +1,32 @@
+ThrowableWrapper
+================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class ThrowableWrapper extends Throwable
+
+   A wrapper around any \ :java:ref:`Throwable`\  so that it can be sent over RMI without needing the class to be defined in the receiving JVM. The stack trace will print as if it were the original throwable.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+ThrowableWrapper
+^^^^^^^^^^^^^^^^
+
+.. java:constructor::  ThrowableWrapper(Throwable innerThrowable)
+   :outertype: ThrowableWrapper
+
+   Creates a wrapper around \ ``innerThrowable``\  so that when the stack trace is printed it is the same to the developer, but can be sent over RMI without the throwable being defined in the other JVM.
+
+   :param innerThrowable:
+
+Methods
+-------
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: ThrowableWrapper
+

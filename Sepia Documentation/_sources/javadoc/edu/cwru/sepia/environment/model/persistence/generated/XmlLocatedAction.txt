@@ -1,0 +1,79 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlLocatedAction
+================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlLocatedAction extends XmlAction
+
+   Java class for LocatedAction complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="LocatedAction">
+        <complexContent>
+          <extension base="{}Action">
+            <sequence>
+              <element name="x" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="y" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+x
+^
+
+.. java:field:: protected int x
+   :outertype: XmlLocatedAction
+
+y
+^
+
+.. java:field:: protected int y
+   :outertype: XmlLocatedAction
+
+Methods
+-------
+getX
+^^^^
+
+.. java:method:: public int getX()
+   :outertype: XmlLocatedAction
+
+   Gets the value of the x property.
+
+getY
+^^^^
+
+.. java:method:: public int getY()
+   :outertype: XmlLocatedAction
+
+   Gets the value of the y property.
+
+setX
+^^^^
+
+.. java:method:: public void setX(int value)
+   :outertype: XmlLocatedAction
+
+   Sets the value of the x property.
+
+setY
+^^^^
+
+.. java:method:: public void setY(int value)
+   :outertype: XmlLocatedAction
+
+   Sets the value of the y property.
+

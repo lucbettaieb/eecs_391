@@ -1,0 +1,57 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing JTable
+
+.. java:import:: javax.swing.event TableModelListener
+
+.. java:import:: javax.swing.table AbstractTableModel
+
+.. java:import:: edu.cwru.sepia.util SwingUtils
+
+AgentTable.AgentTableModel.AgentData
+====================================
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: static class AgentData
+   :outertype: AgentTable.AgentTableModel
+
+Fields
+------
+COLUMN_CLASSES
+^^^^^^^^^^^^^^
+
+.. java:field:: static final Class<?>[] COLUMN_CLASSES
+   :outertype: AgentTable.AgentTableModel.AgentData
+
+COLUMN_NAMES
+^^^^^^^^^^^^
+
+.. java:field:: static final String[] COLUMN_NAMES
+   :outertype: AgentTable.AgentTableModel.AgentData
+
+Methods
+-------
+get
+^^^
+
+.. java:method:: public Object get(int index)
+   :outertype: AgentTable.AgentTableModel.AgentData
+
+set
+^^^
+
+.. java:method:: public void set(int index, Object value)
+   :outertype: AgentTable.AgentTableModel.AgentData
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: AgentTable.AgentTableModel.AgentData
+

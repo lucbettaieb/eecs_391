@@ -1,0 +1,46 @@
+.. java:import:: java.rmi NoSuchObjectException
+
+.. java:import:: java.rmi NotBoundException
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.rmi.server UnicastRemoteObject
+
+.. java:import:: java.util Timer
+
+.. java:import:: java.util TimerTask
+
+MatlabBroadcaster
+=================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class MatlabBroadcaster
+
+   Enables a session of MATLAB to be connected to by matlabcontrol running outside MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+broadcast
+^^^^^^^^^
+
+.. java:method:: static synchronized void broadcast(int broadcastPort) throws MatlabConnectionException
+   :outertype: MatlabBroadcaster
+
+   Makes this session of MATLAB visible to matlabcontrol. Once broadcasting, matlabcontrol running outside MATLAB will be able to connect to this session of MATLAB.
+
+   :throws MatlabConnectionException: thrown if not running inside MATLAB or unable to broadcast
+
+getSession
+^^^^^^^^^^
+
+.. java:method:: static MatlabSessionImpl getSession()
+   :outertype: MatlabBroadcaster
+
+   Returns the session object bound to the RMI registry by this broadcaster.
+

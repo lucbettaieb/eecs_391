@@ -1,0 +1,79 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlDeathLog
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlDeathLog
+
+   Java class for DeathLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="DeathLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="deadUnitID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="controller" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+controller
+^^^^^^^^^^
+
+.. java:field:: protected int controller
+   :outertype: XmlDeathLog
+
+deadUnitID
+^^^^^^^^^^
+
+.. java:field:: protected int deadUnitID
+   :outertype: XmlDeathLog
+
+Methods
+-------
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: XmlDeathLog
+
+   Gets the value of the controller property.
+
+getDeadUnitID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getDeadUnitID()
+   :outertype: XmlDeathLog
+
+   Gets the value of the deadUnitID property.
+
+setController
+^^^^^^^^^^^^^
+
+.. java:method:: public void setController(int value)
+   :outertype: XmlDeathLog
+
+   Sets the value of the controller property.
+
+setDeadUnitID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setDeadUnitID(int value)
+   :outertype: XmlDeathLog
+
+   Sets the value of the deadUnitID property.
+

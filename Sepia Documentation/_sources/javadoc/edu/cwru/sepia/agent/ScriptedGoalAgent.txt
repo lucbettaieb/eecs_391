@@ -1,0 +1,110 @@
+.. java:import:: java.io BufferedReader
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Random
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.environment.model.history BirthLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DeathLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+ScriptedGoalAgent
+=================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class ScriptedGoalAgent extends Agent implements Serializable
+
+   An agent based around the concept of build orders. Limited to a single concurrent goal Cannot fully handle new units that come in doing things Does not compensate for the possibility that a unit be both a gatherer/worker and a production unit (like a barracks/peasant)
+
+Constructors
+------------
+ScriptedGoalAgent
+^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ScriptedGoalAgent(int playernumber, BufferedReader commandSource, Random r, boolean verbose)
+   :outertype: ScriptedGoalAgent
+
+Methods
+-------
+act
+^^^
+
+.. java:method:: public Map<Integer, Action> act(StateView state, HistoryView statehistory) throws IOException
+   :outertype: ScriptedGoalAgent
+
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: ScriptedGoalAgent
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: ScriptedGoalAgent
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: ScriptedGoalAgent
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: ScriptedGoalAgent
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: ScriptedGoalAgent
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: ScriptedGoalAgent
+

@@ -1,0 +1,70 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.io FileOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectInputStream
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.io PrintWriter
+
+.. java:import:: javax.xml.bind JAXBContext
+
+.. java:import:: javax.xml.bind Marshaller
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence HistoryAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence StateAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlHistory
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlState
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+GameMap
+=======
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public final class GameMap
+
+   store maps and status into files; load maps and status from files.
+
+   :author: Feng
+
+Methods
+-------
+loadHistory
+^^^^^^^^^^^
+
+.. java:method:: public static History loadHistory(String filename)
+   :outertype: GameMap
+
+loadState
+^^^^^^^^^
+
+.. java:method:: public static State loadState(String filename)
+   :outertype: GameMap
+
+storeHistory
+^^^^^^^^^^^^
+
+.. java:method:: public static void storeHistory(String filename, History history)
+   :outertype: GameMap
+
+storeState
+^^^^^^^^^^
+
+.. java:method:: public static void storeState(String filename, State state)
+   :outertype: GameMap
+

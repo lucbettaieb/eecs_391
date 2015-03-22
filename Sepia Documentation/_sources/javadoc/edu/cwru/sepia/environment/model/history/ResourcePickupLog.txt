@@ -1,0 +1,84 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+ResourcePickupLog
+=================
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class ResourcePickupLog implements Serializable, DeepEquatable
+
+   A read only class documenting an event
+
+   :author: The Condor
+
+Constructors
+------------
+ResourcePickupLog
+^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ResourcePickupLog(int gathererid, int controller, ResourceType resource, int amountpickedup, int nodeid, ResourceNode.Type nodetype)
+   :outertype: ResourcePickupLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: ResourcePickupLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: ResourcePickupLog
+
+getAmountPickedUp
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAmountPickedUp()
+   :outertype: ResourcePickupLog
+
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: ResourcePickupLog
+
+getGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getGathererID()
+   :outertype: ResourcePickupLog
+
+getNodeID
+^^^^^^^^^
+
+.. java:method:: public int getNodeID()
+   :outertype: ResourcePickupLog
+
+getNodeType
+^^^^^^^^^^^
+
+.. java:method:: public ResourceNode.Type getNodeType()
+   :outertype: ResourcePickupLog
+
+getResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getResourceType()
+   :outertype: ResourcePickupLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ResourcePickupLog
+

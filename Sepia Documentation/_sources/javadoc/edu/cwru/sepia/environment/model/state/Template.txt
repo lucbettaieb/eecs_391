@@ -1,0 +1,231 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+Template
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public abstract class Template<T> implements Serializable, DeepEquatable
+
+   Signifies that an implementing class provides generic details about a specific object. Also provides a means for creating factory methods for specific kinds of game objects.
+
+   :author: Tim
+   :param <T>:
+
+Fields
+------
+ID
+^^
+
+.. java:field:: public final int ID
+   :outertype: Template
+
+buildPrerequisites
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected Set<Integer> buildPrerequisites
+   :outertype: Template
+
+foodCost
+^^^^^^^^
+
+.. java:field:: protected int foodCost
+   :outertype: Template
+
+goldCost
+^^^^^^^^
+
+.. java:field:: protected int goldCost
+   :outertype: Template
+
+name
+^^^^
+
+.. java:field:: protected String name
+   :outertype: Template
+
+player
+^^^^^^
+
+.. java:field:: protected int player
+   :outertype: Template
+
+timeCost
+^^^^^^^^
+
+.. java:field:: protected int timeCost
+   :outertype: Template
+
+upgradePrerequisites
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected Set<Integer> upgradePrerequisites
+   :outertype: Template
+
+woodCost
+^^^^^^^^
+
+.. java:field:: protected int woodCost
+   :outertype: Template
+
+Constructors
+------------
+Template
+^^^^^^^^
+
+.. java:constructor:: public Template(int ID)
+   :outertype: Template
+
+Methods
+-------
+addBuildPrerequisite
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addBuildPrerequisite(Integer templateID)
+   :outertype: Template
+
+   Add a building prerequisite (A unit that must be built before this template can be made)
+
+   :param templateID:
+
+addUpgradePrerequisite
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addUpgradePrerequisite(Integer templateID)
+   :outertype: Template
+
+   Add an upgrade prerequisite (An upgrade that must be done before this template can be made)
+
+   :param templateID:
+
+deprecateOldView
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public abstract void deprecateOldView()
+   :outertype: Template
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object o)
+   :outertype: Template
+
+getBuildPrerequisites
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Set<Integer> getBuildPrerequisites()
+   :outertype: Template
+
+   Get the set of template ids of buildings (or units in general) that are required before this template can be made. This list is mutable, changing it will alter the things needed to make this template.
+
+   :return: A set of template ids for prerequisite buildings/units
+
+getFoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getFoodCost()
+   :outertype: Template
+
+getGoldCost
+^^^^^^^^^^^
+
+.. java:method:: public int getGoldCost()
+   :outertype: Template
+
+getName
+^^^^^^^
+
+.. java:method:: public String getName()
+   :outertype: Template
+
+getPlayer
+^^^^^^^^^
+
+.. java:method:: public int getPlayer()
+   :outertype: Template
+
+getTimeCost
+^^^^^^^^^^^
+
+.. java:method:: public int getTimeCost()
+   :outertype: Template
+
+getUpgradePrerequisites
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Set<Integer> getUpgradePrerequisites()
+   :outertype: Template
+
+   Get the set of template ids of upgrades that must be researched before this template can be made. This list is mutable, changing it will alter the things needed to make this template.
+
+   :return: A set of template ids for prerequisite upgrades.
+
+getView
+^^^^^^^
+
+.. java:method:: public abstract TemplateView getView()
+   :outertype: Template
+
+getWoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getWoodCost()
+   :outertype: Template
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: Template
+
+produceInstance
+^^^^^^^^^^^^^^^
+
+.. java:method:: public abstract T produceInstance(IDDistributer idsource)
+   :outertype: Template
+
+   A factory method that produces copies of a "default" object
+
+setFoodCost
+^^^^^^^^^^^
+
+.. java:method:: public void setFoodCost(int foodCost)
+   :outertype: Template
+
+setGoldCost
+^^^^^^^^^^^
+
+.. java:method:: public void setGoldCost(int goldCost)
+   :outertype: Template
+
+setName
+^^^^^^^
+
+.. java:method:: public void setName(String name)
+   :outertype: Template
+
+setPlayer
+^^^^^^^^^
+
+.. java:method:: public void setPlayer(int playerid)
+   :outertype: Template
+
+setTimeCost
+^^^^^^^^^^^
+
+.. java:method:: public void setTimeCost(int timeCost)
+   :outertype: Template
+
+setWoodCost
+^^^^^^^^^^^
+
+.. java:method:: public void setWoodCost(int woodCost)
+   :outertype: Template
+

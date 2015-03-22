@@ -1,0 +1,158 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlModelParameters
+==================
+
+.. java:package:: edu.cwru.sepia.util.config.xml
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlModelParameters
+
+   Java class for ModelParameters complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ModelParameters">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="Conquest" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="Midas" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="ManifestDestiny" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="TimeLimit" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="Requirement" type="{}KeyValuePair"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+conquest
+^^^^^^^^
+
+.. java:field:: @XmlElement protected boolean conquest
+   :outertype: XmlModelParameters
+
+manifestDestiny
+^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected boolean manifestDestiny
+   :outertype: XmlModelParameters
+
+midas
+^^^^^
+
+.. java:field:: @XmlElement protected boolean midas
+   :outertype: XmlModelParameters
+
+requirement
+^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<XmlKeyValuePair> requirement
+   :outertype: XmlModelParameters
+
+timeLimit
+^^^^^^^^^
+
+.. java:field:: @XmlElement protected int timeLimit
+   :outertype: XmlModelParameters
+
+Methods
+-------
+getRequirement
+^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlKeyValuePair> getRequirement()
+   :outertype: XmlModelParameters
+
+   Gets the value of the requirement property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the requirement property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getRequirement().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlKeyValuePair`\
+
+getTimeLimit
+^^^^^^^^^^^^
+
+.. java:method:: public int getTimeLimit()
+   :outertype: XmlModelParameters
+
+   Gets the value of the timeLimit property.
+
+isConquest
+^^^^^^^^^^
+
+.. java:method:: public boolean isConquest()
+   :outertype: XmlModelParameters
+
+   Gets the value of the conquest property.
+
+isManifestDestiny
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean isManifestDestiny()
+   :outertype: XmlModelParameters
+
+   Gets the value of the manifestDestiny property.
+
+isMidas
+^^^^^^^
+
+.. java:method:: public boolean isMidas()
+   :outertype: XmlModelParameters
+
+   Gets the value of the midas property.
+
+setConquest
+^^^^^^^^^^^
+
+.. java:method:: public void setConquest(boolean value)
+   :outertype: XmlModelParameters
+
+   Sets the value of the conquest property.
+
+setManifestDestiny
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setManifestDestiny(boolean value)
+   :outertype: XmlModelParameters
+
+   Sets the value of the manifestDestiny property.
+
+setMidas
+^^^^^^^^
+
+.. java:method:: public void setMidas(boolean value)
+   :outertype: XmlModelParameters
+
+   Sets the value of the midas property.
+
+setTimeLimit
+^^^^^^^^^^^^
+
+.. java:method:: public void setTimeLimit(int value)
+   :outertype: XmlModelParameters
+
+   Sets the value of the timeLimit property.
+

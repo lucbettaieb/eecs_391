@@ -1,0 +1,108 @@
+.. java:import:: java.util Iterator
+
+HTTP
+====
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class HTTP
+
+   Convert an HTTP header to a JSONObject and back.
+
+   :author: JSON.org
+
+Fields
+------
+CRLF
+^^^^
+
+.. java:field:: public static final String CRLF
+   :outertype: HTTP
+
+   Carriage return/line feed.
+
+Methods
+-------
+toJSONObject
+^^^^^^^^^^^^
+
+.. java:method:: public static JSONObject toJSONObject(String string) throws JSONException
+   :outertype: HTTP
+
+   Convert an HTTP header string into a JSONObject. It can be a request header or a response header. A request header will contain
+
+   .. parsed-literal::
+
+      {
+         Method: "POST" (for example),
+         "Request-URI": "/" (for example),
+         "HTTP-Version": "HTTP/1.1" (for example)
+      }
+
+   A response header will contain
+
+   .. parsed-literal::
+
+      {
+         "HTTP-Version": "HTTP/1.1" (for example),
+         "Status-Code": "200" (for example),
+         "Reason-Phrase": "OK" (for example)
+      }
+
+   In addition, the other parameters in the header will be captured, using the HTTP field names as JSON names, so that
+
+   .. parsed-literal::
+
+      Date: Sun, 26 May 2002 18:06:04 GMT
+      Cookie: Q=q2=PPEAsg--; B=677gi6ouf29bn&b=2&f=s
+      Cache-Control: no-cache
+
+   become
+
+   .. parsed-literal::
+
+      {...
+         Date: "Sun, 26 May 2002 18:06:04 GMT",
+         Cookie: "Q=q2=PPEAsg--; B=677gi6ouf29bn&b=2&f=s",
+         "Cache-Control": "no-cache",
+      ...}
+
+   It does no further checking or conversion. It does not parse dates. It does not do '%' transforms on URLs.
+
+   :param string: An HTTP header string.
+   :throws JSONException:
+   :return: A JSONObject containing the elements and attributes of the XML string.
+
+toString
+^^^^^^^^
+
+.. java:method:: public static String toString(JSONObject jo) throws JSONException
+   :outertype: HTTP
+
+   Convert a JSONObject into an HTTP header. A request header must contain
+
+   .. parsed-literal::
+
+      {
+         Method: "POST" (for example),
+         "Request-URI": "/" (for example),
+         "HTTP-Version": "HTTP/1.1" (for example)
+      }
+
+   A response header must contain
+
+   .. parsed-literal::
+
+      {
+         "HTTP-Version": "HTTP/1.1" (for example),
+         "Status-Code": "200" (for example),
+         "Reason-Phrase": "OK" (for example)
+      }
+
+   Any other members of the JSONObject will be output as HTTP fields. The result will end with two CRLF pairs.
+
+   :param jo: A JSONObject
+   :throws JSONException: if the object does not contain enough information.
+   :return: An HTTP header string.
+

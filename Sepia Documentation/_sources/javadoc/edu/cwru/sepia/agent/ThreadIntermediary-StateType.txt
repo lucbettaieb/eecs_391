@@ -1,0 +1,39 @@
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent CountDownLatch
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+ThreadIntermediary.StateType
+============================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public static enum StateType
+   :outertype: ThreadIntermediary
+
+Enum Constants
+--------------
+INITIAL
+^^^^^^^
+
+.. java:field:: public static final ThreadIntermediary.StateType INITIAL
+   :outertype: ThreadIntermediary.StateType
+
+MIDDLE
+^^^^^^
+
+.. java:field:: public static final ThreadIntermediary.StateType MIDDLE
+   :outertype: ThreadIntermediary.StateType
+
+TERMINAL
+^^^^^^^^
+
+.. java:field:: public static final ThreadIntermediary.StateType TERMINAL
+   :outertype: ThreadIntermediary.StateType
+

@@ -1,0 +1,35 @@
+.. java:import:: java.util.concurrent CopyOnWriteArrayList
+
+MatlabProxy.Identifier
+======================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static interface Identifier
+   :outertype: MatlabProxy
+
+   Uniquely identifies a proxy. This interface is not intended to be implemented by users of matlabcontrol.  Implementations of this interface are unconditionally thread-safe.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: MatlabProxy.Identifier
+
+   Returns \ ``true``\  if \ ``other``\  is equal to this identifier, \ ``false``\  otherwise.
+
+   :param other:
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: MatlabProxy.Identifier
+
+   Returns a hash code which conforms to the \ ``hashCode``\  contract defined in \ :java:ref:`Object.hashCode()`\ .
+

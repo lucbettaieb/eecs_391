@@ -1,0 +1,164 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlAttribute
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlAgentParameters
+==================
+
+.. java:package:: edu.cwru.sepia.util.config.xml
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlAgentParameters
+
+   Java class for AgentParameters complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="AgentParameters">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="AgentClass">
+                <complexType>
+                  <complexContent>
+                    <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+                      <sequence>
+                        <element name="ClassName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+                        <sequence maxOccurs="unbounded" minOccurs="0">
+                          <element name="Argument" type="{http://www.w3.org/2001/XMLSchema}string"/>
+                        </sequence>
+                      </sequence>
+                    </restriction>
+                  </complexContent>
+                </complexType>
+              </element>
+              <choice>
+                <sequence maxOccurs="unbounded" minOccurs="0">
+                  <element name="Property" type="{}KeyValuePair"/>
+                </sequence>
+                <element name="PropertyFile" type="{http://www.w3.org/2001/XMLSchema}string"/>
+              </choice>
+            </sequence>
+            <attribute name="Id" type="{http://www.w3.org/2001/XMLSchema}int" />
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+agentClass
+^^^^^^^^^^
+
+.. java:field:: @XmlElement protected XmlAgentParameters.AgentClass agentClass
+   :outertype: XmlAgentParameters
+
+id
+^^
+
+.. java:field:: @XmlAttribute protected Integer id
+   :outertype: XmlAgentParameters
+
+property
+^^^^^^^^
+
+.. java:field:: @XmlElement protected List<XmlKeyValuePair> property
+   :outertype: XmlAgentParameters
+
+propertyFile
+^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected String propertyFile
+   :outertype: XmlAgentParameters
+
+Methods
+-------
+getAgentClass
+^^^^^^^^^^^^^
+
+.. java:method:: public XmlAgentParameters.AgentClass getAgentClass()
+   :outertype: XmlAgentParameters
+
+   Gets the value of the agentClass property.
+
+   :return: possible object is \ :java:ref:`XmlAgentParameters.AgentClass`\
+
+getId
+^^^^^
+
+.. java:method:: public Integer getId()
+   :outertype: XmlAgentParameters
+
+   Gets the value of the id property.
+
+   :return: possible object is \ :java:ref:`Integer`\
+
+getProperty
+^^^^^^^^^^^
+
+.. java:method:: public List<XmlKeyValuePair> getProperty()
+   :outertype: XmlAgentParameters
+
+   Gets the value of the property property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the property property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getProperty().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlKeyValuePair`\
+
+getPropertyFile
+^^^^^^^^^^^^^^^
+
+.. java:method:: public String getPropertyFile()
+   :outertype: XmlAgentParameters
+
+   Gets the value of the propertyFile property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setAgentClass
+^^^^^^^^^^^^^
+
+.. java:method:: public void setAgentClass(XmlAgentParameters.AgentClass value)
+   :outertype: XmlAgentParameters
+
+   Sets the value of the agentClass property.
+
+   :param value: allowed object is \ :java:ref:`XmlAgentParameters.AgentClass`\
+
+setId
+^^^^^
+
+.. java:method:: public void setId(Integer value)
+   :outertype: XmlAgentParameters
+
+   Sets the value of the id property.
+
+   :param value: allowed object is \ :java:ref:`Integer`\
+
+setPropertyFile
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPropertyFile(String value)
+   :outertype: XmlAgentParameters
+
+   Sets the value of the propertyFile property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

@@ -1,0 +1,1805 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>JSONObject &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="org.json" href="package-index.html"/>
+        <link rel="next" title="JSONString" href="JSONString.html"/>
+        <link rel="prev" title="JSONML" href="JSONML.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">org.json</a> &raquo;</li>
+      
+    <li>JSONObject</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../_sources/javadoc/org/json/JSONObject.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="jsonobject">
+<h1>JSONObject<a class="headerlink" href="#jsonobject" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="org.json.JSONObject">
+public class <code class="descname">JSONObject</code><a class="headerlink" href="#org.json.JSONObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>A JSONObject is an unordered collection of name/value pairs. Its external form is a string wrapped in curly braces with colons between the names and values, and commas between the values and names. The internal form is an object having <code class="docutils literal"><span class="pre">get</span></code> and <code class="docutils literal"><span class="pre">opt</span></code> methods for accessing the values by name, and <code class="docutils literal"><span class="pre">put</span></code> methods for adding or replacing values by name. The values can be any of these types: <code class="docutils literal"><span class="pre">Boolean</span></code>, <code class="docutils literal"><span class="pre">JSONArray</span></code>, <code class="docutils literal"><span class="pre">JSONObject</span></code>, <code class="docutils literal"><span class="pre">Number</span></code>, <code class="docutils literal"><span class="pre">String</span></code>, or the <code class="docutils literal"><span class="pre">JSONObject.NULL</span></code> object. A JSONObject constructor can be used to convert an external form JSON text into an internal form whose values can be retrieved with the <code class="docutils literal"><span class="pre">get</span></code> and <code class="docutils literal"><span class="pre">opt</span></code> methods, or to convert values into a JSON text using the <code class="docutils literal"><span class="pre">put</span></code> and <code class="docutils literal"><span class="pre">toString</span></code> methods. A <code class="docutils literal"><span class="pre">get</span></code> method returns a value if one can be found, and throws an exception if one cannot be found. An <code class="docutils literal"><span class="pre">opt</span></code> method returns a default value instead of throwing an exception, and so is useful for obtaining optional values.</p>
+<p>The generic <code class="docutils literal"><span class="pre">get()</span></code> and <code class="docutils literal"><span class="pre">opt()</span></code> methods return an object, which you can cast or query for type. There are also typed <code class="docutils literal"><span class="pre">get</span></code> and <code class="docutils literal"><span class="pre">opt</span></code> methods that do type checking and type coercion for you. The opt methods differ from the get methods in that they do not throw. Instead, they return a specified value, such as null.</p>
+<p>The <code class="docutils literal"><span class="pre">put</span></code> methods add or replace values in an object. For example,</p>
+<div class="highlight-python"><div class="highlight"><pre>myString = new JSONObject().put(&quot;JSON&quot;, &quot;Hello, World!&quot;).toString();
+</pre></div>
+</div>
+<p>produces the string <code class="docutils literal"><span class="pre">{&quot;JSON&quot;:</span> <span class="pre">&quot;Hello,</span> <span class="pre">World&quot;}</span></code>.</p>
+<p>The texts produced by the <code class="docutils literal"><span class="pre">toString</span></code> methods strictly conform to the JSON syntax rules. The constructors are more forgiving in the texts they will accept:</p>
+<ul class="simple">
+<li>An extra <code class="docutils literal"><span class="pre">,</span></code>&nbsp;(comma) may appear just before the closing brace.</li>
+<li>Strings may be quoted with <code class="docutils literal"><span class="pre">'</span></code>&nbsp;(single quote).</li>
+<li>Strings do not need to be quoted at all if they do not begin with a quote or single quote, and if they do not contain leading or trailing spaces, and if they do not contain any of these characters: <code class="docutils literal"><span class="pre">{</span> <span class="pre">}</span> <span class="pre">[</span> <span class="pre">]</span> <span class="pre">/</span> <span class="pre">\</span> <span class="pre">:</span> <span class="pre">,</span> <span class="pre">=</span> <span class="pre">;</span> <span class="pre">#</span></code> and if they do not look like numbers and if they are not the reserved words <code class="docutils literal"><span class="pre">true</span></code>, <code class="docutils literal"><span class="pre">false</span></code>, or <code class="docutils literal"><span class="pre">null</span></code>.</li>
+<li>Keys can be followed by <code class="docutils literal"><span class="pre">=</span></code> or <code class="docutils literal"><span class="pre">=&gt;</span></code> as well as by <code class="docutils literal"><span class="pre">:</span></code>.</li>
+<li>Values can be followed by <code class="docutils literal"><span class="pre">;</span></code> (semicolon) as well as by <code class="docutils literal"><span class="pre">,</span></code> (comma).</li>
+<li>Numbers may have the <code class="docutils literal"><span class="pre">0x-</span></code> (hex) prefix.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">JSON.org</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="null">
+<h3>NULL<a class="headerlink" href="#null" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="org.json.JSONObject.NULL">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">NULL</code><a class="headerlink" href="#org.json.JSONObject.NULL" title="Permalink to this definition">¶</a></dt>
+<dd><p>It is sometimes more convenient and less ambiguous to have a <code class="docutils literal"><span class="pre">NULL</span></code> object than to use Java&#8217;s <code class="docutils literal"><span class="pre">null</span></code> value. <code class="docutils literal"><span class="pre">JSONObject.NULL.equals(null)</span></code> returns <code class="docutils literal"><span class="pre">true</span></code>. <code class="docutils literal"><span class="pre">JSONObject.NULL.toString()</span></code> returns <code class="docutils literal"><span class="pre">&quot;null&quot;</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>JSONObject<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject()">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an empty JSONObject.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>JSONObject<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(JSONObject, String[])">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a><em> jo</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>[]<em> names</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(JSONObject, String[])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from a subset of another JSONObject. An array of strings is used to identify the keys that should be copied. Missing keys are ignored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jo</strong> &#8211; A JSONObject.</li>
+<li><strong>names</strong> &#8211; An array of strings.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JSONException</strong> &#8211; If a value is a non-finite number or if a name is duplicated.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>JSONObject<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(JSONTokener)">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference internal" href="JSONTokener.html#org.json.JSONTokener" title="org.json.JSONTokener">JSONTokener</a><em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(JSONTokener)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from a JSONTokener.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; A JSONTokener object containing the source string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JSONException</strong> &#8211; If there is a syntax error in the source string or a duplicated key.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>JSONObject<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(Map)">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html" title="java.util.Map">Map</a><em> map</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(Map)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from a Map.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>map</strong> &#8211; A map object that can be used to initialize the contents of the JSONObject.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JSONException</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>JSONObject<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(Object)">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> bean</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from an Object using bean getters. It reflects on all of the public methods of the object. For each of the methods with no parameters and a name starting with <code class="docutils literal"><span class="pre">&quot;get&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;is&quot;</span></code> followed by an uppercase letter, the method is invoked, and a key and the value returned from the getter method are put into the new JSONObject. The key is formed by removing the <code class="docutils literal"><span class="pre">&quot;get&quot;</span></code> or <code class="docutils literal"><span class="pre">&quot;is&quot;</span></code> prefix. If the second remaining character is not upper case, then the first character is converted to lower case. For example, if an object has a method named <code class="docutils literal"><span class="pre">&quot;getName&quot;</span></code>, and if the result of calling <code class="docutils literal"><span class="pre">object.getName()</span></code> is <code class="docutils literal"><span class="pre">&quot;Larry</span> <span class="pre">Fine&quot;</span></code>, then the JSONObject will contain <code class="docutils literal"><span class="pre">&quot;name&quot;:</span> <span class="pre">&quot;Larry</span> <span class="pre">Fine&quot;</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bean</strong> &#8211; An object that has getter methods that should be used to make a JSONObject.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>JSONObject<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(Object, String[])">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> object</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>[]<em> names</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(Object, String[])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from an Object, using reflection to find the public members. The resulting JSONObject&#8217;s keys will be the strings from the names array, and the values will be the field values associated with those keys in the object. If a key is not found or not visible, then it will not be copied into the new JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>object</strong> &#8211; An object that has fields that should be used to make a JSONObject.</li>
+<li><strong>names</strong> &#8211; An array of strings, the names of the fields to be obtained from the object.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>JSONObject<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(String)">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> source</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from a source JSON text string. This is the most commonly used JSONObject constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>source</strong> &#8211; A string beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JSONException</strong> &#8211; If there is a syntax error in the source string or a duplicated key.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id8">
+<h3>JSONObject<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONObject.JSONObject(String, Locale)">
+public <code class="descname">JSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> baseName</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html" title="java.util.Locale">Locale</a><em> locale</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.JSONObject(String, Locale)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONObject from a ResourceBundle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>baseName</strong> &#8211; The ResourceBundle base name.</li>
+<li><strong>locale</strong> &#8211; The Locale to load the ResourceBundle for.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JSONException</strong> &#8211; If any JSONExceptions are detected.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="accumulate">
+<h3>accumulate<a class="headerlink" href="#accumulate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.accumulate(String, Object)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">accumulate</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.accumulate(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accumulate values under a key. It is similar to the put method except that if there is already an object stored under the key then a JSONArray is stored under the key to hold all of the accumulated values. If there is already a JSONArray, then the new value is appended to it. In contrast, the put method replaces the previous value. If only one value is accumulated that is not a JSONArray, then the result will be the same as using put. But if multiple values are accumulated, then the result will be like append.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; An object to be accumulated under the key.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the value is an invalid number or if the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="append">
+<h3>append<a class="headerlink" href="#append" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.append(String, Object)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">append</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.append(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append values to the array under a key. If the key does not exist in the JSONObject, then the key is put in the JSONObject with its value being a JSONArray containing the value parameter. If the key was already associated with a JSONArray, then the value parameter is appended to it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; An object to be accumulated under the key.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is null or if the current value associated with the key is not a JSONArray.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="doubletostring">
+<h3>doubleToString<a class="headerlink" href="#doubletostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.doubleToString(double)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">doubleToString</code><span class="sig-paren">(</span>double<em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.doubleToString(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a string from a double. The string &#8220;null&#8221; will be returned if the number is not finite.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>d</strong> &#8211; A double.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A String.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="get">
+<h3>get<a class="headerlink" href="#get" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.get(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">get</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.get(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value object associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The object associated with the key.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getboolean">
+<h3>getBoolean<a class="headerlink" href="#getboolean" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getBoolean(String)">
+public boolean <code class="descname">getBoolean</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getBoolean(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the boolean value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the value is not a Boolean or the String &#8220;true&#8221; or &#8220;false&#8221;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The truth.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getdouble">
+<h3>getDouble<a class="headerlink" href="#getdouble" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getDouble(String)">
+public double <code class="descname">getDouble</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getDouble(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the double value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found or if the value is not a Number object and cannot be converted to a number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The numeric value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getint">
+<h3>getInt<a class="headerlink" href="#getint" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getInt(String)">
+public int <code class="descname">getInt</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getInt(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the int value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found or if the value cannot be converted to an integer.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The integer value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getjsonarray">
+<h3>getJSONArray<a class="headerlink" href="#getjsonarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getJSONArray(String)">
+public <a class="reference internal" href="JSONArray.html#org.json.JSONArray" title="org.json.JSONArray">JSONArray</a> <code class="descname">getJSONArray</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getJSONArray(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the JSONArray value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found or if the value is not a JSONArray.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONArray which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getjsonobject">
+<h3>getJSONObject<a class="headerlink" href="#getjsonobject" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getJSONObject(String)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">getJSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getJSONObject(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the JSONObject value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found or if the value is not a JSONObject.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONObject which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getlong">
+<h3>getLong<a class="headerlink" href="#getlong" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getLong(String)">
+public long <code class="descname">getLong</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getLong(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the long value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is not found or if the value cannot be converted to a long.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The long value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getnames">
+<h3>getNames<a class="headerlink" href="#getnames" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getNames(JSONObject)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>[] <code class="descname">getNames</code><span class="sig-paren">(</span><a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a><em> jo</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getNames(JSONObject)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an array of field names from a JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An array of field names, or null if there are no names.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id9">
+<h3>getNames<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getNames(Object)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a>[] <code class="descname">getNames</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> object</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getNames(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an array of field names from an Object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An array of field names, or null if there are no names.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getstring">
+<h3>getString<a class="headerlink" href="#getstring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.getString(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.getString(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the string associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if there is no string value for the key.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="has">
+<h3>has<a class="headerlink" href="#has" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.has(String)">
+public boolean <code class="descname">has</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.has(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the JSONObject contains a specific key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">true if the key exists in the JSONObject.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="increment">
+<h3>increment<a class="headerlink" href="#increment" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.increment(String)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">increment</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.increment(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increment a property of a JSONObject. If there is no such property, create one with a value of 1. If there is such a property, and if it is an Integer, Long, Double, or Float, then add one to it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If there is already a property with this name that is not an Integer, Long, Double, or Float.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isnull">
+<h3>isNull<a class="headerlink" href="#isnull" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.isNull(String)">
+public boolean <code class="descname">isNull</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.isNull(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the value associated with the key is null or if there is no value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">true if there is no value associated with the key or if the value is the JSONObject.NULL object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="keys">
+<h3>keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.keys()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Iterator.html" title="java.util.Iterator">Iterator</a> <code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.keys()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an enumeration of the keys of the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator of the keys.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="length">
+<h3>length<a class="headerlink" href="#length" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.length()">
+public int <code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.length()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of keys stored in the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The number of keys in the JSONObject.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="names">
+<h3>names<a class="headerlink" href="#names" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.names()">
+public <a class="reference internal" href="JSONArray.html#org.json.JSONArray" title="org.json.JSONArray">JSONArray</a> <code class="descname">names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.names()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a JSONArray containing the names of the elements of this JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A JSONArray containing the key strings, or null if the JSONObject is empty.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="numbertostring">
+<h3>numberToString<a class="headerlink" href="#numbertostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.numberToString(Number)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">numberToString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Number.html" title="java.lang.Number">Number</a><em> number</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.numberToString(Number)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a string from a Number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>number</strong> &#8211; A Number</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If n is a non-finite number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A String.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="opt">
+<h3>opt<a class="headerlink" href="#opt" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.opt(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">opt</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.opt(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional value associated with a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value, or null if there is no value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optboolean">
+<h3>optBoolean<a class="headerlink" href="#optboolean" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optBoolean(String)">
+public boolean <code class="descname">optBoolean</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optBoolean(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional boolean associated with a key. It returns false if there is no such key, or if the value is not Boolean.TRUE or the String &#8220;true&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The truth.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id10">
+<h3>optBoolean<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optBoolean(String, boolean)">
+public boolean <code class="descname">optBoolean</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, boolean<em> defaultValue</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optBoolean(String, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional boolean associated with a key. It returns the defaultValue if there is no such key, or if it is not a Boolean or the String &#8220;true&#8221; or &#8220;false&#8221; (case insensitive).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>defaultValue</strong> &#8211; The default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The truth.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optdouble">
+<h3>optDouble<a class="headerlink" href="#optdouble" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optDouble(String)">
+public double <code class="descname">optDouble</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optDouble(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional double associated with a key, or NaN if there is no such key or if its value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A string which is the key.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id11">
+<h3>optDouble<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optDouble(String, double)">
+public double <code class="descname">optDouble</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, double<em> defaultValue</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optDouble(String, double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional double associated with a key, or the defaultValue if there is no such key or if its value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>defaultValue</strong> &#8211; The default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optint">
+<h3>optInt<a class="headerlink" href="#optint" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optInt(String)">
+public int <code class="descname">optInt</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optInt(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional int value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id12">
+<h3>optInt<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optInt(String, int)">
+public int <code class="descname">optInt</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, int<em> defaultValue</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optInt(String, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional int value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>defaultValue</strong> &#8211; The default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optjsonarray">
+<h3>optJSONArray<a class="headerlink" href="#optjsonarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optJSONArray(String)">
+public <a class="reference internal" href="JSONArray.html#org.json.JSONArray" title="org.json.JSONArray">JSONArray</a> <code class="descname">optJSONArray</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optJSONArray(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional JSONArray associated with a key. It returns null if there is no such key, or if its value is not a JSONArray.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONArray which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optjsonobject">
+<h3>optJSONObject<a class="headerlink" href="#optjsonobject" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optJSONObject(String)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">optJSONObject</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optJSONObject(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional JSONObject associated with a key. It returns null if there is no such key, or if its value is not a JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONObject which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optlong">
+<h3>optLong<a class="headerlink" href="#optlong" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optLong(String)">
+public long <code class="descname">optLong</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optLong(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional long value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id13">
+<h3>optLong<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optLong(String, long)">
+public long <code class="descname">optLong</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, long<em> defaultValue</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optLong(String, long)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional long value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>defaultValue</strong> &#8211; The default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="optstring">
+<h3>optString<a class="headerlink" href="#optstring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optString(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">optString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optString(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional string associated with a key. It returns an empty string if there is no such key. If the value is not a string and is not null, then it is converted to a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id14">
+<h3>optString<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.optString(String, String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">optString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> defaultValue</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.optString(String, String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an optional string associated with a key. It returns the defaultValue if there is no such key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>defaultValue</strong> &#8211; The default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string which is the value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="put">
+<h3>put<a class="headerlink" href="#put" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, boolean)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/boolean pair in the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; A boolean which is the value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id15">
+<h3>put<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, Collection)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Collection.html" title="java.util.Collection">Collection</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>&gt;<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, Collection)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/value pair in the JSONObject, where the value will be a JSONArray which is produced from a Collection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; A Collection value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id16">
+<h3>put<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, double)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, double<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/double pair in the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; A double which is the value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is null or if the number is invalid.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id17">
+<h3>put<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, int)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/int pair in the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; An int which is the value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id18">
+<h3>put<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, long)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, long<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, long)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/long pair in the JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; A long which is the value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id19">
+<h3>put<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, Map)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;?, ?&gt;<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, Map)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/value pair in the JSONObject, where the value will be a JSONObject which is produced from a Map.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; A Map value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id20">
+<h3>put<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.put(String, Object)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">put</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.put(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/value pair in the JSONObject. If the value is null, then the key will be removed from the JSONObject if it is present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the value is non-finite number or if the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="putonce">
+<h3>putOnce<a class="headerlink" href="#putonce" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.putOnce(String, Object)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">putOnce</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.putOnce(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/value pair in the JSONObject, but only if the key and the value are both non-null, and only if there is not already a member with that name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the key is a duplicate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">his.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="putopt">
+<h3>putOpt<a class="headerlink" href="#putopt" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.putOpt(String, Object)">
+public <a class="reference internal" href="#org.json.JSONObject" title="org.json.JSONObject">JSONObject</a> <code class="descname">putOpt</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.putOpt(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put a key/value pair in the JSONObject, but only if the key and the value are both non-null.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; A key string.</li>
+<li><strong>value</strong> &#8211; An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the value is a non-finite number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="quote">
+<h3>quote<a class="headerlink" href="#quote" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.quote(String)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">quote</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> string</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.quote(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a string in double quotes with backslash sequences in all the right places. A backslash will be inserted within , producing</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> &#8211; A String</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A String correctly formatted for insertion in a JSON text.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="remove">
+<h3>remove<a class="headerlink" href="#remove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.remove(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">remove</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> key</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.remove(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a name and its value, if present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; The name to be removed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The value that was associated with the name, or null if there was no value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="stringtovalue">
+<h3>stringToValue<a class="headerlink" href="#stringtovalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.stringToValue(String)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">stringToValue</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> string</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.stringToValue(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to convert a string into a number, boolean, or null. If the string can&#8217;t be converted, return the string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> &#8211; A String.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A simple JSON value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="testvalidity">
+<h3>testValidity<a class="headerlink" href="#testvalidity" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.testValidity(Object)">
+public static void <code class="descname">testValidity</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> o</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.testValidity(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Throw an exception if the object is a NaN or infinite number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>o</strong> &#8211; The object to test.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If o is a non-finite number.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tojsonarray">
+<h3>toJSONArray<a class="headerlink" href="#tojsonarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.toJSONArray(JSONArray)">
+public <a class="reference internal" href="JSONArray.html#org.json.JSONArray" title="org.json.JSONArray">JSONArray</a> <code class="descname">toJSONArray</code><span class="sig-paren">(</span><a class="reference internal" href="JSONArray.html#org.json.JSONArray" title="org.json.JSONArray">JSONArray</a><em> names</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.toJSONArray(JSONArray)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a JSONArray containing the values of the members of this JSONObject.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>names</strong> &#8211; A JSONArray containing a list of key strings. This determines the sequence of the values in the result.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If any of the values are non-finite numbers.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONArray of values.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.toString()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a JSON text of this JSONObject. For compactness, no whitespace is added. If this would not result in a syntactically correct JSON text, then null will be returned instead.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a printable, displayable, portable, transmittable representation of the object, beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id21">
+<h3>toString<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.toString(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span>int<em> indentFactor</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.toString(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a prettyprinted JSON text of this JSONObject.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>indentFactor</strong> &#8211; The number of spaces to add to each level of indentation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the object contains an invalid number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a printable, displayable, portable, transmittable representation of the object, beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id22">
+<h3>toString<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.toString(int, int)">
+ <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span>int<em> indentFactor</em>, int<em> indent</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.toString(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a prettyprinted JSON text of this JSONObject.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>indentFactor</strong> &#8211; The number of spaces to add to each level of indentation.</li>
+<li><strong>indent</strong> &#8211; The indentation of the top level.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the object contains an invalid number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a printable, displayable, transmittable representation of the object, beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="valuetostring">
+<h3>valueToString<a class="headerlink" href="#valuetostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.valueToString(Object)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">valueToString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.valueToString(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a JSON text of an Object value. If the object has an value.toJSONString() method, then that method will be used to produce the JSON text. The method is required to produce a strictly conforming text. If the object does not contain a toJSONString method (which is the most common case), then a text will be produced by other means. If the value is an array or Collection, then a JSONArray will be made from it and its toJSONString method will be called. If the value is a MAP, then a JSONObject will be made from it and its toJSONString method will be called. Otherwise, the value&#8217;s toString method will be called, and the result will be quoted.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>value</strong> &#8211; The value to be serialized.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the value is or contains an invalid number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a printable, displayable, transmittable representation of the object, beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id23">
+<h3>valueToString<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.valueToString(Object, int, int)">
+static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">valueToString</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em>, int<em> indentFactor</em>, int<em> indent</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.valueToString(Object, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a prettyprinted JSON text of an object value.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>value</strong> &#8211; The value to be serialized.</li>
+<li><strong>indentFactor</strong> &#8211; The number of spaces to add to each level of indentation.</li>
+<li><strong>indent</strong> &#8211; The indentation of the top level.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the object contains an invalid number.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a printable, displayable, transmittable representation of the object, beginning with <code class="docutils literal"><span class="pre">{</span></code>&nbsp;(left brace) and ending with <code class="docutils literal"><span class="pre">}</span></code>&nbsp;(right brace).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="wrap">
+<h3>wrap<a class="headerlink" href="#wrap" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.wrap(Object)">
+public static <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">wrap</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> object</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.wrap(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap an object, if necessary. If the object is null, return the NULL object. If it is an array or collection, wrap it in a JSONArray. If it is a map, wrap it in a JSONObject. If it is a standard property (Double, String, et al) then it is already wrapped. Otherwise, if it comes from one of the java packages, turn it into a string. And if it doesn&#8217;t, try to wrap it in a JSONObject. If the wrapping fails, then null is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object</strong> &#8211; The object to wrap</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The wrapped value</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="write">
+<h3>write<a class="headerlink" href="#write" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONObject.write(Writer)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html" title="java.io.Writer">Writer</a> <code class="descname">write</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html" title="java.io.Writer">Writer</a><em> writer</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONObject.write(Writer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the contents of the JSONObject as JSON text to a writer. For compactness, no whitespace is added.</p>
+<p>Warning: This method assumes that the data structure is acyclical.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The writer.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="JSONString.html" class="btn btn-neutral float-right" title="JSONString"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="JSONML.html" class="btn btn-neutral" title="JSONML"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

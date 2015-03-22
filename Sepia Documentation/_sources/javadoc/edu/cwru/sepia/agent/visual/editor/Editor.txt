@@ -1,0 +1,244 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt FlowLayout
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event MouseAdapter
+
+.. java:import:: java.awt.event MouseEvent
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.io PrintStream
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing ButtonGroup
+
+.. java:import:: javax.swing DefaultComboBoxModel
+
+.. java:import:: javax.swing JButton
+
+.. java:import:: javax.swing JComboBox
+
+.. java:import:: javax.swing JFileChooser
+
+.. java:import:: javax.swing JFrame
+
+.. java:import:: javax.swing JOptionPane
+
+.. java:import:: javax.swing JRadioButton
+
+.. java:import:: javax.swing JTextArea
+
+.. java:import:: javax.swing JTextField
+
+.. java:import:: javax.swing SwingUtilities
+
+.. java:import:: org.json JSONException
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.agent.visual GamePanel
+
+.. java:import:: edu.cwru.sepia.agent.visual GameScreen
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateBuilder
+
+.. java:import:: edu.cwru.sepia.util GameMap
+
+.. java:import:: edu.cwru.sepia.util TypeLoader
+
+Editor
+======
+
+.. java:package:: edu.cwru.sepia.agent.visual.editor
+   :noindex:
+
+.. java:type:: public class Editor extends JFrame
+
+Fields
+------
+addPlayer
+^^^^^^^^^
+
+.. java:field::  JButton addPlayer
+   :outertype: Editor
+
+cursorGroup
+^^^^^^^^^^^
+
+.. java:field::  ButtonGroup cursorGroup
+   :outertype: Editor
+
+error
+^^^^^
+
+.. java:field::  JTextArea error
+   :outertype: Editor
+
+fogOfWar
+^^^^^^^^
+
+.. java:field::  ButtonGroup fogOfWar
+   :outertype: Editor
+
+fogOff
+^^^^^^
+
+.. java:field::  JRadioButton fogOff
+   :outertype: Editor
+
+fogOn
+^^^^^
+
+.. java:field::  JRadioButton fogOn
+   :outertype: Editor
+
+gamePanel
+^^^^^^^^^
+
+.. java:field::  GamePanel gamePanel
+   :outertype: Editor
+
+playerSelector
+^^^^^^^^^^^^^^
+
+.. java:field::  JComboBox playerSelector
+   :outertype: Editor
+
+resourceAmount
+^^^^^^^^^^^^^^
+
+.. java:field::  JTextField resourceAmount
+   :outertype: Editor
+
+revealResources
+^^^^^^^^^^^^^^^
+
+.. java:field::  ButtonGroup revealResources
+   :outertype: Editor
+
+revealResourcesOff
+^^^^^^^^^^^^^^^^^^
+
+.. java:field::  JRadioButton revealResourcesOff
+   :outertype: Editor
+
+revealResourcesOn
+^^^^^^^^^^^^^^^^^
+
+.. java:field::  JRadioButton revealResourcesOn
+   :outertype: Editor
+
+save
+^^^^
+
+.. java:field::  JButton save
+   :outertype: Editor
+
+screen
+^^^^^^
+
+.. java:field::  GameScreen screen
+   :outertype: Editor
+
+selectMine
+^^^^^^^^^^
+
+.. java:field::  JRadioButton selectMine
+   :outertype: Editor
+
+selectPointer
+^^^^^^^^^^^^^
+
+.. java:field::  JRadioButton selectPointer
+   :outertype: Editor
+
+selectRemove
+^^^^^^^^^^^^
+
+.. java:field::  JRadioButton selectRemove
+   :outertype: Editor
+
+selectTree
+^^^^^^^^^^
+
+.. java:field::  JRadioButton selectTree
+   :outertype: Editor
+
+selectUnit
+^^^^^^^^^^
+
+.. java:field::  JRadioButton selectUnit
+   :outertype: Editor
+
+setSize
+^^^^^^^
+
+.. java:field::  JButton setSize
+   :outertype: Editor
+
+state
+^^^^^
+
+.. java:field::  State state
+   :outertype: Editor
+
+templateSelector
+^^^^^^^^^^^^^^^^
+
+.. java:field::  JComboBox templateSelector
+   :outertype: Editor
+
+xSize
+^^^^^
+
+.. java:field::  JTextField xSize
+   :outertype: Editor
+
+ySize
+^^^^^
+
+.. java:field::  JTextField ySize
+   :outertype: Editor
+
+Constructors
+------------
+Editor
+^^^^^^
+
+.. java:constructor:: public Editor(GameScreen screen, GamePanel gamePanel, State state, String templatefilename)
+   :outertype: Editor
+
+Methods
+-------
+main
+^^^^
+
+.. java:method:: public static void main(String[] args) throws FileNotFoundException, JSONException
+   :outertype: Editor
+
+updateScreen
+^^^^^^^^^^^^
+
+.. java:method:: public void updateScreen()
+   :outertype: Editor
+

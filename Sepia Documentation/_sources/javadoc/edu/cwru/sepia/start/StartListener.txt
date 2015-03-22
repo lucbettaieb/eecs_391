@@ -1,0 +1,18 @@
+StartListener
+=============
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: public interface StartListener
+
+   Is called with command arguments when the program is to be started.
+
+Methods
+-------
+start
+^^^^^
+
+.. java:method:: public void start(String[] args)
+   :outertype: StartListener
+

@@ -1,0 +1,215 @@
+.. java:import:: java.lang.reflect Array
+
+.. java:import:: java.util.logging ConsoleHandler
+
+.. java:import:: java.util.logging Handler
+
+.. java:import:: java.util.logging Level
+
+.. java:import:: java.util.logging Logger
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadCallable
+
+.. java:import:: matlabcontrol MatlabInvocationException
+
+.. java:import:: matlabcontrol MatlabProxy
+
+.. java:import:: matlabcontrol MatlabProxy.DisconnectionListener
+
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+MatlabProxyLogger
+=================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public class MatlabProxyLogger
+
+   Wraps around a \ :java:ref:`MatlabProxy`\  to provide a log of interactions. The data is not altered. This logger is useful for determining the Java types and structure of data returned from MATLAB.  Entering a method, exiting a method, and throwing an exception are logged. Method parameters and return values are logged. The contents of a returned array will be recursively explored and its contents logged. As is convention, all of these interactions are logged at \ ``Level.FINER``\ . If the logging system has not been otherwise configured, then the \ ``ConsoleHandler``\  which prints log messages to the console will not show these log messages as their level is too low. To configure the \ ``ConsoleHandler``\  to show these log messages, call \ :java:ref:`showInConsoleHandler()`\ .  This class is unconditionally thread-safe.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+MatlabProxyLogger
+^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public MatlabProxyLogger(MatlabProxy proxy)
+   :outertype: MatlabProxyLogger
+
+   Constructs the logger. If the provided \ ``proxy``\  throws an exception it will be caught, logged, and then rethrown.
+
+   :param proxy:
+
+Methods
+-------
+addDisconnectionListener
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addDisconnectionListener(DisconnectionListener listener)
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param listener:
+
+disconnect
+^^^^^^^^^^
+
+.. java:method:: public boolean disconnect()
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+eval
+^^^^
+
+.. java:method:: public void eval(String command) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param command:
+   :throws MatlabInvocationException:
+
+exit
+^^^^
+
+.. java:method:: public void exit() throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :throws MatlabInvocationException:
+
+feval
+^^^^^
+
+.. java:method:: public void feval(String functionName, Object... args) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param functionName:
+   :param args:
+   :throws MatlabInvocationException:
+
+getIdentifier
+^^^^^^^^^^^^^
+
+.. java:method:: public Identifier getIdentifier()
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: public Object getVariable(String variableName) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param variableName:
+   :throws MatlabInvocationException:
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: public <U> U invokeAndWait(MatlabThreadCallable<U> callable) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param <U>:
+   :param callable:
+   :throws MatlabInvocationException:
+
+isConnected
+^^^^^^^^^^^
+
+.. java:method:: public boolean isConnected()
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+isExistingSession
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean isExistingSession()
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+isRunningInsideMatlab
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean isRunningInsideMatlab()
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+removeDisconnectionListener
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeDisconnectionListener(DisconnectionListener listener)
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param listener:
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningEval(String command, int nargout) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param command:
+   :param nargout:
+   :throws MatlabInvocationExceptio:
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningFeval(String functionName, int nargout, Object... args) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param functionName:
+   :param nargout:
+   :param args:
+   :throws MatlabInvocationException:
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: public void setVariable(String variableName, Object value) throws MatlabInvocationException
+   :outertype: MatlabProxyLogger
+
+   Delegates to the proxy; logs the interaction.
+
+   :param variableName:
+   :param value:
+   :throws MatlabInvocationException:
+
+showInConsoleHandler
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static void showInConsoleHandler()
+   :outertype: MatlabProxyLogger
+
+   Configures the \ ``ConsoleHandler``\  responsible for showing logging records to show the records that are logged by this interactor. This is behavior is useful if you have not otherwise configured logging in your application.
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: MatlabProxyLogger
+
+   Returns a brief description of this proxy. The exact details of this representation are unspecified and are subject to change.
+

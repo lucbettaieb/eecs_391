@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Combat Agents &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Javadoc" href="javadoc/packages.html"/>
+        <link rel="prev" title="Your First Agent" href="first_agent.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javadoc/packages.html">Javadoc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Combat Agents</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/combat_agents.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="combat-agents">
+<h1>Combat Agents<a class="headerlink" href="#combat-agents" title="Permalink to this headline">¶</a></h1>
+<p>This section will give you a basic overview of how you command your
+different units to fight. A basic enemy AI is included so that you can
+experiment with the API.</p>
+<div class="section" id="setting-up-the-combat-agent">
+<h2>Setting up the Combat Agent<a class="headerlink" href="#setting-up-the-combat-agent" title="Permalink to this headline">¶</a></h2>
+<p>To start download the <a class="reference external" href="_static/combat_files.zip">combat_files.zip</a>. This zip file contains two folders:
+<code class="docutils literal"><span class="pre">data</span></code>, and <code class="docutils literal"><span class="pre">agents</span></code>. Copy the file from the data folder into your
+projects data folder and copy the agents folder to your project. You
+should now see these files in the Eclipse Package Explorer tab. If you
+don&#8217;t you may need to refresh by right clicking on the package name
+and selecting <code class="docutils literal"><span class="pre">Refresh</span></code> or by pressing F5.</p>
+<p>Next you will need to make an empty class. Just as in the Resource
+Collection tutorial right click on the <code class="docutils literal"><span class="pre">src</span></code> folder and create a new
+java class that inherits from the <code class="docutils literal"><span class="pre">Agent</span></code> class. This tutorial
+assumes you name your agent <code class="docutils literal"><span class="pre">MyCombatAgent</span></code>. Once you have created
+your default agent open the <code class="docutils literal"><span class="pre">CombatAgentConfig.xml</span></code> in the data
+folder and modify the first <code class="docutils literal"><span class="pre">&lt;ClassName&gt;</span></code> tag to be the classpath of
+your newly created agent.</p>
+<p>Next duplicate one of the run configurations from the previous
+tutorials. On the <code class="docutils literal"><span class="pre">Arguments</span></code> tab change the config file to the new
+<code class="docutils literal"><span class="pre">CombatAgentConfig.xml</span></code>. Finally click on the classpath tab and add
+the new <code class="docutils literal"><span class="pre">agents</span></code> folder to the class path by clicking the
+<code class="docutils literal"><span class="pre">Advanced</span></code> button and then select <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Folders</span></code>. Save the run
+configuration.</p>
+<p>At this point you can use the run configuration which will start a new
+map. In the top right corner are the enemy units and in the middle are
+your units. The <em>f</em> units are Footmen. These units can only attack
+adjacent squares. The <em>T</em> unit is a tower, which is an immobile unit
+with long attack range. The <em>a</em> units are archers, they have long
+attack range, but low health. The <em>b</em> units are Ballista they have
+medium range and high attack, but low health.</p>
+</div>
+<div class="section" id="attacking-the-enemy">
+<h2>Attacking the Enemy<a class="headerlink" href="#attacking-the-enemy" title="Permalink to this headline">¶</a></h2>
+<p>To attack an enemy unit you need the unit ID of your unit that is
+attacking and the unit ID of the enemy unit being attacked. The
+easiest way to attack is to use a CompoundAttack action. This will
+take care of moving the agent towards the specified enemy unit until
+that unit is within range.</p>
+<p>Here is a simple example of an agent that just assigns every unit to
+attack a single enemy unit until that unit is killed. Obviously this
+is a terrible strategy and in your assignments you will attempt to do
+better, but this demonstrates how to make a compound attack
+action. You can download the <a class="reference external" href="_static/agents/MyCombatAgent/MyCombatAgent.java">MyCombatAgent.java file here</a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyCombatAgent</span> <span class="kd">extends</span> <span class="n">Agent</span> <span class="o">{</span>
+
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">enemyPlayerNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">MyCombatAgent</span><span class="o">(</span><span class="kt">int</span> <span class="n">playernum</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">otherargs</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">(</span><span class="n">playernum</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">otherargs</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="o">{</span>
+                        <span class="n">enemyPlayerNum</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">otherargs</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+                <span class="o">}</span>
+
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Constructed MyCombatAgent&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="nf">initialStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span>
+                        <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// This stores the action that each unit will perform</span>
+                <span class="c1">// if there are no changes to the current actions then this</span>
+                <span class="c1">// map will be empty</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="n">actions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;();</span>
+
+                <span class="c1">// This is a list of all of your units</span>
+                <span class="c1">// Refer to the resource agent example for ways of</span>
+                <span class="c1">// differentiating between different unit types based on</span>
+                <span class="c1">// the list of IDs</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">myUnitIDs</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">playernum</span><span class="o">);</span>
+
+                <span class="c1">// This is a list of enemy units</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">enemyUnitIDs</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">enemyPlayerNum</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">enemyUnitIDs</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="o">{</span>
+                        <span class="c1">// Nothing to do because there is no one left to attack</span>
+                        <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="c1">// start by commanding every single unit to attack an enemy unit</span>
+                <span class="k">for</span><span class="o">(</span><span class="n">Integer</span> <span class="n">myUnitID</span> <span class="o">:</span> <span class="n">myUnitIDs</span><span class="o">)</span>
+                <span class="o">{</span>
+                        <span class="c1">// Command all of my units to attack the first enemy unit in the list</span>
+                        <span class="n">actions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">myUnitID</span><span class="o">,</span> <span class="n">Action</span><span class="o">.</span><span class="na">createCompoundAttack</span><span class="o">(</span><span class="n">myUnitID</span><span class="o">,</span> <span class="n">enemyUnitIDs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)));</span>
+                <span class="o">}</span>
+
+                <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="nf">middleStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span>
+                        <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// This stores the action that each unit will perform</span>
+                <span class="c1">// if there are no changes to the current actions then this</span>
+                <span class="c1">// map will be empty</span>
+                <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;</span> <span class="n">actions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Action</span><span class="o">&gt;();</span>
+
+                <span class="c1">// This is a list of enemy units</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">enemyUnitIDs</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getUnitIds</span><span class="o">(</span><span class="n">enemyPlayerNum</span><span class="o">);</span>
+
+                <span class="k">if</span><span class="o">(</span><span class="n">enemyUnitIDs</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="o">{</span>
+                        <span class="c1">// Nothing to do because there is no one left to attack</span>
+                        <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+                <span class="o">}</span>
+
+                <span class="kt">int</span> <span class="n">currentStep</span> <span class="o">=</span> <span class="n">newstate</span><span class="o">.</span><span class="na">getTurnNumber</span><span class="o">();</span>
+
+                <span class="c1">// go through the action history</span>
+                <span class="k">for</span><span class="o">(</span><span class="n">ActionResult</span> <span class="n">feedback</span> <span class="o">:</span> <span class="n">statehistory</span><span class="o">.</span><span class="na">getCommandFeedback</span><span class="o">(</span><span class="n">playernum</span><span class="o">,</span> <span class="n">currentStep</span><span class="o">-</span><span class="mi">1</span><span class="o">).</span><span class="na">values</span><span class="o">())</span>
+                <span class="o">{</span>
+                        <span class="c1">// if the previous action is no longer in progress (either due to failure or completion)</span>
+                        <span class="c1">// then add a new action for this unit</span>
+                        <span class="k">if</span><span class="o">(</span><span class="n">feedback</span><span class="o">.</span><span class="na">getFeedback</span><span class="o">()</span> <span class="o">!=</span> <span class="n">ActionFeedback</span><span class="o">.</span><span class="na">INCOMPLETE</span><span class="o">)</span>
+                        <span class="o">{</span>
+                                <span class="c1">// attack the first enemy unit in the list</span>
+                                <span class="kt">int</span> <span class="n">unitID</span> <span class="o">=</span> <span class="n">feedback</span><span class="o">.</span><span class="na">getAction</span><span class="o">().</span><span class="na">getUnitId</span><span class="o">();</span>
+                                <span class="n">actions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">unitID</span><span class="o">,</span> <span class="n">Action</span><span class="o">.</span><span class="na">createCompoundAttack</span><span class="o">(</span><span class="n">unitID</span><span class="o">,</span> <span class="n">enemyUnitIDs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)));</span>
+                        <span class="o">}</span>
+                <span class="o">}</span>
+
+                <span class="k">return</span> <span class="n">actions</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">terminalStep</span><span class="o">(</span><span class="n">StateView</span> <span class="n">newstate</span><span class="o">,</span> <span class="n">HistoryView</span> <span class="n">statehistory</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Finished the episode&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">savePlayerData</span><span class="o">(</span><span class="n">OutputStream</span> <span class="n">os</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated method stub</span>
+
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">loadPlayerData</span><span class="o">(</span><span class="n">InputStream</span> <span class="n">is</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated method stub</span>
+
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>First thing to notice is that this agent accepts additional arguments
+in its constructor. All of the arguments are passed to the agent as
+strings. So you will need to convert them to the correct data type
+depending on the application.</p>
+<p>Secondly in this agent we have a separate initial and middle
+step. This is because the first step commands every unit to attack a
+single enemy unit. Every other step checks for the completion of the
+previous command. If an action has completed its command it gets
+assigned another attack action. This repeats until either all of the
+enemy&#8217;s are killed or all of the agent&#8217;s units are killed. In this
+case all of the agent&#8217;s units will die.</p>
+<p>The statehistory is also useful for detecting events like unit deaths
+and changes in health. These features may be useful when constructing
+your own agents. For instance you may want to check in the middle step
+whether any of your units have died in the last step and if so
+readjust your strategy.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="javadoc/packages.html" class="btn btn-neutral float-right" title="Javadoc"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="first_agent.html" class="btn btn-neutral" title="Your First Agent"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+ResourceNodeExhaustionLog
+=========================
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class ResourceNodeExhaustionLog implements Serializable, DeepEquatable
+
+   A read only class that represents the exhaustion of a resource node
+
+   :author: The Condor
+
+Constructors
+------------
+ResourceNodeExhaustionLog
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ResourceNodeExhaustionLog(int exhaustednodeid, ResourceNode.Type resoucenodetype)
+   :outertype: ResourceNodeExhaustionLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: ResourceNodeExhaustionLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: ResourceNodeExhaustionLog
+
+getExhaustedNodeID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getExhaustedNodeID()
+   :outertype: ResourceNodeExhaustionLog
+
+getResourceNodeType
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceNode.Type getResourceNodeType()
+   :outertype: ResourceNodeExhaustionLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ResourceNodeExhaustionLog
+

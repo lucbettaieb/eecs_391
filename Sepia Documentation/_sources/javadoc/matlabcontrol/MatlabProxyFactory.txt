@@ -1,0 +1,50 @@
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+MatlabProxyFactory
+==================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public class MatlabProxyFactory implements ProxyFactory
+
+   Creates instances of \ :java:ref:`MatlabProxy`\ . Any number of proxies may be created with a factory.  How the proxies will connect to a session of MATLAB depends on whether the factory is running inside or outside MATLAB:  \ *Running inside MATLAB*\  The proxy will connect to the session of MATLAB this factory is running in.  \ *Running outside MATLAB*\  By default a new session of MATLAB will be started and connected to, but the factory may be configured via the options provided to this factory to connect to a previously controlled session.  This class is unconditionally thread-safe. Any number of proxies may be created simultaneously.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+MatlabProxyFactory
+^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public MatlabProxyFactory()
+   :outertype: MatlabProxyFactory
+
+   Constructs the factory using default options.
+
+   :throws MatlabConnectionException:
+
+MatlabProxyFactory
+^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public MatlabProxyFactory(MatlabProxyFactoryOptions options)
+   :outertype: MatlabProxyFactory
+
+   Constructs the factory with the specified \ ``options``\ . Depending on the whether the factory is running inside MATLAB or outside MATLAB will determine if a given option is used.
+
+   :param options:
+
+Methods
+-------
+getProxy
+^^^^^^^^
+
+.. java:method:: @Override public MatlabProxy getProxy() throws MatlabConnectionException
+   :outertype: MatlabProxyFactory
+
+requestProxy
+^^^^^^^^^^^^
+
+.. java:method:: @Override public Request requestProxy(RequestCallback callback) throws MatlabConnectionException
+   :outertype: MatlabProxyFactory
+

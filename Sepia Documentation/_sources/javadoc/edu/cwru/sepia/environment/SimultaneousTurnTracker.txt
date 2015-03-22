@@ -1,0 +1,90 @@
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Random
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+SimultaneousTurnTracker
+=======================
+
+.. java:package:: edu.cwru.sepia.environment
+   :noindex:
+
+.. java:type:: public class SimultaneousTurnTracker implements TurnTracker
+
+   A simple class that always says it is everybody's turn.
+
+   :author: The Condor
+
+Fields
+------
+currentPlayers
+^^^^^^^^^^^^^^
+
+.. java:field::  HashSet<Integer> currentPlayers
+   :outertype: SimultaneousTurnTracker
+
+newlyAddedPlayers
+^^^^^^^^^^^^^^^^^
+
+.. java:field::  HashSet<Integer> newlyAddedPlayers
+   :outertype: SimultaneousTurnTracker
+
+playersWhoHaveHadTurns
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field::  HashSet<Integer> playersWhoHaveHadTurns
+   :outertype: SimultaneousTurnTracker
+
+Constructors
+------------
+SimultaneousTurnTracker
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public SimultaneousTurnTracker(Random unused)
+   :outertype: SimultaneousTurnTracker
+
+Methods
+-------
+addPlayer
+^^^^^^^^^
+
+.. java:method:: @Override public void addPlayer(Integer playerNumber)
+   :outertype: SimultaneousTurnTracker
+
+hasHadTurnBefore
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean hasHadTurnBefore(int playerNumber)
+   :outertype: SimultaneousTurnTracker
+
+isAgentsTurn
+^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isAgentsTurn(Agent agent)
+   :outertype: SimultaneousTurnTracker
+
+isPlayersTurn
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isPlayersTurn(int playerNumber)
+   :outertype: SimultaneousTurnTracker
+
+newEpisodeAndStep
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void newEpisodeAndStep()
+   :outertype: SimultaneousTurnTracker
+
+newStep
+^^^^^^^
+
+.. java:method:: @Override public void newStep()
+   :outertype: SimultaneousTurnTracker
+
+removePlayer
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void removePlayer(Integer playerNumber)
+   :outertype: SimultaneousTurnTracker
+

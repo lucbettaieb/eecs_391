@@ -1,0 +1,26 @@
+.. java:import:: javax.xml.bind.annotation.adapters XmlAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+Adapter3
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: public class Adapter3 extends XmlAdapter<String, ResourceType>
+
+Methods
+-------
+marshal
+^^^^^^^
+
+.. java:method:: public String marshal(ResourceType value)
+   :outertype: Adapter3
+
+unmarshal
+^^^^^^^^^
+
+.. java:method:: public ResourceType unmarshal(String value)
+   :outertype: Adapter3
+

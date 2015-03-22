@@ -1,0 +1,150 @@
+.. java:import:: java.io BufferedReader
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Random
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.environment.model.history BirthLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DeathLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+ScriptedGoalAgent.Goal
+======================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public static class Goal implements Serializable
+   :outertype: ScriptedGoalAgent
+
+   The goal and the means for achieving it.
+
+Fields
+------
+attackwithall
+^^^^^^^^^^^^^
+
+.. java:field::  boolean attackwithall
+   :outertype: ScriptedGoalAgent.Goal
+
+commandstring
+^^^^^^^^^^^^^
+
+.. java:field::  String commandstring
+   :outertype: ScriptedGoalAgent.Goal
+
+endtype
+^^^^^^^
+
+.. java:field::  GathererTask endtype
+   :outertype: ScriptedGoalAgent.Goal
+
+numgatherers
+^^^^^^^^^^^^
+
+.. java:field::  int numgatherers
+   :outertype: ScriptedGoalAgent.Goal
+
+starttype
+^^^^^^^^^
+
+.. java:field::  GathererTask starttype
+   :outertype: ScriptedGoalAgent.Goal
+
+template
+^^^^^^^^
+
+.. java:field::  TemplateView template
+   :outertype: ScriptedGoalAgent.Goal
+
+type
+^^^^
+
+.. java:field::  GoalType type
+   :outertype: ScriptedGoalAgent.Goal
+
+waittype
+^^^^^^^^
+
+.. java:field::  WaitType waittype
+   :outertype: ScriptedGoalAgent.Goal
+
+waitvalue
+^^^^^^^^^
+
+.. java:field::  int waitvalue
+   :outertype: ScriptedGoalAgent.Goal
+
+xoffset
+^^^^^^^
+
+.. java:field::  int xoffset
+   :outertype: ScriptedGoalAgent.Goal
+
+yoffset
+^^^^^^^
+
+.. java:field::  int yoffset
+   :outertype: ScriptedGoalAgent.Goal
+
+Constructors
+------------
+Goal
+^^^^
+
+.. java:constructor:: public Goal(String command, StateView state, ScriptedGoalAgent agent)
+   :outertype: ScriptedGoalAgent.Goal
+
+Methods
+-------
+tryExecute
+^^^^^^^^^^
+
+.. java:method:: public boolean tryExecute(StateView state, RelevantStateView relstate, Map<Integer, Action> actions)
+   :outertype: ScriptedGoalAgent.Goal
+
+   See if those actions can be done. This is not a final test, merely the best that can be done without fully simulating it. This method alters this map by adding actions.
+
+   :param state:
+   :param relstate:
+   :param actions: A map builder of actions.
+   :return: Assign actions
+

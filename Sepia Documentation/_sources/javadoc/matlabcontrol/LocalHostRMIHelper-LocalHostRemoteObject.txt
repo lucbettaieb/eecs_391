@@ -1,0 +1,45 @@
+.. java:import:: java.io IOException
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.net InetAddress
+
+.. java:import:: java.net ServerSocket
+
+.. java:import:: java.net Socket
+
+.. java:import:: java.rmi Remote
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi.registry LocateRegistry
+
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.rmi.server RMIClientSocketFactory
+
+.. java:import:: java.rmi.server RMIServerSocketFactory
+
+.. java:import:: java.rmi.server UnicastRemoteObject
+
+.. java:import:: javax.net ServerSocketFactory
+
+.. java:import:: javax.net SocketFactory
+
+LocalHostRMIHelper.LocalHostRemoteObject
+========================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: static class LocalHostRemoteObject extends UnicastRemoteObject
+   :outertype: LocalHostRMIHelper
+
+Constructors
+------------
+LocalHostRemoteObject
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  LocalHostRemoteObject() throws RemoteException
+   :outertype: LocalHostRMIHelper.LocalHostRemoteObject
+

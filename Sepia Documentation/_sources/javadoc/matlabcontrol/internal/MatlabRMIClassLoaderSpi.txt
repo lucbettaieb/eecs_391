@@ -1,0 +1,60 @@
+.. java:import:: java.io File
+
+.. java:import:: java.net MalformedURLException
+
+.. java:import:: java.rmi.server RMIClassLoader
+
+.. java:import:: java.rmi.server RMIClassLoaderSpi
+
+MatlabRMIClassLoaderSpi
+=======================
+
+.. java:package:: matlabcontrol.internal
+   :noindex:
+
+.. java:type:: public class MatlabRMIClassLoaderSpi extends RMIClassLoaderSpi
+
+   \ **Internal Use Only**\   This class must be public so that it can be created via reflection by \ :java:ref:`RemoteClassLoader`\ . If it were package private it would result in an \ :java:ref:`IllegalAccessError`\  because only classes in the same package as a package private class may construct it (even via reflection). It has been placed in the \ ``matlabcontrol.internal``\  package to make it clear it is not intended for use by users of matlabcontrol.  A custom service provider for the RMI class loader. Allows for loading classes sent from the external JVM and providing annotations so that the external JVM may load classes defined only in the MATLAB JVM. Loading classes from the external JVM could be accomplished by setting \ ``java.rmi.server.codebase``\  property in the external JVM but that could interfere with other uses of RMI in the application. There is no way to always sending the correct annotations without this custom rmi class loader spi. While the \ ``java.rmi.server.codebase``\  property could be set in the MATLAB JVM, the property is checked only at load time. This would mean that class definitions added dynamically with \ ``javaaddpath``\  could not be sent.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+getClassAnnotation
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public String getClassAnnotation(Class<?> clazz)
+   :outertype: MatlabRMIClassLoaderSpi
+
+   {@inheritDoc}  The returned annotation becomes the \ ``codebase``\  argument in \ :java:ref:`loadClass(java.lang.String,java.lang.String,java.lang.ClassLoader)`\  when the \ ``RMIClassLoaderSpi``\  in the receiving JVM attempts to load \ ``clazz``\ . This allows for classes defined in MATLAB but not in the receiving JVM to find and load the class definition.
+
+   :param clazz:
+
+getClassLoader
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public ClassLoader getClassLoader(String codebase) throws MalformedURLException
+   :outertype: MatlabRMIClassLoaderSpi
+
+loadClass
+^^^^^^^^^
+
+.. java:method:: @Override public Class<?> loadClass(String codebase, String name, ClassLoader defaultLoader) throws MalformedURLException, ClassNotFoundException
+   :outertype: MatlabRMIClassLoaderSpi
+
+loadProxyClass
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Class<?> loadProxyClass(String codebase, String[] interfaces, ClassLoader defaultLoader) throws MalformedURLException, ClassNotFoundException
+   :outertype: MatlabRMIClassLoaderSpi
+
+setCodebase
+^^^^^^^^^^^
+
+.. java:method:: public static void setCodebase(String remoteCodebase)
+   :outertype: MatlabRMIClassLoaderSpi
+
+   Sets the codebase of the currently connected external JVM. This should be called only once per connection to an external JVM and should occur before users of the API can send objects over RMI.
+
+   :param remoteCodebase:
+

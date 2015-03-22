@@ -1,0 +1,38 @@
+JSONException
+=============
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class JSONException extends Exception
+
+   The JSONException is thrown by the JSON.org classes when things are amiss.
+
+   :author: JSON.org
+
+Constructors
+------------
+JSONException
+^^^^^^^^^^^^^
+
+.. java:constructor:: public JSONException(String message)
+   :outertype: JSONException
+
+   Constructs a JSONException with an explanatory message.
+
+   :param message: Detail about the reason for the exception.
+
+JSONException
+^^^^^^^^^^^^^
+
+.. java:constructor:: public JSONException(Throwable cause)
+   :outertype: JSONException
+
+Methods
+-------
+getCause
+^^^^^^^^
+
+.. java:method:: public Throwable getCause()
+   :outertype: JSONException
+

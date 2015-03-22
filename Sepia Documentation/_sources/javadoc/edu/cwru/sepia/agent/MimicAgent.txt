@@ -1,0 +1,73 @@
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+MimicAgent
+==========
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class MimicAgent extends Agent
+
+   An agent that uses a map of turn numbers to action assignments to replay a series of actions.
+
+   :author: The Condor
+
+Constructors
+------------
+MimicAgent
+^^^^^^^^^^
+
+.. java:constructor:: public MimicAgent(int player, Map<Integer, ? extends Map<Integer, Action>> actions)
+   :outertype: MimicAgent
+
+   Creates a mimic agent that will blindly attempt to do a series of actions. Warning: copies the actual map and uses it. Edits to the map after passing it will alter the agent's behaviour
+
+   :param player:
+   :param actions: A map of step numbers to the map to return for that step.
+
+Methods
+-------
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, HistoryView statehistory)
+   :outertype: MimicAgent
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: MimicAgent
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newstate, HistoryView statehistory)
+   :outertype: MimicAgent
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: MimicAgent
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, HistoryView statehistory)
+   :outertype: MimicAgent
+

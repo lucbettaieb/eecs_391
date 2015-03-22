@@ -1,0 +1,62 @@
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+ActionResult
+============
+
+.. java:package:: edu.cwru.sepia.action
+   :noindex:
+
+.. java:type:: public class ActionResult implements DeepEquatable
+
+   An immutable (so long as Action is) result giving feedback on a specific action.
+
+   :author: The Condor
+
+Constructors
+------------
+ActionResult
+^^^^^^^^^^^^
+
+.. java:constructor:: public ActionResult(Action action, ActionFeedback result)
+   :outertype: ActionResult
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: ActionResult
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: ActionResult
+
+getAction
+^^^^^^^^^
+
+.. java:method:: public Action getAction()
+   :outertype: ActionResult
+
+getFeedback
+^^^^^^^^^^^
+
+.. java:method:: public ActionFeedback getFeedback()
+   :outertype: ActionResult
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ActionResult
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: ActionResult
+

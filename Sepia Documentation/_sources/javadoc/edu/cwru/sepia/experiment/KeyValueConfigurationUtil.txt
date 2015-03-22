@@ -1,0 +1,38 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io PrintStream
+
+.. java:import:: java.text ParseException
+
+.. java:import:: java.util Scanner
+
+KeyValueConfigurationUtil
+=========================
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public final class KeyValueConfigurationUtil
+
+Methods
+-------
+load
+^^^^
+
+.. java:method:: public static Configuration load(String filename) throws IOException, ParseException
+   :outertype: KeyValueConfigurationUtil
+
+save
+^^^^
+
+.. java:method:: public static void save(Configuration configuration, String filename) throws IOException
+   :outertype: KeyValueConfigurationUtil
+
+save
+^^^^
+
+.. java:method:: public static void save(Configuration configuration, PrintStream out)
+   :outertype: KeyValueConfigurationUtil
+

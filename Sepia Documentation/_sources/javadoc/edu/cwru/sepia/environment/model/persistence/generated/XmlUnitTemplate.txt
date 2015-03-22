@@ -1,0 +1,526 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlUnitTemplate
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlUnitTemplate extends XmlTemplate
+
+   Java class for UnitTemplate complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="UnitTemplate">
+        <complexContent>
+          <extension base="{}Template">
+            <sequence>
+              <element name="baseHealth" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="baseAttack" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="piercingAttack" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="range" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="armor" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="sightRange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="canGather" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="canBuild" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="canMove" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="canAcceptGold" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="canAcceptWood" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <element name="foodProvided" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="character" type="{http://www.w3.org/2001/XMLSchema}short"/>
+              <element name="goldGatherRate" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="woodGatherRate" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="durationGatherWood" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="durationGatherGold" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="durationMove" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="durationAttack" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="durationDeposit" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="produces" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              </sequence>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+armor
+^^^^^
+
+.. java:field:: protected int armor
+   :outertype: XmlUnitTemplate
+
+baseAttack
+^^^^^^^^^^
+
+.. java:field:: protected int baseAttack
+   :outertype: XmlUnitTemplate
+
+baseHealth
+^^^^^^^^^^
+
+.. java:field:: protected int baseHealth
+   :outertype: XmlUnitTemplate
+
+canAcceptGold
+^^^^^^^^^^^^^
+
+.. java:field:: protected boolean canAcceptGold
+   :outertype: XmlUnitTemplate
+
+canAcceptWood
+^^^^^^^^^^^^^
+
+.. java:field:: protected boolean canAcceptWood
+   :outertype: XmlUnitTemplate
+
+canBuild
+^^^^^^^^
+
+.. java:field:: protected boolean canBuild
+   :outertype: XmlUnitTemplate
+
+canGather
+^^^^^^^^^
+
+.. java:field:: protected boolean canGather
+   :outertype: XmlUnitTemplate
+
+canMove
+^^^^^^^
+
+.. java:field:: protected boolean canMove
+   :outertype: XmlUnitTemplate
+
+character
+^^^^^^^^^
+
+.. java:field:: protected short character
+   :outertype: XmlUnitTemplate
+
+durationAttack
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationAttack
+   :outertype: XmlUnitTemplate
+
+durationDeposit
+^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationDeposit
+   :outertype: XmlUnitTemplate
+
+durationGatherGold
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationGatherGold
+   :outertype: XmlUnitTemplate
+
+durationGatherWood
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationGatherWood
+   :outertype: XmlUnitTemplate
+
+durationMove
+^^^^^^^^^^^^
+
+.. java:field:: protected int durationMove
+   :outertype: XmlUnitTemplate
+
+foodProvided
+^^^^^^^^^^^^
+
+.. java:field:: protected int foodProvided
+   :outertype: XmlUnitTemplate
+
+goldGatherRate
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int goldGatherRate
+   :outertype: XmlUnitTemplate
+
+piercingAttack
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int piercingAttack
+   :outertype: XmlUnitTemplate
+
+produces
+^^^^^^^^
+
+.. java:field:: @XmlElement protected List<Integer> produces
+   :outertype: XmlUnitTemplate
+
+range
+^^^^^
+
+.. java:field:: protected int range
+   :outertype: XmlUnitTemplate
+
+sightRange
+^^^^^^^^^^
+
+.. java:field:: protected int sightRange
+   :outertype: XmlUnitTemplate
+
+woodGatherRate
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int woodGatherRate
+   :outertype: XmlUnitTemplate
+
+Methods
+-------
+getArmor
+^^^^^^^^
+
+.. java:method:: public int getArmor()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the armor property.
+
+getBaseAttack
+^^^^^^^^^^^^^
+
+.. java:method:: public int getBaseAttack()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the baseAttack property.
+
+getBaseHealth
+^^^^^^^^^^^^^
+
+.. java:method:: public int getBaseHealth()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the baseHealth property.
+
+getCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public short getCharacter()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the character property.
+
+getDurationAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationAttack()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the durationAttack property.
+
+getDurationDeposit
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationDeposit()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the durationDeposit property.
+
+getDurationGatherGold
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherGold()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the durationGatherGold property.
+
+getDurationGatherWood
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherWood()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the durationGatherWood property.
+
+getDurationMove
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationMove()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the durationMove property.
+
+getFoodProvided
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getFoodProvided()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the foodProvided property.
+
+getGoldGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getGoldGatherRate()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the goldGatherRate property.
+
+getPiercingAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttack()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the piercingAttack property.
+
+getProduces
+^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getProduces()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the produces property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the produces property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getProduces().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`Integer`\
+
+getRange
+^^^^^^^^
+
+.. java:method:: public int getRange()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the range property.
+
+getSightRange
+^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRange()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the sightRange property.
+
+getWoodGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getWoodGatherRate()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the woodGatherRate property.
+
+isCanAcceptGold
+^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean isCanAcceptGold()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the canAcceptGold property.
+
+isCanAcceptWood
+^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean isCanAcceptWood()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the canAcceptWood property.
+
+isCanBuild
+^^^^^^^^^^
+
+.. java:method:: public boolean isCanBuild()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the canBuild property.
+
+isCanGather
+^^^^^^^^^^^
+
+.. java:method:: public boolean isCanGather()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the canGather property.
+
+isCanMove
+^^^^^^^^^
+
+.. java:method:: public boolean isCanMove()
+   :outertype: XmlUnitTemplate
+
+   Gets the value of the canMove property.
+
+setArmor
+^^^^^^^^
+
+.. java:method:: public void setArmor(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the armor property.
+
+setBaseAttack
+^^^^^^^^^^^^^
+
+.. java:method:: public void setBaseAttack(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the baseAttack property.
+
+setBaseHealth
+^^^^^^^^^^^^^
+
+.. java:method:: public void setBaseHealth(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the baseHealth property.
+
+setCanAcceptGold
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCanAcceptGold(boolean value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the canAcceptGold property.
+
+setCanAcceptWood
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCanAcceptWood(boolean value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the canAcceptWood property.
+
+setCanBuild
+^^^^^^^^^^^
+
+.. java:method:: public void setCanBuild(boolean value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the canBuild property.
+
+setCanGather
+^^^^^^^^^^^^
+
+.. java:method:: public void setCanGather(boolean value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the canGather property.
+
+setCanMove
+^^^^^^^^^^
+
+.. java:method:: public void setCanMove(boolean value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the canMove property.
+
+setCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public void setCharacter(short value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the character property.
+
+setDurationAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationAttack(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the durationAttack property.
+
+setDurationDeposit
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationDeposit(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the durationDeposit property.
+
+setDurationGatherGold
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationGatherGold(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the durationGatherGold property.
+
+setDurationGatherWood
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationGatherWood(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the durationGatherWood property.
+
+setDurationMove
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationMove(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the durationMove property.
+
+setFoodProvided
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setFoodProvided(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the foodProvided property.
+
+setGoldGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setGoldGatherRate(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the goldGatherRate property.
+
+setPiercingAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPiercingAttack(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the piercingAttack property.
+
+setRange
+^^^^^^^^
+
+.. java:method:: public void setRange(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the range property.
+
+setSightRange
+^^^^^^^^^^^^^
+
+.. java:method:: public void setSightRange(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the sightRange property.
+
+setWoodGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setWoodGatherRate(int value)
+   :outertype: XmlUnitTemplate
+
+   Sets the value of the woodGatherRate property.
+

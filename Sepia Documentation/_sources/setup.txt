@@ -1,0 +1,43 @@
+Setup
+=========
+
+This document assumes that you are using Eclipse. Other IDEs such as
+Intellij will work, but you will need to figure out the proper setup
+instructions.
+
+If you don't have eclipse you can go to `the Eclipse website <https://eclipse.org/users/>`_ and follow
+the installation instructions for your operating system.
+
+You will need to download the ``Sepia.jar`` file from the course website.
+
+Eclipse Project Setup
+-----------------
+
+Open Eclipse and in the main menu click `file->new->Java
+Project`. This should open a new dialogue window. Give your project a
+name and then click finish.
+
+.. image:: _static/eclipse_new_java_project_screenshot.png
+  :target: _static/eclipse_new_java_project_screenshot.png
+
+You should now have a new project in the package explorer on the left
+side of the screen. Click the arrow next to the package name to expand
+the package and see its subfolders. You will now need to add the
+sepia.jar to the build path of this project.
+
+Right click on the project name and select `new->folder`. Call the
+folder ``lib`` and click finish. Now drag the download Seipa.jar file
+to lib folder and when prompted select the copy option.
+
+.. image:: _static/eclipse_new_folder_screenshot.png 
+  :target: _static/eclipse_new_folder_screenshot.png 
+
+Now right click on the Sepia.jar and select `Build Path->Add to Build
+Path`. If you don't see the Sepia.jar file you may need to click the
+small arrow on the left the lib folder to expand the folder.
+
+.. image:: _static/eclipse_add_to_build_path_screenshot.png
+  :target: _static/eclipse_add_to_build_path_screenshot.png
+
+If you have done everything properly there should be no errors. You
+are now ready to create your first agent.

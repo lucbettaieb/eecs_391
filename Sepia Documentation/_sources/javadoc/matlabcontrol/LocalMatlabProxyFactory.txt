@@ -1,0 +1,42 @@
+.. java:import:: java.util.concurrent.atomic AtomicInteger
+
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+.. java:import:: matlabcontrol MatlabProxyFactory.Request
+
+.. java:import:: matlabcontrol MatlabProxyFactory.RequestCallback
+
+LocalMatlabProxyFactory
+=======================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class LocalMatlabProxyFactory implements ProxyFactory
+
+   Creates local instances of \ :java:ref:`MatlabProxy`\ .
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+LocalMatlabProxyFactory
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public LocalMatlabProxyFactory(MatlabProxyFactoryOptions options)
+   :outertype: LocalMatlabProxyFactory
+
+Methods
+-------
+getProxy
+^^^^^^^^
+
+.. java:method:: @Override public LocalMatlabProxy getProxy() throws MatlabConnectionException
+   :outertype: LocalMatlabProxyFactory
+
+requestProxy
+^^^^^^^^^^^^
+
+.. java:method:: @Override public Request requestProxy(RequestCallback requestCallback) throws MatlabConnectionException
+   :outertype: LocalMatlabProxyFactory
+

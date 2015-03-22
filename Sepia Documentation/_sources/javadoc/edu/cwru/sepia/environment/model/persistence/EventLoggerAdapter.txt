@@ -1,0 +1,72 @@
+.. java:import:: edu.cwru.sepia.environment.model.history BirthLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DamageLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DeathLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history EventLogger
+
+.. java:import:: edu.cwru.sepia.environment.model.history ResourceDropoffLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history ResourceNodeExhaustionLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history ResourcePickupLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history RevealedResourceNodeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history UpgradeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlBirthLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlBirthLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlDamageLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlDamageLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlDeathLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlDeathLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlEventLogger
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceDropoffLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceDropoffLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceNodeExhaustionLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceNodeExhaustionLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourcePickupLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourcePickupLogList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlRevealedResourceNodeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUpgradeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUpgradeLogList
+
+EventLoggerAdapter
+==================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class EventLoggerAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static EventLogger fromXml(XmlEventLogger xml)
+   :outertype: EventLoggerAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlEventLogger toXml(EventLogger eventLogger)
+   :outertype: EventLoggerAdapter
+

@@ -1,0 +1,24 @@
+.. java:import:: edu.cwru.sepia.start StartListener
+
+.. java:import:: edu.cwru.sepia.start StartWindow
+
+SimpleStart
+===========
+
+.. java:package:: edu.cwru.sepia
+   :noindex:
+
+.. java:type:: public final class SimpleStart
+
+   An entry point to Sepia that allows for visual configuration of runtime parameters.
+
+   :author: Gary
+
+Methods
+-------
+main
+^^^^
+
+.. java:method:: public static void main(String[] args)
+   :outertype: SimpleStart
+

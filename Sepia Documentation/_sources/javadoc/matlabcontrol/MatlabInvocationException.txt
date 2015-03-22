@@ -1,0 +1,12 @@
+MatlabInvocationException
+=========================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public class MatlabInvocationException extends Exception
+
+   Represents a failure to invoke a method on the MATLAB session.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+

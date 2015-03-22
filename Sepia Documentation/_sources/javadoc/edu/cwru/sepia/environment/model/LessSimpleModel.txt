@@ -1,0 +1,164 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Map.Entry
+
+.. java:import:: java.util Random
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+.. java:import:: edu.cwru.sepia.action ActionQueue
+
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.action DirectedAction
+
+.. java:import:: edu.cwru.sepia.action LocatedAction
+
+.. java:import:: edu.cwru.sepia.action LocatedProductionAction
+
+.. java:import:: edu.cwru.sepia.action ProductionAction
+
+.. java:import:: edu.cwru.sepia.action TargetedAction
+
+.. java:import:: edu.cwru.sepia.environment TurnTracker
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state StateCreator
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UpgradeTemplate
+
+.. java:import:: edu.cwru.sepia.experiment Configuration
+
+.. java:import:: edu.cwru.sepia.experiment ConfigurationValues
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+.. java:import:: edu.cwru.sepia.util GameMap
+
+LessSimpleModel
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public class LessSimpleModel implements Model
+
+   A less simple model that allows consistency, turn-taking and durative actions. No longer supports unit tasks Recalculates compound actions automatically every step. Supports consistent actions* according to the following principles: The order of actions does not affect their results, Sets of actions may not cause invalid states (so some must fail), The effects of one action succeeding may not change based on the actions of others**, An set of actions that fails cannot be made to succeed by adding actions for other units. From this, compound actions may only calculate primitives once in a turn, and only based on the previous state. This makes compound actions much much less effective than in SimpleModel. The particular solution in this makes sure that successes based on ranges (including directional actions with proximity) are calculated based on the previous state. It also ensures that an action may not fail due to a unit involved being attacked for enough damage to kill it. * Production/build actions that make new units fail consistency. The units are placed sequentially in places that were empty last state in such a way as to not disrupt move actions. In the situation where more productions exist than empty spaces that are not being moved into, then only the minimum number of production actions will fail ** More generally, where s is the event "action has succeeded" and E is a set of possible results, and O is actions sent to other units, E given s must be independant of O, IE: for all O, P(E|s) = P(E|s,O)*** *** as an example that works, attacks, being based on sequential Random variables from a seed, will change exact result, but the distribution of successful attacks does not change based on other actions. As a failing example, random movements that only fail on an actual collision wouldn't work, as the action of the other unit affects the distribution of effects.
+
+Constructors
+------------
+LessSimpleModel
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public LessSimpleModel(State init, int seed, StateCreator restartTactic, Configuration configuration)
+   :outertype: LessSimpleModel
+
+Methods
+-------
+addActions
+^^^^^^^^^^
+
+.. java:method:: @Override public void addActions(Map<Integer, Action> actions, int sendingPlayerNumber)
+   :outertype: LessSimpleModel
+
+createNewWorld
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void createNewWorld()
+   :outertype: LessSimpleModel
+
+executeStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public void executeStep()
+   :outertype: LessSimpleModel
+
+   The main loop of the engine. Removes the old views
+
+getConfiguration
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Configuration getConfiguration()
+   :outertype: LessSimpleModel
+
+getHistory
+^^^^^^^^^^
+
+.. java:method:: @Override public History getHistory()
+   :outertype: LessSimpleModel
+
+getState
+^^^^^^^^
+
+.. java:method:: @Override public State getState()
+   :outertype: LessSimpleModel
+
+getVerbose
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean getVerbose()
+   :outertype: LessSimpleModel
+
+isTerminated
+^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isTerminated()
+   :outertype: LessSimpleModel
+
+save
+^^^^
+
+.. java:method:: public void save(String filename)
+   :outertype: LessSimpleModel
+
+setConfiguration
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void setConfiguration(Configuration configuration)
+   :outertype: LessSimpleModel
+
+setTurnTracker
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setTurnTracker(TurnTracker tracker)
+   :outertype: LessSimpleModel
+
+setVerbose
+^^^^^^^^^^
+
+.. java:method:: @Override public void setVerbose(boolean verbose)
+   :outertype: LessSimpleModel
+

@@ -1,0 +1,257 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate.UnitTemplateView
+
+Unit
+====
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class Unit extends Target
+
+Fields
+------
+cargoAmount
+^^^^^^^^^^^
+
+.. java:field:: protected int cargoAmount
+   :outertype: Unit
+
+cargoType
+^^^^^^^^^
+
+.. java:field:: protected ResourceType cargoType
+   :outertype: Unit
+
+currentDurativePrimitive
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected Action currentDurativePrimitive
+   :outertype: Unit
+
+currentDurativeProgress
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int currentDurativeProgress
+   :outertype: Unit
+
+currentHealth
+^^^^^^^^^^^^^
+
+.. java:field:: protected int currentHealth
+   :outertype: Unit
+
+template
+^^^^^^^^
+
+.. java:field:: protected UnitTemplate template
+   :outertype: Unit
+
+xPosition
+^^^^^^^^^
+
+.. java:field:: protected int xPosition
+   :outertype: Unit
+
+yPosition
+^^^^^^^^^
+
+.. java:field:: protected int yPosition
+   :outertype: Unit
+
+Constructors
+------------
+Unit
+^^^^
+
+.. java:constructor:: public Unit(UnitTemplate template, int ID)
+   :outertype: Unit
+
+Methods
+-------
+canAttack
+^^^^^^^^^
+
+.. java:method:: public boolean canAttack()
+   :outertype: Unit
+
+canBuild
+^^^^^^^^
+
+.. java:method:: public boolean canBuild()
+   :outertype: Unit
+
+canGather
+^^^^^^^^^
+
+.. java:method:: public boolean canGather()
+   :outertype: Unit
+
+canMove
+^^^^^^^
+
+.. java:method:: public boolean canMove()
+   :outertype: Unit
+
+clearCargo
+^^^^^^^^^^
+
+.. java:method:: public void clearCargo()
+   :outertype: Unit
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: public boolean deepEquals(Object other)
+   :outertype: Unit
+
+deprecateOldView
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void deprecateOldView()
+   :outertype: Unit
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object o)
+   :outertype: Unit
+
+getActionProgressAmount
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getActionProgressAmount()
+   :outertype: Unit
+
+   Get the amount of progress toward the completion of a primitive action.
+
+getActionProgressPrimitive
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Action getActionProgressPrimitive()
+   :outertype: Unit
+
+   Get the primitive action that the unit is working towards.
+
+getCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public char getCharacter()
+   :outertype: Unit
+
+getCurrentCargoAmount
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentCargoAmount()
+   :outertype: Unit
+
+getCurrentCargoType
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getCurrentCargoType()
+   :outertype: Unit
+
+getCurrentHealth
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentHealth()
+   :outertype: Unit
+
+getPlayer
+^^^^^^^^^
+
+.. java:method:: public int getPlayer()
+   :outertype: Unit
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public UnitTemplate getTemplate()
+   :outertype: Unit
+
+getView
+^^^^^^^
+
+.. java:method:: public UnitView getView()
+   :outertype: Unit
+
+getxPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getxPosition()
+   :outertype: Unit
+
+getyPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getyPosition()
+   :outertype: Unit
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: Unit
+
+resetDurative
+^^^^^^^^^^^^^
+
+.. java:method:: public void resetDurative()
+   :outertype: Unit
+
+setCargo
+^^^^^^^^
+
+.. java:method:: public boolean setCargo(ResourceType type, int amount)
+   :outertype: Unit
+
+setDurativeStatus
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurativeStatus(Action primitive, int progress)
+   :outertype: Unit
+
+   Set the status of durative actions.
+
+   :param primitive: The primitive action being worked towards.
+   :param progress: The amount of progress towards the primitive action.
+
+setHP
+^^^^^
+
+.. java:method:: public void setHP(int amount)
+   :outertype: Unit
+
+   Set the health of this unit to a specific value.
+
+   :param amount: The new amount of hit points.
+
+setxPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setxPosition(int x)
+   :outertype: Unit
+
+   Set the x position of the unit. DO NOT USE THIS TO MOVE UNITS
+
+   :param x:
+
+setyPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setyPosition(int y)
+   :outertype: Unit
+
+   Set the y position of the unit. DO NOT USE THIS TO MOVE UNITS
+
+   :param y:
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: Unit
+

@@ -1,0 +1,72 @@
+.. java:import:: java.rmi NotBoundException
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Arrays
+
+.. java:import:: java.util List
+
+.. java:import:: java.util.concurrent ExecutorService
+
+.. java:import:: java.util.concurrent Executors
+
+.. java:import:: java.util.concurrent.atomic AtomicBoolean
+
+.. java:import:: java.util.concurrent.atomic AtomicReference
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadCallable
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadProxy
+
+.. java:import:: matlabcontrol.internal MatlabRMIClassLoaderSpi
+
+MatlabConnector
+===============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class MatlabConnector
+
+   This class is used only from inside of the MATLAB JVM. It is responsible for creating instances of \ :java:ref:`JMIWrapperRemote`\  and sending them to a waiting receiver over RMI.  While this class is package private, it can be seen by MATLAB, which does not respect the package privateness of the class. The public methods in this class can be accessed from inside the MATLAB environment.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+connect
+^^^^^^^
+
+.. java:method:: static void connect(String receiverID, int port, boolean existingSession)
+   :outertype: MatlabConnector
+
+   Retrieves the receiver and sends over the \ :java:ref:`JMIWrapperRemote`\  on a separate thread so that MATLAB can continue to initialize.
+
+   :param receiverID:
+   :param port:
+   :param existingSession:
+
+connectFromMatlab
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static void connectFromMatlab(String receiverID, int port)
+   :outertype: MatlabConnector
+
+   Called from MATLAB at launch. Creates the JMI wrapper and then sends it over RMI to the Java program running in a separate JVM.
+
+   :param receiverID: the key that binds the receiver in the registry
+   :param port: the port the registry is running on
+   :param initializationTime:
+
+isAvailableForConnection
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static boolean isAvailableForConnection()
+   :outertype: MatlabConnector
+
+   If this session of MATLAB is available to be connected to from an external Java program. It will be available if it is not currently connected to and there is no connection in progress.
+

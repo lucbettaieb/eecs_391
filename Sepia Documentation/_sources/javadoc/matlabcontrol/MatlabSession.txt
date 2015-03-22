@@ -1,0 +1,31 @@
+.. java:import:: java.rmi Remote
+
+.. java:import:: java.rmi RemoteException
+
+MatlabSession
+=============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  interface MatlabSession extends Remote
+
+   An implementation of this interface is bound to a RMI registry, representing this session of MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+connectFromRMI
+^^^^^^^^^^^^^^
+
+.. java:method:: public boolean connectFromRMI(String receiverID, int port) throws RemoteException
+   :outertype: MatlabSession
+
+   Attempts a connection to this session of MATLAB. If this session is available for connection it will send a \ :java:ref:`JMIWrapperRemote`\  to the receiver and \ ``true``\  will be returned. Otherwise \ ``false``\  will be returned and no other action will be taken.
+
+   :param receiverID:
+   :param port:
+   :throws RemoteException:
+   :return: if connection was established
+

@@ -1,0 +1,330 @@
+.. java:import:: javax.xml.bind.annotation XmlRegistry
+
+ObjectFactory
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlRegistry public class ObjectFactory
+
+   This object contains factory methods for each Java content interface and Java element interface generated in the edu.cwru.sepia.environment.model.persistence.generated package.
+
+   An ObjectFactory allows you to programatically construct new instances of the Java representation for XML content. The Java representation of XML content can consist of schema derived interfaces and classes representing the binding of schema type definitions, element declarations and model groups. Factory methods for each of these are provided in this class.
+
+Constructors
+------------
+ObjectFactory
+^^^^^^^^^^^^^
+
+.. java:constructor:: public ObjectFactory()
+   :outertype: ObjectFactory
+
+   Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: edu.cwru.sepia.environment.model.persistence.generated
+
+Methods
+-------
+createXmlAction
+^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlAction createXmlAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlAction`\
+
+createXmlActionEntry
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionEntry createXmlActionEntry()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionEntry`\
+
+createXmlActionList
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionList createXmlActionList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionList`\
+
+createXmlActionLogger
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionLogger createXmlActionLogger()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionLogger`\
+
+createXmlActionResult
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionResult createXmlActionResult()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionResult`\
+
+createXmlActionResultEntry
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionResultEntry createXmlActionResultEntry()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionResultEntry`\
+
+createXmlActionResultList
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionResultList createXmlActionResultList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionResultList`\
+
+createXmlActionResultLogger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlActionResultLogger createXmlActionResultLogger()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlActionResultLogger`\
+
+createXmlBirthLog
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlBirthLog createXmlBirthLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlBirthLog`\
+
+createXmlBirthLogList
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlBirthLogList createXmlBirthLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlBirthLogList`\
+
+createXmlDamageLog
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlDamageLog createXmlDamageLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlDamageLog`\
+
+createXmlDamageLogList
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlDamageLogList createXmlDamageLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlDamageLogList`\
+
+createXmlDeathLog
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlDeathLog createXmlDeathLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlDeathLog`\
+
+createXmlDeathLogList
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlDeathLogList createXmlDeathLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlDeathLogList`\
+
+createXmlDirectedAction
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlDirectedAction createXmlDirectedAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlDirectedAction`\
+
+createXmlEventLogger
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlEventLogger createXmlEventLogger()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlEventLogger`\
+
+createXmlHistory
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlHistory createXmlHistory()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlHistory`\
+
+createXmlLocatedAction
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlLocatedAction createXmlLocatedAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlLocatedAction`\
+
+createXmlLocatedProductionAction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlLocatedProductionAction createXmlLocatedProductionAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlLocatedProductionAction`\
+
+createXmlPlayer
+^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlPlayer createXmlPlayer()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlPlayer`\
+
+createXmlPlayerHistory
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlPlayerHistory createXmlPlayerHistory()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlPlayerHistory`\
+
+createXmlProductionAction
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlProductionAction createXmlProductionAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlProductionAction`\
+
+createXmlResourceDropoffLog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceDropoffLog createXmlResourceDropoffLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceDropoffLog`\
+
+createXmlResourceDropoffLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceDropoffLogList createXmlResourceDropoffLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceDropoffLogList`\
+
+createXmlResourceNode
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceNode createXmlResourceNode()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceNode`\
+
+createXmlResourceNodeExhaustionLog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceNodeExhaustionLog createXmlResourceNodeExhaustionLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceNodeExhaustionLog`\
+
+createXmlResourceNodeExhaustionLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceNodeExhaustionLogList createXmlResourceNodeExhaustionLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceNodeExhaustionLogList`\
+
+createXmlResourcePickupLog
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourcePickupLog createXmlResourcePickupLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourcePickupLog`\
+
+createXmlResourcePickupLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourcePickupLogList createXmlResourcePickupLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourcePickupLogList`\
+
+createXmlResourceQuantity
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlResourceQuantity createXmlResourceQuantity()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlResourceQuantity`\
+
+createXmlRevealedResourceNodeLog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlRevealedResourceNodeLog createXmlRevealedResourceNodeLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlRevealedResourceNodeLog`\
+
+createXmlState
+^^^^^^^^^^^^^^
+
+.. java:method:: public XmlState createXmlState()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlState`\
+
+createXmlTargetedAction
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlTargetedAction createXmlTargetedAction()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlTargetedAction`\
+
+createXmlUnit
+^^^^^^^^^^^^^
+
+.. java:method:: public XmlUnit createXmlUnit()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlUnit`\
+
+createXmlUnitTemplate
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlUnitTemplate createXmlUnitTemplate()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlUnitTemplate`\
+
+createXmlUpgradeLog
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlUpgradeLog createXmlUpgradeLog()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlUpgradeLog`\
+
+createXmlUpgradeLogList
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlUpgradeLogList createXmlUpgradeLogList()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlUpgradeLogList`\
+
+createXmlUpgradeTemplate
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlUpgradeTemplate createXmlUpgradeTemplate()
+   :outertype: ObjectFactory
+
+   Create an instance of \ :java:ref:`XmlUpgradeTemplate`\
+

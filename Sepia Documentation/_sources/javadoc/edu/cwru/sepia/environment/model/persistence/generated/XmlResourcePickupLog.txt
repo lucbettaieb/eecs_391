@@ -1,0 +1,187 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+XmlResourcePickupLog
+====================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlResourcePickupLog
+
+   Java class for ResourcePickupLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ResourcePickupLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="pickupAmount" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="gathererID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="controller" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="nodeID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="nodeType" type="{}ResourceNodeType"/>
+              <element name="resourceType" type="{}ResourceType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+controller
+^^^^^^^^^^
+
+.. java:field:: protected int controller
+   :outertype: XmlResourcePickupLog
+
+gathererID
+^^^^^^^^^^
+
+.. java:field:: protected int gathererID
+   :outertype: XmlResourcePickupLog
+
+nodeID
+^^^^^^
+
+.. java:field:: protected int nodeID
+   :outertype: XmlResourcePickupLog
+
+nodeType
+^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected Type nodeType
+   :outertype: XmlResourcePickupLog
+
+pickupAmount
+^^^^^^^^^^^^
+
+.. java:field:: protected int pickupAmount
+   :outertype: XmlResourcePickupLog
+
+resourceType
+^^^^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ResourceType resourceType
+   :outertype: XmlResourcePickupLog
+
+Methods
+-------
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the controller property.
+
+getGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getGathererID()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the gathererID property.
+
+getNodeID
+^^^^^^^^^
+
+.. java:method:: public int getNodeID()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the nodeID property.
+
+getNodeType
+^^^^^^^^^^^
+
+.. java:method:: public Type getNodeType()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the nodeType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getPickupAmount
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPickupAmount()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the pickupAmount property.
+
+getResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getResourceType()
+   :outertype: XmlResourcePickupLog
+
+   Gets the value of the resourceType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setController
+^^^^^^^^^^^^^
+
+.. java:method:: public void setController(int value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the controller property.
+
+setGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setGathererID(int value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the gathererID property.
+
+setNodeID
+^^^^^^^^^
+
+.. java:method:: public void setNodeID(int value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the nodeID property.
+
+setNodeType
+^^^^^^^^^^^
+
+.. java:method:: public void setNodeType(Type value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the nodeType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setPickupAmount
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPickupAmount(int value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the pickupAmount property.
+
+setResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setResourceType(ResourceType value)
+   :outertype: XmlResourcePickupLog
+
+   Sets the value of the resourceType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

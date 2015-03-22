@@ -1,0 +1,136 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Dimension
+
+.. java:import:: java.awt Font
+
+.. java:import:: java.awt Graphics
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event MouseAdapter
+
+.. java:import:: java.awt.event MouseEvent
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing JMenuItem
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing AbstractAction
+
+.. java:import:: javax.swing JPopupMenu
+
+.. java:import:: javax.swing KeyStroke
+
+.. java:import:: javax.swing InputMap
+
+.. java:import:: javax.swing ActionMap
+
+.. java:import:: javax.swing JComponent
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.environment.model.history DamageLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history RevealedResourceNodeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.ResourceView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+GamePanel
+=========
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class GamePanel extends JPanel
+
+Fields
+------
+SCALING_FACTOR
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final int SCALING_FACTOR
+   :outertype: GamePanel
+
+WIDTH
+^^^^^
+
+.. java:field:: public static final int WIDTH
+   :outertype: GamePanel
+
+playerColors
+^^^^^^^^^^^^
+
+.. java:field:: public static final Color[] playerColors
+   :outertype: GamePanel
+
+Constructors
+------------
+GamePanel
+^^^^^^^^^
+
+.. java:constructor:: public GamePanel(VisualAgent agent)
+   :outertype: GamePanel
+
+Methods
+-------
+paintComponent
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void paintComponent(Graphics g)
+   :outertype: GamePanel
+
+reset
+^^^^^
+
+.. java:method:: public void reset()
+   :outertype: GamePanel
+
+scaleX
+^^^^^^
+
+.. java:method:: public int scaleX(int x)
+   :outertype: GamePanel
+
+scaleY
+^^^^^^
+
+.. java:method:: public int scaleY(int y)
+   :outertype: GamePanel
+
+unscaleX
+^^^^^^^^
+
+.. java:method:: public int unscaleX(int x)
+   :outertype: GamePanel
+
+unscaleY
+^^^^^^^^
+
+.. java:method:: public int unscaleY(int y)
+   :outertype: GamePanel
+
+updateState
+^^^^^^^^^^^
+
+.. java:method:: public void updateState(StateView state, HistoryView history)
+   :outertype: GamePanel
+

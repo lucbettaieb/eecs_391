@@ -1,0 +1,44 @@
+.. java:import:: java.io BufferedReader
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io InputStreamReader
+
+.. java:import:: java.util List
+
+.. java:import:: org.json JSONException
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+MapEditor
+=========
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public class MapEditor
+
+Methods
+-------
+addPlayer
+^^^^^^^^^
+
+.. java:method:: static void addPlayer(State state, int player, String templatefile)
+   :outertype: MapEditor
+
+main
+^^^^
+
+.. java:method:: public static void main(String[] args) throws IOException, JSONException
+   :outertype: MapEditor
+

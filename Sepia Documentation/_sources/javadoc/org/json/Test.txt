@@ -1,0 +1,72 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.io StringWriter
+
+.. java:import:: junit.framework TestCase
+
+Test
+====
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class Test extends TestCase
+
+   Test class. This file is not formally a member of the org.json library. It is just a test tool. Issue: JSONObject does not specify the ordering of keys, so simple-minded comparisons of .toString to a string literal are likely to fail.
+
+   :author: JSON.org
+
+Constructors
+------------
+Test
+^^^^
+
+.. java:constructor:: public Test(String name)
+   :outertype: Test
+
+Methods
+-------
+setUp
+^^^^^
+
+.. java:method:: protected void setUp() throws Exception
+   :outertype: Test
+
+tearDown
+^^^^^^^^
+
+.. java:method:: protected void tearDown() throws Exception
+   :outertype: Test
+
+testExceptions
+^^^^^^^^^^^^^^
+
+.. java:method:: public void testExceptions() throws Exception
+   :outertype: Test
+
+testJSON
+^^^^^^^^
+
+.. java:method:: public void testJSON() throws Exception
+   :outertype: Test
+
+testNull
+^^^^^^^^
+
+.. java:method:: public void testNull() throws Exception
+   :outertype: Test
+
+testXML
+^^^^^^^
+
+.. java:method:: public void testXML() throws Exception
+   :outertype: Test
+

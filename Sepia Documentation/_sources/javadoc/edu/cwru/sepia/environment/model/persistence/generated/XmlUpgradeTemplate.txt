@@ -1,0 +1,204 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlUpgradeTemplate
+==================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlUpgradeTemplate extends XmlTemplate
+
+   Java class for UpgradeTemplate complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="UpgradeTemplate">
+        <complexContent>
+          <extension base="{}Template">
+            <sequence>
+              <element name="basicAttackChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="piercingAttackChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="armorChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="healthChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="sightRangeChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="rangeChange" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="affectedUnitTypes" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              </sequence>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+affectedUnitTypes
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<Integer> affectedUnitTypes
+   :outertype: XmlUpgradeTemplate
+
+armorChange
+^^^^^^^^^^^
+
+.. java:field:: protected int armorChange
+   :outertype: XmlUpgradeTemplate
+
+basicAttackChange
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int basicAttackChange
+   :outertype: XmlUpgradeTemplate
+
+healthChange
+^^^^^^^^^^^^
+
+.. java:field:: protected int healthChange
+   :outertype: XmlUpgradeTemplate
+
+piercingAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int piercingAttackChange
+   :outertype: XmlUpgradeTemplate
+
+rangeChange
+^^^^^^^^^^^
+
+.. java:field:: protected int rangeChange
+   :outertype: XmlUpgradeTemplate
+
+sightRangeChange
+^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int sightRangeChange
+   :outertype: XmlUpgradeTemplate
+
+Methods
+-------
+getAffectedUnitTypes
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAffectedUnitTypes()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the affectedUnitTypes property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the affectedUnitTypes property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getAffectedUnitTypes().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`Integer`\
+
+getArmorChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getArmorChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the armorChange property.
+
+getBasicAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getBasicAttackChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the basicAttackChange property.
+
+getHealthChange
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHealthChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the healthChange property.
+
+getPiercingAttackChange
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttackChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the piercingAttackChange property.
+
+getRangeChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRangeChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the rangeChange property.
+
+getSightRangeChange
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRangeChange()
+   :outertype: XmlUpgradeTemplate
+
+   Gets the value of the sightRangeChange property.
+
+setArmorChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setArmorChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the armorChange property.
+
+setBasicAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setBasicAttackChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the basicAttackChange property.
+
+setHealthChange
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setHealthChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the healthChange property.
+
+setPiercingAttackChange
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPiercingAttackChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the piercingAttackChange property.
+
+setRangeChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setRangeChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the rangeChange property.
+
+setSightRangeChange
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setSightRangeChange(int value)
+   :outertype: XmlUpgradeTemplate
+
+   Sets the value of the sightRangeChange property.
+

@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EventLogger &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.history" href="package-index.html"/>
+        <link rel="next" title="History" href="History.html"/>
+        <link rel="prev" title="DeathLog" href="DeathLog.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.history</a> &raquo;</li>
+      
+    <li>EventLogger</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/history/EventLogger.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="eventlogger">
+<h1>EventLogger<a class="headerlink" href="#eventlogger" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger">
+public class <code class="descname">EventLogger</code> implements <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html" title="java.io.Serializable">Serializable</a>, <a class="reference internal" href="../../../util/DeepEquatable.html#edu.cwru.sepia.util.DeepEquatable" title="edu.cwru.sepia.util.DeepEquatable">DeepEquatable</a><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs all the primitive logs including damage, death, birth, upgrade, etc.</p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>EventLogger<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.EventLogger()">
+public <code class="descname">EventLogger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.EventLogger()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="deepequals">
+<h3>deepEquals<a class="headerlink" href="#deepequals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.deepEquals(Object)">
+public boolean <code class="descname">deepEquals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> other</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.deepEquals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="equals">
+<h3>equals<a class="headerlink" href="#equals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.equals(Object)">
+public boolean <code class="descname">equals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> obj</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.equals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="eraseresourcenodereveals">
+<h3>eraseResourceNodeReveals<a class="headerlink" href="#eraseresourcenodereveals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.eraseResourceNodeReveals()">
+public void <code class="descname">eraseResourceNodeReveals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.eraseResourceNodeReveals()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getbirths">
+<h3>getBirths<a class="headerlink" href="#getbirths" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getBirths(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="BirthLog.html#edu.cwru.sepia.environment.model.history.BirthLog" title="edu.cwru.sepia.environment.model.history.BirthLog">BirthLog</a>&gt; <code class="descname">getBirths</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getBirths(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getdamage">
+<h3>getDamage<a class="headerlink" href="#getdamage" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getDamage(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="DamageLog.html#edu.cwru.sepia.environment.model.history.DamageLog" title="edu.cwru.sepia.environment.model.history.DamageLog">DamageLog</a>&gt; <code class="descname">getDamage</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getDamage(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getdeaths">
+<h3>getDeaths<a class="headerlink" href="#getdeaths" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getDeaths(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="DeathLog.html#edu.cwru.sepia.environment.model.history.DeathLog" title="edu.cwru.sepia.environment.model.history.DeathLog">DeathLog</a>&gt; <code class="descname">getDeaths</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getDeaths(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gethighestroundbirth">
+<h3>getHighestRoundBirth<a class="headerlink" href="#gethighestroundbirth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundBirth()">
+public int <code class="descname">getHighestRoundBirth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundBirth()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestrounddamage">
+<h3>getHighestRoundDamage<a class="headerlink" href="#gethighestrounddamage" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundDamage()">
+public int <code class="descname">getHighestRoundDamage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundDamage()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestrounddeath">
+<h3>getHighestRoundDeath<a class="headerlink" href="#gethighestrounddeath" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundDeath()">
+public int <code class="descname">getHighestRoundDeath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundDeath()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestroundresourcedropoff">
+<h3>getHighestRoundResourceDropoff<a class="headerlink" href="#gethighestroundresourcedropoff" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourceDropoff()">
+public int <code class="descname">getHighestRoundResourceDropoff</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourceDropoff()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestroundresourcenodeexhaustion">
+<h3>getHighestRoundResourceNodeExhaustion<a class="headerlink" href="#gethighestroundresourcenodeexhaustion" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourceNodeExhaustion()">
+public int <code class="descname">getHighestRoundResourceNodeExhaustion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourceNodeExhaustion()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestroundresourcepickup">
+<h3>getHighestRoundResourcePickup<a class="headerlink" href="#gethighestroundresourcepickup" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourcePickup()">
+public int <code class="descname">getHighestRoundResourcePickup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundResourcePickup()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gethighestroundupgrade">
+<h3>getHighestRoundUpgrade<a class="headerlink" href="#gethighestroundupgrade" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundUpgrade()">
+public int <code class="descname">getHighestRoundUpgrade</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getHighestRoundUpgrade()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of the highest round for which this logger has recorded data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The highest recorded round</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getresourcedropoffs">
+<h3>getResourceDropoffs<a class="headerlink" href="#getresourcedropoffs" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getResourceDropoffs(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="ResourceDropoffLog.html#edu.cwru.sepia.environment.model.history.ResourceDropoffLog" title="edu.cwru.sepia.environment.model.history.ResourceDropoffLog">ResourceDropoffLog</a>&gt; <code class="descname">getResourceDropoffs</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getResourceDropoffs(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getresourcenodeexhaustions">
+<h3>getResourceNodeExhaustions<a class="headerlink" href="#getresourcenodeexhaustions" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getResourceNodeExhaustions(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="ResourceNodeExhaustionLog.html#edu.cwru.sepia.environment.model.history.ResourceNodeExhaustionLog" title="edu.cwru.sepia.environment.model.history.ResourceNodeExhaustionLog">ResourceNodeExhaustionLog</a>&gt; <code class="descname">getResourceNodeExhaustions</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getResourceNodeExhaustions(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getresourcepickups">
+<h3>getResourcePickups<a class="headerlink" href="#getresourcepickups" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getResourcePickups(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="ResourcePickupLog.html#edu.cwru.sepia.environment.model.history.ResourcePickupLog" title="edu.cwru.sepia.environment.model.history.ResourcePickupLog">ResourcePickupLog</a>&gt; <code class="descname">getResourcePickups</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getResourcePickups(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getrevealedresourcenodes">
+<h3>getRevealedResourceNodes<a class="headerlink" href="#getrevealedresourcenodes" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getRevealedResourceNodes()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="RevealedResourceNodeLog.html#edu.cwru.sepia.environment.model.history.RevealedResourceNodeLog" title="edu.cwru.sepia.environment.model.history.RevealedResourceNodeLog">RevealedResourceNodeLog</a>&gt; <code class="descname">getRevealedResourceNodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getRevealedResourceNodes()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getupgrades">
+<h3>getUpgrades<a class="headerlink" href="#getupgrades" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.getUpgrades(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="UpgradeLog.html#edu.cwru.sepia.environment.model.history.UpgradeLog" title="edu.cwru.sepia.environment.model.history.UpgradeLog">UpgradeLog</a>&gt; <code class="descname">getUpgrades</code><span class="sig-paren">(</span>int<em> roundnumber</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.getUpgrades(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="hashcode">
+<h3>hashCode<a class="headerlink" href="#hashcode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.hashCode()">
+public int <code class="descname">hashCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.hashCode()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordbirth">
+<h3>recordBirth<a class="headerlink" href="#recordbirth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordBirth(int, int, int, int)">
+public void <code class="descname">recordBirth</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> newunitid</em>, int<em> parentunitid</em>, int<em> controller</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordBirth(int, int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recorddamage">
+<h3>recordDamage<a class="headerlink" href="#recorddamage" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordDamage(int, int, int, int, int, int)">
+public void <code class="descname">recordDamage</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> attackerid</em>, int<em> attackercontroller</em>, int<em> defenderid</em>, int<em> defendercontroller</em>, int<em> damage</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordDamage(int, int, int, int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recorddeath">
+<h3>recordDeath<a class="headerlink" href="#recorddeath" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordDeath(int, int, int)">
+public void <code class="descname">recordDeath</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> deadunitid</em>, int<em> controller</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordDeath(int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordresourcedropoff">
+<h3>recordResourceDropoff<a class="headerlink" href="#recordresourcedropoff" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordResourceDropoff(int, int, int, int, ResourceType, int)">
+public void <code class="descname">recordResourceDropoff</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> depositerid</em>, int<em> depositplaceid</em>, int<em> controller</em>, <a class="reference internal" href="../state/ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a><em> type</em>, int<em> amount</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordResourceDropoff(int, int, int, int, ResourceType, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordresourcenodeexhaustion">
+<h3>recordResourceNodeExhaustion<a class="headerlink" href="#recordresourcenodeexhaustion" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordResourceNodeExhaustion(int, int, ResourceNode.Type)">
+public void <code class="descname">recordResourceNodeExhaustion</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> exhaustednodeid</em>, <a class="reference internal" href="../state/ResourceNode.html#edu.cwru.sepia.environment.model.state.ResourceNode" title="edu.cwru.sepia.environment.model.state.ResourceNode">ResourceNode</a>.<a class="reference internal" href="../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a><em> type</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordResourceNodeExhaustion(int, int, ResourceNode.Type)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordresourcepickup">
+<h3>recordResourcePickup<a class="headerlink" href="#recordresourcepickup" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordResourcePickup(int, int, int, ResourceType, int, int, ResourceNode.Type)">
+public void <code class="descname">recordResourcePickup</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> gathererid</em>, int<em> controller</em>, <a class="reference internal" href="../state/ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a><em> type</em>, int<em> amount</em>, int<em> nodeid</em>, <a class="reference internal" href="../state/ResourceNode.html#edu.cwru.sepia.environment.model.state.ResourceNode" title="edu.cwru.sepia.environment.model.state.ResourceNode">ResourceNode</a>.<a class="reference internal" href="../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a><em> nodetype</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordResourcePickup(int, int, int, ResourceType, int, int, ResourceNode.Type)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordrevealedresourcenode">
+<h3>recordRevealedResourceNode<a class="headerlink" href="#recordrevealedresourcenode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordRevealedResourceNode(int, int, ResourceNode.Type)">
+public void <code class="descname">recordRevealedResourceNode</code><span class="sig-paren">(</span>int<em> resourcenodex</em>, int<em> resourcenodey</em>, <a class="reference internal" href="../state/ResourceNode.html#edu.cwru.sepia.environment.model.state.ResourceNode" title="edu.cwru.sepia.environment.model.state.ResourceNode">ResourceNode</a>.<a class="reference internal" href="../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a><em> resourcenodetype</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordRevealedResourceNode(int, int, ResourceNode.Type)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="recordupgrade">
+<h3>recordUpgrade<a class="headerlink" href="#recordupgrade" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.history.EventLogger.recordUpgrade(int, int, int, int)">
+public void <code class="descname">recordUpgrade</code><span class="sig-paren">(</span>int<em> turnnumber</em>, int<em> upgradetemplateid</em>, int<em> producingunitid</em>, int<em> controller</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.history.EventLogger.recordUpgrade(int, int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="History.html" class="btn btn-neutral float-right" title="History"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DeathLog.html" class="btn btn-neutral" title="DeathLog"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

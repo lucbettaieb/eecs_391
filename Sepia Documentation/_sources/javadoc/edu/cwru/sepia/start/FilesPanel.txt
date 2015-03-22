@@ -1,0 +1,112 @@
+.. java:import:: java.util List
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.io File
+
+.. java:import:: java.net URI
+
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Insets
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: java.awt Component
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: javax.swing JFileChooser
+
+.. java:import:: javax.swing.filechooser FileNameExtensionFilter
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JLabel
+
+.. java:import:: javax.swing JTextField
+
+.. java:import:: javax.swing JButton
+
+.. java:import:: javax.swing.border LineBorder
+
+.. java:import:: javax.swing.border TitledBorder
+
+.. java:import:: javax.swing.event DocumentListener
+
+.. java:import:: javax.swing.event DocumentEvent
+
+.. java:import:: edu.cwru.sepia.start StartWindow
+
+FilesPanel
+==========
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: @SuppressWarnings public class FilesPanel extends JPanel implements DocumentListener
+
+Fields
+------
+configField
+^^^^^^^^^^^
+
+.. java:field::  JTextField configField
+   :outertype: FilesPanel
+
+mapField
+^^^^^^^^
+
+.. java:field::  JTextField mapField
+   :outertype: FilesPanel
+
+Constructors
+------------
+FilesPanel
+^^^^^^^^^^
+
+.. java:constructor:: public FilesPanel(Component parent)
+   :outertype: FilesPanel
+
+Methods
+-------
+addCommandChangeListener
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addCommandChangeListener(CommandChangeListener listener)
+   :outertype: FilesPanel
+
+changedUpdate
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public void changedUpdate(DocumentEvent e)
+   :outertype: FilesPanel
+
+insertUpdate
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void insertUpdate(DocumentEvent e)
+   :outertype: FilesPanel
+
+removeCommandChangeListener
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeCommandChangeListener(CommandChangeListener listener)
+   :outertype: FilesPanel
+
+removeUpdate
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void removeUpdate(DocumentEvent e)
+   :outertype: FilesPanel
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: FilesPanel
+

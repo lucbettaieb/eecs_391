@@ -1,0 +1,36 @@
+.. java:import:: java.util List
+
+.. java:import:: java.util Map.Entry
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history ActionLogger
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlActionEntry
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlActionList
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlActionLogger
+
+ActionLoggerAdapter
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class ActionLoggerAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static ActionLogger fromXml(XmlActionLogger xml)
+   :outertype: ActionLoggerAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlActionLogger toXml(ActionLogger actionLogger)
+   :outertype: ActionLoggerAdapter
+

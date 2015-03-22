@@ -1,0 +1,28 @@
+edu.cwru.sepia.agent
+====================
+
+.. java:package:: edu.cwru.sepia.agent
+
+.. toctree::
+   :maxdepth: 1
+
+   Agent
+   BasicGatheringCoordinator
+   BusynessCoordinator
+   CombatAgent
+   MatlabAgent
+   MimicAgent
+   PrimitiveAttackCoordinator
+   ResourceCollectionAgent
+   ScriptedGoalAgent
+   ScriptedGoalAgent-GathererTask
+   ScriptedGoalAgent-Goal
+   ScriptedGoalAgent-GoalType
+   ScriptedGoalAgent-RelevantStateView
+   ScriptedGoalAgent-WaitType
+   SimpleAgent1
+   SimpleAgent2
+   ThreadIntermediary
+   ThreadIntermediary-StateType
+   ThreadIntermediary-ViewAndNextLatch
+

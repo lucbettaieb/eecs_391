@@ -1,0 +1,60 @@
+.. java:import:: java.rmi Remote
+
+.. java:import:: java.rmi RemoteException
+
+RequestReceiver
+===============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  interface RequestReceiver extends Remote
+
+   Represents a receiver for a request to create a proxy. The receiver must be bound to an RMI registry, it will be bound with the RMI identifier \ :java:ref:`getReceiverID()`\ . Necessary to have this interface for RMI.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+getClassPathAsCanonicalPaths
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public String[] getClassPathAsCanonicalPaths() throws RemoteException
+   :outertype: RequestReceiver
+
+   The classpath of the VM the receiver was created in encoded as canonical paths.
+
+   :throws RemoteException:
+
+getClassPathAsRMICodebase
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public String getClassPathAsRMICodebase() throws RemoteException
+   :outertype: RequestReceiver
+
+   The classpath of the VM the receiver was created in encoded as an RMI codebase.
+
+   :throws RemoteException:
+
+getReceiverID
+^^^^^^^^^^^^^
+
+.. java:method:: public String getReceiverID() throws RemoteException
+   :outertype: RequestReceiver
+
+   The identifier of the receiver.
+
+   :throws RemoteException:
+
+receiveJMIWrapper
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void receiveJMIWrapper(JMIWrapperRemote jmiWrapper, boolean existingSession) throws RemoteException
+   :outertype: RequestReceiver
+
+   Receives an incoming wrapper around the JMI functionality inside of MATLAB.  This method is to be called by \ :java:ref:`MatlabConnector`\  running inside of MATLAB's JVM.
+
+   :param jmiWrapper:
+   :param existingSession: if the session sending the jmiWrapper was running prior to the request to create the proxy
+   :throws RemoteException:
+

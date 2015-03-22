@@ -1,0 +1,58 @@
+.. java:import:: java.io ByteArrayInputStream
+
+.. java:import:: java.io ByteArrayOutputStream
+
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectInputStream
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.ResourceView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+RawStateCreator
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class RawStateCreator implements StateCreator
+
+   A core component of simulating.  RawStateCreator is used to repeatedly clone an existing state from an array of bytes representing a serialization.
+
+   :author: The Condor
+
+Fields
+------
+stateData
+^^^^^^^^^
+
+.. java:field::  byte[] stateData
+   :outertype: RawStateCreator
+
+Constructors
+------------
+RawStateCreator
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public RawStateCreator(byte[] stateData) throws IOException
+   :outertype: RawStateCreator
+
+Methods
+-------
+createState
+^^^^^^^^^^^
+
+.. java:method:: @Override public State createState()
+   :outertype: RawStateCreator
+

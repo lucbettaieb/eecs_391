@@ -1,0 +1,112 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+XmlRevealedResourceNodeLog
+==========================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlRevealedResourceNodeLog
+
+   Java class for RevealedResourceNodeLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="RevealedResourceNodeLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="xPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="yPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="nodeType" type="{}ResourceNodeType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+nodeType
+^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected Type nodeType
+   :outertype: XmlRevealedResourceNodeLog
+
+xPosition
+^^^^^^^^^
+
+.. java:field:: protected int xPosition
+   :outertype: XmlRevealedResourceNodeLog
+
+yPosition
+^^^^^^^^^
+
+.. java:field:: protected int yPosition
+   :outertype: XmlRevealedResourceNodeLog
+
+Methods
+-------
+getNodeType
+^^^^^^^^^^^
+
+.. java:method:: public Type getNodeType()
+   :outertype: XmlRevealedResourceNodeLog
+
+   Gets the value of the nodeType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getXPosition()
+   :outertype: XmlRevealedResourceNodeLog
+
+   Gets the value of the xPosition property.
+
+getYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getYPosition()
+   :outertype: XmlRevealedResourceNodeLog
+
+   Gets the value of the yPosition property.
+
+setNodeType
+^^^^^^^^^^^
+
+.. java:method:: public void setNodeType(Type value)
+   :outertype: XmlRevealedResourceNodeLog
+
+   Sets the value of the nodeType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setXPosition(int value)
+   :outertype: XmlRevealedResourceNodeLog
+
+   Sets the value of the xPosition property.
+
+setYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setYPosition(int value)
+   :outertype: XmlRevealedResourceNodeLog
+
+   Sets the value of the yPosition property.
+

@@ -1,0 +1,94 @@
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.action DirectedAction
+
+.. java:import:: edu.cwru.sepia.action TargetedAction
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+SimpleAgent1
+============
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class SimpleAgent1 extends Agent
+
+   A simple agent that makes all its units move in random directions if they are not attacking. Will attack any enemy within sight range.
+
+   :author: Tim
+
+Fields
+------
+currentState
+^^^^^^^^^^^^
+
+.. java:field::  StateView currentState
+   :outertype: SimpleAgent1
+
+Constructors
+------------
+SimpleAgent1
+^^^^^^^^^^^^
+
+.. java:constructor:: public SimpleAgent1(int playernum)
+   :outertype: SimpleAgent1
+
+Methods
+-------
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: SimpleAgent1
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: SimpleAgent1
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: SimpleAgent1
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newState, History.HistoryView statehistory)
+   :outertype: SimpleAgent1
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: SimpleAgent1
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: SimpleAgent1
+

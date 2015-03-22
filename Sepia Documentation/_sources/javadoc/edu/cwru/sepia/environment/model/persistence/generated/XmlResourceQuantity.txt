@@ -1,0 +1,89 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+XmlResourceQuantity
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlResourceQuantity
+
+   Java class for ResourceQuantity complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ResourceQuantity">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="quantity" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="type" type="{}ResourceType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+quantity
+^^^^^^^^
+
+.. java:field:: protected int quantity
+   :outertype: XmlResourceQuantity
+
+type
+^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ResourceType type
+   :outertype: XmlResourceQuantity
+
+Methods
+-------
+getQuantity
+^^^^^^^^^^^
+
+.. java:method:: public int getQuantity()
+   :outertype: XmlResourceQuantity
+
+   Gets the value of the quantity property.
+
+getType
+^^^^^^^
+
+.. java:method:: public ResourceType getType()
+   :outertype: XmlResourceQuantity
+
+   Gets the value of the type property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setQuantity
+^^^^^^^^^^^
+
+.. java:method:: public void setQuantity(int value)
+   :outertype: XmlResourceQuantity
+
+   Sets the value of the quantity property.
+
+setType
+^^^^^^^
+
+.. java:method:: public void setType(ResourceType value)
+   :outertype: XmlResourceQuantity
+
+   Sets the value of the type property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

@@ -1,0 +1,26 @@
+.. java:import:: java.util Collection
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlPlayer
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlState
+
+XmlStateUtil
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public final class XmlStateUtil
+
+Methods
+-------
+playerIds
+^^^^^^^^^
+
+.. java:method:: public static Collection<Integer> playerIds(XmlState xml)
+   :outertype: XmlStateUtil
+

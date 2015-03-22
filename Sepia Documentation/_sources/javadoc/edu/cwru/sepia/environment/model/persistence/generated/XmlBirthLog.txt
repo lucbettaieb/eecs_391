@@ -1,0 +1,102 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlBirthLog
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlBirthLog
+
+   Java class for BirthLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="BirthLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="newUnitID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="controller" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="parentID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+controller
+^^^^^^^^^^
+
+.. java:field:: protected int controller
+   :outertype: XmlBirthLog
+
+newUnitID
+^^^^^^^^^
+
+.. java:field:: protected int newUnitID
+   :outertype: XmlBirthLog
+
+parentID
+^^^^^^^^
+
+.. java:field:: protected int parentID
+   :outertype: XmlBirthLog
+
+Methods
+-------
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: XmlBirthLog
+
+   Gets the value of the controller property.
+
+getNewUnitID
+^^^^^^^^^^^^
+
+.. java:method:: public int getNewUnitID()
+   :outertype: XmlBirthLog
+
+   Gets the value of the newUnitID property.
+
+getParentID
+^^^^^^^^^^^
+
+.. java:method:: public int getParentID()
+   :outertype: XmlBirthLog
+
+   Gets the value of the parentID property.
+
+setController
+^^^^^^^^^^^^^
+
+.. java:method:: public void setController(int value)
+   :outertype: XmlBirthLog
+
+   Sets the value of the controller property.
+
+setNewUnitID
+^^^^^^^^^^^^
+
+.. java:method:: public void setNewUnitID(int value)
+   :outertype: XmlBirthLog
+
+   Sets the value of the newUnitID property.
+
+setParentID
+^^^^^^^^^^^
+
+.. java:method:: public void setParentID(int value)
+   :outertype: XmlBirthLog
+
+   Sets the value of the parentID property.
+

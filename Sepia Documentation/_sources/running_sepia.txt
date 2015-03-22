@@ -1,0 +1,115 @@
+
+===============
+ Running Sepia
+===============
+
+
+This section covers how to specify scenario configurations and how to
+use Eclipse to run a scenario.
+ 
+
+Adding a Map
+------------
+
+In order to begin testing our agent we will need a test map and a test
+configuration. First create a data folder in your project in the same
+way we created the lib folder when setting up the project. Then `click here to download the example map
+<_static/example_map.zip>`_ Extract the files to the new data
+folder.
+
+Open up the ``ResourceCollectionConfig.xml`` file. This XML file
+specifies the map, the agents used, the goals of the scenario and
+extra parameters about how many episodes of the scenario to run before
+quitting.
+
+The most important tag is the ``<Player>`` tag. The ID attribute
+specifies which player this agent is controlling. This is the same
+number passed into the constructor of your class. Also look at the
+``<ClassName>`` tag. This specifies the Java class path to the agent
+class that controls the player.
+
+You'll also notice that player 0 has two agents: VisualAgent and
+ResourceCollectionAgent. ResourceCollectionAgent comes with Sepia as
+an example. It contains an agent that controls a few peasant units to
+collect some gold and wood. VisualAgent is a special agent. It will
+open a Java Swing window that gives a visual representation of the
+game. There are two argument parameters to the VisualAgent. Setting
+the second one to true will allow you to control the units of the
+VisualAgent's PlayerID.
+
+.. _sepia-run-configuration-setup:
+
+Running Resource Collection Agent Example
+-----------------------------------------
+
+
+To run SEPIA first highlight the ``Sepia.jar`` file in the Package
+Explorer. It should be under the ``Referenced Libraries`` folder. Then
+click the green Run arrow on the menu bar
+
+.. image:: _static/eclipse_run_arrow_screenshot.png
+  :target: _static/eclipse_run_arrow_screenshot.png
+
+This will open a dialog box. Select ``Java Application`` and then
+click ok. Next you will see a box with a few of the built in SEPIA
+Classes. Select the ``Main2`` class.
+
+.. image:: _static/eclipse_run_main_class_screenshot.png
+  :target: _static/eclipse_run_main_class_screenshot.png
+
+This should open a Console tab at the bottom of eclipse that will
+complain about no configuration file being specified. To fix this
+click ``Run->Run Configurations`` in the main menu. This will allow
+you to edit the run parameters to specify things like command line
+arguments and working directories. Under the ``Java Applications``
+category on the left there should be a ``Main2``. Click on that to
+edit the run configuration.
+
+.. image:: _static/eclipse_run_configuration_screenshot.png
+  :target: _static/eclipse_run_configuration_screenshot.png
+
+First give this a useful name. Change Main2 to something like
+"Resource Collection Agent". Then click on the arguments tab and in
+the ``Program Arguments`` box type
+"data/ResourceCollectionConfig.xml". Click the ``Apply Button`` and
+then click the ``Run Button``. This time a window should open up.
+
+.. image:: _static/sepia_visual_agent_screenshot.png
+  :target: _static/sepia_visual_agent_screenshot.png
+
+This window is the Visual Agent. You'll see yellow squares, trees and
+some letters. The yellow squares are gold mines, the trees are wood
+sources. The P is a peasant unit and the H is the Town Hall
+unit. Click on the ``Play Button`` to run the scenario and see the
+agent in action. You should see the Peasant begin moving to the gold
+mines and trees. If you look on the right side of the screen you can
+see information about how much gold, wood and food you currently have.
+
+.. note:: The food number is actually the amount of food in use. There
+	  is a food supply cap in the game code (which starts at 4 in
+	  this scenario). Agents can create units that use food up
+	  until the supply cap. Unfortunately as of this version of
+	  SEPIA nothing displays this supply cap. However, you can
+	  access the supply cap amount in the agent code.
+
+
+Manual Control
+--------------
+
+Now lets create an alternative run configuration for the VisualAgent
+so you can manually control the peasants. Again using the main menu
+click ``Run->Run Configuration...``. Find the ``Resource Collection
+Agent`` configuration then click on the duplicate button. Change the
+name to something meaningful (in this case "Manual Control"). Then in
+the ``Arguments`` tab change the value of the ``Program Arguments`` to
+"data/ManualControlConfig.xml". Finally click ``Apply`` and then
+``Run``. This time if you click play nothing will happen. First left
+click on the peasant to highlight it. Then right click on one of the
+gold mines and select "Gather GOLD_MINE". Now if you click play the
+Peasant should move to that gold mine and begin collecting
+gold. Double clicking on the peasant will show its unit id, its health
+and what resources it is carrying. You can control any of the units in
+this way in order to manually try things out in the game.
+
+
+

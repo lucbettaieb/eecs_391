@@ -1,0 +1,158 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+XmlResourceDropoffLog
+=====================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlResourceDropoffLog
+
+   Java class for ResourceDropoffLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ResourceDropoffLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="depositAmount" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="gathererID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="depotID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="controller" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="resourceType" type="{}ResourceType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+controller
+^^^^^^^^^^
+
+.. java:field:: protected int controller
+   :outertype: XmlResourceDropoffLog
+
+depositAmount
+^^^^^^^^^^^^^
+
+.. java:field:: protected int depositAmount
+   :outertype: XmlResourceDropoffLog
+
+depotID
+^^^^^^^
+
+.. java:field:: protected int depotID
+   :outertype: XmlResourceDropoffLog
+
+gathererID
+^^^^^^^^^^
+
+.. java:field:: protected int gathererID
+   :outertype: XmlResourceDropoffLog
+
+resourceType
+^^^^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ResourceType resourceType
+   :outertype: XmlResourceDropoffLog
+
+Methods
+-------
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: XmlResourceDropoffLog
+
+   Gets the value of the controller property.
+
+getDepositAmount
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDepositAmount()
+   :outertype: XmlResourceDropoffLog
+
+   Gets the value of the depositAmount property.
+
+getDepotID
+^^^^^^^^^^
+
+.. java:method:: public int getDepotID()
+   :outertype: XmlResourceDropoffLog
+
+   Gets the value of the depotID property.
+
+getGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getGathererID()
+   :outertype: XmlResourceDropoffLog
+
+   Gets the value of the gathererID property.
+
+getResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getResourceType()
+   :outertype: XmlResourceDropoffLog
+
+   Gets the value of the resourceType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setController
+^^^^^^^^^^^^^
+
+.. java:method:: public void setController(int value)
+   :outertype: XmlResourceDropoffLog
+
+   Sets the value of the controller property.
+
+setDepositAmount
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDepositAmount(int value)
+   :outertype: XmlResourceDropoffLog
+
+   Sets the value of the depositAmount property.
+
+setDepotID
+^^^^^^^^^^
+
+.. java:method:: public void setDepotID(int value)
+   :outertype: XmlResourceDropoffLog
+
+   Sets the value of the depotID property.
+
+setGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public void setGathererID(int value)
+   :outertype: XmlResourceDropoffLog
+
+   Sets the value of the gathererID property.
+
+setResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setResourceType(ResourceType value)
+   :outertype: XmlResourceDropoffLog
+
+   Sets the value of the resourceType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

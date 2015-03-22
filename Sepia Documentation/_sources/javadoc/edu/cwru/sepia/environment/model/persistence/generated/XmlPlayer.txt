@@ -1,0 +1,216 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlPlayer
+=========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlPlayer
+
+   Java class for Player complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="Player">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="ID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="unit" type="{}Unit"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="upgrade" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="template" type="{}Template"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="resourceAmount" type="{}ResourceQuantity"/>
+              </sequence>
+              <element name="supply" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="supplyCap" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+id
+^^
+
+.. java:field:: @XmlElement protected int id
+   :outertype: XmlPlayer
+
+resourceAmount
+^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlResourceQuantity> resourceAmount
+   :outertype: XmlPlayer
+
+supply
+^^^^^^
+
+.. java:field:: protected int supply
+   :outertype: XmlPlayer
+
+supplyCap
+^^^^^^^^^
+
+.. java:field:: protected int supplyCap
+   :outertype: XmlPlayer
+
+template
+^^^^^^^^
+
+.. java:field:: protected List<XmlTemplate> template
+   :outertype: XmlPlayer
+
+unit
+^^^^
+
+.. java:field:: protected List<XmlUnit> unit
+   :outertype: XmlPlayer
+
+upgrade
+^^^^^^^
+
+.. java:field:: @XmlElement protected List<Integer> upgrade
+   :outertype: XmlPlayer
+
+Methods
+-------
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: XmlPlayer
+
+   Gets the value of the id property.
+
+getResourceAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlResourceQuantity> getResourceAmount()
+   :outertype: XmlPlayer
+
+   Gets the value of the resourceAmount property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the resourceAmount property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getResourceAmount().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlResourceQuantity`\
+
+getSupply
+^^^^^^^^^
+
+.. java:method:: public int getSupply()
+   :outertype: XmlPlayer
+
+   Gets the value of the supply property.
+
+getSupplyCap
+^^^^^^^^^^^^
+
+.. java:method:: public int getSupplyCap()
+   :outertype: XmlPlayer
+
+   Gets the value of the supplyCap property.
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public List<XmlTemplate> getTemplate()
+   :outertype: XmlPlayer
+
+   Gets the value of the template property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the template property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getTemplate().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlTemplate`\
+
+getUnit
+^^^^^^^
+
+.. java:method:: public List<XmlUnit> getUnit()
+   :outertype: XmlPlayer
+
+   Gets the value of the unit property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the unit property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getUnit().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlUnit`\
+
+getUpgrade
+^^^^^^^^^^
+
+.. java:method:: public List<Integer> getUpgrade()
+   :outertype: XmlPlayer
+
+   Gets the value of the upgrade property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the upgrade property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getUpgrade().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`Integer`\
+
+setID
+^^^^^
+
+.. java:method:: public void setID(int value)
+   :outertype: XmlPlayer
+
+   Sets the value of the id property.
+
+setSupply
+^^^^^^^^^
+
+.. java:method:: public void setSupply(int value)
+   :outertype: XmlPlayer
+
+   Sets the value of the supply property.
+
+setSupplyCap
+^^^^^^^^^^^^
+
+.. java:method:: public void setSupplyCap(int value)
+   :outertype: XmlPlayer
+
+   Sets the value of the supplyCap property.
+

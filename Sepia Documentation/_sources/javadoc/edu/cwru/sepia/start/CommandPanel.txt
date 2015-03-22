@@ -1,0 +1,86 @@
+.. java:import:: java.util List
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.io File
+
+.. java:import:: java.io PrintWriter
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Insets
+
+.. java:import:: java.awt Component
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: java.awt Toolkit
+
+.. java:import:: java.awt.datatransfer Clipboard
+
+.. java:import:: java.awt.datatransfer StringSelection
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: javax.swing Box
+
+.. java:import:: javax.swing JFileChooser
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JTextArea
+
+.. java:import:: javax.swing JScrollPane
+
+.. java:import:: javax.swing JButton
+
+.. java:import:: javax.swing.border LineBorder
+
+.. java:import:: javax.swing.border TitledBorder
+
+.. java:import:: edu.cwru.sepia.start StartWindow
+
+CommandPanel
+============
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: @SuppressWarnings public class CommandPanel extends JPanel
+
+Fields
+------
+commandArea
+^^^^^^^^^^^
+
+.. java:field::  JTextArea commandArea
+   :outertype: CommandPanel
+
+Constructors
+------------
+CommandPanel
+^^^^^^^^^^^^
+
+.. java:constructor:: public CommandPanel(Component parent, ActionListener runListener)
+   :outertype: CommandPanel
+
+Methods
+-------
+saveCommand
+^^^^^^^^^^^
+
+.. java:method:: public void saveCommand(File file)
+   :outertype: CommandPanel
+
+setArgs
+^^^^^^^
+
+.. java:method:: public void setArgs(List<String> args)
+   :outertype: CommandPanel
+

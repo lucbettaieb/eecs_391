@@ -1,0 +1,24 @@
+ResourceType
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public enum ResourceType
+
+   An enumeration of two types of reserces, i.e., Gold and Wood.
+
+Enum Constants
+--------------
+GOLD
+^^^^
+
+.. java:field:: public static final ResourceType GOLD
+   :outertype: ResourceType
+
+WOOD
+^^^^
+
+.. java:field:: public static final ResourceType WOOD
+   :outertype: ResourceType
+

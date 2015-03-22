@@ -1,0 +1,110 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+ActionResultLogger
+==================
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class ActionResultLogger implements Serializable, DeepEquatable
+
+   Logs the results for a single player.
+
+   :author: The Condor
+
+Fields
+------
+actionresults
+^^^^^^^^^^^^^
+
+.. java:field::  List<Map<Integer, ActionResult>> actionresults
+   :outertype: ActionResultLogger
+
+Constructors
+------------
+ActionResultLogger
+^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ActionResultLogger()
+   :outertype: ActionResultLogger
+
+Methods
+-------
+addActionResult
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void addActionResult(int stepNumber, ActionResult actionResult)
+   :outertype: ActionResultLogger
+
+   Insert an action result, overwriting any ActionResult for the same unit in the same round.
+
+   :param stepNumber:
+   :param actionResult:
+
+addActionResult
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void addActionResult(int stepNumber, int unitID, ActionResult actionResult)
+   :outertype: ActionResultLogger
+
+   Insert an action result, overwriting any ActionResult for the same unit id in the same round.
+
+   :param stepNumber:
+   :param unitID:
+   :param actionResult:
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: public boolean deepEquals(Object other)
+   :outertype: ActionResultLogger
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object obj)
+   :outertype: ActionResultLogger
+
+getActionResults
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public Map<Integer, ActionResult> getActionResults(int roundnumber)
+   :outertype: ActionResultLogger
+
+   Get the results of actions for a specific round.
+
+   :param roundnumber:
+   :return: an unmodifiable list of ActionResults
+
+getHighestRound
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRound()
+   :outertype: ActionResultLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ActionResultLogger
+

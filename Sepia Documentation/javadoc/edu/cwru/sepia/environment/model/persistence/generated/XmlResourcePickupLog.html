@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XmlResourcePickupLog &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.persistence.generated" href="package-index.html"/>
+        <link rel="next" title="XmlResourcePickupLogList" href="XmlResourcePickupLogList.html"/>
+        <link rel="prev" title="XmlResourceNodeExhaustionLogList" href="XmlResourceNodeExhaustionLogList.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a> &raquo;</li>
+      
+    <li>XmlResourcePickupLog</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/persistence/generated/XmlResourcePickupLog.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="xmlresourcepickuplog">
+<h1>XmlResourcePickupLog<a class="headerlink" href="#xmlresourcepickuplog" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog">
+public class <code class="descname">XmlResourcePickupLog</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Java class for ResourcePickupLog complex type.</p>
+<p>The following schema fragment specifies the expected content contained within this class.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;complexType name=&quot;ResourcePickupLog&quot;&gt;
+  &lt;complexContent&gt;
+    &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
+      &lt;sequence&gt;
+        &lt;element name=&quot;pickupAmount&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;gathererID&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;controller&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;nodeID&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;nodeType&quot; type=&quot;{}ResourceNodeType&quot;/&gt;
+        &lt;element name=&quot;resourceType&quot; type=&quot;{}ResourceType&quot;/&gt;
+      &lt;/sequence&gt;
+    &lt;/restriction&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="controller">
+<h3>controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.controller">
+protected int <code class="descname">controller</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.controller" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gathererid">
+<h3>gathererID<a class="headerlink" href="#gathererid" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.gathererID">
+protected int <code class="descname">gathererID</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.gathererID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nodeid">
+<h3>nodeID<a class="headerlink" href="#nodeid" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.nodeID">
+protected int <code class="descname">nodeID</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.nodeID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nodetype">
+<h3>nodeType<a class="headerlink" href="#nodetype" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.nodeType">
+protected <a class="reference internal" href="../../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a> <code class="descname">nodeType</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.nodeType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="pickupamount">
+<h3>pickupAmount<a class="headerlink" href="#pickupamount" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.pickupAmount">
+protected int <code class="descname">pickupAmount</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.pickupAmount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="resourcetype">
+<h3>resourceType<a class="headerlink" href="#resourcetype" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.resourceType">
+protected <a class="reference internal" href="../../state/ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a> <code class="descname">resourceType</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.resourceType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getcontroller">
+<h3>getController<a class="headerlink" href="#getcontroller" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getController()">
+public int <code class="descname">getController</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getController()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the controller property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getgathererid">
+<h3>getGathererID<a class="headerlink" href="#getgathererid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getGathererID()">
+public int <code class="descname">getGathererID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getGathererID()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the gathererID property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getnodeid">
+<h3>getNodeID<a class="headerlink" href="#getnodeid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getNodeID()">
+public int <code class="descname">getNodeID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getNodeID()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the nodeID property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getnodetype">
+<h3>getNodeType<a class="headerlink" href="#getnodetype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getNodeType()">
+public <a class="reference internal" href="../../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a> <code class="descname">getNodeType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getNodeType()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the nodeType property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><code class="xref java java-ref docutils literal"><span class="pre">String</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getpickupamount">
+<h3>getPickupAmount<a class="headerlink" href="#getpickupamount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getPickupAmount()">
+public int <code class="descname">getPickupAmount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getPickupAmount()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the pickupAmount property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getresourcetype">
+<h3>getResourceType<a class="headerlink" href="#getresourcetype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getResourceType()">
+public <a class="reference internal" href="../../state/ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a> <code class="descname">getResourceType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.getResourceType()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the resourceType property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><code class="xref java java-ref docutils literal"><span class="pre">String</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setcontroller">
+<h3>setController<a class="headerlink" href="#setcontroller" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setController(int)">
+public void <code class="descname">setController</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setController(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the controller property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setgathererid">
+<h3>setGathererID<a class="headerlink" href="#setgathererid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setGathererID(int)">
+public void <code class="descname">setGathererID</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setGathererID(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the gathererID property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setnodeid">
+<h3>setNodeID<a class="headerlink" href="#setnodeid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setNodeID(int)">
+public void <code class="descname">setNodeID</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setNodeID(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the nodeID property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setnodetype">
+<h3>setNodeType<a class="headerlink" href="#setnodetype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setNodeType(Type)">
+public void <code class="descname">setNodeType</code><span class="sig-paren">(</span><a class="reference internal" href="../../state/ResourceNode-Type.html#edu.cwru.sepia.environment.model.state.ResourceNode.Type" title="edu.cwru.sepia.environment.model.state.ResourceNode.Type">Type</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setNodeType(Type)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the nodeType property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><code class="xref java java-ref docutils literal"><span class="pre">String</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setpickupamount">
+<h3>setPickupAmount<a class="headerlink" href="#setpickupamount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setPickupAmount(int)">
+public void <code class="descname">setPickupAmount</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setPickupAmount(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the pickupAmount property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setresourcetype">
+<h3>setResourceType<a class="headerlink" href="#setresourcetype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setResourceType(ResourceType)">
+public void <code class="descname">setResourceType</code><span class="sig-paren">(</span><a class="reference internal" href="../../state/ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog.setResourceType(ResourceType)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the resourceType property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String"><code class="xref java java-ref docutils literal"><span class="pre">String</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XmlResourcePickupLogList.html" class="btn btn-neutral float-right" title="XmlResourcePickupLogList"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XmlResourceNodeExhaustionLogList.html" class="btn btn-neutral" title="XmlResourceNodeExhaustionLogList"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

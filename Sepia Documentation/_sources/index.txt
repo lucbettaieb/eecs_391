@@ -1,0 +1,28 @@
+.. SEPIA Documentation documentation master file, created by
+   sphinx-quickstart on Mon Dec 22 13:35:49 2014.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+SEPIA Documentation
+===============================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   setup
+   running_sepia
+   first_agent
+   combat_agents
+   javadoc/packages
+
+.. todolist::
+
+Welcome to the SEPIA Tutorial. This document goes over the basic of
+how to setup a SEPIA project and write simple agents. The walkthrough
+goes through the basic API used for resource collection and hte basic
+API used for combat.
+
+`Click here to download SEPIA <_static/Sepia.jar>`_
+

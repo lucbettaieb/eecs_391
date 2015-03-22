@@ -1,0 +1,44 @@
+TargetedAction
+==============
+
+.. java:package:: edu.cwru.sepia.action
+   :noindex:
+
+.. java:type:: public class TargetedAction extends Action
+
+   A subtype of Action, include CompoundAttack, PrimitiveAttack, CompoundGather, CompoundDeposit
+
+Constructors
+------------
+TargetedAction
+^^^^^^^^^^^^^^
+
+.. java:constructor:: public TargetedAction(int unitid, ActionType type, int targetid)
+   :outertype: TargetedAction
+
+Methods
+-------
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: TargetedAction
+
+getTargetId
+^^^^^^^^^^^
+
+.. java:method:: public int getTargetId()
+   :outertype: TargetedAction
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: TargetedAction
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: TargetedAction
+

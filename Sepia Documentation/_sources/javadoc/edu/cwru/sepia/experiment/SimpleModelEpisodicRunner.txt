@@ -1,0 +1,54 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileOutputStream
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.util.logging Level
+
+.. java:import:: java.util.logging Logger
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment Environment
+
+.. java:import:: edu.cwru.sepia.environment.model SimpleModel
+
+.. java:import:: edu.cwru.sepia.environment.model.state StateCreator
+
+.. java:import:: edu.cwru.sepia.util GameMap
+
+SimpleModelEpisodicRunner
+=========================
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public class SimpleModelEpisodicRunner extends Runner
+
+   A \ ``Runner``\  that runs a number of episodes using \ ``edu.cwru.sepia.model.SimpleModel``\ .
+
+   :author: Tim
+
+Constructors
+------------
+SimpleModelEpisodicRunner
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public SimpleModelEpisodicRunner(Configuration configuration, StateCreator stateCreator, Agent[] agents)
+   :outertype: SimpleModelEpisodicRunner
+
+Methods
+-------
+loadFull
+^^^^^^^^
+
+.. java:method:: public void loadFull()
+   :outertype: SimpleModelEpisodicRunner
+
+run
+^^^
+
+.. java:method:: @Override public void run()
+   :outertype: SimpleModelEpisodicRunner
+

@@ -1,0 +1,66 @@
+ActionFeedback
+==============
+
+.. java:package:: edu.cwru.sepia.action
+   :noindex:
+
+.. java:type:: public enum ActionFeedback
+
+Enum Constants
+--------------
+COMPLETED
+^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback COMPLETED
+   :outertype: ActionFeedback
+
+   Indicates that the action has been successfully completed
+
+FAILED
+^^^^^^
+
+.. java:field:: public static final ActionFeedback FAILED
+   :outertype: ActionFeedback
+
+   Indicates that the action cannot be completed
+
+INCOMPLETE
+^^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback INCOMPLETE
+   :outertype: ActionFeedback
+
+   Indicates that the action is incomplete
+
+INCOMPLETEMAYBESTUCK
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback INCOMPLETEMAYBESTUCK
+   :outertype: ActionFeedback
+
+   Indicates that the action is incomplete and had to recalculate multiple times, indicating the possibility of being stuck
+
+INVALIDCONTROLLER
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback INVALIDCONTROLLER
+   :outertype: ActionFeedback
+
+   Indicates that the action was issued to a unit not controlled by the player
+
+INVALIDTYPE
+^^^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback INVALIDTYPE
+   :outertype: ActionFeedback
+
+   Indicates that the action was improperly constructed
+
+INVALIDUNIT
+^^^^^^^^^^^
+
+.. java:field:: public static final ActionFeedback INVALIDUNIT
+   :outertype: ActionFeedback
+
+   Indicates that the action was mapped to a unit other than the one that the action refers to
+

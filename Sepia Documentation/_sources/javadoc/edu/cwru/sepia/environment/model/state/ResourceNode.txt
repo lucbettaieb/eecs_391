@@ -1,0 +1,105 @@
+.. java:import:: java.io Serializable
+
+ResourceNode
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class ResourceNode extends Target implements Cloneable
+
+   A subtype of Target that contains all information of a resource.
+
+Constructors
+------------
+ResourceNode
+^^^^^^^^^^^^
+
+.. java:constructor:: public ResourceNode(Type type, int xPosition, int yPosition, int initialAmount, int ID)
+   :outertype: ResourceNode
+
+Methods
+-------
+clone
+^^^^^
+
+.. java:method:: @Override protected Object clone()
+   :outertype: ResourceNode
+
+copyOf
+^^^^^^
+
+.. java:method:: public ResourceNode copyOf()
+   :outertype: ResourceNode
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: ResourceNode
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object o)
+   :outertype: ResourceNode
+
+getAmountRemaining
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAmountRemaining()
+   :outertype: ResourceNode
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: ResourceNode
+
+getResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getResourceType()
+   :outertype: ResourceNode
+
+getType
+^^^^^^^
+
+.. java:method:: public Type getType()
+   :outertype: ResourceNode
+
+getView
+^^^^^^^
+
+.. java:method:: public ResourceView getView()
+   :outertype: ResourceNode
+
+getxPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getxPosition()
+   :outertype: ResourceNode
+
+getyPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getyPosition()
+   :outertype: ResourceNode
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ResourceNode
+
+reduceAmountRemaining
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int reduceAmountRemaining(int amount)
+   :outertype: ResourceNode
+
+   Try to pick some resources out of this node
+
+   :param amount:
+   :return: The amount of resources successfully removed from the node
+

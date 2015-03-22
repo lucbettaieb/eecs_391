@@ -1,0 +1,616 @@
+.. java:import:: java.io IOException
+
+.. java:import:: java.io Writer
+
+.. java:import:: java.lang.reflect Array
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util Map
+
+JSONArray
+=========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class JSONArray
+
+   A JSONArray is an ordered sequence of values. Its external text form is a string wrapped in square brackets with commas separating the values. The internal form is an object having \ ``get``\  and \ ``opt``\  methods for accessing the values by index, and \ ``put``\  methods for adding or replacing values. The values can be any of these types: \ ``Boolean``\ , \ ``JSONArray``\ , \ ``JSONObject``\ , \ ``Number``\ , \ ``String``\ , or the \ ``JSONObject.NULL object``\ .
+
+   The constructor can convert a JSON text into a Java object. The \ ``toString``\  method converts to JSON text.
+
+   A \ ``get``\  method returns a value if one can be found, and throws an exception if one cannot be found. An \ ``opt``\  method returns a default value instead of throwing an exception, and so is useful for obtaining optional values.
+
+   The generic \ ``get()``\  and \ ``opt()``\  methods return an object which you can cast or query for type. There are also typed \ ``get``\  and \ ``opt``\  methods that do type checking and type coercion for you.
+
+   The texts produced by the \ ``toString``\  methods strictly conform to JSON syntax rules. The constructors are more forgiving in the texts they will accept:
+
+   ..
+
+   * An extra \ ``,``\  (comma) may appear just before the closing bracket.
+   * The \ ``null``\  value will be inserted when there is \ ``,``\  (comma) elision.
+   * Strings may be quoted with \ ``'``\  (single quote).
+   * Strings do not need to be quoted at all if they do not begin with a quote or single quote, and if they do not contain leading or trailing spaces, and if they do not contain any of these characters: \ ``{ } [ ] / \ : , = ; #``\  and if they do not look like numbers and if they are not the reserved words \ ``true``\ , \ ``false``\ , or \ ``null``\ .
+   * Values can be separated by \ ``;``\  (semicolon) as well as by \ ``,``\  (comma).
+   * Numbers may have the \ ``0x-``\  (hex) prefix.
+
+   :author: JSON.org
+
+Constructors
+------------
+JSONArray
+^^^^^^^^^
+
+.. java:constructor:: public JSONArray()
+   :outertype: JSONArray
+
+   Construct an empty JSONArray.
+
+JSONArray
+^^^^^^^^^
+
+.. java:constructor:: public JSONArray(JSONTokener x) throws JSONException
+   :outertype: JSONArray
+
+   Construct a JSONArray from a JSONTokener.
+
+   :param x: A JSONTokener
+   :throws JSONException: If there is a syntax error.
+
+JSONArray
+^^^^^^^^^
+
+.. java:constructor:: public JSONArray(String source) throws JSONException
+   :outertype: JSONArray
+
+   Construct a JSONArray from a source JSON text.
+
+   :param source: A string that begins with \ ``[``\  (left bracket) and ends with \ ``]``\  (right bracket).
+   :throws JSONException: If there is a syntax error.
+
+JSONArray
+^^^^^^^^^
+
+.. java:constructor:: public JSONArray(Collection<Object> collection)
+   :outertype: JSONArray
+
+   Construct a JSONArray from a Collection.
+
+   :param collection: A Collection.
+
+JSONArray
+^^^^^^^^^
+
+.. java:constructor:: public JSONArray(Object array) throws JSONException
+   :outertype: JSONArray
+
+   Construct a JSONArray from an array
+
+   :throws JSONException: If not an array.
+
+Methods
+-------
+get
+^^^
+
+.. java:method:: public Object get(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the object value associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If there is no value for the index.
+   :return: An object value.
+
+getBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean getBoolean(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the boolean value associated with an index. The string values "true" and "false" are converted to boolean.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If there is no value for the index or if the value is not convertible to boolean.
+   :return: The truth.
+
+getDouble
+^^^^^^^^^
+
+.. java:method:: public double getDouble(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the double value associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If the key is not found or if the value cannot be converted to a number.
+   :return: The value.
+
+getInt
+^^^^^^
+
+.. java:method:: public int getInt(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the int value associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If the key is not found or if the value is not a number.
+   :return: The value.
+
+getJSONArray
+^^^^^^^^^^^^
+
+.. java:method:: public JSONArray getJSONArray(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the JSONArray associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If there is no value for the index. or if the value is not a JSONArray
+   :return: A JSONArray value.
+
+getJSONObject
+^^^^^^^^^^^^^
+
+.. java:method:: public JSONObject getJSONObject(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the JSONObject associated with an index.
+
+   :param index: subscript
+   :throws JSONException: If there is no value for the index or if the value is not a JSONObject
+   :return: A JSONObject value.
+
+getLong
+^^^^^^^
+
+.. java:method:: public long getLong(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the long value associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If the key is not found or if the value cannot be converted to a number.
+   :return: The value.
+
+getString
+^^^^^^^^^
+
+.. java:method:: public String getString(int index) throws JSONException
+   :outertype: JSONArray
+
+   Get the string associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :throws JSONException: If there is no string value for the index.
+   :return: A string value.
+
+isNull
+^^^^^^
+
+.. java:method:: public boolean isNull(int index)
+   :outertype: JSONArray
+
+   Determine if the value is null.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: true if the value at the index is null, or if there is no value.
+
+join
+^^^^
+
+.. java:method:: public String join(String separator) throws JSONException
+   :outertype: JSONArray
+
+   Make a string from the contents of this JSONArray. The \ ``separator``\  string is inserted between each element. Warning: This method assumes that the data structure is acyclical.
+
+   :param separator: A string that will be inserted between the elements.
+   :throws JSONException: If the array contains an invalid number.
+   :return: a string.
+
+length
+^^^^^^
+
+.. java:method:: public int length()
+   :outertype: JSONArray
+
+   Get the number of elements in the JSONArray, included nulls.
+
+   :return: The length (or size).
+
+opt
+^^^
+
+.. java:method:: public Object opt(int index)
+   :outertype: JSONArray
+
+   Get the optional object value associated with an index.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: An object value, or null if there is no object at that index.
+
+optBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean optBoolean(int index)
+   :outertype: JSONArray
+
+   Get the optional boolean value associated with an index. It returns false if there is no value at that index, or if the value is not Boolean.TRUE or the String "true".
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: The truth.
+
+optBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean optBoolean(int index, boolean defaultValue)
+   :outertype: JSONArray
+
+   Get the optional boolean value associated with an index. It returns the defaultValue if there is no value at that index or if it is not a Boolean or the String "true" or "false" (case insensitive).
+
+   :param index: The index must be between 0 and length() - 1.
+   :param defaultValue: A boolean default.
+   :return: The truth.
+
+optDouble
+^^^^^^^^^
+
+.. java:method:: public double optDouble(int index)
+   :outertype: JSONArray
+
+   Get the optional double value associated with an index. NaN is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: The value.
+
+optDouble
+^^^^^^^^^
+
+.. java:method:: public double optDouble(int index, double defaultValue)
+   :outertype: JSONArray
+
+   Get the optional double value associated with an index. The defaultValue is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: subscript
+   :param defaultValue: The default value.
+   :return: The value.
+
+optInt
+^^^^^^
+
+.. java:method:: public int optInt(int index)
+   :outertype: JSONArray
+
+   Get the optional int value associated with an index. Zero is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: The value.
+
+optInt
+^^^^^^
+
+.. java:method:: public int optInt(int index, int defaultValue)
+   :outertype: JSONArray
+
+   Get the optional int value associated with an index. The defaultValue is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: The index must be between 0 and length() - 1.
+   :param defaultValue: The default value.
+   :return: The value.
+
+optJSONArray
+^^^^^^^^^^^^
+
+.. java:method:: public JSONArray optJSONArray(int index)
+   :outertype: JSONArray
+
+   Get the optional JSONArray associated with an index.
+
+   :param index: subscript
+   :return: A JSONArray value, or null if the index has no value, or if the value is not a JSONArray.
+
+optJSONObject
+^^^^^^^^^^^^^
+
+.. java:method:: public JSONObject optJSONObject(int index)
+   :outertype: JSONArray
+
+   Get the optional JSONObject associated with an index. Null is returned if the key is not found, or null if the index has no value, or if the value is not a JSONObject.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: A JSONObject value.
+
+optLong
+^^^^^^^
+
+.. java:method:: public long optLong(int index)
+   :outertype: JSONArray
+
+   Get the optional long value associated with an index. Zero is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: The value.
+
+optLong
+^^^^^^^
+
+.. java:method:: public long optLong(int index, long defaultValue)
+   :outertype: JSONArray
+
+   Get the optional long value associated with an index. The defaultValue is returned if there is no value for the index, or if the value is not a number and cannot be converted to a number.
+
+   :param index: The index must be between 0 and length() - 1.
+   :param defaultValue: The default value.
+   :return: The value.
+
+optString
+^^^^^^^^^
+
+.. java:method:: public String optString(int index)
+   :outertype: JSONArray
+
+   Get the optional string value associated with an index. It returns an empty string if there is no value at that index. If the value is not a string and is not null, then it is coverted to a string.
+
+   :param index: The index must be between 0 and length() - 1.
+   :return: A String value.
+
+optString
+^^^^^^^^^
+
+.. java:method:: public String optString(int index, String defaultValue)
+   :outertype: JSONArray
+
+   Get the optional string associated with an index. The defaultValue is returned if the key is not found.
+
+   :param index: The index must be between 0 and length() - 1.
+   :param defaultValue: The default value.
+   :return: A String value.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(boolean value)
+   :outertype: JSONArray
+
+   Append a boolean value. This increases the array's length by one.
+
+   :param value: A boolean value.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(Collection<Object> value)
+   :outertype: JSONArray
+
+   Put a value in the JSONArray, where the value will be a JSONArray which is produced from a Collection.
+
+   :param value: A Collection value.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(double value) throws JSONException
+   :outertype: JSONArray
+
+   Append a double value. This increases the array's length by one.
+
+   :param value: A double value.
+   :throws JSONException: if the value is not finite.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int value)
+   :outertype: JSONArray
+
+   Append an int value. This increases the array's length by one.
+
+   :param value: An int value.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(long value)
+   :outertype: JSONArray
+
+   Append an long value. This increases the array's length by one.
+
+   :param value: A long value.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(Map value)
+   :outertype: JSONArray
+
+   Put a value in the JSONArray, where the value will be a JSONObject which is produced from a Map.
+
+   :param value: A Map value.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(Object value)
+   :outertype: JSONArray
+
+   Append an object value. This increases the array's length by one.
+
+   :param value: An object value. The value should be a Boolean, Double, Integer, JSONArray, JSONObject, Long, or String, or the JSONObject.NULL object.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, boolean value) throws JSONException
+   :outertype: JSONArray
+
+   Put or replace a boolean value in the JSONArray. If the index is greater than the length of the JSONArray, then null elements will be added as necessary to pad it out.
+
+   :param index: The subscript.
+   :param value: A boolean value.
+   :throws JSONException: If the index is negative.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, Collection<Object> value) throws JSONException
+   :outertype: JSONArray
+
+   Put a value in the JSONArray, where the value will be a JSONArray which is produced from a Collection.
+
+   :param index: The subscript.
+   :param value: A Collection value.
+   :throws JSONException: If the index is negative or if the value is not finite.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, double value) throws JSONException
+   :outertype: JSONArray
+
+   Put or replace a double value. If the index is greater than the length of the JSONArray, then null elements will be added as necessary to pad it out.
+
+   :param index: The subscript.
+   :param value: A double value.
+   :throws JSONException: If the index is negative or if the value is not finite.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, int value) throws JSONException
+   :outertype: JSONArray
+
+   Put or replace an int value. If the index is greater than the length of the JSONArray, then null elements will be added as necessary to pad it out.
+
+   :param index: The subscript.
+   :param value: An int value.
+   :throws JSONException: If the index is negative.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, long value) throws JSONException
+   :outertype: JSONArray
+
+   Put or replace a long value. If the index is greater than the length of the JSONArray, then null elements will be added as necessary to pad it out.
+
+   :param index: The subscript.
+   :param value: A long value.
+   :throws JSONException: If the index is negative.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, Map value) throws JSONException
+   :outertype: JSONArray
+
+   Put a value in the JSONArray, where the value will be a JSONObject that is produced from a Map.
+
+   :param index: The subscript.
+   :param value: The Map value.
+   :throws JSONException: If the index is negative or if the the value is an invalid number.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONArray put(int index, Object value) throws JSONException
+   :outertype: JSONArray
+
+   Put or replace an object value in the JSONArray. If the index is greater than the length of the JSONArray, then null elements will be added as necessary to pad it out.
+
+   :param index: The subscript.
+   :param value: The value to put into the array. The value should be a Boolean, Double, Integer, JSONArray, JSONObject, Long, or String, or the JSONObject.NULL object.
+   :throws JSONException: If the index is negative or if the the value is an invalid number.
+   :return: this.
+
+remove
+^^^^^^
+
+.. java:method:: public Object remove(int index)
+   :outertype: JSONArray
+
+   Remove an index and close the hole.
+
+   :param index: The index of the element to be removed.
+   :return: The value that was associated with the index, or null if there was no value.
+
+toJSONObject
+^^^^^^^^^^^^
+
+.. java:method:: public JSONObject toJSONObject(JSONArray names) throws JSONException
+   :outertype: JSONArray
+
+   Produce a JSONObject by combining a JSONArray of names with the values of this JSONArray.
+
+   :param names: A JSONArray containing a list of key strings. These will be paired with the values.
+   :throws JSONException: If any of the names are null.
+   :return: A JSONObject, or null if there are no names or if this JSONArray has no values.
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString()
+   :outertype: JSONArray
+
+   Make a JSON text of this JSONArray. For compactness, no unnecessary whitespace is added. If it is not possible to produce a syntactically correct JSON text then null will be returned instead. This could occur if the array contains an invalid number.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :return: a printable, displayable, transmittable representation of the array.
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString(int indentFactor) throws JSONException
+   :outertype: JSONArray
+
+   Make a prettyprinted JSON text of this JSONArray. Warning: This method assumes that the data structure is acyclical.
+
+   :param indentFactor: The number of spaces to add to each level of indentation.
+   :throws JSONException:
+   :return: a printable, displayable, transmittable representation of the object, beginning with \ ``[``\  (left bracket) and ending with \ ``]``\  (right bracket).
+
+toString
+^^^^^^^^
+
+.. java:method::  String toString(int indentFactor, int indent) throws JSONException
+   :outertype: JSONArray
+
+   Make a prettyprinted JSON text of this JSONArray. Warning: This method assumes that the data structure is acyclical.
+
+   :param indentFactor: The number of spaces to add to each level of indentation.
+   :param indent: The indention of the top level.
+   :throws JSONException:
+   :return: a printable, displayable, transmittable representation of the array.
+
+write
+^^^^^
+
+.. java:method:: public Writer write(Writer writer) throws JSONException
+   :outertype: JSONArray
+
+   Write the contents of the JSONArray as JSON text to a writer. For compactness, no whitespace is added.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :throws JSONException:
+   :return: The writer.
+

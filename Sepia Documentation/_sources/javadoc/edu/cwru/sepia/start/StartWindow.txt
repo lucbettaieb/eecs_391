@@ -1,0 +1,116 @@
+.. java:import:: java.util List
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.awt Insets
+
+.. java:import:: java.awt Dimension
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: java.awt BorderLayout
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event WindowEvent
+
+.. java:import:: javax.swing JFrame
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JLabel
+
+.. java:import:: javax.swing SwingUtilities
+
+.. java:import:: edu.cwru.sepia.start AgentPanel
+
+.. java:import:: edu.cwru.sepia.start CommandChangeListener
+
+.. java:import:: edu.cwru.sepia.start CommandPanel
+
+.. java:import:: edu.cwru.sepia.start FilesPanel
+
+StartWindow
+===========
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: @SuppressWarnings public class StartWindow extends JFrame implements CommandChangeListener, ActionListener
+
+Fields
+------
+AGENT_TABLE_SIZE
+^^^^^^^^^^^^^^^^
+
+.. java:field:: static final Dimension AGENT_TABLE_SIZE
+   :outertype: StartWindow
+
+TITLE_FONT
+^^^^^^^^^^
+
+.. java:field:: static final float TITLE_FONT
+   :outertype: StartWindow
+
+agentPanel
+^^^^^^^^^^
+
+.. java:field::  AgentPanel agentPanel
+   :outertype: StartWindow
+
+commandPanel
+^^^^^^^^^^^^
+
+.. java:field::  CommandPanel commandPanel
+   :outertype: StartWindow
+
+filesPanel
+^^^^^^^^^^
+
+.. java:field::  FilesPanel filesPanel
+   :outertype: StartWindow
+
+Constructors
+------------
+StartWindow
+^^^^^^^^^^^
+
+.. java:constructor:: public StartWindow()
+   :outertype: StartWindow
+
+Methods
+-------
+actionPerformed
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void actionPerformed(ActionEvent e)
+   :outertype: StartWindow
+
+addStartListener
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addStartListener(StartListener listener)
+   :outertype: StartWindow
+
+commandChanged
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void commandChanged()
+   :outertype: StartWindow
+
+removeStartListener
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeStartListener(StartListener listener)
+   :outertype: StartWindow
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: StartWindow
+

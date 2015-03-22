@@ -1,0 +1,259 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlAttribute
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlRootElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlState
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType @XmlRootElement public class XmlState
+
+   Java class for anonymous complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType>
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <sequence maxOccurs="unbounded">
+                <element name="player" type="{}Player"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="resourceNode" type="{}ResourceNode"/>
+              </sequence>
+            </sequence>
+            <attribute name="xExtent" type="{http://www.w3.org/2001/XMLSchema}int" />
+            <attribute name="yExtent" type="{http://www.w3.org/2001/XMLSchema}int" />
+            <attribute name="nextTargetID" type="{http://www.w3.org/2001/XMLSchema}int" />
+            <attribute name="nextTemplateID" type="{http://www.w3.org/2001/XMLSchema}int" />
+            <attribute name="RevealedResourceNodes" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+            <attribute name="fogOfWar" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+fogOfWar
+^^^^^^^^
+
+.. java:field:: @XmlAttribute protected Boolean fogOfWar
+   :outertype: XmlState
+
+nextTargetID
+^^^^^^^^^^^^
+
+.. java:field:: @XmlAttribute protected Integer nextTargetID
+   :outertype: XmlState
+
+nextTemplateID
+^^^^^^^^^^^^^^
+
+.. java:field:: @XmlAttribute protected Integer nextTemplateID
+   :outertype: XmlState
+
+player
+^^^^^^
+
+.. java:field:: @XmlElement protected List<XmlPlayer> player
+   :outertype: XmlState
+
+resourceNode
+^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlResourceNode> resourceNode
+   :outertype: XmlState
+
+revealedResourceNodes
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlAttribute protected Boolean revealedResourceNodes
+   :outertype: XmlState
+
+xExtent
+^^^^^^^
+
+.. java:field:: @XmlAttribute protected Integer xExtent
+   :outertype: XmlState
+
+yExtent
+^^^^^^^
+
+.. java:field:: @XmlAttribute protected Integer yExtent
+   :outertype: XmlState
+
+Methods
+-------
+getNextTargetID
+^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer getNextTargetID()
+   :outertype: XmlState
+
+   Gets the value of the nextTargetID property.
+
+   :return: possible object is \ :java:ref:`Integer`\
+
+getNextTemplateID
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer getNextTemplateID()
+   :outertype: XmlState
+
+   Gets the value of the nextTemplateID property.
+
+   :return: possible object is \ :java:ref:`Integer`\
+
+getPlayer
+^^^^^^^^^
+
+.. java:method:: public List<XmlPlayer> getPlayer()
+   :outertype: XmlState
+
+   Gets the value of the player property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the player property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getPlayer().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlPlayer`\
+
+getResourceNode
+^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlResourceNode> getResourceNode()
+   :outertype: XmlState
+
+   Gets the value of the resourceNode property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the resourceNode property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getResourceNode().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlResourceNode`\
+
+getXExtent
+^^^^^^^^^^
+
+.. java:method:: public Integer getXExtent()
+   :outertype: XmlState
+
+   Gets the value of the xExtent property.
+
+   :return: possible object is \ :java:ref:`Integer`\
+
+getYExtent
+^^^^^^^^^^
+
+.. java:method:: public Integer getYExtent()
+   :outertype: XmlState
+
+   Gets the value of the yExtent property.
+
+   :return: possible object is \ :java:ref:`Integer`\
+
+isFogOfWar
+^^^^^^^^^^
+
+.. java:method:: public Boolean isFogOfWar()
+   :outertype: XmlState
+
+   Gets the value of the fogOfWar property.
+
+   :return: possible object is \ :java:ref:`Boolean`\
+
+isRevealedResourceNodes
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Boolean isRevealedResourceNodes()
+   :outertype: XmlState
+
+   Gets the value of the revealedResourceNodes property.
+
+   :return: possible object is \ :java:ref:`Boolean`\
+
+setFogOfWar
+^^^^^^^^^^^
+
+.. java:method:: public void setFogOfWar(Boolean value)
+   :outertype: XmlState
+
+   Sets the value of the fogOfWar property.
+
+   :param value: allowed object is \ :java:ref:`Boolean`\
+
+setNextTargetID
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setNextTargetID(Integer value)
+   :outertype: XmlState
+
+   Sets the value of the nextTargetID property.
+
+   :param value: allowed object is \ :java:ref:`Integer`\
+
+setNextTemplateID
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setNextTemplateID(Integer value)
+   :outertype: XmlState
+
+   Sets the value of the nextTemplateID property.
+
+   :param value: allowed object is \ :java:ref:`Integer`\
+
+setRevealedResourceNodes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setRevealedResourceNodes(Boolean value)
+   :outertype: XmlState
+
+   Sets the value of the revealedResourceNodes property.
+
+   :param value: allowed object is \ :java:ref:`Boolean`\
+
+setXExtent
+^^^^^^^^^^
+
+.. java:method:: public void setXExtent(Integer value)
+   :outertype: XmlState
+
+   Sets the value of the xExtent property.
+
+   :param value: allowed object is \ :java:ref:`Integer`\
+
+setYExtent
+^^^^^^^^^^
+
+.. java:method:: public void setYExtent(Integer value)
+   :outertype: XmlState
+
+   Sets the value of the yExtent property.
+
+   :param value: allowed object is \ :java:ref:`Integer`\
+

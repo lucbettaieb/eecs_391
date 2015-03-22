@@ -1,0 +1,97 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.lang.reflect Method
+
+.. java:import:: java.net URISyntaxException
+
+.. java:import:: java.net URL
+
+Configuration
+=============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class Configuration
+
+   Contains important configuration information regarding the setup of MATLAB and matlabcontrol.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+getClassPathAsCanonicalPaths
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static String[] getClassPathAsCanonicalPaths() throws MatlabConnectionException
+   :outertype: Configuration
+
+   Converts the classpath into individual canonical entries.
+
+   :throws MatlabConnectionException:
+
+getClassPathAsRMICodebase
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static String getClassPathAsRMICodebase() throws MatlabConnectionException
+   :outertype: Configuration
+
+   Converts the classpath into RMI's codebase format. The codebase format is a list of URL formatted strings separated by spaces. As the application may be running in a different directory, paths are made absolute.
+
+   :throws MatlabConnectionException:
+   :return: codebase
+
+getMatlabLocation
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: static String getMatlabLocation() throws MatlabConnectionException
+   :outertype: Configuration
+
+   Returns the location or alias of MATLAB on an operating system specific basis.  For OS X this will be the location, for Windows or Linux this will be an alias. For any other operating system an exception will be thrown.
+
+   :throws MatlabConnectionException: thrown if the location of MATLAB cannot be determined on OS X, or the alias cannot be determined because the operating system is not Windows or Linux
+
+getSupportCodeLocation
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static String getSupportCodeLocation() throws MatlabConnectionException
+   :outertype: Configuration
+
+   Determines the location of this source code. Either it will be the directory or jar this .class file is in. (That is, the .class file built from compiling this .java file.) Returned as a string so that it may be used by MATLAB.
+
+   :throws MatlabConnectionException:
+
+isLinux
+^^^^^^^
+
+.. java:method:: static boolean isLinux()
+   :outertype: Configuration
+
+   If running on Linux.
+
+isOSX
+^^^^^
+
+.. java:method:: static boolean isOSX()
+   :outertype: Configuration
+
+   If running on OS X.
+
+isRunningInsideMatlab
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static boolean isRunningInsideMatlab()
+   :outertype: Configuration
+
+   Whether this code is running inside of MATLAB.
+
+isWindows
+^^^^^^^^^
+
+.. java:method:: static boolean isWindows()
+   :outertype: Configuration
+
+   If running on Windows.
+

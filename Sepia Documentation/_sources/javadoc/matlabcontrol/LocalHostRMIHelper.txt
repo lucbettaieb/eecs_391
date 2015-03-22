@@ -1,0 +1,60 @@
+.. java:import:: java.io IOException
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.net InetAddress
+
+.. java:import:: java.net ServerSocket
+
+.. java:import:: java.net Socket
+
+.. java:import:: java.rmi Remote
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi.registry LocateRegistry
+
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.rmi.server RMIClientSocketFactory
+
+.. java:import:: java.rmi.server RMIServerSocketFactory
+
+.. java:import:: java.rmi.server UnicastRemoteObject
+
+.. java:import:: javax.net ServerSocketFactory
+
+.. java:import:: javax.net SocketFactory
+
+LocalHostRMIHelper
+==================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class LocalHostRMIHelper
+
+   Handles creation of RMI objects, making sure they only operate on localhost.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+createRegistry
+^^^^^^^^^^^^^^
+
+.. java:method:: public static Registry createRegistry(int port) throws RemoteException
+   :outertype: LocalHostRMIHelper
+
+exportObject
+^^^^^^^^^^^^
+
+.. java:method:: public static Remote exportObject(Remote object) throws RemoteException
+   :outertype: LocalHostRMIHelper
+
+getRegistry
+^^^^^^^^^^^
+
+.. java:method:: public static Registry getRegistry(int port) throws RemoteException
+   :outertype: LocalHostRMIHelper
+

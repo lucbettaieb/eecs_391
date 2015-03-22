@@ -1,0 +1,83 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+UpgradeTemplate.UpgradeTemplateView
+===================================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static class UpgradeTemplateView extends TemplateView
+   :outertype: UpgradeTemplate
+
+Constructors
+------------
+UpgradeTemplateView
+^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public UpgradeTemplateView(UpgradeTemplate template)
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+Methods
+-------
+getAffectedUnitTypes
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAffectedUnitTypes()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get an unmodifyable list of IDs representing the unit templates that are affected by this upgrade
+
+getArmorChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getArmorChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in armor caused by this upgrade
+
+getBasicAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getBasicAttackChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in basic (armor-reduced) attack caused by this upgrade
+
+getHealthChange
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHealthChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in health caused by this upgrade
+
+getPiercingAttackChange
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttackChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in piercing (armor-bypassing) attack caused by this upgrade
+
+getRangeChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRangeChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in range caused by this upgrade
+
+getSightRangeChange
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRangeChange()
+   :outertype: UpgradeTemplate.UpgradeTemplateView
+
+   Get the increase in sight range caused by this upgrade
+

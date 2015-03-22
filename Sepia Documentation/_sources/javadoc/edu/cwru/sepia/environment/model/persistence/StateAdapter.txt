@@ -1,0 +1,52 @@
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlPlayer
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlState
+
+.. java:import:: edu.cwru.sepia.environment.model.state PlayerState
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateBuilder
+
+StateAdapter
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class StateAdapter
+
+Fields
+------
+playerAdapter
+^^^^^^^^^^^^^
+
+.. java:field::  PlayerAdapter playerAdapter
+   :outertype: StateAdapter
+
+resourceNodeAdapter
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field::  ResourceNodeAdapter resourceNodeAdapter
+   :outertype: StateAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public State fromXml(XmlState xml)
+   :outertype: StateAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public XmlState toXml(State state)
+   :outertype: StateAdapter
+

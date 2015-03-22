@@ -1,0 +1,181 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+XmlResourceNode
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlResourceNode
+
+   Java class for ResourceNode complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ResourceNode">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="ID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="type" type="{}ResourceNodeType"/>
+              <element name="xPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="yPosition" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="initialAmount" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="amountRemaining" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+amountRemaining
+^^^^^^^^^^^^^^^
+
+.. java:field:: protected int amountRemaining
+   :outertype: XmlResourceNode
+
+id
+^^
+
+.. java:field:: @XmlElement protected int id
+   :outertype: XmlResourceNode
+
+initialAmount
+^^^^^^^^^^^^^
+
+.. java:field:: protected int initialAmount
+   :outertype: XmlResourceNode
+
+type
+^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected Type type
+   :outertype: XmlResourceNode
+
+xPosition
+^^^^^^^^^
+
+.. java:field:: protected int xPosition
+   :outertype: XmlResourceNode
+
+yPosition
+^^^^^^^^^
+
+.. java:field:: protected int yPosition
+   :outertype: XmlResourceNode
+
+Methods
+-------
+getAmountRemaining
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAmountRemaining()
+   :outertype: XmlResourceNode
+
+   Gets the value of the amountRemaining property.
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: XmlResourceNode
+
+   Gets the value of the id property.
+
+getInitialAmount
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getInitialAmount()
+   :outertype: XmlResourceNode
+
+   Gets the value of the initialAmount property.
+
+getType
+^^^^^^^
+
+.. java:method:: public Type getType()
+   :outertype: XmlResourceNode
+
+   Gets the value of the type property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getXPosition()
+   :outertype: XmlResourceNode
+
+   Gets the value of the xPosition property.
+
+getYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getYPosition()
+   :outertype: XmlResourceNode
+
+   Gets the value of the yPosition property.
+
+setAmountRemaining
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setAmountRemaining(int value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the amountRemaining property.
+
+setID
+^^^^^
+
+.. java:method:: public void setID(int value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the id property.
+
+setInitialAmount
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setInitialAmount(int value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the initialAmount property.
+
+setType
+^^^^^^^
+
+.. java:method:: public void setType(Type value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the type property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setXPosition(int value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the xPosition property.
+
+setYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public void setYPosition(int value)
+   :outertype: XmlResourceNode
+
+   Sets the value of the yPosition property.
+

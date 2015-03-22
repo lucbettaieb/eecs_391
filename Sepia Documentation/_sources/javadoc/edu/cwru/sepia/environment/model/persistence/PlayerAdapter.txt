@@ -1,0 +1,50 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlPlayer
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceQuantity
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUnit
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUpgradeTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state PlayerState
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UpgradeTemplate
+
+PlayerAdapter
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class PlayerAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public PlayerState fromXml(XmlPlayer xml)
+   :outertype: PlayerAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public XmlPlayer toXml(PlayerState player)
+   :outertype: PlayerAdapter
+

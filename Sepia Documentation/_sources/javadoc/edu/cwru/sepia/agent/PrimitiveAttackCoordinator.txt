@@ -1,0 +1,75 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+PrimitiveAttackCoordinator
+==========================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class PrimitiveAttackCoordinator implements Serializable
+
+   A class that offers primitive micromanagement of soldiers Just sends them to the nearest building, shooting anything in range
+
+   :author: The Condor
+
+Fields
+------
+attackers
+^^^^^^^^^
+
+.. java:field::  List<Integer> attackers
+   :outertype: PrimitiveAttackCoordinator
+
+playernum
+^^^^^^^^^
+
+.. java:field::  int playernum
+   :outertype: PrimitiveAttackCoordinator
+
+primarytargetID
+^^^^^^^^^^^^^^^
+
+.. java:field::  Integer primarytargetID
+   :outertype: PrimitiveAttackCoordinator
+
+Constructors
+------------
+PrimitiveAttackCoordinator
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public PrimitiveAttackCoordinator(int playernum)
+   :outertype: PrimitiveAttackCoordinator
+
+Methods
+-------
+addAttacker
+^^^^^^^^^^^
+
+.. java:method:: public void addAttacker(Integer attacker)
+   :outertype: PrimitiveAttackCoordinator
+
+coordinate
+^^^^^^^^^^
+
+.. java:method:: public void coordinate(StateView state, Map<Integer, Action> actions)
+   :outertype: PrimitiveAttackCoordinator
+
+   Append the relevant actions to the action set. This will replace previous ones, as Builder does not have any means to check.
+
+   :param state:
+   :param actions:
+

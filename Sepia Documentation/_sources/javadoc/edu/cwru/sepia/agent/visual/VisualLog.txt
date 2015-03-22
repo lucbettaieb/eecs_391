@@ -1,0 +1,70 @@
+.. java:import:: java.awt Dimension
+
+.. java:import:: java.awt Graphics
+
+.. java:import:: javax.swing JFrame
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JScrollPane
+
+.. java:import:: javax.swing JTextArea
+
+.. java:import:: javax.swing SwingUtilities
+
+.. java:import:: javax.swing.text DefaultCaret
+
+VisualLog
+=========
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class VisualLog extends JFrame
+
+   A text area to be used by agents. It allows each agent to maintain an output separate from the others.
+
+   :author: The Condor
+
+Fields
+------
+t
+^
+
+.. java:field::  int t
+   :outertype: VisualLog
+
+Constructors
+------------
+VisualLog
+^^^^^^^^^
+
+.. java:constructor:: public VisualLog(String agentname, int windowwidth, int windowheight)
+   :outertype: VisualLog
+
+Methods
+-------
+clearLog
+^^^^^^^^
+
+.. java:method:: public void clearLog()
+   :outertype: VisualLog
+
+   Clear the log, deleting all entries.
+
+setPreferredSize
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void setPreferredSize(Dimension preferredSize)
+   :outertype: VisualLog
+
+writeLine
+^^^^^^^^^
+
+.. java:method:: public void writeLine(String newline)
+   :outertype: VisualLog
+
+   Add another line to the log
+
+   :param newline: A line to print
+

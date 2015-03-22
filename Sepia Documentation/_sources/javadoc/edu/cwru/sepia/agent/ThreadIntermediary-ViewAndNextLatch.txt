@@ -1,0 +1,64 @@
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent CountDownLatch
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+ThreadIntermediary.ViewAndNextLatch
+===================================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public static class ViewAndNextLatch
+   :outertype: ThreadIntermediary
+
+   A simple structure allowing the return of the current state/history and a latch that indicates when the next state will be ready.
+
+   :author: The Condor
+
+Fields
+------
+historyView
+^^^^^^^^^^^
+
+.. java:field:: public final HistoryView historyView
+   :outertype: ThreadIntermediary.ViewAndNextLatch
+
+nextStateLatch
+^^^^^^^^^^^^^^
+
+.. java:field:: public final CountDownLatch nextStateLatch
+   :outertype: ThreadIntermediary.ViewAndNextLatch
+
+stateType
+^^^^^^^^^
+
+.. java:field:: public final StateType stateType
+   :outertype: ThreadIntermediary.ViewAndNextLatch
+
+stateView
+^^^^^^^^^
+
+.. java:field:: public final StateView stateView
+   :outertype: ThreadIntermediary.ViewAndNextLatch
+
+Constructors
+------------
+ViewAndNextLatch
+^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ViewAndNextLatch(StateView stateView, HistoryView historyView, StateType stateType, CountDownLatch nextStateLatch)
+   :outertype: ThreadIntermediary.ViewAndNextLatch
+
+   Build a structure with a view and a latch.
+
+   :param stateView: The current state.
+   :param historyView: The current history.
+   :param stateType: INITIAL if this is the first state of an episode, TERMINAL if it is the last, MIDDLE otherwise
+   :param nextStateLatch: A latch for the next state.
+

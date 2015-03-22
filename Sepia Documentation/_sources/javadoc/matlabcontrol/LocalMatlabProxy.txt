@@ -1,0 +1,88 @@
+LocalMatlabProxy
+================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class LocalMatlabProxy extends MatlabProxy
+
+   Allows for calling MATLAB from \ **inside**\  of MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+LocalMatlabProxy
+^^^^^^^^^^^^^^^^
+
+.. java:constructor::  LocalMatlabProxy(Identifier id)
+   :outertype: LocalMatlabProxy
+
+Methods
+-------
+disconnect
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean disconnect()
+   :outertype: LocalMatlabProxy
+
+eval
+^^^^
+
+.. java:method:: @Override public void eval(String command) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+exit
+^^^^
+
+.. java:method:: @Override public void exit() throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+feval
+^^^^^
+
+.. java:method:: @Override public void feval(String functionName, Object... args) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public Object getVariable(String variableName) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public <T> T invokeAndWait(MatlabThreadCallable<T> callable) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+isConnected
+^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isConnected()
+   :outertype: LocalMatlabProxy
+
+isRunningInsideMatlab
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isRunningInsideMatlab()
+   :outertype: LocalMatlabProxy
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningEval(String command, int nargout) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningFeval(String functionName, int nargout, Object... args) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public void setVariable(String variableName, Object value) throws MatlabInvocationException
+   :outertype: LocalMatlabProxy
+

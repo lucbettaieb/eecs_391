@@ -1,0 +1,60 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+UpgradeLog
+==========
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class UpgradeLog implements Serializable, DeepEquatable
+
+   Logs the upgrade of something
+
+Constructors
+------------
+UpgradeLog
+^^^^^^^^^^
+
+.. java:constructor:: public UpgradeLog(int upgradetemplateid, int producingunitid, int player)
+   :outertype: UpgradeLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: UpgradeLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: UpgradeLog
+
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: UpgradeLog
+
+getProducingUnitID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getProducingUnitID()
+   :outertype: UpgradeLog
+
+getUpgradeTemplateID
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getUpgradeTemplateID()
+   :outertype: UpgradeLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: UpgradeLog
+

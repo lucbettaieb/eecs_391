@@ -1,0 +1,26 @@
+.. java:import:: javax.xml.bind.annotation.adapters XmlAdapter
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+Adapter5
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: public class Adapter5 extends XmlAdapter<String, ActionType>
+
+Methods
+-------
+marshal
+^^^^^^^
+
+.. java:method:: public String marshal(ActionType value)
+   :outertype: Adapter5
+
+unmarshal
+^^^^^^^^^
+
+.. java:method:: public ActionType unmarshal(String value)
+   :outertype: Adapter5
+

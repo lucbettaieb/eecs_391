@@ -1,0 +1,428 @@
+.. java:import:: java.io ByteArrayOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Map.Entry
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+State
+=====
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class State implements Serializable, Cloneable, IDDistributer, DeepEquatable
+
+   Represents the state
+
+Constructors
+------------
+State
+^^^^^
+
+.. java:constructor:: @SuppressWarnings public State()
+   :outertype: State
+
+Methods
+-------
+addPlayer
+^^^^^^^^^
+
+.. java:method:: public void addPlayer(int playernumber)
+   :outertype: State
+
+   Add another player
+
+   :param playernumber: The player number of the player to add
+
+addResource
+^^^^^^^^^^^
+
+.. java:method:: public void addResource(ResourceNode resource)
+   :outertype: State
+
+addResourceAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addResourceAmount(int player, ResourceType type, int amount)
+   :outertype: State
+
+   Adds an amount of a resource to a player's global amount.
+
+   :param player:
+   :param type:
+   :param amount:
+
+addTemplate
+^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public void addTemplate(Template t)
+   :outertype: State
+
+addUnit
+^^^^^^^
+
+.. java:method:: public void addUnit(Unit u, int x, int y)
+   :outertype: State
+
+addUpgrade
+^^^^^^^^^^
+
+.. java:method:: public void addUpgrade(Upgrade upgrade)
+   :outertype: State
+
+canSee
+^^^^^^
+
+.. java:method:: public boolean canSee(int x, int y, int player)
+   :outertype: State
+
+   Returns whether the selected coordinates are visible to the player through the fog of war.
+
+   :param x:
+   :param y:
+   :param player:
+
+checkValidSupplyAddition
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean checkValidSupplyAddition(int player, int amounttoadd, int offsettingcapgain)
+   :outertype: State
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: public boolean deepEquals(Object other)
+   :outertype: State
+
+   A deep equals method, because the equals methods of many classes have been hijacked into ID comparison for performance reasons
+
+   :param other:
+
+getClosestPosition
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int[] getClosestPosition(int x, int y)
+   :outertype: State
+
+   Find the closest unoccupied position using a spiraling out search pattern
+
+   :param x:
+   :param y:
+
+getFogOfWar
+^^^^^^^^^^^
+
+.. java:method:: public boolean getFogOfWar()
+   :outertype: State
+
+getNextTargetIDForXMLSave
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getNextTargetIDForXMLSave()
+   :outertype: State
+
+   DON'T USE THIS IF YOU AREN'T THE XML SAVING MECHANISM This must be different from the other so saves in the middle of an episode don't mess up the ids
+
+getNextTemplateIDForXMLSave
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getNextTemplateIDForXMLSave()
+   :outertype: State
+
+   DON'T USE THIS IF YOU AREN'T THE XML SAVING MECHANISM This must be different from the other so saves in the middle of an episode don't mess up the ids
+
+getPlayerState
+^^^^^^^^^^^^^^
+
+.. java:method:: public PlayerState getPlayerState(int player)
+   :outertype: State
+
+getPlayerStates
+^^^^^^^^^^^^^^^
+
+.. java:method:: public Collection<PlayerState> getPlayerStates()
+   :outertype: State
+
+getPlayers
+^^^^^^^^^^
+
+.. java:method:: public Integer[] getPlayers()
+   :outertype: State
+
+   Return an array of the players currently in the game
+
+getResource
+^^^^^^^^^^^
+
+.. java:method:: public ResourceNode getResource(int resourceId)
+   :outertype: State
+
+getResourceAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getResourceAmount(int player, ResourceType type)
+   :outertype: State
+
+getResources
+^^^^^^^^^^^^
+
+.. java:method:: public List<ResourceNode> getResources()
+   :outertype: State
+
+getStateCreator
+^^^^^^^^^^^^^^^
+
+.. java:method:: public StateCreator getStateCreator() throws IOException
+   :outertype: State
+
+   Get a StateCreator that will duplicate what this state looks like when the function is called.
+
+   :throws IOException:
+
+getSupplyAmount
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSupplyAmount(int player)
+   :outertype: State
+
+getSupplyCap
+^^^^^^^^^^^^
+
+.. java:method:: public int getSupplyCap(int player)
+   :outertype: State
+
+getSupplyCapEarned
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSupplyCapEarned(int player)
+   :outertype: State
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Template getTemplate(int templateId)
+   :outertype: State
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Template getTemplate(int player, String name)
+   :outertype: State
+
+getTemplates
+^^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Map<Integer, Template> getTemplates(int player)
+   :outertype: State
+
+getTextString
+^^^^^^^^^^^^^
+
+.. java:method:: public String getTextString()
+   :outertype: State
+
+   Get a limited, but text-friendly, version of the state.
+
+getTurnNumber
+^^^^^^^^^^^^^
+
+.. java:method:: public int getTurnNumber()
+   :outertype: State
+
+getUnit
+^^^^^^^
+
+.. java:method:: public Unit getUnit(int unitId)
+   :outertype: State
+
+getUnits
+^^^^^^^^
+
+.. java:method:: public Map<Integer, Unit> getUnits(int player)
+   :outertype: State
+
+getUnits
+^^^^^^^^
+
+.. java:method:: public Map<Integer, Unit> getUnits()
+   :outertype: State
+
+getView
+^^^^^^^
+
+.. java:method:: public StateView getView(int player)
+   :outertype: State
+
+getXExtent
+^^^^^^^^^^
+
+.. java:method:: public int getXExtent()
+   :outertype: State
+
+getYExtent
+^^^^^^^^^^
+
+.. java:method:: public int getYExtent()
+   :outertype: State
+
+hasUnit
+^^^^^^^
+
+.. java:method:: public boolean hasUnit(int player, int templateid)
+   :outertype: State
+
+hasUpgrade
+^^^^^^^^^^
+
+.. java:method:: public boolean hasUpgrade(int player, Integer upgradetemplateid)
+   :outertype: State
+
+inBounds
+^^^^^^^^
+
+.. java:method:: public boolean inBounds(int x, int y)
+   :outertype: State
+
+incrementTurn
+^^^^^^^^^^^^^
+
+.. java:method:: public void incrementTurn()
+   :outertype: State
+
+   Go to the next turn. Increases the turn number and tells the logs to go to the next turn
+
+moveUnit
+^^^^^^^^
+
+.. java:method:: public void moveUnit(Unit u, Direction direction)
+   :outertype: State
+
+   Move a unit in a direction. Does not perform collision checks of any kind
+
+   :param u:
+   :param direction:
+
+nextTargetID
+^^^^^^^^^^^^
+
+.. java:method:: @Override public int nextTargetID()
+   :outertype: State
+
+nextTemplateID
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public int nextTemplateID()
+   :outertype: State
+
+positionAvailable
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean positionAvailable(int x, int y)
+   :outertype: State
+
+recalculateVision
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void recalculateVision()
+   :outertype: State
+
+   Recalculates the vision of each agent from scratch.
+
+removeResourceNode
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeResourceNode(int resourceID)
+   :outertype: State
+
+removeUnit
+^^^^^^^^^^
+
+.. java:method:: public void removeUnit(int unitID)
+   :outertype: State
+
+resourceAt
+^^^^^^^^^^
+
+.. java:method:: public ResourceNode resourceAt(int x, int y)
+   :outertype: State
+
+setFogOfWar
+^^^^^^^^^^^
+
+.. java:method:: public void setFogOfWar(boolean fogofwar)
+   :outertype: State
+
+setSize
+^^^^^^^
+
+.. java:method:: public void setSize(int x, int y)
+   :outertype: State
+
+transportUnit
+^^^^^^^^^^^^^
+
+.. java:method:: public void transportUnit(Unit u, int newx, int newy)
+   :outertype: State
+
+   Move a unit from one place to another and update the sight radius. For use in the rare cases where a single direction is insufficient.
+
+   :param u: The unit to move
+   :param newx: The new x position of the unit
+   :param newy: The new y position of the unit
+
+tryProduceUnit
+^^^^^^^^^^^^^^
+
+.. java:method:: public boolean tryProduceUnit(Unit u, int x, int y)
+   :outertype: State
+
+tryProduceUpgrade
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean tryProduceUpgrade(Upgrade upgrade)
+   :outertype: State
+
+unitAt
+^^^^^^
+
+.. java:method:: public Unit unitAt(int x, int y)
+   :outertype: State
+
+updateGlobalListsFromPlayers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void updateGlobalListsFromPlayers()
+   :outertype: State
+
+   Used as a necessary part of loading from xml. Harmless but pointless to use otherwise.
+

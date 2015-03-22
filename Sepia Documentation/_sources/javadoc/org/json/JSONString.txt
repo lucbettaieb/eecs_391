@@ -1,0 +1,22 @@
+JSONString
+==========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public interface JSONString
+
+   The \ ``JSONString``\  interface allows a \ ``toJSONString()``\  method so that a class can change the behavior of \ ``JSONObject.toString()``\ , \ ``JSONArray.toString()``\ , and \ ``JSONWriter.value(``\ Object\ ``)``\ . The \ ``toJSONString``\  method will be used instead of the default behavior of using the Object's \ ``toString()``\  method and quoting the result.
+
+Methods
+-------
+toJSONString
+^^^^^^^^^^^^
+
+.. java:method:: public String toJSONString()
+   :outertype: JSONString
+
+   The \ ``toJSONString``\  method allows a class to produce its own JSON serialization.
+
+   :return: A strictly syntactically correct JSON text.
+

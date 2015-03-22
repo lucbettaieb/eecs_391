@@ -1,0 +1,69 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+Template.TemplateView
+=====================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static class TemplateView implements Serializable
+   :outertype: Template
+
+Constructors
+------------
+TemplateView
+^^^^^^^^^^^^
+
+.. java:constructor:: public TemplateView(Template<?> template)
+   :outertype: Template.TemplateView
+
+Methods
+-------
+getFoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getFoodCost()
+   :outertype: Template.TemplateView
+
+getGoldCost
+^^^^^^^^^^^
+
+.. java:method:: public int getGoldCost()
+   :outertype: Template.TemplateView
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: Template.TemplateView
+
+getName
+^^^^^^^
+
+.. java:method:: public String getName()
+   :outertype: Template.TemplateView
+
+getPlayer
+^^^^^^^^^
+
+.. java:method:: public int getPlayer()
+   :outertype: Template.TemplateView
+
+getTimeCost
+^^^^^^^^^^^
+
+.. java:method:: public int getTimeCost()
+   :outertype: Template.TemplateView
+
+getWoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getWoodCost()
+   :outertype: Template.TemplateView
+

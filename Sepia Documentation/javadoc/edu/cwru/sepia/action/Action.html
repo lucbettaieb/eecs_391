@@ -1,0 +1,626 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Action &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.action" href="package-index.html"/>
+        <link rel="next" title="ActionFeedback" href="ActionFeedback.html"/>
+        <link rel="prev" title="edu.cwru.sepia.action" href="package-index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.action</a> &raquo;</li>
+      
+    <li>Action</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../_sources/javadoc/edu/cwru/sepia/action/Action.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="action">
+<h1>Action<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.action.Action">
+public class <code class="descname">Action</code> implements <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Serializable.html" title="java.io.Serializable">Serializable</a>, <a class="reference internal" href="../util/DeepEquatable.html#edu.cwru.sepia.util.DeepEquatable" title="edu.cwru.sepia.util.DeepEquatable">DeepEquatable</a><a class="headerlink" href="#edu.cwru.sepia.action.Action" title="Permalink to this definition">¶</a></dt>
+<dd><p>The primary class of issued commands. Action is immutable and it&#8217;s subtypes should be as well. Contains factory methods for easy construction of valid actions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">The Condor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="type">
+<h3>type<a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.action.Action.type">
+protected final <a class="reference internal" href="ActionType.html#edu.cwru.sepia.action.ActionType" title="edu.cwru.sepia.action.ActionType">ActionType</a> <code class="descname">type</code><a class="headerlink" href="#edu.cwru.sepia.action.Action.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="unitid">
+<h3>unitId<a class="headerlink" href="#unitid" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.action.Action.unitId">
+protected final int <code class="descname">unitId</code><a class="headerlink" href="#edu.cwru.sepia.action.Action.unitId" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Action<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.action.Action.Action(int, ActionType)">
+public <code class="descname">Action</code><span class="sig-paren">(</span>int<em> unitId</em>, <a class="reference internal" href="ActionType.html#edu.cwru.sepia.action.ActionType" title="edu.cwru.sepia.action.ActionType">ActionType</a><em> type</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.Action(int, ActionType)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="createcompoundattack">
+<h3>createCompoundAttack<a class="headerlink" href="#createcompoundattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundAttack(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundAttack</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> targetid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundAttack(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a TargetedAction, taking as parameters the acting unit&#8217;s ID and the target&#8217;s ID. When executed, it moves into range of a unit, then attacks it once.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>targetid</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createcompoundbuild">
+<h3>createCompoundBuild<a class="headerlink" href="#createcompoundbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundBuild(int, int, int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundBuild</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> templateID</em>, int<em> x</em>, int<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundBuild(int, int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a LocatedProductionAction, taking as parameters the acting unit&#8217;s ID and the ID of the template of the building that you are trying to build, as well as x and y coordinates of where to build it. When executed, it uses repeated PRIMITIVEMOVEs to reach the specified location, then does PRIMITIVEBUILD until the building is done.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>templateID</strong> &#8211; </li>
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createcompounddeposit">
+<h3>createCompoundDeposit<a class="headerlink" href="#createcompounddeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundDeposit(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundDeposit</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> targetid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundDeposit(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a TargetedAction, taking as parameters the acting unit&#8217;s ID and the ID of a town hall to deposit at. When executed, it does PRIMITIVEMOVEs until next to the specified town hall, then performs a PRIMITIVEDEPOSIT on it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>targetid</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createcompoundgather">
+<h3>createCompoundGather<a class="headerlink" href="#createcompoundgather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundGather(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundGather</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> targetid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundGather(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a TargetedAction, taking as parameters the acting unit&#8217;s ID and the ID of a resource node to gather from. When executed, it does PRIMITIVEMOVEs until next to the specified node, then performs a PRIMITIVEGATHER on it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>targetid</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createcompoundmove">
+<h3>createCompoundMove<a class="headerlink" href="#createcompoundmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundMove(int, int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundMove</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> x</em>, int<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundMove(int, int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a LocatedAction, taking as parameters the acting unit&#8217;s ID and the x and y coordinates of where to move. When executed, it does PRIMITIVEMOVEs to reach that location.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createcompoundproduction">
+<h3>createCompoundProduction<a class="headerlink" href="#createcompoundproduction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createCompoundProduction(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createCompoundProduction</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> templateID</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createCompoundProduction(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a ProductionAction, taking as parameters the acting unit&#8217;s ID and the ID of the template of the unit or upgrade that you are trying to build. When executed, it does PRIMITIVEPRODUCE until the unit or upgrade is completed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>templateID</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createfail">
+<h3>createFail<a class="headerlink" href="#createfail" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createFail(int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createFail</code><span class="sig-paren">(</span>int<em> unitid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createFail(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used internally to indicate that a compound action failed, and it should be redone</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createpermanentfail">
+<h3>createPermanentFail<a class="headerlink" href="#createpermanentfail" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPermanentFail(int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPermanentFail</code><span class="sig-paren">(</span>int<em> unitid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPermanentFail(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used internally to indicate that a compound action failed permanently, and it should be aborted</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitiveattack">
+<h3>createPrimitiveAttack<a class="headerlink" href="#createprimitiveattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveAttack(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveAttack</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> targetid</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveAttack(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a TargetedAction, taking as parameters the acting unit&#8217;s ID and the target&#8217;s ID. When executed, it attempts to attack the targeted unit, failing when it out of range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>targetid</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitivebuild">
+<h3>createPrimitiveBuild<a class="headerlink" href="#createprimitivebuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveBuild(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveBuild</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> templateID</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveBuild(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a ProductionAction, taking as parameters the acting unit&#8217;s ID and the ID of the template of the building that you are trying to build. When executed, it does one turn&#8217;s work toward building that kind of building on the spot the unit is at. As all buildings take one turn to build, this is enough to complete it, making a building on the spot and moving the builder off to one side.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID Acting unit&#8217;s ID</li>
+<li><strong>templateID</strong> &#8211; Template ID of the building type to build</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitivedeposit">
+<h3>createPrimitiveDeposit<a class="headerlink" href="#createprimitivedeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveDeposit(int, Direction)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveDeposit</code><span class="sig-paren">(</span>int<em> unitid</em>, <a class="reference internal" href="../util/Direction.html#edu.cwru.sepia.util.Direction" title="edu.cwru.sepia.util.Direction">Direction</a><em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveDeposit(int, Direction)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a DirectedAction, taking as parameters the acting unit&#8217;s ID and a direction to attempt to deposit in. When executed, it looks in the specified direction for a town hall, if there is a town hall that you control, it moves resources from the unit&#8217;s inventory and gives them to you.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>d</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitivegather">
+<h3>createPrimitiveGather<a class="headerlink" href="#createprimitivegather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveGather(int, Direction)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveGather</code><span class="sig-paren">(</span>int<em> unitid</em>, <a class="reference internal" href="../util/Direction.html#edu.cwru.sepia.util.Direction" title="edu.cwru.sepia.util.Direction">Direction</a><em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveGather(int, Direction)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a DirectedAction, taking as parameters the acting unit&#8217;s ID and a direction to attempt to gather in. When executed, it looks in the specified direction for a resource node, if there is a node, it moves resources from the node into the unit&#8217;s inventory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>d</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitivemove">
+<h3>createPrimitiveMove<a class="headerlink" href="#createprimitivemove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveMove(int, Direction)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveMove</code><span class="sig-paren">(</span>int<em> unitid</em>, <a class="reference internal" href="../util/Direction.html#edu.cwru.sepia.util.Direction" title="edu.cwru.sepia.util.Direction">Direction</a><em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveMove(int, Direction)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a DirectedAction, taking as parameters the acting unit&#8217;s ID and a direction to attempt to move. When executed, it attempts to move in that direction, failing if another unit is already there.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>d</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="createprimitiveproduction">
+<h3>createPrimitiveProduction<a class="headerlink" href="#createprimitiveproduction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.createPrimitiveProduction(int, int)">
+public static <a class="reference internal" href="#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">createPrimitiveProduction</code><span class="sig-paren">(</span>int<em> unitid</em>, int<em> templateID</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.createPrimitiveProduction(int, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a ProductionAction, taking as parameters the acting unit&#8217;s ID and the ID of the template of the unit or upgrade that you are trying to build. When executed, it does one turn&#8217;s work toward the creation of the unit or upgrade specified. As all units and upgrades take one turn to make, this is enough to complete it. If it is a unit being made, the new unit is put to one side after being made.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>unitid</strong> &#8211; Acting unit&#8217;s ID</li>
+<li><strong>templateID</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="deepequals">
+<h3>deepEquals<a class="headerlink" href="#deepequals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.deepEquals(Object)">
+public boolean <code class="descname">deepEquals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> other</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.deepEquals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="equals">
+<h3>equals<a class="headerlink" href="#equals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.equals(Object)">
+public boolean <code class="descname">equals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> other</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.equals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gettype">
+<h3>getType<a class="headerlink" href="#gettype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.getType()">
+public <a class="reference internal" href="ActionType.html#edu.cwru.sepia.action.ActionType" title="edu.cwru.sepia.action.ActionType">ActionType</a> <code class="descname">getType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.getType()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the type of action being done</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The ActionType of the action</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getunitid">
+<h3>getUnitId<a class="headerlink" href="#getunitid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.getUnitId()">
+public int <code class="descname">getUnitId</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.getUnitId()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the id of the unit doing the action.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The id of the unit doing the action</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="hashcode">
+<h3>hashCode<a class="headerlink" href="#hashcode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.hashCode()">
+public int <code class="descname">hashCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.hashCode()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.action.Action.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.action.Action.toString()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ActionFeedback.html" class="btn btn-neutral float-right" title="ActionFeedback"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="package-index.html" class="btn btn-neutral" title="edu.cwru.sepia.action"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

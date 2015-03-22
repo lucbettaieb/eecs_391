@@ -1,0 +1,45 @@
+.. java:import:: java.lang.reflect Array
+
+.. java:import:: java.util Arrays
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent ConcurrentHashMap
+
+MatlabNumericArray.ArrayDimensionException
+==========================================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public static class ArrayDimensionException extends RuntimeException
+   :outertype: MatlabNumericArray
+
+   Represents attempting to retrieve or manipulate a MATLAB array as the wrong dimension.
+
+Constructors
+------------
+ArrayDimensionException
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  ArrayDimensionException(int actualNumDim, int usedAsNumDim)
+   :outertype: MatlabNumericArray.ArrayDimensionException
+
+Methods
+-------
+getActualNumberOfDimensions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getActualNumberOfDimensions()
+   :outertype: MatlabNumericArray.ArrayDimensionException
+
+   The actual number of dimensions the array has.
+
+getUsedNumberOfDimensions
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getUsedNumberOfDimensions()
+   :outertype: MatlabNumericArray.ArrayDimensionException
+
+   The number of dimensions that were used when interacting with the array.
+

@@ -1,0 +1,40 @@
+.. java:import:: matlabcontrol MatlabProxyFactory.Request
+
+.. java:import:: matlabcontrol MatlabProxyFactory.RequestCallback
+
+ProxyFactory
+============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  interface ProxyFactory
+
+   A factory which creates instances of \ :java:ref:`MatlabProxy`\ .
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+getProxy
+^^^^^^^^
+
+.. java:method:: public MatlabProxy getProxy() throws MatlabConnectionException
+   :outertype: ProxyFactory
+
+   Returns a \ :java:ref:`MatlabProxy`\ . If a connection cannot be established before the timeout then this method will end execution and an exception will be thrown. A timeout can be specified with the options provided to this factory. If no timeout was specified, then a default of 180 seconds will be used.  While this method blocks the calling thread until a proxy is created (or the timeout is reached), any number of threads may call \ ``getProxy()``\  simultaneously.
+
+   :throws MatlabConnectionException:
+   :return: proxy
+
+requestProxy
+^^^^^^^^^^^^
+
+.. java:method:: public Request requestProxy(RequestCallback callback) throws MatlabConnectionException
+   :outertype: ProxyFactory
+
+   Requests a \ :java:ref:`MatlabProxy`\ . When the proxy has been created it will be provided to the \ ``callback``\ . The proxy may be provided to the callback before this method returns. There is no timeout. The returned \ :java:ref:`Request`\  instance provides information about the request and can be used to cancel the request.  This method is non-blocking. Any number of requests may be made simultaneously from the same thread or different threads.
+
+   :throws MatlabConnectionException:
+   :return: request
+

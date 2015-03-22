@@ -1,0 +1,82 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: java.awt Insets
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing Box
+
+.. java:import:: javax.swing JButton
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JScrollPane
+
+.. java:import:: javax.swing.border LineBorder
+
+.. java:import:: javax.swing.border TitledBorder
+
+.. java:import:: javax.swing.event TableModelEvent
+
+.. java:import:: javax.swing.event TableModelListener
+
+AgentPanel
+==========
+
+.. java:package:: edu.cwru.sepia.start
+   :noindex:
+
+.. java:type:: @SuppressWarnings public class AgentPanel extends JPanel implements TableModelListener
+
+Fields
+------
+agentTable
+^^^^^^^^^^
+
+.. java:field::  AgentTable agentTable
+   :outertype: AgentPanel
+
+Constructors
+------------
+AgentPanel
+^^^^^^^^^^
+
+.. java:constructor:: public AgentPanel()
+   :outertype: AgentPanel
+
+Methods
+-------
+addCommandChangeListener
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addCommandChangeListener(CommandChangeListener listener)
+   :outertype: AgentPanel
+
+removeCommandChangeListener
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeCommandChangeListener(CommandChangeListener listener)
+   :outertype: AgentPanel
+
+tableChanged
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void tableChanged(TableModelEvent e)
+   :outertype: AgentPanel
+
+toArgList
+^^^^^^^^^
+
+.. java:method:: public List<String> toArgList()
+   :outertype: AgentPanel
+

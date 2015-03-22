@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MatlabNumericArray &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="matlabcontrol.extensions" href="package-index.html"/>
+        <link rel="next" title="MatlabNumericArray.ArrayDimensionException" href="MatlabNumericArray-ArrayDimensionException.html"/>
+        <link rel="prev" title="CallbackMatlabProxy.MatlabDataCallback" href="CallbackMatlabProxy-MatlabDataCallback.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">matlabcontrol.extensions</a> &raquo;</li>
+      
+    <li>MatlabNumericArray</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../_sources/javadoc/matlabcontrol/extensions/MatlabNumericArray.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="matlabnumericarray">
+<h1>MatlabNumericArray<a class="headerlink" href="#matlabnumericarray" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="matlabcontrol.extensions.MatlabNumericArray">
+public final class <code class="descname">MatlabNumericArray</code><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acts as a MATLAB array of doubles. MATLAB arrays of any numeric type may be represented by a <code class="docutils literal"><span class="pre">MatlabNumericArray</span></code>, but precision may be lost in the process. Dimensions of 2 and greater are supported. (No array in MATLAB has a dimension less than 2.) This representation is a copy of the MATLAB data, not a live view. Retrieving large arrays from MATLAB can result in a <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/OutOfMemoryError.html" title="java.lang.OutOfMemoryError"><code class="xref java java-ref docutils literal"><span class="pre">OutOfMemoryError</span></code></a>; if this occurs you may want to either retrieve only part of the array from MATLAB or increase your Java Virtual Machine&#8217;s heap size.  <strong>Note:</strong> Sparse arrays are not supported. Attempts to retrieve a sparse may not throw an exception, but the result will not be valid.  Both the real and imaginary components of a MATLAB array are supported. If the array has no imaginary values then attempts to access these values will result in a <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><code class="xref java java-ref docutils literal"><span class="pre">IllegalStateException</span></code></a> being thrown.  Arrays in MATLAB are stored in a linear manner. The number and lengths of the dimensions are stored separately from the real and imaginary value entries. Each dimension has a fixed length. (MATLAB&#8217;s array implementation is known as a dope vector.)  Java has no multidimensional array type. To support multiple dimensions, Java allows for creating arrays of any data type, including arrays. (Java&#8217;s array implementation is known as an Iliffe vector.) A two dimensional array of <code class="docutils literal"><span class="pre">double</span></code>s, <code class="docutils literal"><span class="pre">double[][]</span></code>, is just an array of <code class="docutils literal"><span class="pre">double[]</span></code>. A result of this is that each <code class="docutils literal"><span class="pre">double[]</span></code> can have a different length. When not all inner arrays for a given dimension have the same length, then the array is known as as a jagged array (also known as a ragged array).  When an array is retrieved from MATLAB the resulting Java array is never jagged. When a <code class="docutils literal"><span class="pre">MatlabNumericArray</span></code> is constructed from Java arrays, the arrays provided may be jagged; see the <a class="reference internal" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][], double[][][])" title="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][], double[][][])"><code class="xref java java-ref docutils literal"><span class="pre">main</span> <span class="pre">constructor</span></code></a> for details.  Each instance knows the number of dimensions it represents and can create the corresponding multidimensional Java array. In order to do this in a type safe manner the methods <a class="reference internal" href="#matlabcontrol.extensions.MatlabNumericArray.getRealArray(DoubleArrayType)" title="matlabcontrol.extensions.MatlabNumericArray.getRealArray(DoubleArrayType)"><code class="xref java java-ref docutils literal"><span class="pre">getRealArray(...)</span></code></a> and <a class="reference internal" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray(DoubleArrayType)" title="matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray(DoubleArrayType)"><code class="xref java java-ref docutils literal"><span class="pre">getImaginaryArray(...)</span></code></a> exist. Convenience methods exist to easily retrieve the arrays as two, three, and four dimensional arrays. All of these methods will throw a <a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><code class="xref java java-ref docutils literal"><span class="pre">ArrayDimensionException</span></code></a> if the array is not actually of that dimension. It is also possible to retrieve values from the array without converting it to the corresponding multidimensional Java array. This can be done either by using the index into the underlying linear MATLAB array, or by using the multidimensional indices. Retrieving values in this manner does not require the computation and memory necessary to create the multidimensional Java array.  While this class mimics the dimension and lengths of a MATLAB array, it uses Java&#8217;s 0-index convention instead of MATLAB&#8217;s 1-index convention. For instance in MATLAB if an array were indexed into as <code class="docutils literal"><span class="pre">array(3,4,7,2)</span></code>, then in Java to retrieve the same entry the indexing would be performed as <code class="docutils literal"><span class="pre">array[2][3][6][1]</span></code>.  Once constructed, this class is unconditionally thread-safe. If the data provided to a constructor is modified while construction is occurring, problems may occur.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><a class="reference external" href="mailto:nonother&#37;&#52;&#48;gmail&#46;com">Joshua Kaplan</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>See also:</strong> <code class="xref java java-ref docutils literal"><span class="pre">TypeConverter.setNumericArray(java.lang.String,matlabcontrol.extensions.MatlabNumericArray)</span></code>, <code class="xref java java-ref docutils literal"><span class="pre">TypeConverter.getNumericArray(java.lang.String)</span></code></p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>MatlabNumericArray<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[], double[], int[])">
+ <code class="descname">MatlabNumericArray</code><span class="sig-paren">(</span>double[]<em> real</em>, double[]<em> imaginary</em>, int[]<em> lengths</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[], double[], int[])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an array from data retrieved from MATLAB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>real</strong> &#8211; </li>
+<li><strong>imaginary</strong> &#8211; </li>
+<li><strong>lengths</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>MatlabNumericArray<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(DoubleArrayType, T, T)">
+public <code class="descname">MatlabNumericArray</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabNumericArray-DoubleArrayType.html#matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType" title="matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType">DoubleArrayType</a>&lt;T&gt;<em> type</em>, T<em> real</em>, T<em> imaginary</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(DoubleArrayType, T, T)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a numeric array from Java arrays that can be transferred to MATLAB. The <code class="docutils literal"><span class="pre">imaginary</span></code> array may be <code class="docutils literal"><span class="pre">null</span></code>, if so then this array will be real. References to the arrays passed in are not kept, and modifying the array data after this class has been constructed will have no effect. If the data is modified concurrently with this class&#8217;s construction, problems may arise.  The arrays may be jagged; however, MATLAB does not support jagged arrays and therefore the arrays will be treated as if they had uniform length for each dimension. For each dimension the maximum length is determined. If both the <code class="docutils literal"><span class="pre">real</span></code> and <code class="docutils literal"><span class="pre">imaginary</span></code> arrays are provided then the maximum length per dimension is determined across both arrays. For parts of the array that have a length less than the maximum length, <code class="docutils literal"><span class="pre">0</span></code> will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>&lt;T&gt;</strong> &#8211; </li>
+<li><strong>type</strong> &#8211; may not be <code class="docutils literal"><span class="pre">null</span></code></li>
+<li><strong>real</strong> &#8211; may not be <code class="docutils literal"><span class="pre">null</span></code></li>
+<li><strong>imaginary</strong> &#8211; may be <code class="docutils literal"><span class="pre">null</span></code>, if <code class="docutils literal"><span class="pre">null</span></code> then this array will be real</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>NullPointerException</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>MatlabNumericArray<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][], double[][])">
+public <code class="descname">MatlabNumericArray</code><span class="sig-paren">(</span>double[][]<em> real</em>, double[][]<em> imaginary</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][], double[][])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience constructor, equivalent to <code class="docutils literal"><span class="pre">new</span> <span class="pre">MatlabNumericArray(DoubleArrayType.DIM_2,</span> <span class="pre">real,</span> <span class="pre">imaginary)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>real</strong> &#8211; </li>
+<li><strong>imaginary</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>NullPointerException</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>MatlabNumericArray<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][], double[][][])">
+public <code class="descname">MatlabNumericArray</code><span class="sig-paren">(</span>double[][][]<em> real</em>, double[][][]<em> imaginary</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][], double[][][])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience constructor, equivalent to <code class="docutils literal"><span class="pre">new</span> <span class="pre">MatlabNumericArray(DoubleArrayType.DIM_3,</span> <span class="pre">real,</span> <span class="pre">imaginary)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>real</strong> &#8211; </li>
+<li><strong>imaginary</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>NullPointerException</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>MatlabNumericArray<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][][], double[][][][])">
+public <code class="descname">MatlabNumericArray</code><span class="sig-paren">(</span>double[][][][]<em> real</em>, double[][][][]<em> imaginary</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.MatlabNumericArray(double[][][][], double[][][][])" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience constructor, equivalent to <code class="docutils literal"><span class="pre">new</span> <span class="pre">MatlabNumericArray(DoubleArrayType.DIM_4,</span> <span class="pre">real,</span> <span class="pre">imaginary)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>real</strong> &#8211; </li>
+<li><strong>imaginary</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><strong>NullPointerException</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getdimensions">
+<h3>getDimensions<a class="headerlink" href="#getdimensions" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getDimensions()">
+public int <code class="descname">getDimensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getDimensions()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of dimensions this array has.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">number of dimensions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginaryarray">
+<h3>getImaginaryArray<a class="headerlink" href="#getimaginaryarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray(DoubleArrayType)">
+public &lt;T&gt; T <code class="descname">getImaginaryArray</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabNumericArray-DoubleArrayType.html#matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType" title="matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType">DoubleArrayType</a>&lt;T&gt;<em> type</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray(DoubleArrayType)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">double</span></code> array of type <code class="docutils literal"><span class="pre">T</span></code> that holds the imaginary values from the MATLAB array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>&lt;T&gt;</strong> &#8211; </li>
+<li><strong>type</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not of the dimension specified by <code class="docutils literal"><span class="pre">type</span></code></li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginaryarray2d">
+<h3>getImaginaryArray2D<a class="headerlink" href="#getimaginaryarray2d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray2D()">
+public double[][] <code class="descname">getImaginaryArray2D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray2D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getImaginaryArray(DoubleArrayType.DIM_2)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a two dimensional array</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginaryarray3d">
+<h3>getImaginaryArray3D<a class="headerlink" href="#getimaginaryarray3d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray3D()">
+public double[][][] <code class="descname">getImaginaryArray3D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray3D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getImaginaryArray(DoubleArrayType.DIM_3)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a three dimensional array</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginaryarray4d">
+<h3>getImaginaryArray4D<a class="headerlink" href="#getimaginaryarray4d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray4D()">
+public double[][][][] <code class="descname">getImaginaryArray4D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryArray4D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getImaginaryArray(DoubleArrayType.DIM_4)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a four dimensional array</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginarylineararray">
+<h3>getImaginaryLinearArray<a class="headerlink" href="#getimaginarylineararray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryLinearArray()">
+ double[] <code class="descname">getImaginaryLinearArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryLinearArray()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the underlying linear array of imaginary values. Returns the actual array, not a copy.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getimaginaryvalue">
+<h3>getImaginaryValue<a class="headerlink" href="#getimaginaryvalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getImaginaryValue(int)">
+public double <code class="descname">getImaginaryValue</code><span class="sig-paren">(</span>int<em> linearIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getImaginaryValue(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the imaginary value at <code class="docutils literal"><span class="pre">linearIndex</span></code> treating this array as the underlying one dimensional array. This is equivalent to indexing into a MATLAB array with just one subscript.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>linearIndex</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/ArrayIndexOutOfBoundsException.html" title="java.lang.ArrayIndexOutOfBoundsException"><strong>ArrayIndexOutOfBoundsException</strong></a> &#8211; </li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">imaginary value at <code class="docutils literal"><span class="pre">linearIndex</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>getImaginaryValue<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt>
+public double <code class="descname">getImaginaryValue</code><span class="sig-paren">(</span>int...<em> indices</em><span class="sig-paren">)</span></dt>
+<dd><p>Gets the imaginary value at the specified <code class="docutils literal"><span class="pre">indices</span></code>. The amount of indices provided must be the number of dimensions in the array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>indices</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if number of indices is not the number of dimensions</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html" title="java.lang.IllegalStateException"><strong>IllegalStateException</strong></a> &#8211; if the array is real</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IndexOutOfBoundsException.html" title="java.lang.IndexOutOfBoundsException"><strong>IndexOutOfBoundsException</strong></a> &#8211; if the indices are out of bound</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">imaginary value at <code class="docutils literal"><span class="pre">indices</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getlength">
+<h3>getLength<a class="headerlink" href="#getlength" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getLength()">
+public int <code class="descname">getLength</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getLength()" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the underlying linear array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">length</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getlengths">
+<h3>getLengths<a class="headerlink" href="#getlengths" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getLengths()">
+public int[] <code class="descname">getLengths</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getLengths()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lengths of each dimension with respect to their index. In MATLAB the first dimension (0 index in the returned integer array) is the row length. The second dimension is the column length. The third dimension and beyond are pages. The length of the returned array will be the number of dimensions returned by <a class="reference internal" href="MatlabNumericArray-DoubleArrayType.html#matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType.getDimensions()" title="matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType.getDimensions()"><code class="xref java java-ref docutils literal"><span class="pre">getDimensions()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">lengths</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getrealarray">
+<h3>getRealArray<a class="headerlink" href="#getrealarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealArray(DoubleArrayType)">
+public &lt;T&gt; T <code class="descname">getRealArray</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabNumericArray-DoubleArrayType.html#matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType" title="matlabcontrol.extensions.MatlabNumericArray.DoubleArrayType">DoubleArrayType</a>&lt;T&gt;<em> type</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealArray(DoubleArrayType)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">double</span></code> array of type <code class="docutils literal"><span class="pre">T</span></code> that holds the real values from the MATLAB array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>&lt;T&gt;</strong> &#8211; </li>
+<li><strong>type</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not of the dimension specified by <code class="docutils literal"><span class="pre">type</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getrealarray2d">
+<h3>getRealArray2D<a class="headerlink" href="#getrealarray2d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealArray2D()">
+public double[][] <code class="descname">getRealArray2D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealArray2D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getRealArray(DoubleArrayType.DIM_2)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a two dimensional array</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getrealarray3d">
+<h3>getRealArray3D<a class="headerlink" href="#getrealarray3d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealArray3D()">
+public double[][][] <code class="descname">getRealArray3D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealArray3D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getRealArray(DoubleArrayType.DIM_3)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a three dimensional array</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getrealarray4d">
+<h3>getRealArray4D<a class="headerlink" href="#getrealarray4d" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealArray4D()">
+public double[][][][] <code class="descname">getRealArray4D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealArray4D()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <code class="docutils literal"><span class="pre">getRealArray(DoubleArrayType.DIM_4)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if the array is not a four dimensional array</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getreallineararray">
+<h3>getRealLinearArray<a class="headerlink" href="#getreallineararray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealLinearArray()">
+ double[] <code class="descname">getRealLinearArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealLinearArray()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the underlying linear array of real values. Returns the actual array, not a copy.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getrealvalue">
+<h3>getRealValue<a class="headerlink" href="#getrealvalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.getRealValue(int)">
+public double <code class="descname">getRealValue</code><span class="sig-paren">(</span>int<em> linearIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.getRealValue(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the real value at <code class="docutils literal"><span class="pre">linearIndex</span></code> treating this array as the underlying one dimensional array. This is equivalent to indexing into a MATLAB array with just one subscript.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>linearIndex</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/ArrayIndexOutOfBoundsException.html" title="java.lang.ArrayIndexOutOfBoundsException"><strong>ArrayIndexOutOfBoundsException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">real value at <code class="docutils literal"><span class="pre">linearIndex</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id7">
+<h3>getRealValue<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt>
+public double <code class="descname">getRealValue</code><span class="sig-paren">(</span>int...<em> indices</em><span class="sig-paren">)</span></dt>
+<dd><p>Gets the real value at the specified <code class="docutils literal"><span class="pre">indices</span></code>. The amount of indices provided must be the number of dimensions in the array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>indices</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="MatlabNumericArray-ArrayDimensionException.html#matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException" title="matlabcontrol.extensions.MatlabNumericArray.ArrayDimensionException"><strong>ArrayDimensionException</strong></a> &#8211; if number of indices is not the number of dimensions</li>
+<li><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/IndexOutOfBoundsException.html" title="java.lang.IndexOutOfBoundsException"><strong>IndexOutOfBoundsException</strong></a> &#8211; if the indices are out of bound</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">real value at <code class="docutils literal"><span class="pre">indices</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isreal">
+<h3>isReal<a class="headerlink" href="#isreal" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.isReal()">
+public boolean <code class="descname">isReal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.isReal()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the array has no imaginary values, <code class="docutils literal"><span class="pre">false</span></code> otherwise. Equivalent to the MATLAB <code class="docutils literal"><span class="pre">isreal</span></code> function.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.extensions.MatlabNumericArray.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.extensions.MatlabNumericArray.toString()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a brief description of this array. The exact details of this representation are unspecified and are subject to change.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MatlabNumericArray-ArrayDimensionException.html" class="btn btn-neutral float-right" title="MatlabNumericArray.ArrayDimensionException"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CallbackMatlabProxy-MatlabDataCallback.html" class="btn btn-neutral" title="CallbackMatlabProxy.MatlabDataCallback"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

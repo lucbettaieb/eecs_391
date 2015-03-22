@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>JSONWriter &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="org.json" href="package-index.html"/>
+        <link rel="next" title="Test" href="Test.html"/>
+        <link rel="prev" title="JSONTokener" href="JSONTokener.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">org.json</a> &raquo;</li>
+      
+    <li>JSONWriter</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../_sources/javadoc/org/json/JSONWriter.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="jsonwriter">
+<h1>JSONWriter<a class="headerlink" href="#jsonwriter" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="org.json.JSONWriter">
+public class <code class="descname">JSONWriter</code><a class="headerlink" href="#org.json.JSONWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>JSONWriter provides a quick and convenient way of producing JSON text. The texts produced strictly conform to JSON syntax rules. No whitespace is added, so the results are ready for transmission or storage. Each instance of JSONWriter can produce one JSON text.</p>
+<p>A JSONWriter instance provides a <code class="docutils literal"><span class="pre">value</span></code> method for appending values to the text, and a <code class="docutils literal"><span class="pre">key</span></code> method for adding keys before values in objects. There are <code class="docutils literal"><span class="pre">array</span></code> and <code class="docutils literal"><span class="pre">endArray</span></code> methods that make and bound array values, and <code class="docutils literal"><span class="pre">object</span></code> and <code class="docutils literal"><span class="pre">endObject</span></code> methods which make and bound object values. All of these methods return the JSONWriter instance, permitting a cascade style. For example,</p>
+<div class="highlight-python"><div class="highlight"><pre>new JSONWriter(myWriter)
+    .object()
+        .key(&quot;JSON&quot;)
+        .value(&quot;Hello, World!&quot;)
+    .endObject();
+</pre></div>
+</div>
+<p>which writes</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;JSON&quot;</span><span class="p">:</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The first method called must be <code class="docutils literal"><span class="pre">array</span></code> or <code class="docutils literal"><span class="pre">object</span></code>. There are no methods for adding commas or colons. JSONWriter adds them for you. Objects and arrays can be nested up to 20 levels deep.</p>
+<p>This can sometimes be easier than using a JSONObject to build a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">JSON.org</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mode">
+<h3>mode<a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="org.json.JSONWriter.mode">
+protected char <code class="descname">mode</code><a class="headerlink" href="#org.json.JSONWriter.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current mode. Values: &#8216;a&#8217; (array), &#8216;d&#8217; (done), &#8216;i&#8217; (initial), &#8216;k&#8217; (key), &#8216;o&#8217; (object).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="writer">
+<h3>writer<a class="headerlink" href="#writer" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="org.json.JSONWriter.writer">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html" title="java.io.Writer">Writer</a> <code class="descname">writer</code><a class="headerlink" href="#org.json.JSONWriter.writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The writer that will receive the output.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>JSONWriter<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONWriter.JSONWriter(Writer)">
+public <code class="descname">JSONWriter</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html" title="java.io.Writer">Writer</a><em> w</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.JSONWriter(Writer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a fresh JSONWriter. It can be used to build one JSON text.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="array">
+<h3>array<a class="headerlink" href="#array" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.array()">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.array()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin appending a new array. All values until the balancing <code class="docutils literal"><span class="pre">endArray</span></code> will be appended to this array. The <code class="docutils literal"><span class="pre">endArray</span></code> method must be called to mark the array&#8217;s end.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the nesting is too deep, or if the object is started in the wrong place (for example as a key or after the end of the outermost array or object).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="endarray">
+<h3>endArray<a class="headerlink" href="#endarray" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.endArray()">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">endArray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.endArray()" title="Permalink to this definition">¶</a></dt>
+<dd><p>End an array. This method most be called to balance calls to <code class="docutils literal"><span class="pre">array</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If incorrectly nested.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="endobject">
+<h3>endObject<a class="headerlink" href="#endobject" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.endObject()">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">endObject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.endObject()" title="Permalink to this definition">¶</a></dt>
+<dd><p>End an object. This method most be called to balance calls to <code class="docutils literal"><span class="pre">object</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If incorrectly nested.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="key">
+<h3>key<a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.key(String)">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">key</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> string</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.key(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a key. The key will be associated with the next value. In an object, every value must be preceded by a key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> &#8211; A key string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the key is out of place. For example, keys do not belong in arrays or if the key is null.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="object">
+<h3>object<a class="headerlink" href="#object" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.object()">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.object()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin appending a new object. All keys and values until the balancing <code class="docutils literal"><span class="pre">endObject</span></code> will be appended to this object. The <code class="docutils literal"><span class="pre">endObject</span></code> method must be called to mark the object&#8217;s end.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the nesting is too deep, or if the object is started in the wrong place (for example as a key or after the end of the outermost array or object).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="value">
+<h3>value<a class="headerlink" href="#value" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.value(boolean)">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">value</code><span class="sig-paren">(</span>boolean<em> b</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.value(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append either the value <code class="docutils literal"><span class="pre">true</span></code> or the value <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>b</strong> &#8211; A boolean.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>value<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.value(double)">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">value</code><span class="sig-paren">(</span>double<em> d</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.value(double)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a double value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>d</strong> &#8211; A double.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the number is not finite.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>value<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.value(long)">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">value</code><span class="sig-paren">(</span>long<em> l</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.value(long)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a long value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>l</strong> &#8211; A long.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>value<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONWriter.value(Object)">
+public <a class="reference internal" href="#org.json.JSONWriter" title="org.json.JSONWriter">JSONWriter</a> <code class="descname">value</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> object</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONWriter.value(Object)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append an object value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object</strong> &#8211; The object to append. It can be null, or a Boolean, Number, String, JSONObject, or JSONArray, or an object that implements JSONString.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If the value is out of sequence.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">this</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Test.html" class="btn btn-neutral float-right" title="Test"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="JSONTokener.html" class="btn btn-neutral" title="JSONTokener"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

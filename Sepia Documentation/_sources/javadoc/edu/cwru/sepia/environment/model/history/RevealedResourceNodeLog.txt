@@ -1,0 +1,52 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+RevealedResourceNodeLog
+=======================
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class RevealedResourceNodeLog implements Serializable, DeepEquatable
+
+   A read only class that represents the revealing of units at the start of the game
+
+   :author: The Condor
+
+Constructors
+------------
+RevealedResourceNodeLog
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public RevealedResourceNodeLog(int resourcenodex, int resourcenodey, ResourceNode.Type resoucenodetype)
+   :outertype: RevealedResourceNodeLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: RevealedResourceNodeLog
+
+getResourceNodeType
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceNode.Type getResourceNodeType()
+   :outertype: RevealedResourceNodeLog
+
+getResourceNodeXPosition
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getResourceNodeXPosition()
+   :outertype: RevealedResourceNodeLog
+
+getResourceNodeYPosition
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getResourceNodeYPosition()
+   :outertype: RevealedResourceNodeLog
+

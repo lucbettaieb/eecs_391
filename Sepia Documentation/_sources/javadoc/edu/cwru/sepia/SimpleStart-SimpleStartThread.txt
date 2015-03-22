@@ -1,0 +1,29 @@
+.. java:import:: edu.cwru.sepia.start StartListener
+
+.. java:import:: edu.cwru.sepia.start StartWindow
+
+SimpleStart.SimpleStartThread
+=============================
+
+.. java:package:: edu.cwru.sepia
+   :noindex:
+
+.. java:type:: public static class SimpleStartThread extends Thread
+   :outertype: SimpleStart
+
+Constructors
+------------
+SimpleStartThread
+^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public SimpleStartThread(String[] args)
+   :outertype: SimpleStart.SimpleStartThread
+
+Methods
+-------
+run
+^^^
+
+.. java:method:: @Override public void run()
+   :outertype: SimpleStart.SimpleStartThread
+

@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XmlState &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.persistence.generated" href="package-index.html"/>
+        <link rel="next" title="XmlTargetedAction" href="XmlTargetedAction.html"/>
+        <link rel="prev" title="XmlRevealedResourceNodeLog" href="XmlRevealedResourceNodeLog.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a> &raquo;</li>
+      
+    <li>XmlState</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/persistence/generated/XmlState.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="xmlstate">
+<h1>XmlState<a class="headerlink" href="#xmlstate" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState">
+public class <code class="descname">XmlState</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Java class for anonymous complex type.</p>
+<p>The following schema fragment specifies the expected content contained within this class.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;complexType&gt;
+  &lt;complexContent&gt;
+    &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
+      &lt;sequence&gt;
+        &lt;sequence maxOccurs=&quot;unbounded&quot;&gt;
+          &lt;element name=&quot;player&quot; type=&quot;{}Player&quot;/&gt;
+        &lt;/sequence&gt;
+        &lt;sequence maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+          &lt;element name=&quot;resourceNode&quot; type=&quot;{}ResourceNode&quot;/&gt;
+        &lt;/sequence&gt;
+      &lt;/sequence&gt;
+      &lt;attribute name=&quot;xExtent&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot; /&gt;
+      &lt;attribute name=&quot;yExtent&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot; /&gt;
+      &lt;attribute name=&quot;nextTargetID&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot; /&gt;
+      &lt;attribute name=&quot;nextTemplateID&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot; /&gt;
+      &lt;attribute name=&quot;RevealedResourceNodes&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot; /&gt;
+      &lt;attribute name=&quot;fogOfWar&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot; /&gt;
+    &lt;/restriction&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fogofwar">
+<h3>fogOfWar<a class="headerlink" href="#fogofwar" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.fogOfWar">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a> <code class="descname">fogOfWar</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.fogOfWar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nexttargetid">
+<h3>nextTargetID<a class="headerlink" href="#nexttargetid" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.nextTargetID">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">nextTargetID</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.nextTargetID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nexttemplateid">
+<h3>nextTemplateID<a class="headerlink" href="#nexttemplateid" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.nextTemplateID">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">nextTemplateID</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.nextTemplateID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="player">
+<h3>player<a class="headerlink" href="#player" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.player">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="XmlPlayer.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer">XmlPlayer</a>&gt; <code class="descname">player</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.player" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="resourcenode">
+<h3>resourceNode<a class="headerlink" href="#resourcenode" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.resourceNode">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="XmlResourceNode.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode">XmlResourceNode</a>&gt; <code class="descname">resourceNode</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.resourceNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="revealedresourcenodes">
+<h3>revealedResourceNodes<a class="headerlink" href="#revealedresourcenodes" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.revealedResourceNodes">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a> <code class="descname">revealedResourceNodes</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.revealedResourceNodes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="xextent">
+<h3>xExtent<a class="headerlink" href="#xextent" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.xExtent">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">xExtent</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.xExtent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="yextent">
+<h3>yExtent<a class="headerlink" href="#yextent" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.yExtent">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">yExtent</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.yExtent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getnexttargetid">
+<h3>getNextTargetID<a class="headerlink" href="#getnexttargetid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getNextTargetID()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">getNextTargetID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getNextTargetID()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the nextTargetID property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getnexttemplateid">
+<h3>getNextTemplateID<a class="headerlink" href="#getnexttemplateid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getNextTemplateID()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">getNextTemplateID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getNextTemplateID()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the nextTemplateID property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getplayer">
+<h3>getPlayer<a class="headerlink" href="#getplayer" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getPlayer()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="XmlPlayer.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer">XmlPlayer</a>&gt; <code class="descname">getPlayer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getPlayer()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the player property.</p>
+<p>This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a <code class="docutils literal"><span class="pre">set</span></code> method for the player property.</p>
+<p>For example, to add a new item, do as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">getPlayer</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Objects of the following type(s) are allowed in the list <a class="reference internal" href="XmlPlayer.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer"><code class="xref java java-ref docutils literal"><span class="pre">XmlPlayer</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="getresourcenode">
+<h3>getResourceNode<a class="headerlink" href="#getresourcenode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getResourceNode()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="XmlResourceNode.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode">XmlResourceNode</a>&gt; <code class="descname">getResourceNode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getResourceNode()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the resourceNode property.</p>
+<p>This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a <code class="docutils literal"><span class="pre">set</span></code> method for the resourceNode property.</p>
+<p>For example, to add a new item, do as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">getResourceNode</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Objects of the following type(s) are allowed in the list <a class="reference internal" href="XmlResourceNode.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceNode</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="getxextent">
+<h3>getXExtent<a class="headerlink" href="#getxextent" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getXExtent()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">getXExtent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getXExtent()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the xExtent property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="getyextent">
+<h3>getYExtent<a class="headerlink" href="#getyextent" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.getYExtent()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a> <code class="descname">getYExtent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.getYExtent()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the yExtent property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isfogofwar">
+<h3>isFogOfWar<a class="headerlink" href="#isfogofwar" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.isFogOfWar()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a> <code class="descname">isFogOfWar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.isFogOfWar()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the fogOfWar property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean"><code class="xref java java-ref docutils literal"><span class="pre">Boolean</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="isrevealedresourcenodes">
+<h3>isRevealedResourceNodes<a class="headerlink" href="#isrevealedresourcenodes" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.isRevealedResourceNodes()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a> <code class="descname">isRevealedResourceNodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.isRevealedResourceNodes()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the revealedResourceNodes property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">possible object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean"><code class="xref java java-ref docutils literal"><span class="pre">Boolean</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setfogofwar">
+<h3>setFogOfWar<a class="headerlink" href="#setfogofwar" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setFogOfWar(Boolean)">
+public void <code class="descname">setFogOfWar</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setFogOfWar(Boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the fogOfWar property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean"><code class="xref java java-ref docutils literal"><span class="pre">Boolean</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setnexttargetid">
+<h3>setNextTargetID<a class="headerlink" href="#setnexttargetid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setNextTargetID(Integer)">
+public void <code class="descname">setNextTargetID</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setNextTargetID(Integer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the nextTargetID property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setnexttemplateid">
+<h3>setNextTemplateID<a class="headerlink" href="#setnexttemplateid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setNextTemplateID(Integer)">
+public void <code class="descname">setNextTemplateID</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setNextTemplateID(Integer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the nextTemplateID property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setrevealedresourcenodes">
+<h3>setRevealedResourceNodes<a class="headerlink" href="#setrevealedresourcenodes" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setRevealedResourceNodes(Boolean)">
+public void <code class="descname">setRevealedResourceNodes</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean">Boolean</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setRevealedResourceNodes(Boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the revealedResourceNodes property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html" title="java.lang.Boolean"><code class="xref java java-ref docutils literal"><span class="pre">Boolean</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setxextent">
+<h3>setXExtent<a class="headerlink" href="#setxextent" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setXExtent(Integer)">
+public void <code class="descname">setXExtent</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setXExtent(Integer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the xExtent property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setyextent">
+<h3>setYExtent<a class="headerlink" href="#setyextent" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlState.setYExtent(Integer)">
+public void <code class="descname">setYExtent</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlState.setYExtent(Integer)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the yExtent property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; allowed object is <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XmlTargetedAction.html" class="btn btn-neutral float-right" title="XmlTargetedAction"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XmlRevealedResourceNodeLog.html" class="btn btn-neutral" title="XmlRevealedResourceNodeLog"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

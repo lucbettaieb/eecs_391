@@ -1,0 +1,111 @@
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.environment.model.history BirthLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DamageLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history DeathLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+CombatAgent
+===========
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class CombatAgent extends Agent
+
+Constructors
+------------
+CombatAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public CombatAgent(int playernum, String[] otherargs)
+   :outertype: CombatAgent
+
+CombatAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public CombatAgent(int playerNum, int[] enemies, boolean wanderWhileIdle, boolean verbose)
+   :outertype: CombatAgent
+
+   Construct a combat agent.
+
+   :param playerNum: The player number of this agent
+   :param enemies: The player numbers of enemies
+   :param wanderWhileIdle: Whether to move in random directions when you have nothing better to do.
+   :param verbose: Verbosity
+
+CombatAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public CombatAgent(int playerNum)
+   :outertype: CombatAgent
+
+Methods
+-------
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: CombatAgent
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: CombatAgent
+
+   Start a new trial. Uses the StateView, which contains information in logs, resources, and units Some of the unit information may be in the template
+
+   :param newstate:
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: CombatAgent
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: CombatAgent
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: CombatAgent
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: CombatAgent
+

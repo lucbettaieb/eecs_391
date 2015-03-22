@@ -1,0 +1,38 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io ObjectInputStream
+
+LoadingStateCreator
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class LoadingStateCreator implements StateCreator
+
+Fields
+------
+loadfilename
+^^^^^^^^^^^^
+
+.. java:field::  String loadfilename
+   :outertype: LoadingStateCreator
+
+Constructors
+------------
+LoadingStateCreator
+^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public LoadingStateCreator(String loadfilename)
+   :outertype: LoadingStateCreator
+
+Methods
+-------
+createState
+^^^^^^^^^^^
+
+.. java:method:: @Override public State createState()
+   :outertype: LoadingStateCreator
+

@@ -1,0 +1,66 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+XmlDirectedAction
+=================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlDirectedAction extends XmlAction
+
+   Java class for DirectedAction complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="DirectedAction">
+        <complexContent>
+          <extension base="{}Action">
+            <sequence>
+              <element name="direction" type="{}Direction"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+direction
+^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected Direction direction
+   :outertype: XmlDirectedAction
+
+Methods
+-------
+getDirection
+^^^^^^^^^^^^
+
+.. java:method:: public Direction getDirection()
+   :outertype: XmlDirectedAction
+
+   Gets the value of the direction property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setDirection
+^^^^^^^^^^^^
+
+.. java:method:: public void setDirection(Direction value)
+   :outertype: XmlDirectedAction
+
+   Sets the value of the direction property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

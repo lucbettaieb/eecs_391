@@ -1,0 +1,38 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+Target
+======
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public abstract class Target implements Serializable, DeepEquatable
+
+   An class that signifies that an extending class can be the direct object of an action This requires that they all share an ID scheme
+
+   :author: Tim
+
+Fields
+------
+ID
+^^
+
+.. java:field:: public final int ID
+   :outertype: Target
+
+serialVersionUID
+^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final long serialVersionUID
+   :outertype: Target
+
+Constructors
+------------
+Target
+^^^^^^
+
+.. java:constructor:: public Target(int ID)
+   :outertype: Target
+

@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RemoteMatlabProxy &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="matlabcontrol" href="package-index.html"/>
+        <link rel="next" title="RemoteMatlabProxyFactory" href="RemoteMatlabProxyFactory.html"/>
+        <link rel="prev" title="ProxyFactory" href="ProxyFactory.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">matlabcontrol</a> &raquo;</li>
+      
+    <li>RemoteMatlabProxy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/javadoc/matlabcontrol/RemoteMatlabProxy.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="remotematlabproxy">
+<h1>RemoteMatlabProxy<a class="headerlink" href="#remotematlabproxy" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="matlabcontrol.RemoteMatlabProxy">
+ class <code class="descname">RemoteMatlabProxy</code> extends <a class="reference internal" href="MatlabProxy.html#matlabcontrol.MatlabProxy" title="matlabcontrol.MatlabProxy">MatlabProxy</a><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows for calling MATLAB from <strong>outside</strong> of MATLAB.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body"><a class="reference external" href="mailto:nonother&#37;&#52;&#48;gmail&#46;com">Joshua Kaplan</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>RemoteMatlabProxy<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="matlabcontrol.RemoteMatlabProxy.RemoteMatlabProxy(JMIWrapperRemote, RequestReceiver, Identifier, boolean)">
+ <code class="descname">RemoteMatlabProxy</code><span class="sig-paren">(</span><a class="reference internal" href="JMIWrapperRemote.html#matlabcontrol.JMIWrapperRemote" title="matlabcontrol.JMIWrapperRemote">JMIWrapperRemote</a><em> internalProxy</em>, <a class="reference internal" href="RequestReceiver.html#matlabcontrol.RequestReceiver" title="matlabcontrol.RequestReceiver">RequestReceiver</a><em> receiver</em>, <a class="reference internal" href="MatlabProxy-Identifier.html#matlabcontrol.MatlabProxy.Identifier" title="matlabcontrol.MatlabProxy.Identifier">Identifier</a><em> id</em>, boolean<em> existingSession</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.RemoteMatlabProxy(JMIWrapperRemote, RequestReceiver, Identifier, boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>The proxy is never to be created outside of this package, it is to be constructed after a <a class="reference internal" href="JMIWrapperRemote.html#matlabcontrol.JMIWrapperRemote" title="matlabcontrol.JMIWrapperRemote"><code class="xref java java-ref docutils literal"><span class="pre">JMIWrapperRemote</span></code></a> has been received via RMI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>internalProxy</strong> &#8211; </li>
+<li><strong>receiver</strong> &#8211; </li>
+<li><strong>id</strong> &#8211; </li>
+<li><strong>existingSession</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="disconnect">
+<h3>disconnect<a class="headerlink" href="#disconnect" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.disconnect()">
+public boolean <code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.disconnect()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="eval">
+<h3>eval<a class="headerlink" href="#eval" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.eval(String)">
+public void <code class="descname">eval</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> command</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.eval(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="exit">
+<h3>exit<a class="headerlink" href="#exit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.exit()">
+public void <code class="descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.exit()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="feval">
+<h3>feval<a class="headerlink" href="#feval" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.feval(String, Object)">
+public void <code class="descname">feval</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> functionName</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>...<em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.feval(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getvariable">
+<h3>getVariable<a class="headerlink" href="#getvariable" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.getVariable(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">getVariable</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> variableName</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.getVariable(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="init">
+<h3>init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.init()">
+ void <code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.init()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes aspects of the proxy that cannot be done safely in the constructor without leaking a reference to <code class="docutils literal"><span class="pre">this</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="invokeandwait">
+<h3>invokeAndWait<a class="headerlink" href="#invokeandwait" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.invokeAndWait(MatlabThreadCallable)">
+public &lt;T&gt; T <code class="descname">invokeAndWait</code><span class="sig-paren">(</span><a class="reference internal" href="MatlabProxy-MatlabThreadCallable.html#matlabcontrol.MatlabProxy.MatlabThreadCallable" title="matlabcontrol.MatlabProxy.MatlabThreadCallable">MatlabThreadCallable</a>&lt;T&gt;<em> callable</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.invokeAndWait(MatlabThreadCallable)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="isconnected">
+<h3>isConnected<a class="headerlink" href="#isconnected" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.isConnected()">
+public boolean <code class="descname">isConnected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.isConnected()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="isrunninginsidematlab">
+<h3>isRunningInsideMatlab<a class="headerlink" href="#isrunninginsidematlab" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.isRunningInsideMatlab()">
+public boolean <code class="descname">isRunningInsideMatlab</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.isRunningInsideMatlab()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="returningeval">
+<h3>returningEval<a class="headerlink" href="#returningeval" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.returningEval(String, int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>[] <code class="descname">returningEval</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> command</em>, int<em> nargout</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.returningEval(String, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="returningfeval">
+<h3>returningFeval<a class="headerlink" href="#returningfeval" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.returningFeval(String, int, Object)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>[] <code class="descname">returningFeval</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> functionName</em>, int<em> nargout</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>...<em> args</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.returningFeval(String, int, Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setvariable">
+<h3>setVariable<a class="headerlink" href="#setvariable" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="matlabcontrol.RemoteMatlabProxy.setVariable(String, Object)">
+public void <code class="descname">setVariable</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> variableName</em>, <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#matlabcontrol.RemoteMatlabProxy.setVariable(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="RemoteMatlabProxyFactory.html" class="btn btn-neutral float-right" title="RemoteMatlabProxyFactory"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ProxyFactory.html" class="btn btn-neutral" title="ProxyFactory"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

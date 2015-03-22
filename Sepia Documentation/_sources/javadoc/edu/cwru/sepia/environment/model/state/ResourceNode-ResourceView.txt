@@ -1,0 +1,59 @@
+.. java:import:: java.io Serializable
+
+ResourceNode.ResourceView
+=========================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static class ResourceView implements Serializable
+   :outertype: ResourceNode
+
+Fields
+------
+node
+^^^^
+
+.. java:field::  ResourceNode node
+   :outertype: ResourceNode.ResourceView
+
+Constructors
+------------
+ResourceView
+^^^^^^^^^^^^
+
+.. java:constructor:: public ResourceView(ResourceNode node)
+   :outertype: ResourceNode.ResourceView
+
+Methods
+-------
+getAmountRemaining
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAmountRemaining()
+   :outertype: ResourceNode.ResourceView
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: ResourceNode.ResourceView
+
+getType
+^^^^^^^
+
+.. java:method:: public ResourceNode.Type getType()
+   :outertype: ResourceNode.ResourceView
+
+getXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getXPosition()
+   :outertype: ResourceNode.ResourceView
+
+getYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getYPosition()
+   :outertype: ResourceNode.ResourceView
+

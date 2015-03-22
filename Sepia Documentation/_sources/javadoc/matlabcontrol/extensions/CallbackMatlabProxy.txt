@@ -1,0 +1,156 @@
+.. java:import:: java.util.concurrent ExecutorService
+
+.. java:import:: java.util.concurrent Executors
+
+.. java:import:: java.util.concurrent ThreadFactory
+
+.. java:import:: matlabcontrol MatlabInvocationException
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadCallable
+
+.. java:import:: matlabcontrol MatlabProxy
+
+CallbackMatlabProxy
+===================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public class CallbackMatlabProxy
+
+   Wraps around a \ :java:ref:`MatlabProxy`\  making the method calls which interact with MATLAB operate with callbacks instead of return values. For each method in \ ``MatlabProxy``\  that interacts with MATLAB, the same method exists but has one additional parameter that is either \ :java:ref:`MatlabCallback`\  or \ :java:ref:`MatlabDataCallback`\ . Method invocations do not throw \ :java:ref:`MatlabInvocationException`\ s, but if the proxy throws a \ ``MatlabInvocationException``\  it will be provided to the callback.  All interactions with the proxy will be done in a single threaded manner. The underlying proxy methods will be completed in the order their corresponding methods in this class were called. Because method invocations on the proxy occur on a separate thread from the one calling the methods in this class, it can be used from within MATLAB on the Event Dispatch Thread (EDT).  This class is unconditionally thread-safe. There are no guarantees about the relative ordering of method completion when methods are invoked both on an instance of this class and on the proxy provided to it.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+CallbackMatlabProxy
+^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public CallbackMatlabProxy(MatlabProxy proxy)
+   :outertype: CallbackMatlabProxy
+
+   Constructs an instance of this class, delegating all method invocations to the \ ``proxy``\ .
+
+   :param proxy:
+
+Methods
+-------
+disconnect
+^^^^^^^^^^
+
+.. java:method:: public void disconnect(MatlabDataCallback<Boolean> callback)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+
+eval
+^^^^
+
+.. java:method:: public void eval(MatlabCallback callback, String command)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param command:
+
+exit
+^^^^
+
+.. java:method:: public void exit(MatlabCallback callback)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+
+feval
+^^^^^
+
+.. java:method:: public void feval(MatlabCallback callback, String functionName, Object... args)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param functionName:
+   :param args:
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: public void getVariable(MatlabDataCallback<Object> callback, String variableName)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param variableName:
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: public <U> void invokeAndWait(MatlabThreadCallable<U> callable, MatlabDataCallback<U> callback)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the method has been executed.  The name of this method has been retained for consistency with \ ``MatlabProxy``\ , but note that while the code in the \ ``callable``\  will be invoked on the MATLAB thread and it will wait until completion so as to return a result, this method - like all others in this class, will not wait for completion. Instead, the result will be provided to the \ ``callback``\ .
+
+   :param callable:
+   :param callback:
+
+isConnected
+^^^^^^^^^^^
+
+.. java:method:: public void isConnected(MatlabDataCallback<Boolean> callback)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: public void returningEval(MatlabDataCallback<Object[]> callback, String command, int nargout)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param command:
+   :param nargout:
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: public void returningFeval(MatlabDataCallback<Object[]> callback, String functionName, int nargout, Object... args)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param functionName:
+   :param nargout:
+   :param args:
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: public void setVariable(MatlabCallback callback, String variableName, Object value)
+   :outertype: CallbackMatlabProxy
+
+   Delegates to the proxy, calling the \ ``callback``\  when the proxy's corresponding method has completed.
+
+   :param callback:
+   :param variableName:
+   :param value:
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: CallbackMatlabProxy
+
+   Returns a brief description. The exact details of this representation are unspecified and are subject to change.
+

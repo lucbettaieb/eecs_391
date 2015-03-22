@@ -1,0 +1,66 @@
+.. java:import:: java.io BufferedReader
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io InputStreamReader
+
+.. java:import:: java.rmi AlreadyBoundException
+
+.. java:import:: java.rmi NoSuchObjectException
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi.registry Registry
+
+.. java:import:: java.rmi.server UnicastRemoteObject
+
+.. java:import:: java.util UUID
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util.concurrent CopyOnWriteArrayList
+
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+.. java:import:: matlabcontrol MatlabProxyFactory.Request
+
+.. java:import:: matlabcontrol MatlabProxyFactory.RequestCallback
+
+RemoteMatlabProxyFactory
+========================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class RemoteMatlabProxyFactory implements ProxyFactory
+
+   Creates remote instances of \ :java:ref:`MatlabProxy`\ . Creating a proxy will either connect to an existing session of MATLAB or launch a new session of MATLAB. This factory can be used to create any number of proxies.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+RemoteMatlabProxyFactory
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public RemoteMatlabProxyFactory(MatlabProxyFactoryOptions options)
+   :outertype: RemoteMatlabProxyFactory
+
+Methods
+-------
+getProxy
+^^^^^^^^
+
+.. java:method:: @Override public MatlabProxy getProxy() throws MatlabConnectionException
+   :outertype: RemoteMatlabProxyFactory
+
+requestProxy
+^^^^^^^^^^^^
+
+.. java:method:: @Override public Request requestProxy(RequestCallback requestCallback) throws MatlabConnectionException
+   :outertype: RemoteMatlabProxyFactory
+

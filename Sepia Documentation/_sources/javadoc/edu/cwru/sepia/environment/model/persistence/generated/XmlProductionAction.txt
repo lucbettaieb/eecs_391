@@ -1,0 +1,56 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlProductionAction
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlProductionAction extends XmlAction
+
+   Java class for ProductionAction complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ProductionAction">
+        <complexContent>
+          <extension base="{}Action">
+            <sequence>
+              <element name="templateId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+templateId
+^^^^^^^^^^
+
+.. java:field:: protected int templateId
+   :outertype: XmlProductionAction
+
+Methods
+-------
+getTemplateId
+^^^^^^^^^^^^^
+
+.. java:method:: public int getTemplateId()
+   :outertype: XmlProductionAction
+
+   Gets the value of the templateId property.
+
+setTemplateId
+^^^^^^^^^^^^^
+
+.. java:method:: public void setTemplateId(int value)
+   :outertype: XmlProductionAction
+
+   Sets the value of the templateId property.
+

@@ -1,0 +1,28 @@
+.. java:import:: edu.cwru.sepia.action ActionResult
+
+.. java:import:: edu.cwru.sepia.environment.model.history ActionResultLogger
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlActionResult
+
+ActionResultAdapter
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class ActionResultAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static ActionResult fromXml(XmlActionResult xml)
+   :outertype: ActionResultAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlActionResult toXml(ActionResult actionResult)
+   :outertype: ActionResultAdapter
+

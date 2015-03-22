@@ -1,0 +1,56 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlTargetedAction
+=================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlTargetedAction extends XmlAction
+
+   Java class for TargetedAction complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="TargetedAction">
+        <complexContent>
+          <extension base="{}Action">
+            <sequence>
+              <element name="targetId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+targetId
+^^^^^^^^
+
+.. java:field:: protected int targetId
+   :outertype: XmlTargetedAction
+
+Methods
+-------
+getTargetId
+^^^^^^^^^^^
+
+.. java:method:: public int getTargetId()
+   :outertype: XmlTargetedAction
+
+   Gets the value of the targetId property.
+
+setTargetId
+^^^^^^^^^^^
+
+.. java:method:: public void setTargetId(int value)
+   :outertype: XmlTargetedAction
+
+   Sets the value of the targetId property.
+

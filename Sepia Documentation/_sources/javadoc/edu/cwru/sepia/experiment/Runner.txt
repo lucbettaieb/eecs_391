@@ -1,0 +1,136 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.io FileOutputStream
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state StateCreator
+
+.. java:import:: edu.cwru.sepia.util GameMap
+
+Runner
+======
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public abstract class Runner
+
+   An abstract base for classes that manage running one or more episodes
+
+   :author: tim
+
+Fields
+------
+agents
+^^^^^^
+
+.. java:field:: protected Agent[] agents
+   :outertype: Runner
+
+configuration
+^^^^^^^^^^^^^
+
+.. java:field:: protected Configuration configuration
+   :outertype: Runner
+
+stateCreator
+^^^^^^^^^^^^
+
+.. java:field:: protected StateCreator stateCreator
+   :outertype: Runner
+
+Constructors
+------------
+Runner
+^^^^^^
+
+.. java:constructor:: public Runner(Configuration configuration, StateCreator stateCreator, Agent[] agents)
+   :outertype: Runner
+
+Methods
+-------
+loadAgentData
+^^^^^^^^^^^^^
+
+.. java:method:: protected void loadAgentData(File directory, int agentIndex) throws FileNotFoundException
+   :outertype: Runner
+
+   Force the agent with a specific index to store in the specified directory
+
+   :param directory: The directory to store in.
+   :param agentIndex:
+   :throws FileNotFoundException:
+
+loadAgentData
+^^^^^^^^^^^^^
+
+.. java:method:: protected void loadAgentData(File file, Agent agent) throws FileNotFoundException
+   :outertype: Runner
+
+run
+^^^
+
+.. java:method:: public abstract void run()
+   :outertype: Runner
+
+saveAgentData
+^^^^^^^^^^^^^
+
+.. java:method:: protected void saveAgentData(File directory, int agentIndex) throws FileNotFoundException
+   :outertype: Runner
+
+   Save an agent.  This stores a file (agent\.agt) in the directory specified, overwriting the file and/or creating the directory as needed.  The contents of the file is completely determined by the agent.
+
+   :param file: The directory to store the agent in.
+   :param agentIndex: The agent to store.
+   :throws IllegalArgumentException: when the file exists but is not a directory.
+
+saveAgentData
+^^^^^^^^^^^^^
+
+.. java:method:: protected void saveAgentData(File file, Agent agent) throws FileNotFoundException
+   :outertype: Runner
+
+   Save the agent's data (using \ :java:ref:`edu.cwru.sepia.agent.Agent.savePlayerData(java.io.OutputStream)`\ )
+
+   :param file:
+   :param agent:
+   :throws FileNotFoundException:
+
+saveHistory
+^^^^^^^^^^^
+
+.. java:method:: protected void saveHistory(File file, History history)
+   :outertype: Runner
+
+saveReplay
+^^^^^^^^^^
+
+.. java:method:: protected void saveReplay(File file, State initState, History finalHistory)
+   :outertype: Runner
+
+   Save the initial state and history, as is needed to construct a replay.  This stores two files (history.xml and initstate.xml) in the directory specified, overwriting those files and/or creating the directory as needed.
+
+   :param file: The directory to store the replay in.
+   :throws IllegalArgumentException: when the file exists but is not a directory.
+
+saveState
+^^^^^^^^^
+
+.. java:method:: protected void saveState(File file, State state)
+   :outertype: Runner
+
+   Save the state as a specific file.
+
+   :param file: The file to save the state as.
+   :param state: The state to save.
+

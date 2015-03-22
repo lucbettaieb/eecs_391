@@ -1,0 +1,24 @@
+DistanceMetrics
+===============
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public final class DistanceMetrics
+
+Methods
+-------
+chebyshevDistance
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int chebyshevDistance(int x1, int y1, int x2, int y2)
+   :outertype: DistanceMetrics
+
+   The core distance metric used by wargus for attacks and such
+
+euclideanDistance
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static double euclideanDistance(int x1, int y1, int x2, int y2)
+   :outertype: DistanceMetrics
+

@@ -1,0 +1,28 @@
+.. java:import:: edu.cwru.sepia.environment.model.persistence StateAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlState
+
+XmlStateCreator
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class XmlStateCreator implements StateCreator
+
+Constructors
+------------
+XmlStateCreator
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public XmlStateCreator(XmlState state)
+   :outertype: XmlStateCreator
+
+Methods
+-------
+createState
+^^^^^^^^^^^
+
+.. java:method:: @Override public State createState()
+   :outertype: XmlStateCreator
+

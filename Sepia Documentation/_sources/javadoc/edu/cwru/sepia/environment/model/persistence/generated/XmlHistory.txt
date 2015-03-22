@@ -1,0 +1,118 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlRootElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlHistory
+==========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType @XmlRootElement public class XmlHistory
+
+   Java class for anonymous complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType>
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="fogOfWar" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="playerHistories" type="{}PlayerHistory"/>
+              </sequence>
+              <element name="observerHistory" type="{}PlayerHistory"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+fogOfWar
+^^^^^^^^
+
+.. java:field:: protected boolean fogOfWar
+   :outertype: XmlHistory
+
+observerHistory
+^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected XmlPlayerHistory observerHistory
+   :outertype: XmlHistory
+
+playerHistories
+^^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlPlayerHistory> playerHistories
+   :outertype: XmlHistory
+
+Methods
+-------
+getObserverHistory
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public XmlPlayerHistory getObserverHistory()
+   :outertype: XmlHistory
+
+   Gets the value of the observerHistory property.
+
+   :return: possible object is \ :java:ref:`XmlPlayerHistory`\
+
+getPlayerHistories
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlPlayerHistory> getPlayerHistories()
+   :outertype: XmlHistory
+
+   Gets the value of the playerHistories property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the playerHistories property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getPlayerHistories().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlPlayerHistory`\
+
+isFogOfWar
+^^^^^^^^^^
+
+.. java:method:: public boolean isFogOfWar()
+   :outertype: XmlHistory
+
+   Gets the value of the fogOfWar property.
+
+setFogOfWar
+^^^^^^^^^^^
+
+.. java:method:: public void setFogOfWar(boolean value)
+   :outertype: XmlHistory
+
+   Sets the value of the fogOfWar property.
+
+setObserverHistory
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setObserverHistory(XmlPlayerHistory value)
+   :outertype: XmlHistory
+
+   Sets the value of the observerHistory property.
+
+   :param value: allowed object is \ :java:ref:`XmlPlayerHistory`\
+

@@ -1,0 +1,26 @@
+MatlabConnectionException
+=========================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public class MatlabConnectionException extends Exception
+
+   Represents a failure to connect to MATLAB or make MATLAB available for a connection.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+MatlabConnectionException
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  MatlabConnectionException(String msg)
+   :outertype: MatlabConnectionException
+
+MatlabConnectionException
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  MatlabConnectionException(String msg, Throwable cause)
+   :outertype: MatlabConnectionException
+

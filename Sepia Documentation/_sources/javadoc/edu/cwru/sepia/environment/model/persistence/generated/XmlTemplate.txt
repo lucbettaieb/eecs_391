@@ -1,0 +1,237 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlSeeAlso
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlTemplate
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType @XmlSeeAlso public abstract class XmlTemplate
+
+   Java class for Template complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="Template">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="ID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="foodCost" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="goldCost" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="woodCost" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="timeCost" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="upgradePrerequisite" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="unitPrerequisite" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+foodCost
+^^^^^^^^
+
+.. java:field:: protected int foodCost
+   :outertype: XmlTemplate
+
+goldCost
+^^^^^^^^
+
+.. java:field:: protected int goldCost
+   :outertype: XmlTemplate
+
+id
+^^
+
+.. java:field:: @XmlElement protected int id
+   :outertype: XmlTemplate
+
+name
+^^^^
+
+.. java:field:: @XmlElement protected String name
+   :outertype: XmlTemplate
+
+timeCost
+^^^^^^^^
+
+.. java:field:: protected int timeCost
+   :outertype: XmlTemplate
+
+unitPrerequisite
+^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<Integer> unitPrerequisite
+   :outertype: XmlTemplate
+
+upgradePrerequisite
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<Integer> upgradePrerequisite
+   :outertype: XmlTemplate
+
+woodCost
+^^^^^^^^
+
+.. java:field:: protected int woodCost
+   :outertype: XmlTemplate
+
+Methods
+-------
+getFoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getFoodCost()
+   :outertype: XmlTemplate
+
+   Gets the value of the foodCost property.
+
+getGoldCost
+^^^^^^^^^^^
+
+.. java:method:: public int getGoldCost()
+   :outertype: XmlTemplate
+
+   Gets the value of the goldCost property.
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: XmlTemplate
+
+   Gets the value of the id property.
+
+getName
+^^^^^^^
+
+.. java:method:: public String getName()
+   :outertype: XmlTemplate
+
+   Gets the value of the name property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getTimeCost
+^^^^^^^^^^^
+
+.. java:method:: public int getTimeCost()
+   :outertype: XmlTemplate
+
+   Gets the value of the timeCost property.
+
+getUnitPrerequisite
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getUnitPrerequisite()
+   :outertype: XmlTemplate
+
+   Gets the value of the unitPrerequisite property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the unitPrerequisite property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getUnitPrerequisite().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`Integer`\
+
+getUpgradePrerequisite
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getUpgradePrerequisite()
+   :outertype: XmlTemplate
+
+   Gets the value of the upgradePrerequisite property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the upgradePrerequisite property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getUpgradePrerequisite().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`Integer`\
+
+getWoodCost
+^^^^^^^^^^^
+
+.. java:method:: public int getWoodCost()
+   :outertype: XmlTemplate
+
+   Gets the value of the woodCost property.
+
+setFoodCost
+^^^^^^^^^^^
+
+.. java:method:: public void setFoodCost(int value)
+   :outertype: XmlTemplate
+
+   Sets the value of the foodCost property.
+
+setGoldCost
+^^^^^^^^^^^
+
+.. java:method:: public void setGoldCost(int value)
+   :outertype: XmlTemplate
+
+   Sets the value of the goldCost property.
+
+setID
+^^^^^
+
+.. java:method:: public void setID(int value)
+   :outertype: XmlTemplate
+
+   Sets the value of the id property.
+
+setName
+^^^^^^^
+
+.. java:method:: public void setName(String value)
+   :outertype: XmlTemplate
+
+   Sets the value of the name property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setTimeCost
+^^^^^^^^^^^
+
+.. java:method:: public void setTimeCost(int value)
+   :outertype: XmlTemplate
+
+   Sets the value of the timeCost property.
+
+setWoodCost
+^^^^^^^^^^^
+
+.. java:method:: public void setWoodCost(int value)
+   :outertype: XmlTemplate
+
+   Sets the value of the woodCost property.
+

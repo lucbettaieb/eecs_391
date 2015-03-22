@@ -1,0 +1,17 @@
+matlabcontrol.extensions
+========================
+
+.. java:package:: matlabcontrol.extensions
+
+.. toctree::
+   :maxdepth: 1
+
+   CallbackMatlabProxy
+   CallbackMatlabProxy-MatlabCallback
+   CallbackMatlabProxy-MatlabDataCallback
+   MatlabNumericArray
+   MatlabNumericArray-ArrayDimensionException
+   MatlabNumericArray-DoubleArrayType
+   MatlabProxyLogger
+   MatlabTypeConverter
+

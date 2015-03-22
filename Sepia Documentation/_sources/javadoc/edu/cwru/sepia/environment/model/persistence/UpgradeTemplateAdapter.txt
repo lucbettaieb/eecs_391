@@ -1,0 +1,28 @@
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUpgradeTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UpgradeTemplate
+
+UpgradeTemplateAdapter
+======================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class UpgradeTemplateAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static UpgradeTemplate fromXml(XmlUpgradeTemplate xml, int player)
+   :outertype: UpgradeTemplateAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlUpgradeTemplate toXml(UpgradeTemplate ut)
+   :outertype: UpgradeTemplateAdapter
+

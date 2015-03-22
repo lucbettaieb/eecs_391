@@ -1,0 +1,802 @@
+.. java:import:: java.io IOException
+
+.. java:import:: java.io Writer
+
+.. java:import:: java.lang.reflect Field
+
+.. java:import:: java.lang.reflect Modifier
+
+.. java:import:: java.lang.reflect Method
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Enumeration
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util Locale
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util ResourceBundle
+
+JSONObject
+==========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class JSONObject
+
+   A JSONObject is an unordered collection of name/value pairs. Its external form is a string wrapped in curly braces with colons between the names and values, and commas between the values and names. The internal form is an object having \ ``get``\  and \ ``opt``\  methods for accessing the values by name, and \ ``put``\  methods for adding or replacing values by name. The values can be any of these types: \ ``Boolean``\ , \ ``JSONArray``\ , \ ``JSONObject``\ , \ ``Number``\ , \ ``String``\ , or the \ ``JSONObject.NULL``\  object. A JSONObject constructor can be used to convert an external form JSON text into an internal form whose values can be retrieved with the \ ``get``\  and \ ``opt``\  methods, or to convert values into a JSON text using the \ ``put``\  and \ ``toString``\  methods. A \ ``get``\  method returns a value if one can be found, and throws an exception if one cannot be found. An \ ``opt``\  method returns a default value instead of throwing an exception, and so is useful for obtaining optional values.
+
+   The generic \ ``get()``\  and \ ``opt()``\  methods return an object, which you can cast or query for type. There are also typed \ ``get``\  and \ ``opt``\  methods that do type checking and type coercion for you. The opt methods differ from the get methods in that they do not throw. Instead, they return a specified value, such as null.
+
+   The \ ``put``\  methods add or replace values in an object. For example,
+
+   .. parsed-literal::
+
+      myString = new JSONObject().put("JSON", "Hello, World!").toString();
+
+   produces the string \ ``{"JSON": "Hello, World"}``\ .
+
+   The texts produced by the \ ``toString``\  methods strictly conform to the JSON syntax rules. The constructors are more forgiving in the texts they will accept:
+
+   ..
+
+   * An extra \ ``,``\  (comma) may appear just before the closing brace.
+   * Strings may be quoted with \ ``'``\  (single quote).
+   * Strings do not need to be quoted at all if they do not begin with a quote or single quote, and if they do not contain leading or trailing spaces, and if they do not contain any of these characters: \ ``{ } [ ] / \ : , = ; #``\  and if they do not look like numbers and if they are not the reserved words \ ``true``\ , \ ``false``\ , or \ ``null``\ .
+   * Keys can be followed by \ ``=``\  or \ ``=>``\  as well as by \ ``:``\ .
+   * Values can be followed by \ ``;``\  (semicolon) as well as by \ ``,``\  (comma).
+   * Numbers may have the \ ``0x-``\  (hex) prefix.
+
+   :author: JSON.org
+
+Fields
+------
+NULL
+^^^^
+
+.. java:field:: public static final Object NULL
+   :outertype: JSONObject
+
+   It is sometimes more convenient and less ambiguous to have a \ ``NULL``\  object than to use Java's \ ``null``\  value. \ ``JSONObject.NULL.equals(null)``\  returns \ ``true``\ . \ ``JSONObject.NULL.toString()``\  returns \ ``"null"``\ .
+
+Constructors
+------------
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject()
+   :outertype: JSONObject
+
+   Construct an empty JSONObject.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(JSONObject jo, String[] names)
+   :outertype: JSONObject
+
+   Construct a JSONObject from a subset of another JSONObject. An array of strings is used to identify the keys that should be copied. Missing keys are ignored.
+
+   :param jo: A JSONObject.
+   :param names: An array of strings.
+   :throws JSONException: If a value is a non-finite number or if a name is duplicated.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(JSONTokener x) throws JSONException
+   :outertype: JSONObject
+
+   Construct a JSONObject from a JSONTokener.
+
+   :param x: A JSONTokener object containing the source string.
+   :throws JSONException: If there is a syntax error in the source string or a duplicated key.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(Map map)
+   :outertype: JSONObject
+
+   Construct a JSONObject from a Map.
+
+   :param map: A map object that can be used to initialize the contents of the JSONObject.
+   :throws JSONException:
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(Object bean)
+   :outertype: JSONObject
+
+   Construct a JSONObject from an Object using bean getters. It reflects on all of the public methods of the object. For each of the methods with no parameters and a name starting with \ ``"get"``\  or \ ``"is"``\  followed by an uppercase letter, the method is invoked, and a key and the value returned from the getter method are put into the new JSONObject. The key is formed by removing the \ ``"get"``\  or \ ``"is"``\  prefix. If the second remaining character is not upper case, then the first character is converted to lower case. For example, if an object has a method named \ ``"getName"``\ , and if the result of calling \ ``object.getName()``\  is \ ``"Larry Fine"``\ , then the JSONObject will contain \ ``"name": "Larry Fine"``\ .
+
+   :param bean: An object that has getter methods that should be used to make a JSONObject.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(Object object, String[] names)
+   :outertype: JSONObject
+
+   Construct a JSONObject from an Object, using reflection to find the public members. The resulting JSONObject's keys will be the strings from the names array, and the values will be the field values associated with those keys in the object. If a key is not found or not visible, then it will not be copied into the new JSONObject.
+
+   :param object: An object that has fields that should be used to make a JSONObject.
+   :param names: An array of strings, the names of the fields to be obtained from the object.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(String source) throws JSONException
+   :outertype: JSONObject
+
+   Construct a JSONObject from a source JSON text string. This is the most commonly used JSONObject constructor.
+
+   :param source: A string beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+   :throws JSONException: If there is a syntax error in the source string or a duplicated key.
+
+JSONObject
+^^^^^^^^^^
+
+.. java:constructor:: public JSONObject(String baseName, Locale locale) throws JSONException
+   :outertype: JSONObject
+
+   Construct a JSONObject from a ResourceBundle.
+
+   :param baseName: The ResourceBundle base name.
+   :param locale: The Locale to load the ResourceBundle for.
+   :throws JSONException: If any JSONExceptions are detected.
+
+Methods
+-------
+accumulate
+^^^^^^^^^^
+
+.. java:method:: public JSONObject accumulate(String key, Object value) throws JSONException
+   :outertype: JSONObject
+
+   Accumulate values under a key. It is similar to the put method except that if there is already an object stored under the key then a JSONArray is stored under the key to hold all of the accumulated values. If there is already a JSONArray, then the new value is appended to it. In contrast, the put method replaces the previous value. If only one value is accumulated that is not a JSONArray, then the result will be the same as using put. But if multiple values are accumulated, then the result will be like append.
+
+   :param key: A key string.
+   :param value: An object to be accumulated under the key.
+   :throws JSONException: If the value is an invalid number or if the key is null.
+   :return: this.
+
+append
+^^^^^^
+
+.. java:method:: public JSONObject append(String key, Object value) throws JSONException
+   :outertype: JSONObject
+
+   Append values to the array under a key. If the key does not exist in the JSONObject, then the key is put in the JSONObject with its value being a JSONArray containing the value parameter. If the key was already associated with a JSONArray, then the value parameter is appended to it.
+
+   :param key: A key string.
+   :param value: An object to be accumulated under the key.
+   :throws JSONException: If the key is null or if the current value associated with the key is not a JSONArray.
+   :return: this.
+
+doubleToString
+^^^^^^^^^^^^^^
+
+.. java:method:: public static String doubleToString(double d)
+   :outertype: JSONObject
+
+   Produce a string from a double. The string "null" will be returned if the number is not finite.
+
+   :param d: A double.
+   :return: A String.
+
+get
+^^^
+
+.. java:method:: public Object get(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the value object associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found.
+   :return: The object associated with the key.
+
+getBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean getBoolean(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the boolean value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the value is not a Boolean or the String "true" or "false".
+   :return: The truth.
+
+getDouble
+^^^^^^^^^
+
+.. java:method:: public double getDouble(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the double value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found or if the value is not a Number object and cannot be converted to a number.
+   :return: The numeric value.
+
+getInt
+^^^^^^
+
+.. java:method:: public int getInt(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the int value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found or if the value cannot be converted to an integer.
+   :return: The integer value.
+
+getJSONArray
+^^^^^^^^^^^^
+
+.. java:method:: public JSONArray getJSONArray(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the JSONArray value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found or if the value is not a JSONArray.
+   :return: A JSONArray which is the value.
+
+getJSONObject
+^^^^^^^^^^^^^
+
+.. java:method:: public JSONObject getJSONObject(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the JSONObject value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found or if the value is not a JSONObject.
+   :return: A JSONObject which is the value.
+
+getLong
+^^^^^^^
+
+.. java:method:: public long getLong(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the long value associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if the key is not found or if the value cannot be converted to a long.
+   :return: The long value.
+
+getNames
+^^^^^^^^
+
+.. java:method:: public static String[] getNames(JSONObject jo)
+   :outertype: JSONObject
+
+   Get an array of field names from a JSONObject.
+
+   :return: An array of field names, or null if there are no names.
+
+getNames
+^^^^^^^^
+
+.. java:method:: public static String[] getNames(Object object)
+   :outertype: JSONObject
+
+   Get an array of field names from an Object.
+
+   :return: An array of field names, or null if there are no names.
+
+getString
+^^^^^^^^^
+
+.. java:method:: public String getString(String key) throws JSONException
+   :outertype: JSONObject
+
+   Get the string associated with a key.
+
+   :param key: A key string.
+   :throws JSONException: if there is no string value for the key.
+   :return: A string which is the value.
+
+has
+^^^
+
+.. java:method:: public boolean has(String key)
+   :outertype: JSONObject
+
+   Determine if the JSONObject contains a specific key.
+
+   :param key: A key string.
+   :return: true if the key exists in the JSONObject.
+
+increment
+^^^^^^^^^
+
+.. java:method:: public JSONObject increment(String key) throws JSONException
+   :outertype: JSONObject
+
+   Increment a property of a JSONObject. If there is no such property, create one with a value of 1. If there is such a property, and if it is an Integer, Long, Double, or Float, then add one to it.
+
+   :param key: A key string.
+   :throws JSONException: If there is already a property with this name that is not an Integer, Long, Double, or Float.
+   :return: this.
+
+isNull
+^^^^^^
+
+.. java:method:: public boolean isNull(String key)
+   :outertype: JSONObject
+
+   Determine if the value associated with the key is null or if there is no value.
+
+   :param key: A key string.
+   :return: true if there is no value associated with the key or if the value is the JSONObject.NULL object.
+
+keys
+^^^^
+
+.. java:method:: public Iterator keys()
+   :outertype: JSONObject
+
+   Get an enumeration of the keys of the JSONObject.
+
+   :return: An iterator of the keys.
+
+length
+^^^^^^
+
+.. java:method:: public int length()
+   :outertype: JSONObject
+
+   Get the number of keys stored in the JSONObject.
+
+   :return: The number of keys in the JSONObject.
+
+names
+^^^^^
+
+.. java:method:: public JSONArray names()
+   :outertype: JSONObject
+
+   Produce a JSONArray containing the names of the elements of this JSONObject.
+
+   :return: A JSONArray containing the key strings, or null if the JSONObject is empty.
+
+numberToString
+^^^^^^^^^^^^^^
+
+.. java:method:: public static String numberToString(Number number) throws JSONException
+   :outertype: JSONObject
+
+   Produce a string from a Number.
+
+   :param number: A Number
+   :throws JSONException: If n is a non-finite number.
+   :return: A String.
+
+opt
+^^^
+
+.. java:method:: public Object opt(String key)
+   :outertype: JSONObject
+
+   Get an optional value associated with a key.
+
+   :param key: A key string.
+   :return: An object which is the value, or null if there is no value.
+
+optBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean optBoolean(String key)
+   :outertype: JSONObject
+
+   Get an optional boolean associated with a key. It returns false if there is no such key, or if the value is not Boolean.TRUE or the String "true".
+
+   :param key: A key string.
+   :return: The truth.
+
+optBoolean
+^^^^^^^^^^
+
+.. java:method:: public boolean optBoolean(String key, boolean defaultValue)
+   :outertype: JSONObject
+
+   Get an optional boolean associated with a key. It returns the defaultValue if there is no such key, or if it is not a Boolean or the String "true" or "false" (case insensitive).
+
+   :param key: A key string.
+   :param defaultValue: The default.
+   :return: The truth.
+
+optDouble
+^^^^^^^^^
+
+.. java:method:: public double optDouble(String key)
+   :outertype: JSONObject
+
+   Get an optional double associated with a key, or NaN if there is no such key or if its value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A string which is the key.
+   :return: An object which is the value.
+
+optDouble
+^^^^^^^^^
+
+.. java:method:: public double optDouble(String key, double defaultValue)
+   :outertype: JSONObject
+
+   Get an optional double associated with a key, or the defaultValue if there is no such key or if its value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A key string.
+   :param defaultValue: The default.
+   :return: An object which is the value.
+
+optInt
+^^^^^^
+
+.. java:method:: public int optInt(String key)
+   :outertype: JSONObject
+
+   Get an optional int value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A key string.
+   :return: An object which is the value.
+
+optInt
+^^^^^^
+
+.. java:method:: public int optInt(String key, int defaultValue)
+   :outertype: JSONObject
+
+   Get an optional int value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A key string.
+   :param defaultValue: The default.
+   :return: An object which is the value.
+
+optJSONArray
+^^^^^^^^^^^^
+
+.. java:method:: public JSONArray optJSONArray(String key)
+   :outertype: JSONObject
+
+   Get an optional JSONArray associated with a key. It returns null if there is no such key, or if its value is not a JSONArray.
+
+   :param key: A key string.
+   :return: A JSONArray which is the value.
+
+optJSONObject
+^^^^^^^^^^^^^
+
+.. java:method:: public JSONObject optJSONObject(String key)
+   :outertype: JSONObject
+
+   Get an optional JSONObject associated with a key. It returns null if there is no such key, or if its value is not a JSONObject.
+
+   :param key: A key string.
+   :return: A JSONObject which is the value.
+
+optLong
+^^^^^^^
+
+.. java:method:: public long optLong(String key)
+   :outertype: JSONObject
+
+   Get an optional long value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A key string.
+   :return: An object which is the value.
+
+optLong
+^^^^^^^
+
+.. java:method:: public long optLong(String key, long defaultValue)
+   :outertype: JSONObject
+
+   Get an optional long value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a string, an attempt will be made to evaluate it as a number.
+
+   :param key: A key string.
+   :param defaultValue: The default.
+   :return: An object which is the value.
+
+optString
+^^^^^^^^^
+
+.. java:method:: public String optString(String key)
+   :outertype: JSONObject
+
+   Get an optional string associated with a key. It returns an empty string if there is no such key. If the value is not a string and is not null, then it is converted to a string.
+
+   :param key: A key string.
+   :return: A string which is the value.
+
+optString
+^^^^^^^^^
+
+.. java:method:: public String optString(String key, String defaultValue)
+   :outertype: JSONObject
+
+   Get an optional string associated with a key. It returns the defaultValue if there is no such key.
+
+   :param key: A key string.
+   :param defaultValue: The default.
+   :return: A string which is the value.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, boolean value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/boolean pair in the JSONObject.
+
+   :param key: A key string.
+   :param value: A boolean which is the value.
+   :throws JSONException: If the key is null.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, Collection<Object> value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/value pair in the JSONObject, where the value will be a JSONArray which is produced from a Collection.
+
+   :param key: A key string.
+   :param value: A Collection value.
+   :throws JSONException:
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, double value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/double pair in the JSONObject.
+
+   :param key: A key string.
+   :param value: A double which is the value.
+   :throws JSONException: If the key is null or if the number is invalid.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, int value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/int pair in the JSONObject.
+
+   :param key: A key string.
+   :param value: An int which is the value.
+   :throws JSONException: If the key is null.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, long value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/long pair in the JSONObject.
+
+   :param key: A key string.
+   :param value: A long which is the value.
+   :throws JSONException: If the key is null.
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, Map<?, ?> value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/value pair in the JSONObject, where the value will be a JSONObject which is produced from a Map.
+
+   :param key: A key string.
+   :param value: A Map value.
+   :throws JSONException:
+   :return: this.
+
+put
+^^^
+
+.. java:method:: public JSONObject put(String key, Object value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/value pair in the JSONObject. If the value is null, then the key will be removed from the JSONObject if it is present.
+
+   :param key: A key string.
+   :param value: An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.
+   :throws JSONException: If the value is non-finite number or if the key is null.
+   :return: this.
+
+putOnce
+^^^^^^^
+
+.. java:method:: public JSONObject putOnce(String key, Object value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/value pair in the JSONObject, but only if the key and the value are both non-null, and only if there is not already a member with that name.
+
+   :param key:
+   :param value:
+   :throws JSONException: if the key is a duplicate
+   :return: his.
+
+putOpt
+^^^^^^
+
+.. java:method:: public JSONObject putOpt(String key, Object value) throws JSONException
+   :outertype: JSONObject
+
+   Put a key/value pair in the JSONObject, but only if the key and the value are both non-null.
+
+   :param key: A key string.
+   :param value: An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.
+   :throws JSONException: If the value is a non-finite number.
+   :return: this.
+
+quote
+^^^^^
+
+.. java:method:: public static String quote(String string)
+   :outertype: JSONObject
+
+   Produce a string in double quotes with backslash sequences in all the right places. A backslash will be inserted within , producing
+
+   :param string: A String
+   :return: A String correctly formatted for insertion in a JSON text.
+
+remove
+^^^^^^
+
+.. java:method:: public Object remove(String key)
+   :outertype: JSONObject
+
+   Remove a name and its value, if present.
+
+   :param key: The name to be removed.
+   :return: The value that was associated with the name, or null if there was no value.
+
+stringToValue
+^^^^^^^^^^^^^
+
+.. java:method:: public static Object stringToValue(String string)
+   :outertype: JSONObject
+
+   Try to convert a string into a number, boolean, or null. If the string can't be converted, return the string.
+
+   :param string: A String.
+   :return: A simple JSON value.
+
+testValidity
+^^^^^^^^^^^^
+
+.. java:method:: public static void testValidity(Object o) throws JSONException
+   :outertype: JSONObject
+
+   Throw an exception if the object is a NaN or infinite number.
+
+   :param o: The object to test.
+   :throws JSONException: If o is a non-finite number.
+
+toJSONArray
+^^^^^^^^^^^
+
+.. java:method:: public JSONArray toJSONArray(JSONArray names) throws JSONException
+   :outertype: JSONObject
+
+   Produce a JSONArray containing the values of the members of this JSONObject.
+
+   :param names: A JSONArray containing a list of key strings. This determines the sequence of the values in the result.
+   :throws JSONException: If any of the values are non-finite numbers.
+   :return: A JSONArray of values.
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString()
+   :outertype: JSONObject
+
+   Make a JSON text of this JSONObject. For compactness, no whitespace is added. If this would not result in a syntactically correct JSON text, then null will be returned instead.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :return: a printable, displayable, portable, transmittable representation of the object, beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString(int indentFactor) throws JSONException
+   :outertype: JSONObject
+
+   Make a prettyprinted JSON text of this JSONObject.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :param indentFactor: The number of spaces to add to each level of indentation.
+   :throws JSONException: If the object contains an invalid number.
+   :return: a printable, displayable, portable, transmittable representation of the object, beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+
+toString
+^^^^^^^^
+
+.. java:method::  String toString(int indentFactor, int indent) throws JSONException
+   :outertype: JSONObject
+
+   Make a prettyprinted JSON text of this JSONObject.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :param indentFactor: The number of spaces to add to each level of indentation.
+   :param indent: The indentation of the top level.
+   :throws JSONException: If the object contains an invalid number.
+   :return: a printable, displayable, transmittable representation of the object, beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+
+valueToString
+^^^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public static String valueToString(Object value) throws JSONException
+   :outertype: JSONObject
+
+   Make a JSON text of an Object value. If the object has an value.toJSONString() method, then that method will be used to produce the JSON text. The method is required to produce a strictly conforming text. If the object does not contain a toJSONString method (which is the most common case), then a text will be produced by other means. If the value is an array or Collection, then a JSONArray will be made from it and its toJSONString method will be called. If the value is a MAP, then a JSONObject will be made from it and its toJSONString method will be called. Otherwise, the value's toString method will be called, and the result will be quoted.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :param value: The value to be serialized.
+   :throws JSONException: If the value is or contains an invalid number.
+   :return: a printable, displayable, transmittable representation of the object, beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+
+valueToString
+^^^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings static String valueToString(Object value, int indentFactor, int indent) throws JSONException
+   :outertype: JSONObject
+
+   Make a prettyprinted JSON text of an object value.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :param value: The value to be serialized.
+   :param indentFactor: The number of spaces to add to each level of indentation.
+   :param indent: The indentation of the top level.
+   :throws JSONException: If the object contains an invalid number.
+   :return: a printable, displayable, transmittable representation of the object, beginning with \ ``{``\  (left brace) and ending with \ ``}``\  (right brace).
+
+wrap
+^^^^
+
+.. java:method:: @SuppressWarnings public static Object wrap(Object object)
+   :outertype: JSONObject
+
+   Wrap an object, if necessary. If the object is null, return the NULL object. If it is an array or collection, wrap it in a JSONArray. If it is a map, wrap it in a JSONObject. If it is a standard property (Double, String, et al) then it is already wrapped. Otherwise, if it comes from one of the java packages, turn it into a string. And if it doesn't, try to wrap it in a JSONObject. If the wrapping fails, then null is returned.
+
+   :param object: The object to wrap
+   :return: The wrapped value
+
+write
+^^^^^
+
+.. java:method:: public Writer write(Writer writer) throws JSONException
+   :outertype: JSONObject
+
+   Write the contents of the JSONObject as JSON text to a writer. For compactness, no whitespace is added.
+
+   Warning: This method assumes that the data structure is acyclical.
+
+   :throws JSONException:
+   :return: The writer.
+

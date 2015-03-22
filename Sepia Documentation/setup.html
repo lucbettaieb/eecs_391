@@ -1,0 +1,320 @@
+
+<meta http-equiv="Context-Type" content="text/html; charset=US-ASCII">
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Running Sepia" href="running_sepia.html"/>
+        <link rel="prev" title="SEPIA Documentation" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#eclipse-project-setup">Eclipse Project Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-setup">Command Line Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#sepia-working-directory">SEPIA Working Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#manual-control">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#configuration-file">Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_sepia.html#visual-agent">Visual Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javadoc/packages.html">Javadoc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Setup</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/setup.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<p>This document assumes that you are using Eclipse. Other IDEs such as
+Intellij will work, but you will need to figure out the proper setup
+instructions.</p>
+<p>If you don&#8217;t have eclipse you can go to <a class="reference external" href="https://eclipse.org/users/">the Eclipse website</a> and follow
+the installation instructions for your operating system.</p>
+<p>You will need to download the <code class="docutils literal"><span class="pre">Sepia.jar</span></code> file from the course
+website.</p>
+<div class="section" id="eclipse-project-setup">
+<h2>Eclipse Project Setup<a class="headerlink" href="#eclipse-project-setup" title="Permalink to this headline">¶</a></h2>
+<p>Open Eclipse and in the main menu click <cite>file-&gt;new-&gt;Java
+Project</cite>. This should open a new dialogue window. Give your project a
+name and then click finish.</p>
+<a class="reference external image-reference" href="_static/eclipse_new_java_project_screenshot.png"><img alt="_images/eclipse_new_java_project_screenshot.png" src="_images/eclipse_new_java_project_screenshot.png" /></a>
+<p>You should now have a new project in the package explorer on the left
+side of the screen. Click the arrow next to the package name to expand
+the package and see its subfolders. You will now need to add the
+sepia.jar to the build path of this project.</p>
+<p>Right click on the project name and select <cite>new-&gt;folder</cite>. Call the
+folder <code class="docutils literal"><span class="pre">lib</span></code> and click finish. Now drag the download Seipa.jar file
+to lib folder and when prompted select the copy option.</p>
+<a class="reference external image-reference" href="_static/eclipse_new_folder_screenshot.png"><img alt="_images/eclipse_new_folder_screenshot.png" src="_images/eclipse_new_folder_screenshot.png" /></a>
+<p>Now right click on the Sepia.jar and select <cite>Build Path-&gt;Add to Build
+Path</cite>. If you don&#8217;t see the Sepia.jar file you may need to click the
+small arrow on the left the lib folder to expand the folder.</p>
+<a class="reference external image-reference" href="_static/eclipse_add_to_build_path_screenshot.png"><img alt="_images/eclipse_add_to_build_path_screenshot.png" src="_images/eclipse_add_to_build_path_screenshot.png" /></a>
+<p>If you have done everything properly there should be no errors. You
+are now ready to create your first agent.</p>
+<div class="section" id="class-files">
+<h3>Class Files<a class="headerlink" href="#class-files" title="Permalink to this headline">¶</a></h3>
+<p>For some assignments you may be provided with an enemy agent. The
+enemy agent will be a <cite>.class</cite> file that you will need to add to your
+class path.</p>
+<p>First create an empty folder to hold the provided .class files. Call
+it something like &#8220;enemy_agents&#8221;. Then you will need to create the
+package directory structure for the .class file. If the .class expects
+to be in package <cite>edu.cwru.sepia.agent</cite> then underneath your
+&#8220;enemy_agents&#8221; folder you need to have the folder hierarchy
+<cite>edu/cwru/sepia/agent</cite>. Then in the agent folder you will put the
+provided class file.</p>
+<p>Next you have to add the enemy_agent folder to the classpath. Right
+click on the project and select <cite>Build Path-&gt;Configure Build
+Path</cite>. Then Click the button that says &#8220;Add class folder&#8221;. Select the
+enemy_agents folder and save. You are now ready to use the
+class. file.</p>
+<p>If you get errors about the class not being found double check that
+the package and agent name in the config file match the folder
+heirarchy and class name you just set up.</p>
+</div>
+</div>
+<div class="section" id="command-line-setup">
+<h2>Command Line Setup<a class="headerlink" href="#command-line-setup" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to avoid Eclipse and use the command
+line. Compiling and running use the standard <cite>javac</cite> and <cite>java</cite>
+commands respectively. The most important thing to consider is the
+directory you run SEPIA from and the classpath arguments you use.</p>
+<p>Consider a directory structure like the following</p>
+<div class="highlight-text"><div class="highlight"><pre>MySEPIAProject
+  - data
+    - my_map.xml
+    - my_config.xml
+  - lib
+    - Sepia.jar
+  - src
+    - edu
+      - cwru
+        - sepia
+          - agent
+            MyAgent.java
+</pre></div>
+</div>
+<p>To compile this you would go into the <cite>MySEPIAProject</cite> folder and run
+the following</p>
+<p><code class="docutils literal"><span class="pre">javac</span> <span class="pre">-cp</span> <span class="pre">lib/Sepia.jar</span> <span class="pre">src/edu/cwru/sepia/agent/MyAgent.java</span></code></p>
+<p>This will produce a <cite>MyAgent.class</cite> file in the
+<cite>src/edu/cwru/sepia/agent</cite> directory. To run the configuration with
+this new class file you would use the command</p>
+<p><code class="docutils literal"><span class="pre">java</span> <span class="pre">-cp</span> <span class="pre">lib/Sepia.jar:src</span> <span class="pre">edu.cwru.sepia.Main2</span> <span class="pre">data/my_config.xml</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On Windows the classpath arguments will be separated by
+semicolons, whereas on Unix based systems (Linux, Mac, etc)
+they will be separated by a colon.</p>
+</div>
+<div class="section" id="id1">
+<h3>Class Files<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>If you are provided with a .class file first create a new folder to
+act as the root of the provided class files. Call it something like
+&#8220;enemy_agents&#8221;. Then create the folder hierarchy to match the class
+file&#8217;s expected package. For instance if the expected package is
+<cite>edu.cwru.sepia.agent</cite> then you will need to put the folder hierarchy
+<cite>edu/cwru/sepia/agent</cite> underneath your new enemy_agents folder. Then
+you will place the class file in the agent folder.</p>
+<p>To run you will need to include the path to the enemy_agents folder in
+your class path. For example:</p>
+<p><code class="docutils literal"><span class="pre">java</span> <span class="pre">-cp</span> <span class="pre">lib/Sepia.jar:enemy_agents:src</span> <span class="pre">edu.cwru.sepia.Main2</span>
+<span class="pre">data/my_config.xml</span></code></p>
+<p>If you have issues double check the folder hierarchy matches the path
+and that the config file specifies that package and the proper class
+file name.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="running_sepia.html" class="btn btn-neutral float-right" title="Running Sepia"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="SEPIA Documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html><html><body></body></html>

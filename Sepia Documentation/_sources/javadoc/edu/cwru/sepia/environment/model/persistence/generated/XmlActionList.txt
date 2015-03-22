@@ -1,0 +1,87 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlActionList
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlActionList
+
+   Java class for ActionList complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ActionList">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="roundNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="actionEntry" type="{}ActionEntry"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+actionEntry
+^^^^^^^^^^^
+
+.. java:field:: protected List<XmlActionEntry> actionEntry
+   :outertype: XmlActionList
+
+roundNumber
+^^^^^^^^^^^
+
+.. java:field:: protected int roundNumber
+   :outertype: XmlActionList
+
+Methods
+-------
+getActionEntry
+^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlActionEntry> getActionEntry()
+   :outertype: XmlActionList
+
+   Gets the value of the actionEntry property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the actionEntry property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getActionEntry().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlActionEntry`\
+
+getRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRoundNumber()
+   :outertype: XmlActionList
+
+   Gets the value of the roundNumber property.
+
+setRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setRoundNumber(int value)
+   :outertype: XmlActionList
+
+   Sets the value of the roundNumber property.
+

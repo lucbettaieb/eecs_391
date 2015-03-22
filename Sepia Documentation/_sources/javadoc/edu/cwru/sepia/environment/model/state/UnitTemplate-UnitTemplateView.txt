@@ -1,0 +1,240 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+UnitTemplate.UnitTemplateView
+=============================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static class UnitTemplateView extends TemplateView implements Serializable
+   :outertype: UnitTemplate
+
+   An immutable representation of a UnitTemplate.
+
+Constructors
+------------
+UnitTemplateView
+^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public UnitTemplateView(UnitTemplate template)
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Copy all information from a template and save it.
+
+   :param template:
+
+Methods
+-------
+canAcceptGold
+^^^^^^^^^^^^^
+
+.. java:method:: public boolean canAcceptGold()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template can successfully be the target of a deposit action by a unit carrying gold.
+
+   :return: Whether this template makes units that can be the target of a gold deposit.
+
+canAcceptWood
+^^^^^^^^^^^^^
+
+.. java:method:: public boolean canAcceptWood()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template can successfully be the target of a deposit action by a unit carrying wood.
+
+   :return: Whether this template makes units that can be the target of a wood deposit.
+
+canAttack
+^^^^^^^^^
+
+.. java:method:: public boolean canAttack()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template can make attacks.
+
+   :return: true if this template makes units that can attack, false if it makes units that cannot attack.
+
+canBuild
+^^^^^^^^
+
+.. java:method:: public boolean canBuild()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template uses the build action to make things. This is independent of whether the template can actually make anything.
+
+   :return: true if this template makes units with build actions, false if produce actions are used instead.
+
+canGather
+^^^^^^^^^
+
+.. java:method:: public boolean canGather()
+   :outertype: UnitTemplate.UnitTemplateView
+
+canMove
+^^^^^^^
+
+.. java:method:: public boolean canMove()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template can move
+
+   :return: true if this template makes units that can move, false if it makes units that can't move (like buildings)
+
+canProduce
+^^^^^^^^^^
+
+.. java:method:: public boolean canProduce(Integer templateID)
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get whether units with this template are able to make a specific other template. This includes making by either building or producing. Currently just a List.contains()
+
+   :param templateID: The ID of the template that may be able to BE produced.
+   :return: Whether this template can make the template in the parameter.
+
+getArmor
+^^^^^^^^
+
+.. java:method:: public int getArmor()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the armor of units with this template. Higher armor causes greater reduction of the Basic Attack component of damage.
+
+   :return: The amount of armor of units with this template.
+
+getBaseHealth
+^^^^^^^^^^^^^
+
+.. java:method:: public int getBaseHealth()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the starting health of units with this template.
+
+   :return: The amount of health/hit points that units made with this template start with.
+
+getBasicAttack
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getBasicAttack()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the Basic Attack of units with this template. This is one of the fields used in damage calculations. It represents the portion of the attack that can be mitigated with armor.
+
+   :return: The Basic Attack of units with this template.
+
+getCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public char getCharacter()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the character to be used in visualization.
+
+   :return: The character to be used in visualization.
+
+getDurationAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationAttack()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the duration of a primitive attack action. This is the base amount for how many consecutive steps the primitive action needs to be repeated before it has an effect. Actual number of steps may depend on other factors, determined by the Planner and Model being used.
+
+   :return: The base duration of a primitive attack action.
+
+getDurationDeposit
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationDeposit()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the duration of a primitive deposit action. This is the base amount for how many consecutive steps the primitive action needs to be repeated before it has an effect. Actual number of steps may depend on other factors, determined by the Planner and Model being used.
+
+   :return: The base duration of a primitive deposit action.
+
+getDurationGatherGold
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherGold()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the duration of a primitive gather action on a gold mine. This is the base amount for how many consecutive steps the primitive action needs to be repeated before it has an effect. Actual number of steps may depend on other factors, determined by the Planner and Model being used.
+
+   :return: The base duration of a primitive gather action on a gold mine.
+
+getDurationGatherWood
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherWood()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the duration of a primitive gather action on a tree. This is the base amount for how many consecutive steps the primitive action needs to be repeated before it has an effect. Actual number of steps may depend on other factors, determined by the Planner and Model being used.
+
+   :return: The base duration of a primitive gather action on a tree.
+
+getDurationMove
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationMove()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the duration of a primitive move action. This is the base amount for how many consecutive steps the primitive action needs to be repeated before it has an effect. Actual number of steps may depend on other factors, determined by the Planner and Model being used.
+
+   :return: The base duration of a primitive move action.
+
+getFoodProvided
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getFoodProvided()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the amount of food provided by a unit with this template.
+
+   :return: The amount of food/supply that units made with this template provide.
+
+getPiercingAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttack()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the Piercing Attack of units with this template. This is one of the fields used in damage calculations. It represents the portion of the attack that is unaffected by armor.
+
+   :return: The Piercing Attack of units with this template.
+
+getProduces
+^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getProduces()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get a list of template ids that can be produced by this unit. The list is unmodifiable.
+
+   :return: A list of ids of templates this unit can make.
+
+getRange
+^^^^^^^^
+
+.. java:method:: public int getRange()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the maximum distance at which units with this template are able to make successful attacks.
+
+   :return: The range of attack for units with this template.
+
+getSightRange
+^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRange()
+   :outertype: UnitTemplate.UnitTemplateView
+
+   Get the sight range of units with this template. A unit "sees" only units and events that occur at distances not exceeding it's sight range. In partially observable maps, an agent is only able to observe events and units that can be seen by units it controls.
+

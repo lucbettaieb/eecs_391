@@ -1,0 +1,10 @@
+edu.cwru.sepia.agent.visual.editor
+==================================
+
+.. java:package:: edu.cwru.sepia.agent.visual.editor
+
+.. toctree::
+   :maxdepth: 1
+
+   Editor
+

@@ -1,0 +1,76 @@
+.. java:import:: java.rmi Remote
+
+.. java:import:: java.rmi RemoteException
+
+JMIWrapperRemote
+================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  interface JMIWrapperRemote extends Remote
+
+   Methods that can be called to control MATLAB except for \ :java:ref:`checkConnection()`\ .  All of these methods throw RemoteException. RemoteException will be thrown if something occurs to disrupt the communication between this JVM and the one MATLAB is running in. For instance, closing MATLAB will terminate its JVM and then all method calls on this proxy will throw exceptions.  For descriptions of what these methods do see the corresponding methods in \ :java:ref:`MatlabProxy`\ .
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+checkConnection
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void checkConnection() throws RemoteException
+   :outertype: JMIWrapperRemote
+
+   This method does nothing. It is used internally to check if a connection is still active via calling this method and seeing if it throws a \ ``RemoteException``\  (if it does, the connection is no longer active).
+
+   :throws RemoteException:
+
+eval
+^^^^
+
+.. java:method:: public void eval(String command) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+exit
+^^^^
+
+.. java:method:: public void exit() throws RemoteException
+   :outertype: JMIWrapperRemote
+
+feval
+^^^^^
+
+.. java:method:: public void feval(String command, Object[] args) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: public Object getVariable(String variableName) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: public <U> U invokeAndWait(MatlabProxy.MatlabThreadCallable<U> callable) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningEval(String command, int nargout) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: public Object[] returningFeval(String command, int nargout, Object... args) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: public void setVariable(String variableName, Object value) throws RemoteException, MatlabInvocationException
+   :outertype: JMIWrapperRemote
+

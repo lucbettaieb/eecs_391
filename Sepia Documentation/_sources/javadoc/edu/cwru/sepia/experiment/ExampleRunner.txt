@@ -1,0 +1,64 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: java.io FileOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.lang.reflect Constructor
+
+.. java:import:: java.lang.reflect InvocationTargetException
+
+.. java:import:: java.util.logging Level
+
+.. java:import:: java.util.logging Logger
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment Environment
+
+.. java:import:: edu.cwru.sepia.environment.model BestEffortModel
+
+.. java:import:: edu.cwru.sepia.environment.model LessSimpleModel
+
+.. java:import:: edu.cwru.sepia.environment.model Model
+
+.. java:import:: edu.cwru.sepia.environment.model SimpleModel
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state StateCreator
+
+.. java:import:: edu.cwru.sepia.util GameMap
+
+ExampleRunner
+=============
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public class ExampleRunner extends Runner
+
+   A \ ``Runner``\  that runs a number of episodes using \ ``edu.cwru.sepia.model.LessSimpleModel``\ .  Demonstrates some
+
+Constructors
+------------
+ExampleRunner
+^^^^^^^^^^^^^
+
+.. java:constructor:: public ExampleRunner(Configuration configuration, StateCreator stateCreator, Agent[] agents)
+   :outertype: ExampleRunner
+
+Methods
+-------
+run
+^^^
+
+.. java:method:: @Override public void run()
+   :outertype: ExampleRunner
+

@@ -1,0 +1,211 @@
+.. java:import:: java.awt Dimension
+
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.agent.visual VisualLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.experiment Configuration
+
+Agent
+=====
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public abstract class Agent implements Serializable
+
+   The base type for any agent that can interact with the Sepia environment.
+
+   :author: Tim
+
+Fields
+------
+OBSERVER_ID
+^^^^^^^^^^^
+
+.. java:field:: public static final int OBSERVER_ID
+   :outertype: Agent
+
+configuration
+^^^^^^^^^^^^^
+
+.. java:field:: protected Configuration configuration
+   :outertype: Agent
+
+playernum
+^^^^^^^^^
+
+.. java:field:: protected final int playernum
+   :outertype: Agent
+
+verbose
+^^^^^^^
+
+.. java:field:: protected boolean verbose
+   :outertype: Agent
+
+visualLog
+^^^^^^^^^
+
+.. java:field:: protected VisualLog visualLog
+   :outertype: Agent
+
+Constructors
+------------
+Agent
+^^^^^
+
+.. java:constructor:: public Agent(int playernum)
+   :outertype: Agent
+
+   Create a new Agent to control a player.
+
+   :param playernum: The player number controlled by this agent.
+
+Methods
+-------
+clearVisualLog
+^^^^^^^^^^^^^^
+
+.. java:method:: public void clearVisualLog()
+   :outertype: Agent
+
+   Clear the visual log maintained by this agent. If it is not initialized, this calls initializeVisualAgent.
+
+closeVisualLog
+^^^^^^^^^^^^^^
+
+.. java:method:: public void closeVisualLog()
+   :outertype: Agent
+
+   If the visual log is initialized, then close the window and release the reference.
+
+getPlayerNumber
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPlayerNumber()
+   :outertype: Agent
+
+   Get the player number that this agent controls
+
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: Agent
+
+   Return the usage of any additional parameters
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: public abstract Map<Integer, Action> initialStep(State.StateView newstate, History.HistoryView statehistory)
+   :outertype: Agent
+
+   Accept the initial state of an episode
+
+   :param newstate: The new state of the system
+   :param onofflatch: A countdown latch used to synchonize completion
+
+initializeVisualLog
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: protected void initializeVisualLog()
+   :outertype: Agent
+
+   Initialize the visual log, constructing it.
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: public abstract void loadPlayerData(InputStream is)
+   :outertype: Agent
+
+   Load data stored by the agent.
+
+   :param is: An input stream, such as from a file.
+
+   **See also:** :java:ref:`{@link.savePlayerData(OutputStream)}`
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: public abstract Map<Integer, Action> middleStep(State.StateView newstate, History.HistoryView statehistory)
+   :outertype: Agent
+
+   Accept an intermediate state of an episode
+
+   :param newstate: The new state of the system
+   :param onofflatch: A countdown latch used to synchonize completion
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: public abstract void savePlayerData(OutputStream os)
+   :outertype: Agent
+
+   Save data accumulated by the agent.
+
+   :param os: An output stream, such as to a file.
+
+   **See also:** :java:ref:`{@link.loadPlayerData(InputStream)}`
+
+setConfiguration
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setConfiguration(Configuration configuration)
+   :outertype: Agent
+
+setVerbose
+^^^^^^^^^^
+
+.. java:method:: public void setVerbose(boolean verbosity)
+   :outertype: Agent
+
+   Determines whether to print out the action list each time it is chosen by \ :java:ref:`getAction()`\
+
+   :param verbosity:
+
+setVisualLogDimensions
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setVisualLogDimensions(int width, int height)
+   :outertype: Agent
+
+   Resize the visual log to a new size.
+
+   :param width:
+   :param height:
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: public abstract void terminalStep(State.StateView newstate, History.HistoryView statehistory)
+   :outertype: Agent
+
+   Receive notification that the episode has terminated.
+
+   :param newstate: The final state of the system
+
+writeLineVisual
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void writeLineVisual(String newline)
+   :outertype: Agent
+
+   Write a line to the visual log maintained by this agent. If it is not initialized, this calls initializeVisualAgent.
+
+   :param newline: The line to write
+

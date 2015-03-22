@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Unit &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.state" href="package-index.html"/>
+        <link rel="next" title="Unit.UnitView" href="Unit-UnitView.html"/>
+        <link rel="prev" title="Template.TemplateView" href="Template-TemplateView.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.state</a> &raquo;</li>
+      
+    <li>Unit</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/state/Unit.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="unit">
+<h1>Unit<a class="headerlink" href="#unit" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.state.Unit">
+public class <code class="descname">Unit</code> extends <a class="reference internal" href="Target.html#edu.cwru.sepia.environment.model.state.Target" title="edu.cwru.sepia.environment.model.state.Target">Target</a><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cargoamount">
+<h3>cargoAmount<a class="headerlink" href="#cargoamount" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.cargoAmount">
+protected int <code class="descname">cargoAmount</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.cargoAmount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cargotype">
+<h3>cargoType<a class="headerlink" href="#cargotype" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.cargoType">
+protected <a class="reference internal" href="ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a> <code class="descname">cargoType</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.cargoType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="currentdurativeprimitive">
+<h3>currentDurativePrimitive<a class="headerlink" href="#currentdurativeprimitive" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.currentDurativePrimitive">
+protected <a class="reference internal" href="../../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">currentDurativePrimitive</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.currentDurativePrimitive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="currentdurativeprogress">
+<h3>currentDurativeProgress<a class="headerlink" href="#currentdurativeprogress" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.currentDurativeProgress">
+protected int <code class="descname">currentDurativeProgress</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.currentDurativeProgress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="currenthealth">
+<h3>currentHealth<a class="headerlink" href="#currenthealth" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.currentHealth">
+protected int <code class="descname">currentHealth</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.currentHealth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="template">
+<h3>template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.template">
+protected <a class="reference internal" href="UnitTemplate.html#edu.cwru.sepia.environment.model.state.UnitTemplate" title="edu.cwru.sepia.environment.model.state.UnitTemplate">UnitTemplate</a> <code class="descname">template</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.template" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="xposition">
+<h3>xPosition<a class="headerlink" href="#xposition" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.xPosition">
+protected int <code class="descname">xPosition</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.xPosition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="yposition">
+<h3>yPosition<a class="headerlink" href="#yposition" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.yPosition">
+protected int <code class="descname">yPosition</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.yPosition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Unit<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.Unit(UnitTemplate, int)">
+public <code class="descname">Unit</code><span class="sig-paren">(</span><a class="reference internal" href="UnitTemplate.html#edu.cwru.sepia.environment.model.state.UnitTemplate" title="edu.cwru.sepia.environment.model.state.UnitTemplate">UnitTemplate</a><em> template</em>, int<em> ID</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.Unit(UnitTemplate, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="canattack">
+<h3>canAttack<a class="headerlink" href="#canattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.canAttack()">
+public boolean <code class="descname">canAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.canAttack()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canbuild">
+<h3>canBuild<a class="headerlink" href="#canbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.canBuild()">
+public boolean <code class="descname">canBuild</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.canBuild()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cangather">
+<h3>canGather<a class="headerlink" href="#cangather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.canGather()">
+public boolean <code class="descname">canGather</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.canGather()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canmove">
+<h3>canMove<a class="headerlink" href="#canmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.canMove()">
+public boolean <code class="descname">canMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.canMove()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="clearcargo">
+<h3>clearCargo<a class="headerlink" href="#clearcargo" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.clearCargo()">
+public void <code class="descname">clearCargo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.clearCargo()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="deepequals">
+<h3>deepEquals<a class="headerlink" href="#deepequals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.deepEquals(Object)">
+public boolean <code class="descname">deepEquals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> other</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.deepEquals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="deprecateoldview">
+<h3>deprecateOldView<a class="headerlink" href="#deprecateoldview" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.deprecateOldView()">
+public void <code class="descname">deprecateOldView</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.deprecateOldView()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="equals">
+<h3>equals<a class="headerlink" href="#equals" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.equals(Object)">
+public boolean <code class="descname">equals</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> o</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.equals(Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getactionprogressamount">
+<h3>getActionProgressAmount<a class="headerlink" href="#getactionprogressamount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getActionProgressAmount()">
+public int <code class="descname">getActionProgressAmount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getActionProgressAmount()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the amount of progress toward the completion of a primitive action.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getactionprogressprimitive">
+<h3>getActionProgressPrimitive<a class="headerlink" href="#getactionprogressprimitive" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getActionProgressPrimitive()">
+public <a class="reference internal" href="../../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a> <code class="descname">getActionProgressPrimitive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getActionProgressPrimitive()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the primitive action that the unit is working towards.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getcharacter">
+<h3>getCharacter<a class="headerlink" href="#getcharacter" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getCharacter()">
+public char <code class="descname">getCharacter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getCharacter()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getcurrentcargoamount">
+<h3>getCurrentCargoAmount<a class="headerlink" href="#getcurrentcargoamount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getCurrentCargoAmount()">
+public int <code class="descname">getCurrentCargoAmount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getCurrentCargoAmount()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getcurrentcargotype">
+<h3>getCurrentCargoType<a class="headerlink" href="#getcurrentcargotype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getCurrentCargoType()">
+public <a class="reference internal" href="ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a> <code class="descname">getCurrentCargoType</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getCurrentCargoType()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getcurrenthealth">
+<h3>getCurrentHealth<a class="headerlink" href="#getcurrenthealth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getCurrentHealth()">
+public int <code class="descname">getCurrentHealth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getCurrentHealth()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getplayer">
+<h3>getPlayer<a class="headerlink" href="#getplayer" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getPlayer()">
+public int <code class="descname">getPlayer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getPlayer()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="gettemplate">
+<h3>getTemplate<a class="headerlink" href="#gettemplate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getTemplate()">
+public <a class="reference internal" href="UnitTemplate.html#edu.cwru.sepia.environment.model.state.UnitTemplate" title="edu.cwru.sepia.environment.model.state.UnitTemplate">UnitTemplate</a> <code class="descname">getTemplate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getTemplate()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getview">
+<h3>getView<a class="headerlink" href="#getview" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getView()">
+public <a class="reference internal" href="Unit-UnitView.html#edu.cwru.sepia.environment.model.state.Unit.UnitView" title="edu.cwru.sepia.environment.model.state.Unit.UnitView">UnitView</a> <code class="descname">getView</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getView()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getxposition">
+<h3>getxPosition<a class="headerlink" href="#getxposition" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getxPosition()">
+public int <code class="descname">getxPosition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getxPosition()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getyposition">
+<h3>getyPosition<a class="headerlink" href="#getyposition" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.getyPosition()">
+public int <code class="descname">getyPosition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.getyPosition()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="hashcode">
+<h3>hashCode<a class="headerlink" href="#hashcode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.hashCode()">
+public int <code class="descname">hashCode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.hashCode()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="resetdurative">
+<h3>resetDurative<a class="headerlink" href="#resetdurative" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.resetDurative()">
+public void <code class="descname">resetDurative</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.resetDurative()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setcargo">
+<h3>setCargo<a class="headerlink" href="#setcargo" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.setCargo(ResourceType, int)">
+public boolean <code class="descname">setCargo</code><span class="sig-paren">(</span><a class="reference internal" href="ResourceType.html#edu.cwru.sepia.environment.model.state.ResourceType" title="edu.cwru.sepia.environment.model.state.ResourceType">ResourceType</a><em> type</em>, int<em> amount</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.setCargo(ResourceType, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setdurativestatus">
+<h3>setDurativeStatus<a class="headerlink" href="#setdurativestatus" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.setDurativeStatus(Action, int)">
+public void <code class="descname">setDurativeStatus</code><span class="sig-paren">(</span><a class="reference internal" href="../../../action/Action.html#edu.cwru.sepia.action.Action" title="edu.cwru.sepia.action.Action">Action</a><em> primitive</em>, int<em> progress</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.setDurativeStatus(Action, int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the status of durative actions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>primitive</strong> &#8211; The primitive action being worked towards.</li>
+<li><strong>progress</strong> &#8211; The amount of progress towards the primitive action.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sethp">
+<h3>setHP<a class="headerlink" href="#sethp" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.setHP(int)">
+public void <code class="descname">setHP</code><span class="sig-paren">(</span>int<em> amount</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.setHP(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the health of this unit to a specific value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>amount</strong> &#8211; The new amount of hit points.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setxposition">
+<h3>setxPosition<a class="headerlink" href="#setxposition" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.setxPosition(int)">
+public void <code class="descname">setxPosition</code><span class="sig-paren">(</span>int<em> x</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.setxPosition(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the x position of the unit. DO NOT USE THIS TO MOVE UNITS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="setyposition">
+<h3>setyPosition<a class="headerlink" href="#setyposition" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.setyPosition(int)">
+public void <code class="descname">setyPosition</code><span class="sig-paren">(</span>int<em> y</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.setyPosition(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the y position of the unit. DO NOT USE THIS TO MOVE UNITS</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>y</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.state.Unit.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.state.Unit.toString()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Unit-UnitView.html" class="btn btn-neutral float-right" title="Unit.UnitView"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Template-TemplateView.html" class="btn btn-neutral" title="Template.TemplateView"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+EventLogger
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class EventLogger implements Serializable, DeepEquatable
+
+   Logs all the primitive logs including damage, death, birth, upgrade, etc.
+
+Constructors
+------------
+EventLogger
+^^^^^^^^^^^
+
+.. java:constructor:: public EventLogger()
+   :outertype: EventLogger
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: EventLogger
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object obj)
+   :outertype: EventLogger
+
+eraseResourceNodeReveals
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void eraseResourceNodeReveals()
+   :outertype: EventLogger
+
+getBirths
+^^^^^^^^^
+
+.. java:method:: public List<BirthLog> getBirths(int roundnumber)
+   :outertype: EventLogger
+
+getDamage
+^^^^^^^^^
+
+.. java:method:: public List<DamageLog> getDamage(int roundnumber)
+   :outertype: EventLogger
+
+getDeaths
+^^^^^^^^^
+
+.. java:method:: public List<DeathLog> getDeaths(int roundnumber)
+   :outertype: EventLogger
+
+getHighestRoundBirth
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundBirth()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundDamage
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundDamage()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundDeath
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundDeath()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundResourceDropoff
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundResourceDropoff()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundResourceNodeExhaustion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundResourceNodeExhaustion()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundResourcePickup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundResourcePickup()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getHighestRoundUpgrade
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHighestRoundUpgrade()
+   :outertype: EventLogger
+
+   Get the number of the highest round for which this logger has recorded data.
+
+   :return: The highest recorded round
+
+getResourceDropoffs
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<ResourceDropoffLog> getResourceDropoffs(int roundnumber)
+   :outertype: EventLogger
+
+getResourceNodeExhaustions
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<ResourceNodeExhaustionLog> getResourceNodeExhaustions(int roundnumber)
+   :outertype: EventLogger
+
+getResourcePickups
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<ResourcePickupLog> getResourcePickups(int roundnumber)
+   :outertype: EventLogger
+
+getRevealedResourceNodes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<RevealedResourceNodeLog> getRevealedResourceNodes()
+   :outertype: EventLogger
+
+getUpgrades
+^^^^^^^^^^^
+
+.. java:method:: public List<UpgradeLog> getUpgrades(int roundnumber)
+   :outertype: EventLogger
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: EventLogger
+
+recordBirth
+^^^^^^^^^^^
+
+.. java:method:: public void recordBirth(int turnnumber, int newunitid, int parentunitid, int controller)
+   :outertype: EventLogger
+
+recordDamage
+^^^^^^^^^^^^
+
+.. java:method:: public void recordDamage(int turnnumber, int attackerid, int attackercontroller, int defenderid, int defendercontroller, int damage)
+   :outertype: EventLogger
+
+recordDeath
+^^^^^^^^^^^
+
+.. java:method:: public void recordDeath(int turnnumber, int deadunitid, int controller)
+   :outertype: EventLogger
+
+recordResourceDropoff
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void recordResourceDropoff(int turnnumber, int depositerid, int depositplaceid, int controller, ResourceType type, int amount)
+   :outertype: EventLogger
+
+recordResourceNodeExhaustion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void recordResourceNodeExhaustion(int turnnumber, int exhaustednodeid, ResourceNode.Type type)
+   :outertype: EventLogger
+
+recordResourcePickup
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void recordResourcePickup(int turnnumber, int gathererid, int controller, ResourceType type, int amount, int nodeid, ResourceNode.Type nodetype)
+   :outertype: EventLogger
+
+recordRevealedResourceNode
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void recordRevealedResourceNode(int resourcenodex, int resourcenodey, ResourceNode.Type resourcenodetype)
+   :outertype: EventLogger
+
+recordUpgrade
+^^^^^^^^^^^^^
+
+.. java:method:: public void recordUpgrade(int turnnumber, int upgradetemplateid, int producingunitid, int controller)
+   :outertype: EventLogger
+

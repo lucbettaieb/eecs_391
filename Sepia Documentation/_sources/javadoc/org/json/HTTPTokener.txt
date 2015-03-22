@@ -1,0 +1,37 @@
+HTTPTokener
+===========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class HTTPTokener extends JSONTokener
+
+   The HTTPTokener extends the JSONTokener to provide additional methods for the parsing of HTTP headers.
+
+   :author: JSON.org
+
+Constructors
+------------
+HTTPTokener
+^^^^^^^^^^^
+
+.. java:constructor:: public HTTPTokener(String string)
+   :outertype: HTTPTokener
+
+   Construct an HTTPTokener from a string.
+
+   :param string: A source string.
+
+Methods
+-------
+nextToken
+^^^^^^^^^
+
+.. java:method:: public String nextToken() throws JSONException
+   :outertype: HTTPTokener
+
+   Get the next token or string. This is used in parsing HTTP headers.
+
+   :throws JSONException:
+   :return: A String.
+

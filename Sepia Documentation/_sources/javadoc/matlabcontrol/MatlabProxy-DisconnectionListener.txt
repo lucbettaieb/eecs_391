@@ -1,0 +1,29 @@
+.. java:import:: java.util.concurrent CopyOnWriteArrayList
+
+MatlabProxy.DisconnectionListener
+=================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static interface DisconnectionListener
+   :outertype: MatlabProxy
+
+   Listens for a proxy's disconnection from MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+   **See also:** :java:ref:`MatlabProxy.addDisconnectionListener(matlabcontrol.MatlabProxy.DisconnectionListener)`, :java:ref:`MatlabProxy.removeDisconnectionListener(matlabcontrol.MatlabProxy.DisconnectionListener)`
+
+Methods
+-------
+proxyDisconnected
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void proxyDisconnected(MatlabProxy proxy)
+   :outertype: MatlabProxy.DisconnectionListener
+
+   Called when the proxy becomes disconnected from MATLAB. The proxy passed in will always be the proxy that the listener was added to. The proxy is provided so that if desired a single implementation of this interface may easily be used for multiple proxies.
+
+   :param proxy: disconnected proxy
+

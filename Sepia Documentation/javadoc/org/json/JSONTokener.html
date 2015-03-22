@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>JSONTokener &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="org.json" href="package-index.html"/>
+        <link rel="next" title="JSONWriter" href="JSONWriter.html"/>
+        <link rel="prev" title="JSONStringer" href="JSONStringer.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">org.json</a> &raquo;</li>
+      
+    <li>JSONTokener</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../_sources/javadoc/org/json/JSONTokener.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="jsontokener">
+<h1>JSONTokener<a class="headerlink" href="#jsontokener" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="org.json.JSONTokener">
+public class <code class="descname">JSONTokener</code><a class="headerlink" href="#org.json.JSONTokener" title="Permalink to this definition">¶</a></dt>
+<dd><p>A JSONTokener takes a source string and extracts characters and tokens from it. It is used by the JSONObject and JSONArray constructors to parse JSON source strings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Author:</th><td class="field-body">JSON.org</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>JSONTokener<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONTokener.JSONTokener(Reader)">
+public <code class="descname">JSONTokener</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/Reader.html" title="java.io.Reader">Reader</a><em> reader</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.JSONTokener(Reader)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONTokener from a Reader.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>reader</strong> &#8211; A reader.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>JSONTokener<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONTokener.JSONTokener(InputStream)">
+public <code class="descname">JSONTokener</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html" title="java.io.InputStream">InputStream</a><em> inputStream</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.JSONTokener(InputStream)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONTokener from an InputStream.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>JSONTokener<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="org.json.JSONTokener.JSONTokener(String)">
+public <code class="descname">JSONTokener</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> s</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.JSONTokener(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a JSONTokener from a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>s</strong> &#8211; A source string.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="back">
+<h3>back<a class="headerlink" href="#back" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.back()">
+public void <code class="descname">back</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.back()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Back up one character. This provides a sort of lookahead capability, so that you can test for a digit or letter before attempting to parse the next number or identifier.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="dehexchar">
+<h3>dehexchar<a class="headerlink" href="#dehexchar" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.dehexchar(char)">
+public static int <code class="descname">dehexchar</code><span class="sig-paren">(</span>char<em> c</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.dehexchar(char)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the hex value of a character (base16).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; A character between &#8216;0&#8217; and &#8216;9&#8217; or between &#8216;A&#8217; and &#8216;F&#8217; or between &#8216;a&#8217; and &#8216;f&#8217;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An int between 0 and 15, or -1 if c was not a hex digit.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="end">
+<h3>end<a class="headerlink" href="#end" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.end()">
+public boolean <code class="descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.end()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="more">
+<h3>more<a class="headerlink" href="#more" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.more()">
+public boolean <code class="descname">more</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.more()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the source string still contains characters that next() can consume.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if not yet at the end of the source.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="next">
+<h3>next<a class="headerlink" href="#next" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.next()">
+public char <code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.next()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next character in the source string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The next character, or 0 if past the end of the source string.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>next<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.next(char)">
+public char <code class="descname">next</code><span class="sig-paren">(</span>char<em> c</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.next(char)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Consume the next character, and check that it matches a specified character.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> &#8211; The character to match.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; if the character does not match.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The character.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>next<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.next(int)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">next</code><span class="sig-paren">(</span>int<em> n</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.next(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next n characters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> &#8211; The number of characters to take.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; Substring bounds error if there are not n characters remaining in the source string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string of n characters.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="nextclean">
+<h3>nextClean<a class="headerlink" href="#nextclean" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.nextClean()">
+public char <code class="descname">nextClean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.nextClean()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next char in the string, skipping whitespace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A character, or 0 if there are no more characters.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="nextstring">
+<h3>nextString<a class="headerlink" href="#nextstring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.nextString(char)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">nextString</code><span class="sig-paren">(</span>char<em> quote</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.nextString(char)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the characters up to the next close quote character. Backslash processing is done. The formal JSON format does not allow strings in single quotes, but an implementation is allowed to accept them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>quote</strong> &#8211; The quoting character, either <code class="docutils literal"><span class="pre">&quot;</span></code>&nbsp;(double quote) or <code class="docutils literal"><span class="pre">'</span></code>&nbsp;(single quote).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; Unterminated string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A String.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="nextto">
+<h3>nextTo<a class="headerlink" href="#nextto" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.nextTo(char)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">nextTo</code><span class="sig-paren">(</span>char<em> delimiter</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.nextTo(char)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the text up but not including the specified character or the end of line, whichever comes first.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>delimiter</strong> &#8211; A delimiter character.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3>nextTo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.nextTo(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">nextTo</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> delimiters</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.nextTo(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the text up but not including one of the specified delimiter characters or the end of line, whichever comes first.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>delimiters</strong> &#8211; A set of delimiter characters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A string, trimmed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="nextvalue">
+<h3>nextValue<a class="headerlink" href="#nextvalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.nextValue()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">nextValue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.nextValue()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next value. The value can be a Boolean, Double, Integer, JSONArray, JSONObject, Long, or String, or the JSONObject.NULL object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Throws:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException"><strong>JSONException</strong></a> &#8211; If syntax error.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="skipto">
+<h3>skipTo<a class="headerlink" href="#skipto" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.skipTo(char)">
+public char <code class="descname">skipTo</code><span class="sig-paren">(</span>char<em> to</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.skipTo(char)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skip characters until the next character is the requested character. If the requested character is not found, no characters are skipped.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>to</strong> &#8211; A character to skip to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The requested character, or zero if the requested character is not found.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="syntaxerror">
+<h3>syntaxError<a class="headerlink" href="#syntaxerror" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.syntaxError(String)">
+public <a class="reference internal" href="JSONException.html#org.json.JSONException" title="org.json.JSONException">JSONException</a> <code class="descname">syntaxError</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> message</em><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.syntaxError(String)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a JSONException to signal a syntax error.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>message</strong> &#8211; The error message.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A JSONException object, suitable for throwing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="tostring">
+<h3>toString<a class="headerlink" href="#tostring" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="org.json.JSONTokener.toString()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#org.json.JSONTokener.toString()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a printable string of this JSONTokener.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">&#8221; at {index} [character {character} line {line}]&#8221;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="JSONWriter.html" class="btn btn-neutral float-right" title="JSONWriter"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="JSONStringer.html" class="btn btn-neutral" title="JSONStringer"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

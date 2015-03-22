@@ -1,0 +1,402 @@
+.. java:import:: java.io ByteArrayOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Map.Entry
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+State.StateView
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: @SuppressWarnings public static class StateView implements Serializable
+   :outertype: State
+
+Methods
+-------
+canSee
+^^^^^^
+
+.. java:method:: public boolean canSee(int x, int y)
+   :outertype: State.StateView
+
+   Returns whether the selected coordinates are visible to the player through the fog of war.
+
+   :param x:
+   :param y:
+
+getAllResourceIds
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAllResourceIds()
+   :outertype: State.StateView
+
+   Get the IDs of all of the resource nodes that you can see
+
+getAllResourceNodes
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<ResourceNode.ResourceView> getAllResourceNodes()
+   :outertype: State.StateView
+
+   Get the views of all of the resource nodes that you can see
+
+getAllTemplateIds
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAllTemplateIds()
+   :outertype: State.StateView
+
+   Get the ids of all the templates. If you are not an observer, it will only give you yours if fog of war is on
+
+getAllTemplates
+^^^^^^^^^^^^^^^
+
+.. java:method:: public List<TemplateView> getAllTemplates()
+   :outertype: State.StateView
+
+   Get the views of all the templates. If you are not an observer, it will only give you yours if fog of war is on
+
+getAllUnitIds
+^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAllUnitIds()
+   :outertype: State.StateView
+
+   Get all of the unit ids that you can see
+
+getAllUnits
+^^^^^^^^^^^
+
+.. java:method:: public List<UnitView> getAllUnits()
+   :outertype: State.StateView
+
+   Get views of all of the units that you can see
+
+getClosestOpenPosition
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int[] getClosestOpenPosition(int x, int y)
+   :outertype: State.StateView
+
+   Gets the closest position that you can see.
+
+   :param x:
+   :param y:
+
+getPlayerNumbers
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer[] getPlayerNumbers()
+   :outertype: State.StateView
+
+   Get the list of the player numbers of players in the map.
+
+getResourceAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer getResourceAmount(int playerid, ResourceType type)
+   :outertype: State.StateView
+
+   Get the amount of wood or gold (specified by the type) available to a specific player. If you are not an observer, it will not work on other people with fog of war on
+
+   :param player:
+   :param type: The type of resource
+
+getResourceNode
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceNode.ResourceView getResourceNode(int resourceID)
+   :outertype: State.StateView
+
+   Get the resource node with the selected ID (if you can see it)
+
+   :param resourceID:
+   :return: The resource node with id resourceID, or null if you can't see it or if there isn't one.
+
+getResourceNodeIds
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getResourceNodeIds(ResourceNode.Type type)
+   :outertype: State.StateView
+
+   Get the IDs of all of the resource nodes of a type that you can see
+
+   :param type: Gold mine or Tree
+
+getResourceNodes
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<ResourceNode.ResourceView> getResourceNodes(ResourceNode.Type type)
+   :outertype: State.StateView
+
+   Get the views of all of the resource nodes of a type that you can see
+
+   :param type: Gold mine or Tree
+
+getStateCreator
+^^^^^^^^^^^^^^^
+
+.. java:method:: public StateCreator getStateCreator() throws IOException
+   :outertype: State.StateView
+
+   If the player can see the whole state, get a StateCreator that will rebuild the state as it is when this is called. This can be used as an immutable and repeatable deep copy of the underlying state.
+
+   :throws IOException:
+   :return: When fog of war is on and the player is not an observer: null;otherwise: A StateCreator that rebuilds the underlying state.
+
+getSupplyAmount
+^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer getSupplyAmount(int playerid)
+   :outertype: State.StateView
+
+   Get the amount of supply (food) used by a specific player. If you are not an observer, it will not work on other people with fog of war on
+
+   :param player:
+
+getSupplyCap
+^^^^^^^^^^^^
+
+.. java:method:: public Integer getSupplyCap(int playerid)
+   :outertype: State.StateView
+
+   Get the maximum amount of supply (food) available to a specific player. This should be used for calculating whether another unit can be made. If you are not an observer, it will not work on other people with fog of war on
+
+   :param player:
+
+getSupplyCapEarned
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Integer getSupplyCapEarned(int playerid)
+   :outertype: State.StateView
+
+   Get the maximum amount of supply (food) earned by a specific player. This is the amount given by the farms and town halls or their alternatives. This should be used for calculating effect of farms/townhalls dying, not for calculating whether you can make a unit. If you are not an observer, it will not work on other people with fog of war on
+
+   :param player:
+
+getSupplyCapMaximum
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSupplyCapMaximum()
+   :outertype: State.StateView
+
+   Get the maximum amount of supply that could ever be available to any player. This should be used in conjunction with getSupplyCapEarned to determine the effect of building a new farm/townhall.
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public Template.TemplateView getTemplate(int templateID)
+   :outertype: State.StateView
+
+   Get a template with a specific ID If you are not an observer, it won't work with somebody else's template with fog of war on
+
+   :param templateID:
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public Template.TemplateView getTemplate(int player, String name)
+   :outertype: State.StateView
+
+   Get a template with that name owned by that player
+
+   :param player:
+   :param name:
+   :return: The view of the first (and what should be the only) template that has the specified name, or null if that player does not have a template by that name
+
+getTemplateIds
+^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getTemplateIds(int playerid)
+   :outertype: State.StateView
+
+   Get a player's template IDs If you are not an observer, you can't get other people's templates if fog of war is on
+
+   :param playerid:
+
+getTemplates
+^^^^^^^^^^^^
+
+.. java:method:: public List<TemplateView> getTemplates(int playerid)
+   :outertype: State.StateView
+
+   Get a player's template views If you are not an observer, you can't get other people's templates if fog of war is on
+
+   :param playerid:
+
+getTurnNumber
+^^^^^^^^^^^^^
+
+.. java:method:: public int getTurnNumber()
+   :outertype: State.StateView
+
+getUnit
+^^^^^^^
+
+.. java:method:: public Unit.UnitView getUnit(int unitID)
+   :outertype: State.StateView
+
+   Get the unit with the selected id if you can see it.
+
+   :param unitID:
+   :return: The unit with that ID, null if you can't see it or if it doesn't exist
+
+getUnitIds
+^^^^^^^^^^
+
+.. java:method:: public List<Integer> getUnitIds(int player)
+   :outertype: State.StateView
+
+   Get the unit ids of those units owned by the selected players. Will give only your units when fog of war is on, unless you are an observer
+
+   :param player:
+
+getUnits
+^^^^^^^^
+
+.. java:method:: public List<UnitView> getUnits(int player)
+   :outertype: State.StateView
+
+   Get the unit views of those units owned by the selected players. Will give only your units when fog of war is on, unless you are an observer
+
+   :param player:
+
+getXExtent
+^^^^^^^^^^
+
+.. java:method:: public int getXExtent()
+   :outertype: State.StateView
+
+   Get how big the map is in the x direction
+
+getYExtent
+^^^^^^^^^^
+
+.. java:method:: public int getYExtent()
+   :outertype: State.StateView
+
+   Get how big the map is in the y direction
+
+hasUnit
+^^^^^^^
+
+.. java:method:: public boolean hasUnit(int playerNumber, int templateid)
+   :outertype: State.StateView
+
+   Get whether a player has a unit of a certain type. (Say, a tech building). If you are not an observer, then this will not work on other players with fog of war on
+
+   :param playerNumber:
+   :param buildingtemplateid:
+   :return: Whether the player with id playerid has a unit with a template with the template id templateid, or false if the player is not you
+
+hasUpgrade
+^^^^^^^^^^
+
+.. java:method:: public boolean hasUpgrade(int upgradeid, int playerid)
+   :outertype: State.StateView
+
+   Get whether a player has researched a specific upgrade. If you are not an observer, then this will not work on other players with fog of war on
+
+   :param upgradeid:
+   :param playerid:
+   :return: Whether the player has researched an upgrade with id upgradeid. Always false if you try it on someone else.
+
+inBounds
+^^^^^^^^
+
+.. java:method:: public boolean inBounds(int x, int y)
+   :outertype: State.StateView
+
+   Find whether a position is in bounds.
+
+   :param x:
+   :param y:
+
+isFogOfWar
+^^^^^^^^^^
+
+.. java:method:: public boolean isFogOfWar()
+   :outertype: State.StateView
+
+   Get whether fog of war (partial observability) is activated
+
+isResourceAt
+^^^^^^^^^^^^
+
+.. java:method:: public boolean isResourceAt(int x, int y)
+   :outertype: State.StateView
+
+   Find whether there is a resource at the position
+
+   :param x:
+   :param y:
+   :return: Whether there is a resource there (always false if you can't see there)
+
+isUnitAt
+^^^^^^^^
+
+.. java:method:: public boolean isUnitAt(int x, int y)
+   :outertype: State.StateView
+
+   Find if there is a unit at a position
+
+   :param x:
+   :param y:
+   :return: Whether there is a unit at the position (always false if you can't see there)
+
+resourceAt
+^^^^^^^^^^
+
+.. java:method:: public Integer resourceAt(int x, int y)
+   :outertype: State.StateView
+
+   Get the resource at a position
+
+   :param x:
+   :param y:
+   :return: The resource's ID, or null if there is no resource or if you can't see the position
+
+unitAt
+^^^^^^
+
+.. java:method:: public Integer unitAt(int x, int y)
+   :outertype: State.StateView
+
+   Get the unit at a position
+
+   :param x:
+   :param y:
+   :return: The unit's ID, or null if there is no unit (or if you can't see there)
+

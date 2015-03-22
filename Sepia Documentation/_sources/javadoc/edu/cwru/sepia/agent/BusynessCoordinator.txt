@@ -1,0 +1,64 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+BusynessCoordinator
+===================
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class BusynessCoordinator implements Serializable
+
+   A simple container for two lists: units that are doing something and units that aren't.
+
+   :author: The Condor
+
+Constructors
+------------
+BusynessCoordinator
+^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public BusynessCoordinator()
+   :outertype: BusynessCoordinator
+
+Methods
+-------
+assignBusy
+^^^^^^^^^^
+
+.. java:method:: public void assignBusy(Integer unitID)
+   :outertype: BusynessCoordinator
+
+assignIdle
+^^^^^^^^^^
+
+.. java:method:: public void assignIdle(Integer unitID)
+   :outertype: BusynessCoordinator
+
+isBusy
+^^^^^^
+
+.. java:method:: public boolean isBusy(Integer id)
+   :outertype: BusynessCoordinator
+
+isIdle
+^^^^^^
+
+.. java:method:: public boolean isIdle(Integer id)
+   :outertype: BusynessCoordinator
+
+removeUnit
+^^^^^^^^^^
+
+.. java:method:: public void removeUnit(Integer unitID)
+   :outertype: BusynessCoordinator
+

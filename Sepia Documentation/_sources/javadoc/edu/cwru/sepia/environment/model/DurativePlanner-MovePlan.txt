@@ -1,0 +1,79 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util PriorityQueue
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+DurativePlanner.MovePlan
+========================
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public static class MovePlan
+   :outertype: DurativePlanner
+
+   A simple structure used in the construction of plans.
+
+   :author: The Condor
+
+Fields
+------
+actions
+^^^^^^^
+
+.. java:field:: public LinkedList<Action> actions
+   :outertype: DurativePlanner.MovePlan
+
+finalx
+^^^^^^
+
+.. java:field:: public int finalx
+   :outertype: DurativePlanner.MovePlan
+
+finaly
+^^^^^^
+
+.. java:field:: public int finaly
+   :outertype: DurativePlanner.MovePlan
+
+succeeded
+^^^^^^^^^
+
+.. java:field:: public final boolean succeeded
+   :outertype: DurativePlanner.MovePlan
+
+Constructors
+------------
+MovePlan
+^^^^^^^^
+
+.. java:constructor:: public MovePlan()
+   :outertype: DurativePlanner.MovePlan
+
+MovePlan
+^^^^^^^^
+
+.. java:constructor:: public MovePlan(LinkedList<Action> actions, int finalx, int finaly)
+   :outertype: DurativePlanner.MovePlan
+

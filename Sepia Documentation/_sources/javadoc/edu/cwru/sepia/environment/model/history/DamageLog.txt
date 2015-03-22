@@ -1,0 +1,74 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+DamageLog
+=========
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class DamageLog implements Serializable, DeepEquatable
+
+   A read only class logging damage.
+
+   :author: The Condor
+
+Constructors
+------------
+DamageLog
+^^^^^^^^^
+
+.. java:constructor:: public DamageLog(int attackerid, int attackercontroller, int defenderid, int defendercontroller, int damageamount)
+   :outertype: DamageLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: DamageLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: DamageLog
+
+getAttackerController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAttackerController()
+   :outertype: DamageLog
+
+getAttackerID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getAttackerID()
+   :outertype: DamageLog
+
+getDamage
+^^^^^^^^^
+
+.. java:method:: public int getDamage()
+   :outertype: DamageLog
+
+getDefenderController
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDefenderController()
+   :outertype: DamageLog
+
+getDefenderID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getDefenderID()
+   :outertype: DamageLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: DamageLog
+

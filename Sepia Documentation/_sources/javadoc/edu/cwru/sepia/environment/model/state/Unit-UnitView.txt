@@ -1,0 +1,99 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate.UnitTemplateView
+
+Unit.UnitView
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public static class UnitView implements Serializable
+   :outertype: Unit
+
+Constructors
+------------
+UnitView
+^^^^^^^^
+
+.. java:constructor:: public UnitView(Unit unit)
+   :outertype: Unit.UnitView
+
+Methods
+-------
+getCargoAmount
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getCargoAmount()
+   :outertype: Unit.UnitView
+
+   Get the amount of gold or wood being carried by this unit.
+
+getCargoType
+^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getCargoType()
+   :outertype: Unit.UnitView
+
+   Get the type of resource being carried by the unit. This is only relevant if getCargoAmount() indicates an amount being carried.
+
+getCurrentDurativeAction
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Action getCurrentDurativeAction()
+   :outertype: Unit.UnitView
+
+   Get the template id of the unit or upgrade currently being produced. This is only relevant if getCurrentProductionAmount indicates something has progress
+
+   :return: The id of the template of what is being produced, or null
+
+getCurrentDurativeProgress
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentDurativeProgress()
+   :outertype: Unit.UnitView
+
+   Get the progress of this unit toward executing a durative action.
+
+getHP
+^^^^^
+
+.. java:method:: public int getHP()
+   :outertype: Unit.UnitView
+
+   Get the current health of the unit
+
+getID
+^^^^^
+
+.. java:method:: public int getID()
+   :outertype: Unit.UnitView
+
+   Get the unique identification number of this unit
+
+getTemplateView
+^^^^^^^^^^^^^^^
+
+.. java:method:: public UnitTemplateView getTemplateView()
+   :outertype: Unit.UnitView
+
+   Get a view of the template this unit was made from. This carries information shared by all units of that type, such as the name, attack, armor, basic health, cost, prerequisites for building it, and what units/upgrades it can produce
+
+getXPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getXPosition()
+   :outertype: Unit.UnitView
+
+   Get the x coordinate of the unit
+
+getYPosition
+^^^^^^^^^^^^
+
+.. java:method:: public int getYPosition()
+   :outertype: Unit.UnitView
+
+   Get the y coordinate of the unit
+

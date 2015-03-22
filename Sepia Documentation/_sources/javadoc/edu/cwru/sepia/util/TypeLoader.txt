@@ -1,0 +1,28 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileNotFoundException
+
+.. java:import:: edu.cwru.sepia.environment.model.state IDDistributer
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UpgradeTemplate
+
+TypeLoader
+==========
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public final class TypeLoader
+
+Methods
+-------
+loadFromFile
+^^^^^^^^^^^^
+
+.. java:method:: public static List<Template<?>> loadFromFile(String filename, int player, IDDistributer idsource) throws FileNotFoundException, JSONException
+   :outertype: TypeLoader
+

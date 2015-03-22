@@ -1,0 +1,255 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlEventLogger
+==============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlEventLogger
+
+   Java class for EventLogger complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="EventLogger">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="birthLogList" type="{}BirthLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="deathLogList" type="{}DeathLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="damageLogList" type="{}DamageLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="ResourceNodeExhaustionLogList" type="{}ResourceNodeExhaustionLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="resourcePickupLogList" type="{}ResourcePickupLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="resourceDropoffLogList" type="{}ResourceDropoffLogList"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="RevealedResourceNodeLog" type="{}RevealedResourceNodeLog"/>
+              </sequence>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="upgradeLogList" type="{}UpgradeLogList"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+birthLogList
+^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlBirthLogList> birthLogList
+   :outertype: XmlEventLogger
+
+damageLogList
+^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlDamageLogList> damageLogList
+   :outertype: XmlEventLogger
+
+deathLogList
+^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlDeathLogList> deathLogList
+   :outertype: XmlEventLogger
+
+resourceDropoffLogList
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlResourceDropoffLogList> resourceDropoffLogList
+   :outertype: XmlEventLogger
+
+resourceNodeExhaustionLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<XmlResourceNodeExhaustionLogList> resourceNodeExhaustionLogList
+   :outertype: XmlEventLogger
+
+resourcePickupLogList
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlResourcePickupLogList> resourcePickupLogList
+   :outertype: XmlEventLogger
+
+revealedResourceNodeLog
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected List<XmlRevealedResourceNodeLog> revealedResourceNodeLog
+   :outertype: XmlEventLogger
+
+upgradeLogList
+^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlUpgradeLogList> upgradeLogList
+   :outertype: XmlEventLogger
+
+Methods
+-------
+getBirthLogList
+^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlBirthLogList> getBirthLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the birthLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the birthLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getBirthLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlBirthLogList`\
+
+getDamageLogList
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlDamageLogList> getDamageLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the damageLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the damageLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getDamageLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlDamageLogList`\
+
+getDeathLogList
+^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlDeathLogList> getDeathLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the deathLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the deathLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getDeathLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlDeathLogList`\
+
+getResourceDropoffLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlResourceDropoffLogList> getResourceDropoffLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the resourceDropoffLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the resourceDropoffLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getResourceDropoffLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlResourceDropoffLogList`\
+
+getResourceNodeExhaustionLogList
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlResourceNodeExhaustionLogList> getResourceNodeExhaustionLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the resourceNodeExhaustionLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the resourceNodeExhaustionLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getResourceNodeExhaustionLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlResourceNodeExhaustionLogList`\
+
+getResourcePickupLogList
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlResourcePickupLogList> getResourcePickupLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the resourcePickupLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the resourcePickupLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getResourcePickupLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlResourcePickupLogList`\
+
+getRevealedResourceNodeLog
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlRevealedResourceNodeLog> getRevealedResourceNodeLog()
+   :outertype: XmlEventLogger
+
+   Gets the value of the revealedResourceNodeLog property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the revealedResourceNodeLog property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getRevealedResourceNodeLog().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlRevealedResourceNodeLog`\
+
+getUpgradeLogList
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlUpgradeLogList> getUpgradeLogList()
+   :outertype: XmlEventLogger
+
+   Gets the value of the upgradeLogList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the upgradeLogList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getUpgradeLogList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlUpgradeLogList`\
+

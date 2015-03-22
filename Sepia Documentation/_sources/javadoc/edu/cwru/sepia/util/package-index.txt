@@ -1,0 +1,20 @@
+edu.cwru.sepia.util
+===================
+
+.. java:package:: edu.cwru.sepia.util
+
+.. toctree::
+   :maxdepth: 1
+
+   DeepEquatable
+   DeepEquatableUtil
+   Direction
+   DistanceMetrics
+   GameMap
+   Logger
+   Logger-MessageLevel
+   MapEditor
+   Pair
+   SwingUtils
+   TypeLoader
+

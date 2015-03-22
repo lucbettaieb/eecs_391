@@ -1,0 +1,97 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.io StringWriter
+
+.. java:import:: junit.framework TestCase
+
+Test.Beany
+==========
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: static class Beany implements JSONString
+   :outertype: Test
+
+   Beany is a typical class that implements JSONString. It also provides some beany methods that can be used to construct a JSONObject. It also demonstrates constructing a JSONObject with an array of names.
+
+Fields
+------
+aBoolean
+^^^^^^^^
+
+.. java:field:: public boolean aBoolean
+   :outertype: Test.Beany
+
+aNumber
+^^^^^^^
+
+.. java:field:: public double aNumber
+   :outertype: Test.Beany
+
+aString
+^^^^^^^
+
+.. java:field:: public String aString
+   :outertype: Test.Beany
+
+Constructors
+------------
+Beany
+^^^^^
+
+.. java:constructor:: public Beany(String string, double d, boolean b)
+   :outertype: Test.Beany
+
+Methods
+-------
+getBENT
+^^^^^^^
+
+.. java:method:: public String getBENT()
+   :outertype: Test.Beany
+
+getNumber
+^^^^^^^^^
+
+.. java:method:: public double getNumber()
+   :outertype: Test.Beany
+
+getString
+^^^^^^^^^
+
+.. java:method:: public String getString()
+   :outertype: Test.Beany
+
+getX
+^^^^
+
+.. java:method:: public String getX()
+   :outertype: Test.Beany
+
+isBoolean
+^^^^^^^^^
+
+.. java:method:: public boolean isBoolean()
+   :outertype: Test.Beany
+
+toJSONString
+^^^^^^^^^^^^
+
+.. java:method:: public String toJSONString()
+   :outertype: Test.Beany
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString()
+   :outertype: Test.Beany
+

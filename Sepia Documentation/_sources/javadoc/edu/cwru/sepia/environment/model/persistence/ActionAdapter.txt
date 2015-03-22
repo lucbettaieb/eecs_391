@@ -1,0 +1,50 @@
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action DirectedAction
+
+.. java:import:: edu.cwru.sepia.action LocatedAction
+
+.. java:import:: edu.cwru.sepia.action LocatedProductionAction
+
+.. java:import:: edu.cwru.sepia.action ProductionAction
+
+.. java:import:: edu.cwru.sepia.action TargetedAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlDirectedAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlLocatedAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlLocatedProductionAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlProductionAction
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlTargetedAction
+
+ActionAdapter
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class ActionAdapter
+
+   An adapter between Action and it's subclasses and XmlAction and it's subclasses.
+
+   :author: The Condor
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: @SuppressWarnings public static Action fromXml(XmlAction xml)
+   :outertype: ActionAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlAction toXml(Action action)
+   :outertype: ActionAdapter
+

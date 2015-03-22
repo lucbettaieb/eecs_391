@@ -1,0 +1,40 @@
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUnit
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+UnitAdapter
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class UnitAdapter
+
+Constructors
+------------
+UnitAdapter
+^^^^^^^^^^^
+
+.. java:constructor:: public UnitAdapter(Map<Integer, Template> templates)
+   :outertype: UnitAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public Unit fromXml(XmlUnit xml)
+   :outertype: UnitAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public XmlUnit toXml(Unit unit)
+   :outertype: UnitAdapter
+

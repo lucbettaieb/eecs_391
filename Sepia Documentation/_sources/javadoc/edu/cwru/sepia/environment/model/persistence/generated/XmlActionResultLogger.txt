@@ -1,0 +1,62 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlActionResultLogger
+=====================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlActionResultLogger
+
+   Java class for ActionResultLogger complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ActionResultLogger">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence maxOccurs="unbounded" minOccurs="0">
+              <element name="actionResultList" type="{}ActionResultList"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+actionResultList
+^^^^^^^^^^^^^^^^
+
+.. java:field:: protected List<XmlActionResultList> actionResultList
+   :outertype: XmlActionResultLogger
+
+Methods
+-------
+getActionResultList
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<XmlActionResultList> getActionResultList()
+   :outertype: XmlActionResultLogger
+
+   Gets the value of the actionResultList property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the actionResultList property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getActionResultList().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlActionResultList`\
+

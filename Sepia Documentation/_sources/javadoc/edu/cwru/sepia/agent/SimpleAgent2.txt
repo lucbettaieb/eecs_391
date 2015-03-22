@@ -1,0 +1,84 @@
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.action DirectedAction
+
+.. java:import:: edu.cwru.sepia.action TargetedAction
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+SimpleAgent2
+============
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class SimpleAgent2 extends Agent
+
+Constructors
+------------
+SimpleAgent2
+^^^^^^^^^^^^
+
+.. java:constructor:: public SimpleAgent2(int playernum, String[] notused)
+   :outertype: SimpleAgent2
+
+Methods
+-------
+getUsage
+^^^^^^^^
+
+.. java:method:: public static String getUsage()
+   :outertype: SimpleAgent2
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, HistoryView statehistory)
+   :outertype: SimpleAgent2
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: SimpleAgent2
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newState, HistoryView statehistory)
+   :outertype: SimpleAgent2
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: SimpleAgent2
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, HistoryView statehistory)
+   :outertype: SimpleAgent2
+

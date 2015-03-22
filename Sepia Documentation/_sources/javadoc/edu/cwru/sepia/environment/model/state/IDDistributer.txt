@@ -1,0 +1,26 @@
+IDDistributer
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public interface IDDistributer
+
+   An interface describing the ability to issue unique identification numbers to targets (units or resource nodes) and templates The State class is intended to be the primary implementer of this.
+
+   :author: The Condor
+
+Methods
+-------
+nextTargetID
+^^^^^^^^^^^^
+
+.. java:method:: public int nextTargetID()
+   :outertype: IDDistributer
+
+nextTemplateID
+^^^^^^^^^^^^^^
+
+.. java:method:: public int nextTemplateID()
+   :outertype: IDDistributer
+

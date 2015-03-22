@@ -1,0 +1,31 @@
+.. java:import:: java.util.concurrent CopyOnWriteArrayList
+
+MatlabProxy.MatlabThreadCallable
+================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static interface MatlabThreadCallable<T>
+   :outertype: MatlabProxy
+
+   Uninterrupted block of computation performed in MATLAB.
+
+   :param <T>: type of the data returned by the callable
+
+   **See also:** :java:ref:`MatlabProxy.invokeAndWait(matlabcontrol.MatlabProxy.MatlabThreadCallable)`
+
+Methods
+-------
+call
+^^^^
+
+.. java:method:: public T call(MatlabThreadProxy proxy) throws MatlabInvocationException
+   :outertype: MatlabProxy.MatlabThreadCallable
+
+   Performs the computation in MATLAB. The \ ``proxy``\  provided will invoke its methods directly on MATLAB's main thread without delay. This \ ``proxy``\  should be used to interact with MATLAB, not a \ ``MatlabProxy``\  (or any class delegating to it).
+
+   :param proxy:
+   :throws MatlabInvocationException:
+   :return: result of the computation
+

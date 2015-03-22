@@ -1,0 +1,65 @@
+MatlabInvocationException.Reason
+================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: static enum Reason
+   :outertype: MatlabInvocationException
+
+Enum Constants
+--------------
+EVENT_DISPATCH_THREAD
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason EVENT_DISPATCH_THREAD
+   :outertype: MatlabInvocationException.Reason
+
+INTERNAL_EXCEPTION
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason INTERNAL_EXCEPTION
+   :outertype: MatlabInvocationException.Reason
+
+INTERRRUPTED
+^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason INTERRRUPTED
+   :outertype: MatlabInvocationException.Reason
+
+MARSHAL
+^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason MARSHAL
+   :outertype: MatlabInvocationException.Reason
+
+NARGOUT_MISMATCH
+^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason NARGOUT_MISMATCH
+   :outertype: MatlabInvocationException.Reason
+
+PROXY_NOT_CONNECTED
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason PROXY_NOT_CONNECTED
+   :outertype: MatlabInvocationException.Reason
+
+RUNTIME_EXCEPTION
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason RUNTIME_EXCEPTION
+   :outertype: MatlabInvocationException.Reason
+
+UNKNOWN
+^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason UNKNOWN
+   :outertype: MatlabInvocationException.Reason
+
+UNMARSHAL
+^^^^^^^^^
+
+.. java:field:: public static final MatlabInvocationException.Reason UNMARSHAL
+   :outertype: MatlabInvocationException.Reason
+

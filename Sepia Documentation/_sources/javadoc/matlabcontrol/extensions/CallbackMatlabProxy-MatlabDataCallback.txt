@@ -1,0 +1,47 @@
+.. java:import:: java.util.concurrent ExecutorService
+
+.. java:import:: java.util.concurrent Executors
+
+.. java:import:: java.util.concurrent ThreadFactory
+
+.. java:import:: matlabcontrol MatlabInvocationException
+
+.. java:import:: matlabcontrol MatlabProxy.MatlabThreadCallable
+
+.. java:import:: matlabcontrol MatlabProxy
+
+CallbackMatlabProxy.MatlabDataCallback
+======================================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public static interface MatlabDataCallback<V>
+   :outertype: CallbackMatlabProxy
+
+   A callback that supplies the results of the invocation or the raised exception.
+
+   :param <V>:
+
+Methods
+-------
+invocationFailed
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void invocationFailed(MatlabInvocationException e)
+   :outertype: CallbackMatlabProxy.MatlabDataCallback
+
+   Called when the method failed.
+
+   :param e: the exception thrown
+
+invocationSucceeded
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void invocationSucceeded(V data)
+   :outertype: CallbackMatlabProxy.MatlabDataCallback
+
+   Called when the method successfully completed.
+
+   :param data: the data returned from MATLAB
+

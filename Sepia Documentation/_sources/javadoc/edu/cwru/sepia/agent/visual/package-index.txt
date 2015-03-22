@@ -1,0 +1,18 @@
+edu.cwru.sepia.agent.visual
+===========================
+
+.. java:package:: edu.cwru.sepia.agent.visual
+
+.. toctree::
+   :maxdepth: 1
+
+   ControlPanel
+   DrawingStrategy
+   GamePanel
+   GamePanel-ShiftAction
+   GamePanel-ShiftDirection
+   GameScreen
+   StatusPanel
+   VisualAgent
+   VisualLog
+

@@ -1,0 +1,66 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io FileInputStream
+
+.. java:import:: java.io FileOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectInputStream
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Arrays
+
+.. java:import:: java.util List
+
+.. java:import:: java.util.prefs BackingStoreException
+
+.. java:import:: java.util.prefs Preferences
+
+.. java:import:: javax.xml.bind JAXBContext
+
+.. java:import:: javax.xml.bind JAXBException
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment Environment
+
+.. java:import:: edu.cwru.sepia.environment.model LessSimpleModel
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlState
+
+.. java:import:: edu.cwru.sepia.environment.model.state LoadingStateCreator
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state StateCreator
+
+.. java:import:: edu.cwru.sepia.environment.model.state XmlStateCreator
+
+.. java:import:: edu.cwru.sepia.experiment Configuration
+
+.. java:import:: edu.cwru.sepia.experiment ConfigurationValues
+
+Main
+====
+
+.. java:package:: edu.cwru.sepia
+   :noindex:
+
+.. java:type:: public final class Main
+
+   An entry point into Sepia that takes command line arguments.
+
+   :author: tim
+
+Methods
+-------
+main
+^^^^
+
+.. java:method:: public static void main(String[] args) throws BackingStoreException, IOException, InterruptedException
+   :outertype: Main
+

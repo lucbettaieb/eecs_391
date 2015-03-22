@@ -1,0 +1,167 @@
+.. java:import:: java.io File
+
+.. java:import:: java.util.concurrent.atomic AtomicLong
+
+MatlabProxyFactoryOptions.Builder
+=================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static class Builder
+   :outertype: MatlabProxyFactoryOptions
+
+   Creates instances of \ :java:ref:`MatlabProxyFactoryOptions`\ . Any and all of these properties may be left unset, if so then a default will be used. Depending on how the factory operates, not all properties may be used. Currently all properties are used only when running outside MATLAB, but future releases may add additional options.  Calls on this class may be chained together to easily create factory options. Example usage:
+
+   .. parsed-literal::
+
+      MatlabProxyFactoryOptions options = new MatlabProxyFactoryOptions.Builder()
+                                              .setHidden(true)
+                                              .setProxyTimeout(30000L)
+                                              .build();
+
+   This class is unconditionally thread-safe.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+build
+^^^^^
+
+.. java:method:: public final MatlabProxyFactoryOptions build()
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Builds a \ ``MatlabProxyFactoryOptions``\  instance.
+
+   :return: factory options
+
+setHidden
+^^^^^^^^^
+
+.. java:method:: public final Builder setHidden(boolean hidden)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets whether MATLAB should appear hidden. By default this property is set to \ ``false``\ . If set to \ ``true``\  then the splash screen will not be shown and:  \ **Windows**\  The MATLAB Command Window will appear fully minimized.  \ **OS X**\  MATLAB will be entirely hidden. The MATLAB session will terminate when the Java application terminates.  \ **Linux**\  MATLAB will be entirely hidden. The MATLAB session will terminate when the Java application terminates.
+
+   :param hidden:
+
+setJavaDebugger
+^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setJavaDebugger(int portnumber)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets whether to enable use of the Java debugger on the MATLAB session using port \ ``portnumber``\ . The \ ``portnumber``\  may be in the range \ ``0-65535``\  so long as it is not reserved or otherwise in use. By default the Java debugger is not enabled.
+
+   :param portnumber:
+   :throws IllegalArgumentException: if \ ``portnumber``\  is not in the range \ ``0-65535``\
+
+setLicenseFile
+^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setLicenseFile(String licenseFile)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets the license file used by MATLAB. By default no license file is specified. On Linux and OS X \ ``licenseFile``\  may have the form \ ``port@host``\  or a colon-separated list of license filenames. On Windows \ ``licenseFile``\  may have the form \ ``port@host``\ . Setting this option causes the \ ``LM_LICENSE_FILE``\  and \ ``MLM_LICENSE_FILE``\  environment variables to be ignored. The validity of \ ``licenseFile``\  is not checked by matlabcontrol.
+
+   :param licenseFile:
+
+setLogFile
+^^^^^^^^^^
+
+.. java:method:: public final Builder setLogFile(String logFile)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets whether to have MATLAB log any output to the MATLAB Command Window (including crash reports) to the file specified by \ ``logFile``\ . The validity of \ ``logFile``\  is not checked by matlabcontrol. By default output is not logged.
+
+   :param logFile:
+
+setMatlabLocation
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setMatlabLocation(String matlabLocation)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets the location of the MATLAB executable or script that will launch MATLAB. If the value set cannot be successfully used to launch MATLAB, an exception will be thrown when attempting to create a proxy.  The absolute path to the MATLAB executable can be determined by running MATLAB. On OS X or Linux, evaluate \ ``[matlabroot '/bin/matlab']``\  in the Command Window. On Windows, evaluate \ ``[matlabroot '/bin/matlab.exe']``\  in the Command Window. The location provided does not have to be an absolute path so long as the operating system can resolve the path.  \ **Windows**\  Locations relative to the following will be understood:
+
+   ..
+
+   * The current working directory
+   * The \ ``Windows``\  directory only (no subdirectories are searched)
+   * The \ ``Windows\System32``\  directory
+   * Directories listed in the \ ``PATH``\  environment variable
+   * App Paths defined in the registry with key \ ``HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths``\
+
+   By default on Windows, MATLAB places an App Path entry in the registry so that \ ``matlab``\  can be used to launch MATLAB. If this property is not set, this App Path entry will be used.  \ **OS X**\  Locations relative to the following will be understood:
+
+   ..
+
+   * The current working directory
+   * Directories listed in the \ ``PATH``\  environment variable
+
+   On OS X, MATLAB is installed in \ ``/Applications/``\  as an application bundle. If this property is not set, the executable inside of the application bundle will be used.  \ **Linux**\  Locations relative to the following will be understood:
+
+   ..
+
+   * The current working directory
+   * Directories listed in the \ ``PATH``\  environment variable
+
+   During the installation process on Linux, MATLAB can create a symbolic link named \ ``matlab``\  that can be used to launch MATLAB. If this property is not set, this symbolic link will be used.
+
+   :param matlabLocation:
+
+setMatlabStartingDirectory
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setMatlabStartingDirectory(File dir)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets the starting directory for MATLAB.
+
+   :param dir:
+   :throws IllegalArgumentException: if \ ``dir``\  does not exist or is not a directory
+   :throws NullPointerException: if \ ``dir``\  is \ ``null``\
+
+setPort
+^^^^^^^
+
+.. java:method:: public final Builder setPort(int port)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets the port matlabcontrol uses to communicate with MATLAB. By default port \ ``2100``\  is used. The port value may not be negative. It is recommended to be in the range of \ ``1024``\  to \ ``49151``\ , but this range is not enforced. The port should be otherwise unused; however, any number of \ :java:ref:`MatlabProxyFactory`\  instances (even those running in completely separate applications) may use the same port. A \ ``MatlabProxyFactory``\  will only be able to connect to a previously controlled running session that was started by a factory using the same \ ``port``\ .
+
+   :param port:
+   :throws IllegalArgumentException: if port is negative
+
+setProxyTimeout
+^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setProxyTimeout(long timeout)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets the amount of time in milliseconds to wait for a proxy to be created when requested via the blocking method \ :java:ref:`MatlabProxyFactory.getProxy()`\ . By default this property is set to \ ``180000``\  milliseconds.
+
+   :param timeout:
+   :throws IllegalArgumentException: if timeout is negative
+
+setUsePreviouslyControlledSession
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setUsePreviouslyControlledSession(boolean usePreviouslyControlled)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets whether the factory should attempt to create a proxy that is connected to a running session of MATLAB. By default this property is set to \ ``false``\ .  When this property is \ ``true``\  all options which configure MATLAB such as being hidden or logging are ignored. The only criterion used is whether a session of MATLAB is available for connection. In order for the factory to connect to the session of MATLAB, it must know about the session. This will be the case if a factory started the session of MATLAB and that factory was configured to use the same port as specified by \ :java:ref:`setPort(int)`\  (or both are using the default port). The factory will only connect to a session that does not currently have a proxy controlling it from outside of MATLAB.  To determine if the proxy created is connected to an existing session of MATLAB call \ :java:ref:`MatlabProxy.isExistingSession()`\ . You may wish to clear MATLAB's environment using \ ``clear``\ . Doing so will not in anyway interfere with matlabcontrol (including executing \ ``clear java``\ ).  If a running session of MATLAB previously loaded classes defined in the controlling application, issues can arise. If your application does send to MATLAB or retrieve from MATLAB custom \ :java:ref:`java.io.Serializable`\  or \ :java:ref:`java.rmi.Remote`\  classes then these issues do not apply.  MATLAB sessions launched by matlabcontrol are able to load classes defined in the controlling application. When an existing session of MATLAB is connected to by a newly controlling application it will now be able to load classes defined by the newly controlling application but not the previous one. Several problems may arise due to this behavior. If an attempt is made to use a class defined in a previously controlling session that was not loaded while the application was controlling MATLAB then it will fail with a \ ``ClassNotFoundException``\  if it is not also defined in the newly controlling application. If the class is defined it will fail to load it if the serializable definition is not compatible. A similar issue is if the newly controlling application attempts to send to MATLAB an instance of a class that was also defined by the previously controlling application but the serializable definition is not compatible. These above issues can easily be encountered when developing an application while changing \ ``Serializable``\  or \ ``Remote``\  classes and using the same session of MATLAB repeatedly. This will particularly be the case if the classes do not define a \ ``serialVersionUID``\ . If multiple instances of the same application do not vary in their definition of \ ``Serializable``\  and \ ``Remote``\  classes then connecting to a previously controlled session of MATLAB will not cause any issues in this regard.
+
+   :param usePreviouslyControlled:
+
+setUseSingleComputationalThread
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public final Builder setUseSingleComputationalThread(boolean useSingleCompThread)
+   :outertype: MatlabProxyFactoryOptions.Builder
+
+   Sets whether to limit MATLAB to a single computational thread. By default this property is set to \ ``false``\ .
+
+   :param useSingleCompThread:
+

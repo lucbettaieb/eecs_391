@@ -1,0 +1,100 @@
+.. java:import:: java.util List
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util Hashtable
+
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: java.awt Insets
+
+.. java:import:: javax.swing Box
+
+.. java:import:: javax.swing JButton
+
+.. java:import:: javax.swing JToggleButton
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JLabel
+
+.. java:import:: javax.swing JSlider
+
+.. java:import:: javax.swing Timer
+
+.. java:import:: javax.swing SwingConstants
+
+.. java:import:: javax.swing.border LineBorder
+
+.. java:import:: javax.swing.border TitledBorder
+
+ControlPanel
+============
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class ControlPanel extends JPanel implements ActionListener
+
+Fields
+------
+CONTROL_FONT
+^^^^^^^^^^^^
+
+.. java:field:: public static final float CONTROL_FONT
+   :outertype: ControlPanel
+
+MAX_DELAY
+^^^^^^^^^
+
+.. java:field:: public static final int MAX_DELAY
+   :outertype: ControlPanel
+
+TITLE_FONT
+^^^^^^^^^^
+
+.. java:field:: public static final float TITLE_FONT
+   :outertype: ControlPanel
+
+Constructors
+------------
+ControlPanel
+^^^^^^^^^^^^
+
+.. java:constructor:: public ControlPanel()
+   :outertype: ControlPanel
+
+Methods
+-------
+actionPerformed
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void actionPerformed(ActionEvent e)
+   :outertype: ControlPanel
+
+addStepperListener
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addStepperListener(ActionListener l)
+   :outertype: ControlPanel
+
+removeStepperListener
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void removeStepperListener(ActionListener l)
+   :outertype: ControlPanel
+
+stopPlay
+^^^^^^^^
+
+.. java:method:: protected void stopPlay()
+   :outertype: ControlPanel
+

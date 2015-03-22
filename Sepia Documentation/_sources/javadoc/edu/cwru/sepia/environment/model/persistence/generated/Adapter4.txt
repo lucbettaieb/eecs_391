@@ -1,0 +1,26 @@
+.. java:import:: javax.xml.bind.annotation.adapters XmlAdapter
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+Adapter4
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: public class Adapter4 extends XmlAdapter<String, ActionFeedback>
+
+Methods
+-------
+marshal
+^^^^^^^
+
+.. java:method:: public String marshal(ActionFeedback value)
+   :outertype: Adapter4
+
+unmarshal
+^^^^^^^^^
+
+.. java:method:: public ActionFeedback unmarshal(String value)
+   :outertype: Adapter4
+

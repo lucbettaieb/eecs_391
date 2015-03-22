@@ -1,0 +1,32 @@
+.. java:import:: java.awt BorderLayout
+
+.. java:import:: java.awt GridLayout
+
+.. java:import:: java.io Serializable
+
+.. java:import:: javax.swing JFrame
+
+.. java:import:: javax.swing JPanel
+
+GameScreen
+==========
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class GameScreen extends JFrame implements Serializable
+
+Constructors
+------------
+GameScreen
+^^^^^^^^^^
+
+.. java:constructor:: public GameScreen(GamePanel canvas)
+   :outertype: GameScreen
+
+GameScreen
+^^^^^^^^^^
+
+.. java:constructor:: public GameScreen(GamePanel canvas, ControlPanel controlPanel, StatusPanel logPanel)
+   :outertype: GameScreen
+

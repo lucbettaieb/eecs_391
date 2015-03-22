@@ -1,0 +1,20 @@
+.. java:import:: javax.swing SwingUtilities
+
+SwingUtils
+==========
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public class SwingUtils
+
+Methods
+-------
+invokeNowOrLater
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public static void invokeNowOrLater(Runnable run)
+   :outertype: SwingUtils
+
+   Invokes \ ``run``\  immediately if this is the EDT; otherwise, the \ ``Runnable``\  is invoked on the EDT using \ ``invokeLater``\ .
+

@@ -1,0 +1,80 @@
+.. java:import:: java.io File
+
+.. java:import:: java.util.concurrent.atomic AtomicLong
+
+MatlabProxyFactoryOptions
+=========================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public class MatlabProxyFactoryOptions
+
+   Options that configure how a factory operates. Use a \ :java:ref:`Builder`\  to create an instance of this class.  This class is unconditionally thread-safe.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+   **See also:** :java:ref:`MatlabProxyFactory.MatlabProxyFactory(matlabcontrol.MatlabProxyFactoryOptions)`
+
+Methods
+-------
+getHidden
+^^^^^^^^^
+
+.. java:method::  boolean getHidden()
+   :outertype: MatlabProxyFactoryOptions
+
+getJavaDebugger
+^^^^^^^^^^^^^^^
+
+.. java:method::  Integer getJavaDebugger()
+   :outertype: MatlabProxyFactoryOptions
+
+getLicenseFile
+^^^^^^^^^^^^^^
+
+.. java:method::  String getLicenseFile()
+   :outertype: MatlabProxyFactoryOptions
+
+getLogFile
+^^^^^^^^^^
+
+.. java:method::  String getLogFile()
+   :outertype: MatlabProxyFactoryOptions
+
+getMatlabLocation
+^^^^^^^^^^^^^^^^^
+
+.. java:method::  String getMatlabLocation()
+   :outertype: MatlabProxyFactoryOptions
+
+getPort
+^^^^^^^
+
+.. java:method::  int getPort()
+   :outertype: MatlabProxyFactoryOptions
+
+getProxyTimeout
+^^^^^^^^^^^^^^^
+
+.. java:method::  long getProxyTimeout()
+   :outertype: MatlabProxyFactoryOptions
+
+getStartingDirectory
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  File getStartingDirectory()
+   :outertype: MatlabProxyFactoryOptions
+
+getUsePreviouslyControlledSession
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  boolean getUsePreviouslyControlledSession()
+   :outertype: MatlabProxyFactoryOptions
+
+getUseSingleComputationalThread
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  boolean getUseSingleComputationalThread()
+   :outertype: MatlabProxyFactoryOptions
+

@@ -1,0 +1,20 @@
+DefaultConfigurationGenerator
+=============================
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public class DefaultConfigurationGenerator
+
+   A utility class with a factory method to make a default configuration. It is highly recommended that a configuration be custom-made for the particular instance of \ :java:ref:`Runner`\ .
+
+Methods
+-------
+getDefaultConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static Configuration getDefaultConfiguration()
+   :outertype: DefaultConfigurationGenerator
+
+   Makes a default configuration (conquest with one episode with a large (2^16-1) time limit) It is highly recommended that a configuration be custom-made for the particular instance of \ :java:ref:`Runner`\ .
+

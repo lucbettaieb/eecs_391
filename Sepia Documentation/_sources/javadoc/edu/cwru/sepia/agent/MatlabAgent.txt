@@ -1,0 +1,90 @@
+.. java:import:: java.io InputStream
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+.. java:import:: matlabcontrol MatlabConnectionException
+
+.. java:import:: matlabcontrol MatlabInvocationException
+
+.. java:import:: matlabcontrol MatlabProxy
+
+.. java:import:: matlabcontrol MatlabProxyFactory
+
+.. java:import:: matlabcontrol MatlabProxyFactoryOptions
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+MatlabAgent
+===========
+
+.. java:package:: edu.cwru.sepia.agent
+   :noindex:
+
+.. java:type:: public class MatlabAgent extends Agent
+
+   This is a wrapper class for calling agent implemented in Matlab.
+
+   :author: Feng
+
+Fields
+------
+m_proxy
+^^^^^^^
+
+.. java:field::  MatlabProxy m_proxy
+   :outertype: MatlabAgent
+
+Constructors
+------------
+MatlabAgent
+^^^^^^^^^^^
+
+.. java:constructor:: public MatlabAgent(int playernum)
+   :outertype: MatlabAgent
+
+Methods
+-------
+initMatlabCon
+^^^^^^^^^^^^^
+
+.. java:method:: protected void initMatlabCon()
+   :outertype: MatlabAgent
+
+initialStep
+^^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> initialStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: MatlabAgent
+
+loadPlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void loadPlayerData(InputStream is)
+   :outertype: MatlabAgent
+
+middleStep
+^^^^^^^^^^
+
+.. java:method:: @Override public Map<Integer, Action> middleStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: MatlabAgent
+
+savePlayerData
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void savePlayerData(OutputStream os)
+   :outertype: MatlabAgent
+
+terminalStep
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void terminalStep(StateView newstate, History.HistoryView statehistory)
+   :outertype: MatlabAgent
+

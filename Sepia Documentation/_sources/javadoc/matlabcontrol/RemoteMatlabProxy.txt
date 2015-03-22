@@ -1,0 +1,117 @@
+.. java:import:: java.rmi MarshalException
+
+.. java:import:: java.rmi NoSuchObjectException
+
+.. java:import:: java.rmi RemoteException
+
+.. java:import:: java.rmi UnmarshalException
+
+.. java:import:: java.rmi.server UnicastRemoteObject
+
+.. java:import:: java.util Timer
+
+.. java:import:: java.util TimerTask
+
+RemoteMatlabProxy
+=================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class RemoteMatlabProxy extends MatlabProxy
+
+   Allows for calling MATLAB from \ **outside**\  of MATLAB.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Constructors
+------------
+RemoteMatlabProxy
+^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  RemoteMatlabProxy(JMIWrapperRemote internalProxy, RequestReceiver receiver, Identifier id, boolean existingSession)
+   :outertype: RemoteMatlabProxy
+
+   The proxy is never to be created outside of this package, it is to be constructed after a \ :java:ref:`JMIWrapperRemote`\  has been received via RMI.
+
+   :param internalProxy:
+   :param receiver:
+   :param id:
+   :param existingSession:
+
+Methods
+-------
+disconnect
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean disconnect()
+   :outertype: RemoteMatlabProxy
+
+eval
+^^^^
+
+.. java:method:: @Override public void eval(String command) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+exit
+^^^^
+
+.. java:method:: @Override public void exit() throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+feval
+^^^^^
+
+.. java:method:: @Override public void feval(String functionName, Object... args) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+getVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public Object getVariable(String variableName) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+init
+^^^^
+
+.. java:method::  void init()
+   :outertype: RemoteMatlabProxy
+
+   Initializes aspects of the proxy that cannot be done safely in the constructor without leaking a reference to \ ``this``\ .
+
+invokeAndWait
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public <T> T invokeAndWait(MatlabThreadCallable<T> callable) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+isConnected
+^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isConnected()
+   :outertype: RemoteMatlabProxy
+
+isRunningInsideMatlab
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isRunningInsideMatlab()
+   :outertype: RemoteMatlabProxy
+
+returningEval
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningEval(String command, int nargout) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+returningFeval
+^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Object[] returningFeval(String functionName, int nargout, Object... args) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+
+setVariable
+^^^^^^^^^^^
+
+.. java:method:: @Override public void setVariable(String variableName, Object value) throws MatlabInvocationException
+   :outertype: RemoteMatlabProxy
+

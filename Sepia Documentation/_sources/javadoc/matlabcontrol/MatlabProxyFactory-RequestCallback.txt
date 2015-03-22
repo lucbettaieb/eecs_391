@@ -1,0 +1,27 @@
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+MatlabProxyFactory.RequestCallback
+==================================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static interface RequestCallback
+   :outertype: MatlabProxyFactory
+
+   Provides the requested proxy.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+proxyCreated
+^^^^^^^^^^^^
+
+.. java:method:: public void proxyCreated(MatlabProxy proxy)
+   :outertype: MatlabProxyFactory.RequestCallback
+
+   Called when the proxy has been created. Because requests have no timeout, there is no guarantee that this method will ever be called.
+
+   :param proxy:
+

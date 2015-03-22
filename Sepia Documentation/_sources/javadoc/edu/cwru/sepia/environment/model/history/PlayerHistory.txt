@@ -1,0 +1,110 @@
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+PlayerHistory
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class PlayerHistory implements DeepEquatable
+
+   The history specific to a player. Contains the events seen by the player, as well as loggers related to the actions of the corresponding player.
+
+   :author: The Condor
+
+Fields
+------
+playerNumber
+^^^^^^^^^^^^
+
+.. java:field:: final int playerNumber
+   :outertype: PlayerHistory
+
+Constructors
+------------
+PlayerHistory
+^^^^^^^^^^^^^
+
+.. java:constructor:: public PlayerHistory(int playerNumber)
+   :outertype: PlayerHistory
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: public boolean deepEquals(Object other)
+   :outertype: PlayerHistory
+
+getCommandFeedback
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ActionResultLogger getCommandFeedback()
+   :outertype: PlayerHistory
+
+getCommandsIssued
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ActionLogger getCommandsIssued()
+   :outertype: PlayerHistory
+
+getEventLogger
+^^^^^^^^^^^^^^
+
+.. java:method:: public EventLogger getEventLogger()
+   :outertype: PlayerHistory
+
+getPlayerNumber
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPlayerNumber()
+   :outertype: PlayerHistory
+
+   Get the number of the player whose history is recorded here.
+
+getPrimitiveFeedback
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public ActionResultLogger getPrimitiveFeedback()
+   :outertype: PlayerHistory
+
+setCommandFeedback
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCommandFeedback(ActionResultLogger commandFeedback)
+   :outertype: PlayerHistory
+
+   Directly set the action progress/results log. Useful for saving/loading.
+
+   :param commandFeedback:
+
+setCommandsIssued
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCommandsIssued(ActionLogger commandsIssued)
+   :outertype: PlayerHistory
+
+   Directly set the commands issued. Useful for saving/loading
+
+   :param commandsIssued:
+
+setEventLogger
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setEventLogger(EventLogger eventLogger)
+   :outertype: PlayerHistory
+
+   Directly set the event logger. Useful for saving/loading.
+
+   :param eventLogger:
+
+setPrimitivesExecuted
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPrimitivesExecuted(ActionResultLogger actionsExecuted)
+   :outertype: PlayerHistory
+
+   Directly set the actions executed log. Useful for saving/loading.
+
+   :param actionsExecuted:
+

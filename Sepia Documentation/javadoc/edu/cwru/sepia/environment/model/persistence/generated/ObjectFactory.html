@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ObjectFactory &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.persistence.generated" href="package-index.html"/>
+        <link rel="next" title="XmlAction" href="XmlAction.html"/>
+        <link rel="prev" title="Adapter5" href="Adapter5.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a> &raquo;</li>
+      
+    <li>ObjectFactory</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/persistence/generated/ObjectFactory.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="objectfactory">
+<h1>ObjectFactory<a class="headerlink" href="#objectfactory" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory">
+public class <code class="descname">ObjectFactory</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>This object contains factory methods for each Java content interface and Java element interface generated in the edu.cwru.sepia.environment.model.persistence.generated package.</p>
+<p>An ObjectFactory allows you to programatically construct new instances of the Java representation for XML content. The Java representation of XML content can consist of schema derived interfaces and classes representing the binding of schema type definitions, element declarations and model groups. Factory methods for each of these are provided in this class.</p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>ObjectFactory<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.ObjectFactory()">
+public <code class="descname">ObjectFactory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.ObjectFactory()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: edu.cwru.sepia.environment.model.persistence.generated</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="createxmlaction">
+<h3>createXmlAction<a class="headerlink" href="#createxmlaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlAction()">
+public <a class="reference internal" href="XmlAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlAction">XmlAction</a> <code class="descname">createXmlAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionentry">
+<h3>createXmlActionEntry<a class="headerlink" href="#createxmlactionentry" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionEntry()">
+public <a class="reference internal" href="XmlActionEntry.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionEntry" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionEntry">XmlActionEntry</a> <code class="descname">createXmlActionEntry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionEntry()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionEntry.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionEntry" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionEntry"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionEntry</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionlist">
+<h3>createXmlActionList<a class="headerlink" href="#createxmlactionlist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionList()">
+public <a class="reference internal" href="XmlActionList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionList">XmlActionList</a> <code class="descname">createXmlActionList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionList"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionlogger">
+<h3>createXmlActionLogger<a class="headerlink" href="#createxmlactionlogger" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionLogger()">
+public <a class="reference internal" href="XmlActionLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionLogger">XmlActionLogger</a> <code class="descname">createXmlActionLogger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionLogger()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionLogger"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionLogger</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionresult">
+<h3>createXmlActionResult<a class="headerlink" href="#createxmlactionresult" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResult()">
+public <a class="reference internal" href="XmlActionResult.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResult" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResult">XmlActionResult</a> <code class="descname">createXmlActionResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResult()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionResult.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResult" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResult"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionResult</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionresultentry">
+<h3>createXmlActionResultEntry<a class="headerlink" href="#createxmlactionresultentry" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultEntry()">
+public <a class="reference internal" href="XmlActionResultEntry.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultEntry" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultEntry">XmlActionResultEntry</a> <code class="descname">createXmlActionResultEntry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultEntry()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionResultEntry.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultEntry" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultEntry"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionResultEntry</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionresultlist">
+<h3>createXmlActionResultList<a class="headerlink" href="#createxmlactionresultlist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultList()">
+public <a class="reference internal" href="XmlActionResultList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultList">XmlActionResultList</a> <code class="descname">createXmlActionResultList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionResultList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultList"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionResultList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlactionresultlogger">
+<h3>createXmlActionResultLogger<a class="headerlink" href="#createxmlactionresultlogger" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultLogger()">
+public <a class="reference internal" href="XmlActionResultLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultLogger">XmlActionResultLogger</a> <code class="descname">createXmlActionResultLogger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlActionResultLogger()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlActionResultLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlActionResultLogger"><code class="xref java java-ref docutils literal"><span class="pre">XmlActionResultLogger</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlbirthlog">
+<h3>createXmlBirthLog<a class="headerlink" href="#createxmlbirthlog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlBirthLog()">
+public <a class="reference internal" href="XmlBirthLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLog">XmlBirthLog</a> <code class="descname">createXmlBirthLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlBirthLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlBirthLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlBirthLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlbirthloglist">
+<h3>createXmlBirthLogList<a class="headerlink" href="#createxmlbirthloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlBirthLogList()">
+public <a class="reference internal" href="XmlBirthLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLogList">XmlBirthLogList</a> <code class="descname">createXmlBirthLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlBirthLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlBirthLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlBirthLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlBirthLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmldamagelog">
+<h3>createXmlDamageLog<a class="headerlink" href="#createxmldamagelog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDamageLog()">
+public <a class="reference internal" href="XmlDamageLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLog">XmlDamageLog</a> <code class="descname">createXmlDamageLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDamageLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlDamageLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlDamageLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmldamageloglist">
+<h3>createXmlDamageLogList<a class="headerlink" href="#createxmldamageloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDamageLogList()">
+public <a class="reference internal" href="XmlDamageLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLogList">XmlDamageLogList</a> <code class="descname">createXmlDamageLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDamageLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlDamageLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDamageLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlDamageLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmldeathlog">
+<h3>createXmlDeathLog<a class="headerlink" href="#createxmldeathlog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDeathLog()">
+public <a class="reference internal" href="XmlDeathLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLog">XmlDeathLog</a> <code class="descname">createXmlDeathLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDeathLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlDeathLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlDeathLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmldeathloglist">
+<h3>createXmlDeathLogList<a class="headerlink" href="#createxmldeathloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDeathLogList()">
+public <a class="reference internal" href="XmlDeathLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLogList">XmlDeathLogList</a> <code class="descname">createXmlDeathLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDeathLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlDeathLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDeathLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlDeathLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmldirectedaction">
+<h3>createXmlDirectedAction<a class="headerlink" href="#createxmldirectedaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDirectedAction()">
+public <a class="reference internal" href="XmlDirectedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDirectedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDirectedAction">XmlDirectedAction</a> <code class="descname">createXmlDirectedAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlDirectedAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlDirectedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlDirectedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlDirectedAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlDirectedAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmleventlogger">
+<h3>createXmlEventLogger<a class="headerlink" href="#createxmleventlogger" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlEventLogger()">
+public <a class="reference internal" href="XmlEventLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlEventLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlEventLogger">XmlEventLogger</a> <code class="descname">createXmlEventLogger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlEventLogger()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlEventLogger.html#edu.cwru.sepia.environment.model.persistence.generated.XmlEventLogger" title="edu.cwru.sepia.environment.model.persistence.generated.XmlEventLogger"><code class="xref java java-ref docutils literal"><span class="pre">XmlEventLogger</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlhistory">
+<h3>createXmlHistory<a class="headerlink" href="#createxmlhistory" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlHistory()">
+public <a class="reference internal" href="XmlHistory.html#edu.cwru.sepia.environment.model.persistence.generated.XmlHistory" title="edu.cwru.sepia.environment.model.persistence.generated.XmlHistory">XmlHistory</a> <code class="descname">createXmlHistory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlHistory()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlHistory.html#edu.cwru.sepia.environment.model.persistence.generated.XmlHistory" title="edu.cwru.sepia.environment.model.persistence.generated.XmlHistory"><code class="xref java java-ref docutils literal"><span class="pre">XmlHistory</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmllocatedaction">
+<h3>createXmlLocatedAction<a class="headerlink" href="#createxmllocatedaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlLocatedAction()">
+public <a class="reference internal" href="XmlLocatedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedAction">XmlLocatedAction</a> <code class="descname">createXmlLocatedAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlLocatedAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlLocatedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlLocatedAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmllocatedproductionaction">
+<h3>createXmlLocatedProductionAction<a class="headerlink" href="#createxmllocatedproductionaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlLocatedProductionAction()">
+public <a class="reference internal" href="XmlLocatedProductionAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedProductionAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedProductionAction">XmlLocatedProductionAction</a> <code class="descname">createXmlLocatedProductionAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlLocatedProductionAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlLocatedProductionAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedProductionAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlLocatedProductionAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlLocatedProductionAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlplayer">
+<h3>createXmlPlayer<a class="headerlink" href="#createxmlplayer" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlPlayer()">
+public <a class="reference internal" href="XmlPlayer.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer">XmlPlayer</a> <code class="descname">createXmlPlayer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlPlayer()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlPlayer.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayer"><code class="xref java java-ref docutils literal"><span class="pre">XmlPlayer</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlplayerhistory">
+<h3>createXmlPlayerHistory<a class="headerlink" href="#createxmlplayerhistory" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlPlayerHistory()">
+public <a class="reference internal" href="XmlPlayerHistory.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayerHistory" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayerHistory">XmlPlayerHistory</a> <code class="descname">createXmlPlayerHistory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlPlayerHistory()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlPlayerHistory.html#edu.cwru.sepia.environment.model.persistence.generated.XmlPlayerHistory" title="edu.cwru.sepia.environment.model.persistence.generated.XmlPlayerHistory"><code class="xref java java-ref docutils literal"><span class="pre">XmlPlayerHistory</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlproductionaction">
+<h3>createXmlProductionAction<a class="headerlink" href="#createxmlproductionaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlProductionAction()">
+public <a class="reference internal" href="XmlProductionAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlProductionAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlProductionAction">XmlProductionAction</a> <code class="descname">createXmlProductionAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlProductionAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlProductionAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlProductionAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlProductionAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlProductionAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcedropofflog">
+<h3>createXmlResourceDropoffLog<a class="headerlink" href="#createxmlresourcedropofflog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceDropoffLog()">
+public <a class="reference internal" href="XmlResourceDropoffLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLog">XmlResourceDropoffLog</a> <code class="descname">createXmlResourceDropoffLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceDropoffLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceDropoffLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceDropoffLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcedropoffloglist">
+<h3>createXmlResourceDropoffLogList<a class="headerlink" href="#createxmlresourcedropoffloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceDropoffLogList()">
+public <a class="reference internal" href="XmlResourceDropoffLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLogList">XmlResourceDropoffLogList</a> <code class="descname">createXmlResourceDropoffLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceDropoffLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceDropoffLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceDropoffLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceDropoffLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcenode">
+<h3>createXmlResourceNode<a class="headerlink" href="#createxmlresourcenode" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNode()">
+public <a class="reference internal" href="XmlResourceNode.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode">XmlResourceNode</a> <code class="descname">createXmlResourceNode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNode()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceNode.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNode"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceNode</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcenodeexhaustionlog">
+<h3>createXmlResourceNodeExhaustionLog<a class="headerlink" href="#createxmlresourcenodeexhaustionlog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNodeExhaustionLog()">
+public <a class="reference internal" href="XmlResourceNodeExhaustionLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLog">XmlResourceNodeExhaustionLog</a> <code class="descname">createXmlResourceNodeExhaustionLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNodeExhaustionLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceNodeExhaustionLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceNodeExhaustionLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcenodeexhaustionloglist">
+<h3>createXmlResourceNodeExhaustionLogList<a class="headerlink" href="#createxmlresourcenodeexhaustionloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNodeExhaustionLogList()">
+public <a class="reference internal" href="XmlResourceNodeExhaustionLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLogList">XmlResourceNodeExhaustionLogList</a> <code class="descname">createXmlResourceNodeExhaustionLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceNodeExhaustionLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceNodeExhaustionLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceNodeExhaustionLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceNodeExhaustionLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcepickuplog">
+<h3>createXmlResourcePickupLog<a class="headerlink" href="#createxmlresourcepickuplog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourcePickupLog()">
+public <a class="reference internal" href="XmlResourcePickupLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog">XmlResourcePickupLog</a> <code class="descname">createXmlResourcePickupLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourcePickupLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourcePickupLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourcePickupLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcepickuploglist">
+<h3>createXmlResourcePickupLogList<a class="headerlink" href="#createxmlresourcepickuploglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourcePickupLogList()">
+public <a class="reference internal" href="XmlResourcePickupLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLogList">XmlResourcePickupLogList</a> <code class="descname">createXmlResourcePickupLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourcePickupLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourcePickupLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourcePickupLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourcePickupLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlresourcequantity">
+<h3>createXmlResourceQuantity<a class="headerlink" href="#createxmlresourcequantity" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceQuantity()">
+public <a class="reference internal" href="XmlResourceQuantity.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceQuantity" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceQuantity">XmlResourceQuantity</a> <code class="descname">createXmlResourceQuantity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlResourceQuantity()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlResourceQuantity.html#edu.cwru.sepia.environment.model.persistence.generated.XmlResourceQuantity" title="edu.cwru.sepia.environment.model.persistence.generated.XmlResourceQuantity"><code class="xref java java-ref docutils literal"><span class="pre">XmlResourceQuantity</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlrevealedresourcenodelog">
+<h3>createXmlRevealedResourceNodeLog<a class="headerlink" href="#createxmlrevealedresourcenodelog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlRevealedResourceNodeLog()">
+public <a class="reference internal" href="XmlRevealedResourceNodeLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlRevealedResourceNodeLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlRevealedResourceNodeLog">XmlRevealedResourceNodeLog</a> <code class="descname">createXmlRevealedResourceNodeLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlRevealedResourceNodeLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlRevealedResourceNodeLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlRevealedResourceNodeLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlRevealedResourceNodeLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlRevealedResourceNodeLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlstate">
+<h3>createXmlState<a class="headerlink" href="#createxmlstate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlState()">
+public <a class="reference internal" href="XmlState.html#edu.cwru.sepia.environment.model.persistence.generated.XmlState" title="edu.cwru.sepia.environment.model.persistence.generated.XmlState">XmlState</a> <code class="descname">createXmlState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlState()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlState.html#edu.cwru.sepia.environment.model.persistence.generated.XmlState" title="edu.cwru.sepia.environment.model.persistence.generated.XmlState"><code class="xref java java-ref docutils literal"><span class="pre">XmlState</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmltargetedaction">
+<h3>createXmlTargetedAction<a class="headerlink" href="#createxmltargetedaction" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlTargetedAction()">
+public <a class="reference internal" href="XmlTargetedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlTargetedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlTargetedAction">XmlTargetedAction</a> <code class="descname">createXmlTargetedAction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlTargetedAction()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlTargetedAction.html#edu.cwru.sepia.environment.model.persistence.generated.XmlTargetedAction" title="edu.cwru.sepia.environment.model.persistence.generated.XmlTargetedAction"><code class="xref java java-ref docutils literal"><span class="pre">XmlTargetedAction</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlunit">
+<h3>createXmlUnit<a class="headerlink" href="#createxmlunit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUnit()">
+public <a class="reference internal" href="XmlUnit.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUnit" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUnit">XmlUnit</a> <code class="descname">createXmlUnit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUnit()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlUnit.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUnit" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUnit"><code class="xref java java-ref docutils literal"><span class="pre">XmlUnit</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlunittemplate">
+<h3>createXmlUnitTemplate<a class="headerlink" href="#createxmlunittemplate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUnitTemplate()">
+public <a class="reference internal" href="XmlUnitTemplate.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate">XmlUnitTemplate</a> <code class="descname">createXmlUnitTemplate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUnitTemplate()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlUnitTemplate.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate"><code class="xref java java-ref docutils literal"><span class="pre">XmlUnitTemplate</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlupgradelog">
+<h3>createXmlUpgradeLog<a class="headerlink" href="#createxmlupgradelog" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeLog()">
+public <a class="reference internal" href="XmlUpgradeLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLog">XmlUpgradeLog</a> <code class="descname">createXmlUpgradeLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeLog()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlUpgradeLog.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLog" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLog"><code class="xref java java-ref docutils literal"><span class="pre">XmlUpgradeLog</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlupgradeloglist">
+<h3>createXmlUpgradeLogList<a class="headerlink" href="#createxmlupgradeloglist" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeLogList()">
+public <a class="reference internal" href="XmlUpgradeLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLogList">XmlUpgradeLogList</a> <code class="descname">createXmlUpgradeLogList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeLogList()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlUpgradeLogList.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLogList" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeLogList"><code class="xref java java-ref docutils literal"><span class="pre">XmlUpgradeLogList</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="createxmlupgradetemplate">
+<h3>createXmlUpgradeTemplate<a class="headerlink" href="#createxmlupgradetemplate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeTemplate()">
+public <a class="reference internal" href="XmlUpgradeTemplate.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeTemplate" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeTemplate">XmlUpgradeTemplate</a> <code class="descname">createXmlUpgradeTemplate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.ObjectFactory.createXmlUpgradeTemplate()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of <a class="reference internal" href="XmlUpgradeTemplate.html#edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeTemplate" title="edu.cwru.sepia.environment.model.persistence.generated.XmlUpgradeTemplate"><code class="xref java java-ref docutils literal"><span class="pre">XmlUpgradeTemplate</span></code></a></p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XmlAction.html" class="btn btn-neutral float-right" title="XmlAction"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Adapter5.html" class="btn btn-neutral" title="Adapter5"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

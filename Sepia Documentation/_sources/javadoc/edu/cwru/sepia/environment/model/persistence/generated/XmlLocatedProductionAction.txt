@@ -1,0 +1,102 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlLocatedProductionAction
+==========================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlLocatedProductionAction extends XmlAction
+
+   Java class for LocatedProductionAction complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="LocatedProductionAction">
+        <complexContent>
+          <extension base="{}Action">
+            <sequence>
+              <element name="x" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="y" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="templateId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+templateId
+^^^^^^^^^^
+
+.. java:field:: protected int templateId
+   :outertype: XmlLocatedProductionAction
+
+x
+^
+
+.. java:field:: protected int x
+   :outertype: XmlLocatedProductionAction
+
+y
+^
+
+.. java:field:: protected int y
+   :outertype: XmlLocatedProductionAction
+
+Methods
+-------
+getTemplateId
+^^^^^^^^^^^^^
+
+.. java:method:: public int getTemplateId()
+   :outertype: XmlLocatedProductionAction
+
+   Gets the value of the templateId property.
+
+getX
+^^^^
+
+.. java:method:: public int getX()
+   :outertype: XmlLocatedProductionAction
+
+   Gets the value of the x property.
+
+getY
+^^^^
+
+.. java:method:: public int getY()
+   :outertype: XmlLocatedProductionAction
+
+   Gets the value of the y property.
+
+setTemplateId
+^^^^^^^^^^^^^
+
+.. java:method:: public void setTemplateId(int value)
+   :outertype: XmlLocatedProductionAction
+
+   Sets the value of the templateId property.
+
+setX
+^^^^
+
+.. java:method:: public void setX(int value)
+   :outertype: XmlLocatedProductionAction
+
+   Sets the value of the x property.
+
+setY
+^^^^
+
+.. java:method:: public void setY(int value)
+   :outertype: XmlLocatedProductionAction
+
+   Sets the value of the y property.
+

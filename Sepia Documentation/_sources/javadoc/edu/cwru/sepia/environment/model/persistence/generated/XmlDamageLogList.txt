@@ -1,0 +1,87 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util List
+
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlDamageLogList
+================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlDamageLogList
+
+   Java class for DamageLogList complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="DamageLogList">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="roundNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <sequence maxOccurs="unbounded" minOccurs="0">
+                <element name="damageLog" type="{}DamageLog"/>
+              </sequence>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+damageLog
+^^^^^^^^^
+
+.. java:field:: protected List<XmlDamageLog> damageLog
+   :outertype: XmlDamageLogList
+
+roundNumber
+^^^^^^^^^^^
+
+.. java:field:: protected int roundNumber
+   :outertype: XmlDamageLogList
+
+Methods
+-------
+getDamageLog
+^^^^^^^^^^^^
+
+.. java:method:: public List<XmlDamageLog> getDamageLog()
+   :outertype: XmlDamageLogList
+
+   Gets the value of the damageLog property.
+
+   This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a \ ``set``\  method for the damageLog property.
+
+   For example, to add a new item, do as follows:
+
+   .. parsed-literal::
+
+      getDamageLog().add(newItem);
+
+   Objects of the following type(s) are allowed in the list \ :java:ref:`XmlDamageLog`\
+
+getRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRoundNumber()
+   :outertype: XmlDamageLogList
+
+   Gets the value of the roundNumber property.
+
+setRoundNumber
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setRoundNumber(int value)
+   :outertype: XmlDamageLogList
+
+   Sets the value of the roundNumber property.
+

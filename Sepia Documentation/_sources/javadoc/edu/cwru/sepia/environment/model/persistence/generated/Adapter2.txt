@@ -1,0 +1,26 @@
+.. java:import:: javax.xml.bind.annotation.adapters XmlAdapter
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+Adapter2
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: public class Adapter2 extends XmlAdapter<String, Direction>
+
+Methods
+-------
+marshal
+^^^^^^^
+
+.. java:method:: public String marshal(Direction value)
+   :outertype: Adapter2
+
+unmarshal
+^^^^^^^^^
+
+.. java:method:: public Direction unmarshal(String value)
+   :outertype: Adapter2
+

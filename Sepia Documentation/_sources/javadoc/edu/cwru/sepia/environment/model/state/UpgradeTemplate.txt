@@ -1,0 +1,134 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+UpgradeTemplate
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class UpgradeTemplate extends Template<Upgrade>
+
+Constructors
+------------
+UpgradeTemplate
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public UpgradeTemplate(int ID)
+   :outertype: UpgradeTemplate
+
+Methods
+-------
+addAffectedUnit
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void addAffectedUnit(Integer templateID)
+   :outertype: UpgradeTemplate
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: UpgradeTemplate
+
+deprecateOldView
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void deprecateOldView()
+   :outertype: UpgradeTemplate
+
+getAffectedUnits
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getAffectedUnits()
+   :outertype: UpgradeTemplate
+
+getArmorChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getArmorChange()
+   :outertype: UpgradeTemplate
+
+getBasicAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getBasicAttackChange()
+   :outertype: UpgradeTemplate
+
+getHealthChange
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getHealthChange()
+   :outertype: UpgradeTemplate
+
+getPiercingAttackChange
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttackChange()
+   :outertype: UpgradeTemplate
+
+getRangeChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getRangeChange()
+   :outertype: UpgradeTemplate
+
+getSightRangeChange
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRangeChange()
+   :outertype: UpgradeTemplate
+
+getView
+^^^^^^^
+
+.. java:method:: @Override public UpgradeTemplateView getView()
+   :outertype: UpgradeTemplate
+
+produceInstance
+^^^^^^^^^^^^^^^
+
+.. java:method:: public Upgrade produceInstance(IDDistributer idsource)
+   :outertype: UpgradeTemplate
+
+setArmorChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setArmorChange(int armorChange)
+   :outertype: UpgradeTemplate
+
+setBasicAttackChange
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setBasicAttackChange(int basicAttackChange)
+   :outertype: UpgradeTemplate
+
+setHealthChange
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setHealthChange(int healthChange)
+   :outertype: UpgradeTemplate
+
+setPiercingAttackChange
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPiercingAttackChange(int piercingAttackchange)
+   :outertype: UpgradeTemplate
+
+setRangeChange
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setRangeChange(int rangeChange)
+   :outertype: UpgradeTemplate
+
+setSightRangeChange
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setSightRangeChange(int sightRangeChange)
+   :outertype: UpgradeTemplate
+

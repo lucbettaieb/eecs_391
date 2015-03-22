@@ -1,0 +1,155 @@
+.. java:import:: java.io ByteArrayOutputStream
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.io ObjectOutputStream
+
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collection
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Map.Entry
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template.TemplateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+State.StateBuilder
+==================
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: @SuppressWarnings public static class StateBuilder
+   :outertype: State
+
+Constructors
+------------
+StateBuilder
+^^^^^^^^^^^^
+
+.. java:constructor:: public StateBuilder()
+   :outertype: State.StateBuilder
+
+Methods
+-------
+addPlayer
+^^^^^^^^^
+
+.. java:method:: public void addPlayer(PlayerState player)
+   :outertype: State.StateBuilder
+
+addResource
+^^^^^^^^^^^
+
+.. java:method:: public void addResource(ResourceNode r)
+   :outertype: State.StateBuilder
+
+addTemplate
+^^^^^^^^^^^
+
+.. java:method:: public void addTemplate(Template t)
+   :outertype: State.StateBuilder
+
+addUnit
+^^^^^^^
+
+.. java:method:: public void addUnit(Unit u, int x, int y)
+   :outertype: State.StateBuilder
+
+build
+^^^^^
+
+.. java:method:: public State build()
+   :outertype: State.StateBuilder
+
+   Completes construction of the state and returns a reference to the state. Subsequent calls to this method will result in returning null.
+
+   :return: - the state being built if this is the first call for this object, null otherwise
+
+closed
+^^^^^^
+
+.. java:method:: public boolean closed()
+   :outertype: State.StateBuilder
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: public Template getTemplate(int player, String name)
+   :outertype: State.StateBuilder
+
+getTextString
+^^^^^^^^^^^^^
+
+.. java:method:: public String getTextString()
+   :outertype: State.StateBuilder
+
+hasTemplates
+^^^^^^^^^^^^
+
+.. java:method:: public boolean hasTemplates(int player)
+   :outertype: State.StateBuilder
+
+positionAvailable
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public boolean positionAvailable(int x, int y)
+   :outertype: State.StateBuilder
+
+setIDDistributerTargetMax
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setIDDistributerTargetMax(int newmax)
+   :outertype: State.StateBuilder
+
+setIDDistributerTemplateMax
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setIDDistributerTemplateMax(int newmax)
+   :outertype: State.StateBuilder
+
+setResourceAmount
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setResourceAmount(int player, ResourceType resource, int amount)
+   :outertype: State.StateBuilder
+
+setSize
+^^^^^^^
+
+.. java:method:: public void setSize(int x, int y)
+   :outertype: State.StateBuilder
+
+setSupplyCap
+^^^^^^^^^^^^
+
+.. java:method:: public void setSupplyCap(int player, int supply)
+   :outertype: State.StateBuilder
+
+setTurn
+^^^^^^^
+
+.. java:method:: public void setTurn(int turn)
+   :outertype: State.StateBuilder
+

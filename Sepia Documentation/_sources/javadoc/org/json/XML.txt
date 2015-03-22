@@ -1,0 +1,167 @@
+.. java:import:: java.util Iterator
+
+XML
+===
+
+.. java:package:: org.json
+   :noindex:
+
+.. java:type:: public class XML
+
+   This provides static methods to convert an XML text into a JSONObject, and to covert a JSONObject into an XML text.
+
+   :author: JSON.org
+
+Fields
+------
+AMP
+^^^
+
+.. java:field:: public static final Character AMP
+   :outertype: XML
+
+   The Character '&'.
+
+APOS
+^^^^
+
+.. java:field:: public static final Character APOS
+   :outertype: XML
+
+   The Character '''.
+
+BANG
+^^^^
+
+.. java:field:: public static final Character BANG
+   :outertype: XML
+
+   The Character '!'.
+
+EQ
+^^
+
+.. java:field:: public static final Character EQ
+   :outertype: XML
+
+   The Character '='.
+
+GT
+^^
+
+.. java:field:: public static final Character GT
+   :outertype: XML
+
+   The Character '>'.
+
+LT
+^^
+
+.. java:field:: public static final Character LT
+   :outertype: XML
+
+   The Character '
+
+QUEST
+^^^^^
+
+.. java:field:: public static final Character QUEST
+   :outertype: XML
+
+   The Character '?'.
+
+QUOT
+^^^^
+
+.. java:field:: public static final Character QUOT
+   :outertype: XML
+
+   The Character '"'.
+
+SLASH
+^^^^^
+
+.. java:field:: public static final Character SLASH
+   :outertype: XML
+
+   The Character '/'.
+
+Methods
+-------
+escape
+^^^^^^
+
+.. java:method:: public static String escape(String string)
+   :outertype: XML
+
+   Replace special characters with XML escapes:
+
+   .. parsed-literal::
+
+      & (ampersand) is replaced by &amp;
+      < (less than) is replaced by &lt;
+      > (greater than) is replaced by &gt;
+      " (double quote) is replaced by &quot;
+
+   :param string: The string to be escaped.
+   :return: The escaped string.
+
+noSpace
+^^^^^^^
+
+.. java:method:: public static void noSpace(String string) throws JSONException
+   :outertype: XML
+
+   Throw an exception if the string contains whitespace. Whitespace is not allowed in tagNames and attributes.
+
+   :param string:
+   :throws JSONException:
+
+stringToValue
+^^^^^^^^^^^^^
+
+.. java:method:: public static Object stringToValue(String string)
+   :outertype: XML
+
+   Try to convert a string into a number, boolean, or null. If the string can't be converted, return the string. This is much less ambitious than JSONObject.stringToValue, especially because it does not attempt to convert plus forms, octal forms, hex forms, or E forms lacking decimal points.
+
+   :param string: A String.
+   :return: A simple JSON value.
+
+toJSONObject
+^^^^^^^^^^^^
+
+.. java:method:: public static JSONObject toJSONObject(String string) throws JSONException
+   :outertype: XML
+
+   Convert a well-formed (but not necessarily valid) XML string into a JSONObject. Some information may be lost in this transformation because JSON is a data format and XML is a document format. XML uses elements, attributes, and content text, while JSON uses unordered collections of name/value pairs and arrays of values. JSON does not does not like to distinguish between elements and attributes. Sequences of similar elements are represented as JSONArrays. Content text may be placed in a "content" member. Comments, prologs, DTDs, and \ ``<[ [ ]]>``\  are ignored.
+
+   :param string: The source string.
+   :throws JSONException:
+   :return: A JSONObject containing the structured data from the XML string.
+
+toString
+^^^^^^^^
+
+.. java:method:: public static String toString(Object object) throws JSONException
+   :outertype: XML
+
+   Convert a JSONObject into a well-formed, element-normal XML string.
+
+   :param object: A JSONObject.
+   :throws JSONException:
+   :return: A string.
+
+toString
+^^^^^^^^
+
+.. java:method:: public static String toString(Object object, String tagName) throws JSONException
+   :outertype: XML
+
+   Convert a JSONObject into a well-formed, element-normal XML string.
+
+   :param object: A JSONObject.
+   :param tagName: The optional name of the enclosing tag.
+   :throws JSONException:
+   :return: A string.
+

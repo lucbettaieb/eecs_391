@@ -1,0 +1,89 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Dimension
+
+.. java:import:: java.awt Font
+
+.. java:import:: java.awt Graphics
+
+.. java:import:: java.awt.event ActionEvent
+
+.. java:import:: java.awt.event ActionListener
+
+.. java:import:: java.awt.event MouseAdapter
+
+.. java:import:: java.awt.event MouseEvent
+
+.. java:import:: java.util List
+
+.. java:import:: javax.swing JMenuItem
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing AbstractAction
+
+.. java:import:: javax.swing JPopupMenu
+
+.. java:import:: javax.swing KeyStroke
+
+.. java:import:: javax.swing InputMap
+
+.. java:import:: javax.swing ActionMap
+
+.. java:import:: javax.swing JComponent
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+.. java:import:: edu.cwru.sepia.environment.model.history DamageLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history RevealedResourceNodeLog
+
+.. java:import:: edu.cwru.sepia.environment.model.history History.HistoryView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.ResourceView
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit.UnitView
+
+GamePanel.ShiftAction
+=====================
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class ShiftAction extends AbstractAction
+   :outertype: GamePanel
+
+Fields
+------
+shiftDirection
+^^^^^^^^^^^^^^
+
+.. java:field::  ShiftDirection shiftDirection
+   :outertype: GamePanel.ShiftAction
+
+Constructors
+------------
+ShiftAction
+^^^^^^^^^^^
+
+.. java:constructor:: public ShiftAction(ShiftDirection shiftDirection)
+   :outertype: GamePanel.ShiftAction
+
+Methods
+-------
+actionPerformed
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void actionPerformed(ActionEvent e)
+   :outertype: GamePanel.ShiftAction
+

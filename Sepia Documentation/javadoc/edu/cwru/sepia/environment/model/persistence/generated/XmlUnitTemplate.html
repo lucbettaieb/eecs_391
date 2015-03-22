@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XmlUnitTemplate &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="../../../../../../../../index.html"/>
+        <link rel="up" title="edu.cwru.sepia.environment.model.persistence.generated" href="package-index.html"/>
+        <link rel="next" title="XmlUpgradeLog" href="XmlUpgradeLog.html"/>
+        <link rel="prev" title="XmlUnit" href="XmlUnit.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../../../../../../index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../running_sepia.html">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../running_sepia.html#manual-control">Manual Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../../combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../../packages.html">Javadoc</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../../index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../../packages.html">Javadoc</a> &raquo;</li>
+      
+          <li><a href="package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a> &raquo;</li>
+      
+    <li>XmlUnitTemplate</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../../../../../../_sources/javadoc/edu/cwru/sepia/environment/model/persistence/generated/XmlUnitTemplate.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="xmlunittemplate">
+<h1>XmlUnitTemplate<a class="headerlink" href="#xmlunittemplate" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate">
+public class <code class="descname">XmlUnitTemplate</code> extends <a class="reference internal" href="XmlTemplate.html#edu.cwru.sepia.environment.model.persistence.generated.XmlTemplate" title="edu.cwru.sepia.environment.model.persistence.generated.XmlTemplate">XmlTemplate</a><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Java class for UnitTemplate complex type.</p>
+<p>The following schema fragment specifies the expected content contained within this class.</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;complexType name=&quot;UnitTemplate&quot;&gt;
+  &lt;complexContent&gt;
+    &lt;extension base=&quot;{}Template&quot;&gt;
+      &lt;sequence&gt;
+        &lt;element name=&quot;baseHealth&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;baseAttack&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;piercingAttack&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;range&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;armor&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;sightRange&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;canGather&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot;/&gt;
+        &lt;element name=&quot;canBuild&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot;/&gt;
+        &lt;element name=&quot;canMove&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot;/&gt;
+        &lt;element name=&quot;canAcceptGold&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot;/&gt;
+        &lt;element name=&quot;canAcceptWood&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot;/&gt;
+        &lt;element name=&quot;foodProvided&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;character&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}short&quot;/&gt;
+        &lt;element name=&quot;goldGatherRate&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;woodGatherRate&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;durationGatherWood&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;durationGatherGold&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;durationMove&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;durationAttack&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;element name=&quot;durationDeposit&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;sequence maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+          &lt;element name=&quot;produces&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}int&quot;/&gt;
+        &lt;/sequence&gt;
+      &lt;/sequence&gt;
+    &lt;/extension&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="armor">
+<h3>armor<a class="headerlink" href="#armor" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.armor">
+protected int <code class="descname">armor</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.armor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="baseattack">
+<h3>baseAttack<a class="headerlink" href="#baseattack" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.baseAttack">
+protected int <code class="descname">baseAttack</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.baseAttack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="basehealth">
+<h3>baseHealth<a class="headerlink" href="#basehealth" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.baseHealth">
+protected int <code class="descname">baseHealth</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.baseHealth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canacceptgold">
+<h3>canAcceptGold<a class="headerlink" href="#canacceptgold" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canAcceptGold">
+protected boolean <code class="descname">canAcceptGold</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canAcceptGold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canacceptwood">
+<h3>canAcceptWood<a class="headerlink" href="#canacceptwood" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canAcceptWood">
+protected boolean <code class="descname">canAcceptWood</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canAcceptWood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canbuild">
+<h3>canBuild<a class="headerlink" href="#canbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canBuild">
+protected boolean <code class="descname">canBuild</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canBuild" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cangather">
+<h3>canGather<a class="headerlink" href="#cangather" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canGather">
+protected boolean <code class="descname">canGather</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canGather" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="canmove">
+<h3>canMove<a class="headerlink" href="#canmove" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canMove">
+protected boolean <code class="descname">canMove</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.canMove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="character">
+<h3>character<a class="headerlink" href="#character" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.character">
+protected short <code class="descname">character</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.character" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="durationattack">
+<h3>durationAttack<a class="headerlink" href="#durationattack" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationAttack">
+protected int <code class="descname">durationAttack</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationAttack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="durationdeposit">
+<h3>durationDeposit<a class="headerlink" href="#durationdeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationDeposit">
+protected int <code class="descname">durationDeposit</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationDeposit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="durationgathergold">
+<h3>durationGatherGold<a class="headerlink" href="#durationgathergold" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationGatherGold">
+protected int <code class="descname">durationGatherGold</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationGatherGold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="durationgatherwood">
+<h3>durationGatherWood<a class="headerlink" href="#durationgatherwood" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationGatherWood">
+protected int <code class="descname">durationGatherWood</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationGatherWood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="durationmove">
+<h3>durationMove<a class="headerlink" href="#durationmove" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationMove">
+protected int <code class="descname">durationMove</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.durationMove" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="foodprovided">
+<h3>foodProvided<a class="headerlink" href="#foodprovided" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.foodProvided">
+protected int <code class="descname">foodProvided</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.foodProvided" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="goldgatherrate">
+<h3>goldGatherRate<a class="headerlink" href="#goldgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.goldGatherRate">
+protected int <code class="descname">goldGatherRate</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.goldGatherRate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="piercingattack">
+<h3>piercingAttack<a class="headerlink" href="#piercingattack" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.piercingAttack">
+protected int <code class="descname">piercingAttack</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.piercingAttack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="produces">
+<h3>produces<a class="headerlink" href="#produces" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.produces">
+protected <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>&gt; <code class="descname">produces</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.produces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="range">
+<h3>range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.range">
+protected int <code class="descname">range</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="sightrange">
+<h3>sightRange<a class="headerlink" href="#sightrange" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.sightRange">
+protected int <code class="descname">sightRange</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.sightRange" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="woodgatherrate">
+<h3>woodGatherRate<a class="headerlink" href="#woodgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.woodGatherRate">
+protected int <code class="descname">woodGatherRate</code><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.woodGatherRate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getarmor">
+<h3>getArmor<a class="headerlink" href="#getarmor" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getArmor()">
+public int <code class="descname">getArmor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getArmor()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the armor property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getbaseattack">
+<h3>getBaseAttack<a class="headerlink" href="#getbaseattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getBaseAttack()">
+public int <code class="descname">getBaseAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getBaseAttack()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the baseAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getbasehealth">
+<h3>getBaseHealth<a class="headerlink" href="#getbasehealth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getBaseHealth()">
+public int <code class="descname">getBaseHealth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getBaseHealth()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the baseHealth property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getcharacter">
+<h3>getCharacter<a class="headerlink" href="#getcharacter" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getCharacter()">
+public short <code class="descname">getCharacter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getCharacter()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the character property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdurationattack">
+<h3>getDurationAttack<a class="headerlink" href="#getdurationattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationAttack()">
+public int <code class="descname">getDurationAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationAttack()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the durationAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdurationdeposit">
+<h3>getDurationDeposit<a class="headerlink" href="#getdurationdeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationDeposit()">
+public int <code class="descname">getDurationDeposit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationDeposit()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the durationDeposit property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdurationgathergold">
+<h3>getDurationGatherGold<a class="headerlink" href="#getdurationgathergold" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationGatherGold()">
+public int <code class="descname">getDurationGatherGold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationGatherGold()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the durationGatherGold property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdurationgatherwood">
+<h3>getDurationGatherWood<a class="headerlink" href="#getdurationgatherwood" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationGatherWood()">
+public int <code class="descname">getDurationGatherWood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationGatherWood()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the durationGatherWood property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getdurationmove">
+<h3>getDurationMove<a class="headerlink" href="#getdurationmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationMove()">
+public int <code class="descname">getDurationMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getDurationMove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the durationMove property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getfoodprovided">
+<h3>getFoodProvided<a class="headerlink" href="#getfoodprovided" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getFoodProvided()">
+public int <code class="descname">getFoodProvided</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getFoodProvided()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the foodProvided property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getgoldgatherrate">
+<h3>getGoldGatherRate<a class="headerlink" href="#getgoldgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getGoldGatherRate()">
+public int <code class="descname">getGoldGatherRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getGoldGatherRate()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the goldGatherRate property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getpiercingattack">
+<h3>getPiercingAttack<a class="headerlink" href="#getpiercingattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getPiercingAttack()">
+public int <code class="descname">getPiercingAttack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getPiercingAttack()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the piercingAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getproduces">
+<h3>getProduces<a class="headerlink" href="#getproduces" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getProduces()">
+public <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>&gt; <code class="descname">getProduces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getProduces()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the produces property.</p>
+<p>This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the returned list will be present inside the JAXB object. This is why there is not a <code class="docutils literal"><span class="pre">set</span></code> method for the produces property.</p>
+<p>For example, to add a new item, do as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">getProduces</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Objects of the following type(s) are allowed in the list <a class="reference external" href="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html" title="java.lang.Integer"><code class="xref java java-ref docutils literal"><span class="pre">Integer</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="getrange">
+<h3>getRange<a class="headerlink" href="#getrange" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getRange()">
+public int <code class="descname">getRange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getRange()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the range property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getsightrange">
+<h3>getSightRange<a class="headerlink" href="#getsightrange" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getSightRange()">
+public int <code class="descname">getSightRange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getSightRange()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the sightRange property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="getwoodgatherrate">
+<h3>getWoodGatherRate<a class="headerlink" href="#getwoodgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getWoodGatherRate()">
+public int <code class="descname">getWoodGatherRate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.getWoodGatherRate()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the woodGatherRate property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="iscanacceptgold">
+<h3>isCanAcceptGold<a class="headerlink" href="#iscanacceptgold" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanAcceptGold()">
+public boolean <code class="descname">isCanAcceptGold</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanAcceptGold()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the canAcceptGold property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="iscanacceptwood">
+<h3>isCanAcceptWood<a class="headerlink" href="#iscanacceptwood" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanAcceptWood()">
+public boolean <code class="descname">isCanAcceptWood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanAcceptWood()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the canAcceptWood property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="iscanbuild">
+<h3>isCanBuild<a class="headerlink" href="#iscanbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanBuild()">
+public boolean <code class="descname">isCanBuild</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanBuild()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the canBuild property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="iscangather">
+<h3>isCanGather<a class="headerlink" href="#iscangather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanGather()">
+public boolean <code class="descname">isCanGather</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanGather()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the canGather property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="iscanmove">
+<h3>isCanMove<a class="headerlink" href="#iscanmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanMove()">
+public boolean <code class="descname">isCanMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.isCanMove()" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the canMove property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setarmor">
+<h3>setArmor<a class="headerlink" href="#setarmor" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setArmor(int)">
+public void <code class="descname">setArmor</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setArmor(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the armor property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setbaseattack">
+<h3>setBaseAttack<a class="headerlink" href="#setbaseattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setBaseAttack(int)">
+public void <code class="descname">setBaseAttack</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setBaseAttack(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the baseAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setbasehealth">
+<h3>setBaseHealth<a class="headerlink" href="#setbasehealth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setBaseHealth(int)">
+public void <code class="descname">setBaseHealth</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setBaseHealth(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the baseHealth property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcanacceptgold">
+<h3>setCanAcceptGold<a class="headerlink" href="#setcanacceptgold" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanAcceptGold(boolean)">
+public void <code class="descname">setCanAcceptGold</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanAcceptGold(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the canAcceptGold property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcanacceptwood">
+<h3>setCanAcceptWood<a class="headerlink" href="#setcanacceptwood" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanAcceptWood(boolean)">
+public void <code class="descname">setCanAcceptWood</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanAcceptWood(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the canAcceptWood property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcanbuild">
+<h3>setCanBuild<a class="headerlink" href="#setcanbuild" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanBuild(boolean)">
+public void <code class="descname">setCanBuild</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanBuild(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the canBuild property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcangather">
+<h3>setCanGather<a class="headerlink" href="#setcangather" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanGather(boolean)">
+public void <code class="descname">setCanGather</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanGather(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the canGather property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcanmove">
+<h3>setCanMove<a class="headerlink" href="#setcanmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanMove(boolean)">
+public void <code class="descname">setCanMove</code><span class="sig-paren">(</span>boolean<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCanMove(boolean)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the canMove property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setcharacter">
+<h3>setCharacter<a class="headerlink" href="#setcharacter" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCharacter(short)">
+public void <code class="descname">setCharacter</code><span class="sig-paren">(</span>short<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setCharacter(short)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the character property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setdurationattack">
+<h3>setDurationAttack<a class="headerlink" href="#setdurationattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationAttack(int)">
+public void <code class="descname">setDurationAttack</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationAttack(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the durationAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setdurationdeposit">
+<h3>setDurationDeposit<a class="headerlink" href="#setdurationdeposit" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationDeposit(int)">
+public void <code class="descname">setDurationDeposit</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationDeposit(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the durationDeposit property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setdurationgathergold">
+<h3>setDurationGatherGold<a class="headerlink" href="#setdurationgathergold" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationGatherGold(int)">
+public void <code class="descname">setDurationGatherGold</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationGatherGold(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the durationGatherGold property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setdurationgatherwood">
+<h3>setDurationGatherWood<a class="headerlink" href="#setdurationgatherwood" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationGatherWood(int)">
+public void <code class="descname">setDurationGatherWood</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationGatherWood(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the durationGatherWood property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setdurationmove">
+<h3>setDurationMove<a class="headerlink" href="#setdurationmove" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationMove(int)">
+public void <code class="descname">setDurationMove</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setDurationMove(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the durationMove property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setfoodprovided">
+<h3>setFoodProvided<a class="headerlink" href="#setfoodprovided" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setFoodProvided(int)">
+public void <code class="descname">setFoodProvided</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setFoodProvided(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the foodProvided property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setgoldgatherrate">
+<h3>setGoldGatherRate<a class="headerlink" href="#setgoldgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setGoldGatherRate(int)">
+public void <code class="descname">setGoldGatherRate</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setGoldGatherRate(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the goldGatherRate property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setpiercingattack">
+<h3>setPiercingAttack<a class="headerlink" href="#setpiercingattack" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setPiercingAttack(int)">
+public void <code class="descname">setPiercingAttack</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setPiercingAttack(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the piercingAttack property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setrange">
+<h3>setRange<a class="headerlink" href="#setrange" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setRange(int)">
+public void <code class="descname">setRange</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setRange(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the range property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setsightrange">
+<h3>setSightRange<a class="headerlink" href="#setsightrange" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setSightRange(int)">
+public void <code class="descname">setSightRange</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setSightRange(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the sightRange property.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setwoodgatherrate">
+<h3>setWoodGatherRate<a class="headerlink" href="#setwoodgatherrate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setWoodGatherRate(int)">
+public void <code class="descname">setWoodGatherRate</code><span class="sig-paren">(</span>int<em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#edu.cwru.sepia.environment.model.persistence.generated.XmlUnitTemplate.setWoodGatherRate(int)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of the woodGatherRate property.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="XmlUpgradeLog.html" class="btn btn-neutral float-right" title="XmlUpgradeLog"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XmlUnit.html" class="btn btn-neutral" title="XmlUnit"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

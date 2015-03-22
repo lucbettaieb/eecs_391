@@ -1,0 +1,139 @@
+.. java:import:: java.lang.reflect Array
+
+.. java:import:: java.util Arrays
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util.concurrent ConcurrentHashMap
+
+MatlabNumericArray.DoubleArrayType
+==================================
+
+.. java:package:: matlabcontrol.extensions
+   :noindex:
+
+.. java:type:: public static final class DoubleArrayType<T>
+   :outertype: MatlabNumericArray
+
+   An array type of dimension 2 or greater which holds \ ``double``\ s. Instances for dimensions 2 through 9 are available as \ ``public static``\  fields.  This class is unconditionally thread-safe.
+
+   :param <T>: an array of 2 or more dimensions which holds \ ``double``\ s
+
+Fields
+------
+DIM_2
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][]> DIM_2
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][]``\  class.
+
+DIM_3
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][]> DIM_3
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][]``\  class.
+
+DIM_4
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][]> DIM_4
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][]``\  class.
+
+DIM_5
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][][]> DIM_5
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][][]``\  class.
+
+DIM_6
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][][][]> DIM_6
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][][][]``\  class.
+
+DIM_7
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][][][][]> DIM_7
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][][][][]``\  class.
+
+DIM_8
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][][][][][]> DIM_8
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][][][][][]``\  class.
+
+DIM_9
+^^^^^
+
+.. java:field:: public static final DoubleArrayType<double[][][][][][][][][]> DIM_9
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Representation of \ ``double[][][][][][][][][]``\  class.
+
+Methods
+-------
+getArrayClass
+^^^^^^^^^^^^^
+
+.. java:method:: public Class<T> getArrayClass()
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   The type of array. The array holds \ ``double``\ s, and may be of any dimension 2 or greater.
+
+getDimensions
+^^^^^^^^^^^^^
+
+.. java:method:: public int getDimensions()
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   The number of dimensions of the array type.
+
+getInstance
+^^^^^^^^^^^
+
+.. java:method:: public static <T> DoubleArrayType<T> getInstance(Class<T> arrayType)
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Gets an instance of \ ``DoubleArrayType<T>``\  where \ ``T``\  is the type of \ ``arrayType``\ . \ ``T``\  must be an array of 1 or more dimensions that holds \ ``double``\ s. This is intended for getting array types in excess of 9 dimensions, as dimensions 2 through 9 are represented by constants \ ``DIM_2 ... DIM_9``\ .  Contrived example usage: \ ``DoubleArrayType<double[][][]> type3D = DoubleArrayType.getInstance(double[][][].class);``\
+
+   :param <T>:
+   :param arrayType:
+   :throws IllegalArgumentException: if the type is not an array holding \ ``double``\ s or the type is of less than 2 dimensions
+
+getInstance
+^^^^^^^^^^^
+
+.. java:method:: static DoubleArrayType<?> getInstance(int dimensions)
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+getInstanceUnsafe
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: static <T> DoubleArrayType<T> getInstanceUnsafe(Class<T> arrayType)
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Behaves the same as \ :java:ref:`getInstance(java.lang.Class)`\  except that \ ``double[]``\  is valid. This is needed by some of the recursive algorithms in \ ``MatlabNumericArray``\ .
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: MatlabNumericArray.DoubleArrayType
+
+   Returns a brief description of this double array type. The exact details of this representation are unspecified and are subject to change.
+

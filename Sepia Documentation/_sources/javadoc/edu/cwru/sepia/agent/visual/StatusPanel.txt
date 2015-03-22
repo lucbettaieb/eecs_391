@@ -1,0 +1,54 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Graphics
+
+.. java:import:: java.awt GridBagConstraints
+
+.. java:import:: java.awt GridBagLayout
+
+.. java:import:: javax.swing JPanel
+
+.. java:import:: javax.swing JScrollPane
+
+.. java:import:: javax.swing JTextArea
+
+.. java:import:: javax.swing.border LineBorder
+
+.. java:import:: javax.swing.border TitledBorder
+
+StatusPanel
+===========
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public class StatusPanel extends JPanel
+
+Constructors
+------------
+StatusPanel
+^^^^^^^^^^^
+
+.. java:constructor:: public StatusPanel()
+   :outertype: StatusPanel
+
+Methods
+-------
+append
+^^^^^^
+
+.. java:method:: public void append(String text)
+   :outertype: StatusPanel
+
+clear
+^^^^^
+
+.. java:method:: public void clear()
+   :outertype: StatusPanel
+
+paintComponent
+^^^^^^^^^^^^^^
+
+.. java:method:: public void paintComponent(Graphics g)
+   :outertype: StatusPanel
+

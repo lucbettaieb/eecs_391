@@ -1,0 +1,371 @@
+
+<meta http-equiv="Context-Type" content="text/html; charset=US-ASCII">
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running Sepia &mdash; SEPIA Documentation 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="SEPIA Documentation 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Your First Agent" href="first_agent.html"/>
+        <link rel="prev" title="Setup" href="setup.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> SEPIA Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#eclipse-project-setup">Eclipse Project Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#command-line-setup">Command Line Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Running Sepia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sepia-working-directory">SEPIA Working Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-a-map">Adding a Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-resource-collection-agent-example">Running Resource Collection Agent Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-control">Manual Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visual-agent">Visual Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Your First Agent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#create-the-class">Create the Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#setup-the-configuration">Setup the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#basic-agent-api">Basic Agent API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#moving-your-units">Moving Your Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#collecting-resources">Collecting Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#building-units">Building Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first_agent.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="combat_agents.html">Combat Agents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#setting-up-the-combat-agent">Setting up the Combat Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combat_agents.html#attacking-the-enemy">Attacking the Enemy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javadoc/packages.html">Javadoc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/package-index.html">edu.cwru.sepia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/action/package-index.html">edu.cwru.sepia.action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/package-index.html">edu.cwru.sepia.agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/package-index.html">edu.cwru.sepia.agent.visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/agent/visual/editor/package-index.html">edu.cwru.sepia.agent.visual.editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/package-index.html">edu.cwru.sepia.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/package-index.html">edu.cwru.sepia.environment.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/history/package-index.html">edu.cwru.sepia.environment.model.history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/package-index.html">edu.cwru.sepia.environment.model.persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/persistence/generated/package-index.html">edu.cwru.sepia.environment.model.persistence.generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/environment/model/state/package-index.html">edu.cwru.sepia.environment.model.state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/experiment/package-index.html">edu.cwru.sepia.experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/start/package-index.html">edu.cwru.sepia.start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/package-index.html">edu.cwru.sepia.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/edu/cwru/sepia/util/config/xml/package-index.html">edu.cwru.sepia.util.config.xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/package-index.html">matlabcontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/extensions/package-index.html">matlabcontrol.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/matlabcontrol/internal/package-index.html">matlabcontrol.internal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javadoc/org/json/package-index.html">org.json</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SEPIA Documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Running Sepia</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/running_sepia.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="running-sepia">
+<h1>Running Sepia<a class="headerlink" href="#running-sepia" title="Permalink to this headline">¶</a></h1>
+<p>This section covers how to specify scenario configurations and how to
+use Eclipse to run a scenario.</p>
+<div class="section" id="sepia-working-directory">
+<h2>SEPIA Working Directory<a class="headerlink" href="#sepia-working-directory" title="Permalink to this headline">¶</a></h2>
+<p>All of the directories specified in SEPIA configuration files or on
+the command line are relative to the current working directory. For example if you are in the directory "mydir" and the configuration file specifies the map "data/map.xml" then SEPIA will look for the map in mydir/data/map.xml.</p>
+<p>If SEPIA is complaining about missing maps,
+configurations or agents please double check which directory you are
+running the application from. Next make sure that your class path
+variable includes the SEPIA.jar file and any folder structure
+containing .class files. Finally check all configurations to make sure
+that file locations are specified relative to the directory SEPIA is
+run from. </p>
+</div>
+<div class="section" id="adding-a-map">
+<h2>Adding a Map<a class="headerlink" href="#adding-a-map" title="Permalink to this headline">¶</a></h2>
+<p>In order to begin testing our agent we will need a test map and a test
+configuration. First create a data folder in your project in the same
+way we created the lib folder when setting up the project. Then <a class="reference external" href="_static/example_map.zip">click here to download the example map</a> Extract the files to the new data
+folder.</p>
+<p>Open up the <code class="docutils literal"><span class="pre">ResourceCollectionConfig.xml</span></code> file. This XML file
+specifies the map, the agents used, the goals of the scenario and
+extra parameters about how many episodes of the scenario to run before
+quitting.</p>
+<p>The most important tag is the <code class="docutils literal"><span class="pre">&lt;Player&gt;</span></code> tag. The ID attribute
+specifies which player this agent is controlling. This is the same
+number passed into the constructor of your class. Also look at the
+<code class="docutils literal"><span class="pre">&lt;ClassName&gt;</span></code> tag. This specifies the Java class path to the agent
+class that controls the player.</p>
+<p>You&#8217;ll also notice that player 0 has two agents: VisualAgent and
+ResourceCollectionAgent. ResourceCollectionAgent comes with Sepia as
+an example. It contains an agent that controls a few peasant units to
+collect some gold and wood. VisualAgent is a special agent. It will
+open a Java Swing window that gives a visual representation of the
+game. There are two argument parameters to the VisualAgent. Setting
+the second one to true will allow you to control the units of the
+VisualAgent&#8217;s PlayerID.</p>
+</div>
+<div class="section" id="running-resource-collection-agent-example">
+<span id="sepia-run-configuration-setup"></span><h2>Running Resource Collection Agent Example<a class="headerlink" href="#running-resource-collection-agent-example" title="Permalink to this headline">¶</a></h2>
+<p>To run SEPIA first highlight the <code class="docutils literal"><span class="pre">Sepia.jar</span></code> file in the Package
+Explorer. It should be under the <code class="docutils literal"><span class="pre">Referenced</span> <span class="pre">Libraries</span></code> folder. Then
+click the green Run arrow on the menu bar</p>
+<a class="reference external image-reference" href="_static/eclipse_run_arrow_screenshot.png"><img alt="_images/eclipse_run_arrow_screenshot.png" src="_images/eclipse_run_arrow_screenshot.png" /></a>
+<p>This will open a dialog box. Select <code class="docutils literal"><span class="pre">Java</span> <span class="pre">Application</span></code> and then
+click ok. Next you will see a box with a few of the built in SEPIA
+Classes. Select the <code class="docutils literal"><span class="pre">Main2</span></code> class.</p>
+<a class="reference external image-reference" href="_static/eclipse_run_main_class_screenshot.png"><img alt="_images/eclipse_run_main_class_screenshot.png" src="_images/eclipse_run_main_class_screenshot.png" /></a>
+<p>This should open a Console tab at the bottom of eclipse that will
+complain about no configuration file being specified. To fix this
+click <code class="docutils literal"><span class="pre">Run-&gt;Run</span> <span class="pre">Configurations</span></code> in the main menu. This will allow
+you to edit the run parameters to specify things like command line
+arguments and working directories. Under the <code class="docutils literal"><span class="pre">Java</span> <span class="pre">Applications</span></code>
+category on the left there should be a <code class="docutils literal"><span class="pre">Main2</span></code>. Click on that to
+edit the run configuration.</p>
+<a class="reference external image-reference" href="_static/eclipse_run_configuration_screenshot.png"><img alt="_images/eclipse_run_configuration_screenshot.png" src="_images/eclipse_run_configuration_screenshot.png" /></a>
+<p>First give this a useful name. Change Main2 to something like
+&#8220;Resource Collection Agent&#8221;. Then click on the arguments tab and in
+the <code class="docutils literal"><span class="pre">Program</span> <span class="pre">Arguments</span></code> box type
+&#8220;data/ResourceCollectionConfig.xml&#8221;. Click the <code class="docutils literal"><span class="pre">Apply</span> <span class="pre">Button</span></code> and
+then click the <code class="docutils literal"><span class="pre">Run</span> <span class="pre">Button</span></code>. This time a window should open up.</p>
+<a class="reference external image-reference" href="_static/sepia_visual_agent_screenshot.png"><img alt="_images/sepia_visual_agent_screenshot.png" src="_images/sepia_visual_agent_screenshot.png" /></a>
+<p>This window is the Visual Agent. You&#8217;ll see yellow squares, trees and
+some letters. The yellow squares are gold mines, the trees are wood
+sources. The P is a peasant unit and the H is the Town Hall
+unit. Click on the <code class="docutils literal"><span class="pre">Play</span> <span class="pre">Button</span></code> to run the scenario and see the
+agent in action. You should see the Peasant begin moving to the gold
+mines and trees. If you look on the right side of the screen you can
+see information about how much gold, wood and food you currently have.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The food number is actually the amount of food in use. There
+is a food supply cap in the game code (which starts at 4 in
+this scenario). Agents can create units that use food up
+until the supply cap. Unfortunately as of this version of
+SEPIA nothing displays this supply cap. However, you can
+access the supply cap amount in the agent code.</p>
+</div>
+</div>
+<div class="section" id="manual-control">
+<h2>Manual Control<a class="headerlink" href="#manual-control" title="Permalink to this headline">¶</a></h2>
+<p>Now lets create an alternative run configuration for the VisualAgent
+so you can manually control the peasants. Again using the main menu
+click <code class="docutils literal"><span class="pre">Run-&gt;Run</span> <span class="pre">Configuration...</span></code>. Find the <code class="docutils literal"><span class="pre">Resource</span> <span class="pre">Collection</span>
+<span class="pre">Agent</span></code> configuration then click on the duplicate button. Change the
+name to something meaningful (in this case &#8220;Manual Control&#8221;). Then in
+the <code class="docutils literal"><span class="pre">Arguments</span></code> tab change the value of the <code class="docutils literal"><span class="pre">Program</span> <span class="pre">Arguments</span></code> to
+&#8220;data/ManualControlConfig.xml&#8221;. Finally click <code class="docutils literal"><span class="pre">Apply</span></code> and then
+<code class="docutils literal"><span class="pre">Run</span></code>. This time if you click play nothing will happen. First left
+click on the peasant to highlight it. Then right click on one of the
+gold mines and select &#8220;Gather GOLD_MINE&#8221;. Now if you click play the
+Peasant should move to that gold mine and begin collecting
+gold. Double clicking on the peasant will show its unit id, its health
+and what resources it is carrying. You can control any of the units in
+this way in order to manually try things out in the game.</p>
+</div>
+<div class="section" id="configuration-file">
+<h2>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The configuration file specifies the parameters of a SEPIA
+scenario. This includes specifying which map to use, which agents to
+run and the termination conditions for the scenario.</p>
+<p>Open <code class="docutils literal"><span class="pre">data/ResourceCollectionConfig.xml</span></code> file in Eclipse to follow
+along. Each configuration file has the root tag of
+<code class="docutils literal"><span class="pre">&lt;Configuration&gt;</span></code>. All other tags are children of this tag.</p>
+<p>Use the <code class="docutils literal"><span class="pre">&lt;Map&gt;</span></code> tag to specify the location of the map file with
+respect to the directory you will be running SEPIA from. In this
+example the working directory is the main project directory and the
+maps are all under the data folder. So the map name is prepended with
+<code class="docutils literal"><span class="pre">data/</span></code>.</p>
+<p>Use the <code class="docutils literal"><span class="pre">&lt;Player&gt;</span></code> tag to specify agents. The Player tag has a
+required attribute <code class="docutils literal"><span class="pre">Id</span></code>. This should be set to an integer that is the
+player number. In general there will be two players on the map. Your
+player will have playernumber 0 and the enemy will have
+playernumber 1.</p>
+<p>Inside the Player tag is the <code class="docutils literal"><span class="pre">&lt;AgentClass&gt;</span></code> tag. This class specifies
+which Java class will control this player number&#8217;s units. Inside the
+AgentClass tag you must specify the <code class="docutils literal"><span class="pre">&lt;ClassName&gt;</span></code> tag. The text of
+this tag is the fully qualified name of the Java class. So if you have
+a .class file in the subfolders <code class="docutils literal"><span class="pre">edu/cwru/sepia/agent</span></code> then the text
+will be <code class="docutils literal"><span class="pre">edu/cwru/sepia/agent/MyAgent.class</span></code>. If you had your class
+file in the top directory it would be <code class="docutils literal"><span class="pre">MyAgent.class</span></code>.</p>
+<p>In addition to the required ClassName tag you can optionally specify
+as many <code class="docutils literal"><span class="pre">&lt;Argument&gt;</span></code> tags as you want. The text of each of these tags
+is passed into the agent&#8217;s constructor as an array of Strings. So you
+will need to convert the strings to the proper data types.</p>
+<p>There are two more sections of interest in the config file. The
+<code class="docutils literal"><span class="pre">&lt;ModelParameters&gt;</span></code> and the <code class="docutils literal"><span class="pre">&lt;Runner&gt;</span></code>. The ModelParameters tag
+specifies the termination conditions of the scenario. The Runner
+specifies which game engine is used. For the purpose of this tutorial
+and assignments you should not need to modify these.</p>
+</div>
+<div class="section" id="visual-agent">
+<h2>Visual Agent<a class="headerlink" href="#visual-agent" title="Permalink to this headline">¶</a></h2>
+<p>You may have noticed that in the provided configuration files there
+are two Player tags with the same Id. One of these player tags
+specifies that a class called VisualAgent is used. VisualAgent is a
+convenient way of visualizing what is happening in a SEPIA
+scenario. You can use it for both manual control as well as visual
+debugging of an agent&#8217;s behavior.</p>
+<p>While VisualAgent is useful for writing your agent, when you want to
+actually collect data or automate the testing the VisualAgent can be a
+hindrance. To run without the VisualAgent simply comment its player
+tag out of the configuration file. When you run without the visual
+agent the scenario will automatically run at full speed until the
+scenarios are over.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For those not familiar an XML comment starts with <code class="docutils literal"><span class="pre">&lt;!--</span></code>
+and ends with <code class="docutils literal"><span class="pre">--&gt;</span></code>. Just wrap what you are commenting in
+that similar to a multiline comment in Java.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="first_agent.html" class="btn btn-neutral float-right" title="Your First Agent"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral" title="Setup"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html><html><body></body></html>

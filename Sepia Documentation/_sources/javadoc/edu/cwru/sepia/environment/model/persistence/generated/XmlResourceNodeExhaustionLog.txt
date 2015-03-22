@@ -1,0 +1,89 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+XmlResourceNodeExhaustionLog
+============================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlResourceNodeExhaustionLog
+
+   Java class for ResourceNodeExhaustionLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ResourceNodeExhaustionLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="exhaustedNodeID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="exhaustedNodeType" type="{}ResourceNodeType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+exhaustedNodeID
+^^^^^^^^^^^^^^^
+
+.. java:field:: protected int exhaustedNodeID
+   :outertype: XmlResourceNodeExhaustionLog
+
+exhaustedNodeType
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected Type exhaustedNodeType
+   :outertype: XmlResourceNodeExhaustionLog
+
+Methods
+-------
+getExhaustedNodeID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getExhaustedNodeID()
+   :outertype: XmlResourceNodeExhaustionLog
+
+   Gets the value of the exhaustedNodeID property.
+
+getExhaustedNodeType
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Type getExhaustedNodeType()
+   :outertype: XmlResourceNodeExhaustionLog
+
+   Gets the value of the exhaustedNodeType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setExhaustedNodeID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setExhaustedNodeID(int value)
+   :outertype: XmlResourceNodeExhaustionLog
+
+   Sets the value of the exhaustedNodeID property.
+
+setExhaustedNodeType
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setExhaustedNodeType(Type value)
+   :outertype: XmlResourceNodeExhaustionLog
+
+   Sets the value of the exhaustedNodeType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

@@ -1,0 +1,57 @@
+.. java:import:: matlabcontrol MatlabProxy.Identifier
+
+MatlabProxyFactory.Request
+==========================
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type:: public static interface Request
+   :outertype: MatlabProxyFactory
+
+   A request for a proxy. Because requests have no timeout, a \ ``Request``\  has no concept of failure.  Implementations of this class are unconditionally thread-safe.  This interface is not intended to be implemented by users of matlabcontrol.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+cancel
+^^^^^^
+
+.. java:method:: public boolean cancel()
+   :outertype: MatlabProxyFactory.Request
+
+   Attempts to cancel the request. If the request has already been completed or cannot successfully be canceled then \ ``false``\  will be returned, otherwise \ ``true``\  will be returned. If the request has already been successfully canceled then this method will have no effect and \ ``true``\  will be returned.
+
+   :return: if successfully cancelled
+
+getProxyIdentifer
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public Identifier getProxyIdentifer()
+   :outertype: MatlabProxyFactory.Request
+
+   The identifier of the proxy associated with this request. If the proxy is created, then its identifier accessible via \ :java:ref:`MatlabProxy.getIdentifier()`\  will return \ ``true``\  when tested for equivalence with the identifier returned by this method using \ :java:ref:`Identifier.equals(java.lang.Object)`\ .
+
+   :return: proxy's identifier
+
+isCancelled
+^^^^^^^^^^^
+
+.. java:method:: public boolean isCancelled()
+   :outertype: MatlabProxyFactory.Request
+
+   If the request has been successfully cancelled.
+
+   :return: if successfully cancelled
+
+isCompleted
+^^^^^^^^^^^
+
+.. java:method:: public boolean isCompleted()
+   :outertype: MatlabProxyFactory.Request
+
+   Returns \ ``true``\  if the proxy has been created.
+
+   :return: if the proxy has been created
+

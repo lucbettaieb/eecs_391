@@ -1,0 +1,502 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util Collections
+
+.. java:import:: java.util List
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+UnitTemplate
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class UnitTemplate extends Template<Unit> implements Serializable
+
+   Contains information shared between units of the same type.
+
+   :author: Tim
+
+Fields
+------
+armor
+^^^^^
+
+.. java:field:: protected int armor
+   :outertype: UnitTemplate
+
+baseHealth
+^^^^^^^^^^
+
+.. java:field:: protected int baseHealth
+   :outertype: UnitTemplate
+
+basicAttack
+^^^^^^^^^^^
+
+.. java:field:: protected int basicAttack
+   :outertype: UnitTemplate
+
+canAcceptGold
+^^^^^^^^^^^^^
+
+.. java:field:: protected boolean canAcceptGold
+   :outertype: UnitTemplate
+
+canAcceptWood
+^^^^^^^^^^^^^
+
+.. java:field:: protected boolean canAcceptWood
+   :outertype: UnitTemplate
+
+canBuild
+^^^^^^^^
+
+.. java:field:: protected boolean canBuild
+   :outertype: UnitTemplate
+
+canGather
+^^^^^^^^^
+
+.. java:field:: protected boolean canGather
+   :outertype: UnitTemplate
+
+canMove
+^^^^^^^
+
+.. java:field:: protected boolean canMove
+   :outertype: UnitTemplate
+
+character
+^^^^^^^^^
+
+.. java:field:: protected char character
+   :outertype: UnitTemplate
+
+durationAttack
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationAttack
+   :outertype: UnitTemplate
+
+durationDeposit
+^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationDeposit
+   :outertype: UnitTemplate
+
+durationGoldGather
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationGoldGather
+   :outertype: UnitTemplate
+
+durationMove
+^^^^^^^^^^^^
+
+.. java:field:: protected int durationMove
+   :outertype: UnitTemplate
+
+durationWoodGather
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: protected int durationWoodGather
+   :outertype: UnitTemplate
+
+foodProvided
+^^^^^^^^^^^^
+
+.. java:field:: protected int foodProvided
+   :outertype: UnitTemplate
+
+goldCapacity
+^^^^^^^^^^^^
+
+.. java:field:: protected int goldCapacity
+   :outertype: UnitTemplate
+
+goldGatherRate
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int goldGatherRate
+   :outertype: UnitTemplate
+
+piercingAttack
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int piercingAttack
+   :outertype: UnitTemplate
+
+range
+^^^^^
+
+.. java:field:: protected int range
+   :outertype: UnitTemplate
+
+sightRange
+^^^^^^^^^^
+
+.. java:field:: protected int sightRange
+   :outertype: UnitTemplate
+
+woodCapacity
+^^^^^^^^^^^^
+
+.. java:field:: protected int woodCapacity
+   :outertype: UnitTemplate
+
+woodGatherRate
+^^^^^^^^^^^^^^
+
+.. java:field:: protected int woodGatherRate
+   :outertype: UnitTemplate
+
+Constructors
+------------
+UnitTemplate
+^^^^^^^^^^^^
+
+.. java:constructor:: public UnitTemplate(int ID)
+   :outertype: UnitTemplate
+
+Methods
+-------
+addProductionItem
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addProductionItem(Integer item)
+   :outertype: UnitTemplate
+
+canAcceptGold
+^^^^^^^^^^^^^
+
+.. java:method:: public boolean canAcceptGold()
+   :outertype: UnitTemplate
+
+canAcceptWood
+^^^^^^^^^^^^^
+
+.. java:method:: public boolean canAcceptWood()
+   :outertype: UnitTemplate
+
+canAttack
+^^^^^^^^^
+
+.. java:method:: public boolean canAttack()
+   :outertype: UnitTemplate
+
+canBuild
+^^^^^^^^
+
+.. java:method:: public boolean canBuild()
+   :outertype: UnitTemplate
+
+canGather
+^^^^^^^^^
+
+.. java:method:: public boolean canGather()
+   :outertype: UnitTemplate
+
+canMove
+^^^^^^^
+
+.. java:method:: public boolean canMove()
+   :outertype: UnitTemplate
+
+canProduce
+^^^^^^^^^^
+
+.. java:method:: public boolean canProduce(Template t)
+   :outertype: UnitTemplate
+
+   Return whether the unit is capable of producing a specific template
+
+   :param t:
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: UnitTemplate
+
+deprecateOldView
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void deprecateOldView()
+   :outertype: UnitTemplate
+
+getArmor
+^^^^^^^^
+
+.. java:method:: public int getArmor()
+   :outertype: UnitTemplate
+
+getBaseHealth
+^^^^^^^^^^^^^
+
+.. java:method:: public int getBaseHealth()
+   :outertype: UnitTemplate
+
+getBasicAttack
+^^^^^^^^^^^^^^
+
+.. java:method:: public int getBasicAttack()
+   :outertype: UnitTemplate
+
+getCarryingCapacity
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCarryingCapacity(ResourceNode.Type type)
+   :outertype: UnitTemplate
+
+   Return the amount of resource that you can gather from each node type.
+
+   :param type: The type of resource node to gather from.
+
+getCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public char getCharacter()
+   :outertype: UnitTemplate
+
+getDurationAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationAttack()
+   :outertype: UnitTemplate
+
+   Get the number of steps needed to make a single attack
+
+getDurationDeposit
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationDeposit()
+   :outertype: UnitTemplate
+
+   Get the number of steps needed to make a single deposit.
+
+getDurationGatherGold
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherGold()
+   :outertype: UnitTemplate
+
+   Get the number of steps needed to make a single gather on a mine.
+
+getDurationGatherWood
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationGatherWood()
+   :outertype: UnitTemplate
+
+   Get the number of steps needed to make a single gather on a tree.
+
+getDurationMove
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getDurationMove()
+   :outertype: UnitTemplate
+
+   Get the number of steps needed to make a single move.
+
+getFoodProvided
+^^^^^^^^^^^^^^^
+
+.. java:method:: public int getFoodProvided()
+   :outertype: UnitTemplate
+
+getGatherRate
+^^^^^^^^^^^^^
+
+.. java:method:: public int getGatherRate(ResourceNode.Type type)
+   :outertype: UnitTemplate
+
+getPiercingAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getPiercingAttack()
+   :outertype: UnitTemplate
+
+getProduces
+^^^^^^^^^^^
+
+.. java:method:: public List<Integer> getProduces()
+   :outertype: UnitTemplate
+
+   Get a list of IDs of templates that this unit can make. Changing this list will alter the data of this template.
+
+   :return: A list of IDs for templates that can be produced/built by this unit.
+
+getRange
+^^^^^^^^
+
+.. java:method:: public int getRange()
+   :outertype: UnitTemplate
+
+getSightRange
+^^^^^^^^^^^^^
+
+.. java:method:: public int getSightRange()
+   :outertype: UnitTemplate
+
+getView
+^^^^^^^
+
+.. java:method:: @Override public UnitTemplateView getView()
+   :outertype: UnitTemplate
+
+produceInstance
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public Unit produceInstance(IDDistributer idsource)
+   :outertype: UnitTemplate
+
+setArmor
+^^^^^^^^
+
+.. java:method:: public void setArmor(int armor)
+   :outertype: UnitTemplate
+
+setBaseHealth
+^^^^^^^^^^^^^
+
+.. java:method:: public void setBaseHealth(int baseHealth)
+   :outertype: UnitTemplate
+
+setBasicAttack
+^^^^^^^^^^^^^^
+
+.. java:method:: public void setBasicAttack(int basicAttack)
+   :outertype: UnitTemplate
+
+setCanAcceptGold
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCanAcceptGold(boolean canAcceptGold)
+   :outertype: UnitTemplate
+
+setCanAcceptWood
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCanAcceptWood(boolean canAcceptWood)
+   :outertype: UnitTemplate
+
+setCanBuild
+^^^^^^^^^^^
+
+.. java:method:: public void setCanBuild(boolean canBuild)
+   :outertype: UnitTemplate
+
+setCanGather
+^^^^^^^^^^^^
+
+.. java:method:: public void setCanGather(boolean canGather)
+   :outertype: UnitTemplate
+
+setCanMove
+^^^^^^^^^^
+
+.. java:method:: public void setCanMove(boolean canMove)
+   :outertype: UnitTemplate
+
+setCharacter
+^^^^^^^^^^^^
+
+.. java:method:: public void setCharacter(char character)
+   :outertype: UnitTemplate
+
+setDurationAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationAttack(int durationAttack)
+   :outertype: UnitTemplate
+
+   Set the number of steps needed to make a single attack
+
+   :param durationAttack:
+
+setDurationDeposit
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationDeposit(int durationDeposit)
+   :outertype: UnitTemplate
+
+   Set the number of steps needed to make a single deposit.
+
+   :param durationDeposit:
+
+setDurationGatherGold
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationGatherGold(int durationGoldGather)
+   :outertype: UnitTemplate
+
+   Set the number of steps needed to make a single gather on a mine.
+
+   :param durationGoldGather:
+
+setDurationGatherWood
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationGatherWood(int durationWoodGather)
+   :outertype: UnitTemplate
+
+   Set the number of steps needed to make a single gather on a tree.
+
+   :param durationWoodGather:
+
+setDurationMove
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setDurationMove(int durationMove)
+   :outertype: UnitTemplate
+
+   Set the number of steps needed to make a single move.
+
+   :param durationMove:
+
+setFoodProvided
+^^^^^^^^^^^^^^^
+
+.. java:method:: public void setFoodProvided(int numFoodProvided)
+   :outertype: UnitTemplate
+
+setGoldGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setGoldGatherRate(int goldpertrip)
+   :outertype: UnitTemplate
+
+setPiercingAttack
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setPiercingAttack(int piercingAttack)
+   :outertype: UnitTemplate
+
+setRange
+^^^^^^^^
+
+.. java:method:: public void setRange(int range)
+   :outertype: UnitTemplate
+
+setSightRange
+^^^^^^^^^^^^^
+
+.. java:method:: public void setSightRange(int sightRange)
+   :outertype: UnitTemplate
+
+setWoodGatherRate
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setWoodGatherRate(int woodpertrip)
+   :outertype: UnitTemplate
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString()
+   :outertype: UnitTemplate
+

@@ -1,0 +1,18 @@
+.. java:import:: java.io Serializable
+
+StateCreator
+============
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public interface StateCreator extends Serializable
+
+Methods
+-------
+createState
+^^^^^^^^^^^
+
+.. java:method::  State createState()
+   :outertype: StateCreator
+

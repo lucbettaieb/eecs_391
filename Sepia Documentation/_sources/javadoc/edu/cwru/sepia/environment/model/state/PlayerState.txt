@@ -1,0 +1,178 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util EnumMap
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Set
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatableUtil
+
+PlayerState
+===========
+
+.. java:package:: edu.cwru.sepia.environment.model.state
+   :noindex:
+
+.. java:type:: public class PlayerState implements Serializable, DeepEquatable
+
+Fields
+------
+playerNum
+^^^^^^^^^
+
+.. java:field:: public final int playerNum
+   :outertype: PlayerState
+
+Constructors
+------------
+PlayerState
+^^^^^^^^^^^
+
+.. java:constructor:: @SuppressWarnings public PlayerState(int id)
+   :outertype: PlayerState
+
+Methods
+-------
+addTemplate
+^^^^^^^^^^^
+
+.. java:method:: public void addTemplate(Template template)
+   :outertype: PlayerState
+
+addToCurrentResourceAmount
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addToCurrentResourceAmount(ResourceType type, int increase)
+   :outertype: PlayerState
+
+addToCurrentSupply
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addToCurrentSupply(int increase)
+   :outertype: PlayerState
+
+addToCurrentSupplyCap
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void addToCurrentSupplyCap(int increase)
+   :outertype: PlayerState
+
+addUnit
+^^^^^^^
+
+.. java:method:: public void addUnit(Unit unit)
+   :outertype: PlayerState
+
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: PlayerState
+
+getCurrentResourceAmount
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentResourceAmount(ResourceType type)
+   :outertype: PlayerState
+
+getCurrentSupply
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentSupply()
+   :outertype: PlayerState
+
+getCurrentSupplyCap
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getCurrentSupplyCap()
+   :outertype: PlayerState
+
+   Returns the maximum supply earned by the player.
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Template getTemplate(int id)
+   :outertype: PlayerState
+
+getTemplate
+^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Template getTemplate(String name)
+   :outertype: PlayerState
+
+getTemplates
+^^^^^^^^^^^^
+
+.. java:method:: @SuppressWarnings public Map<Integer, Template> getTemplates()
+   :outertype: PlayerState
+
+getUnit
+^^^^^^^
+
+.. java:method:: public Unit getUnit(int id)
+   :outertype: PlayerState
+
+getUnits
+^^^^^^^^
+
+.. java:method:: public Map<Integer, Unit> getUnits()
+   :outertype: PlayerState
+
+getUpgrades
+^^^^^^^^^^^
+
+.. java:method:: public Set<Integer> getUpgrades()
+   :outertype: PlayerState
+
+getView
+^^^^^^^
+
+.. java:method:: public StateView getView()
+   :outertype: PlayerState
+
+getVisibilityMatrix
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int[][] getVisibilityMatrix()
+   :outertype: PlayerState
+
+setCurrentResourceAmount
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCurrentResourceAmount(ResourceType type, int amount)
+   :outertype: PlayerState
+
+setCurrentSupply
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCurrentSupply(int supply)
+   :outertype: PlayerState
+
+setCurrentSupplyCap
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setCurrentSupplyCap(int supply)
+   :outertype: PlayerState
+
+setStateView
+^^^^^^^^^^^^
+
+.. java:method:: public void setStateView(StateView view)
+   :outertype: PlayerState
+
+setVisibilityMatrix
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setVisibilityMatrix(int[][] matrix)
+   :outertype: PlayerState
+

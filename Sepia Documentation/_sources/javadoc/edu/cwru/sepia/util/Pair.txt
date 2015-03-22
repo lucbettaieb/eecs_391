@@ -1,0 +1,46 @@
+.. java:import:: java.io Serializable
+
+Pair
+====
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public class Pair<A, B> implements Serializable
+
+Fields
+------
+a
+^
+
+.. java:field:: public A a
+   :outertype: Pair
+
+b
+^
+
+.. java:field:: public B b
+   :outertype: Pair
+
+Constructors
+------------
+Pair
+^^^^
+
+.. java:constructor:: public Pair(A a, B b)
+   :outertype: Pair
+
+Methods
+-------
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object o)
+   :outertype: Pair
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: Pair
+

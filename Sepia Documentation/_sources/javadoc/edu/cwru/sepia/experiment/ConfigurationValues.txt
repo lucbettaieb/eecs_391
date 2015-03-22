@@ -1,0 +1,64 @@
+ConfigurationValues
+===================
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public enum ConfigurationValues
+
+Enum Constants
+--------------
+ENVIRONMENT_EPISODES
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues ENVIRONMENT_EPISODES
+   :outertype: ConfigurationValues
+
+ENVIRONMENT_EPISODES_PER_SAVE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues ENVIRONMENT_EPISODES_PER_SAVE
+   :outertype: ConfigurationValues
+
+ENVIRONMENT_SAVE_AGENTS
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues ENVIRONMENT_SAVE_AGENTS
+   :outertype: ConfigurationValues
+
+MODEL_CONQUEST
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_CONQUEST
+   :outertype: ConfigurationValues
+
+MODEL_MANIFEST_DESTINY
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_MANIFEST_DESTINY
+   :outertype: ConfigurationValues
+
+MODEL_MIDAS
+^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_MIDAS
+   :outertype: ConfigurationValues
+
+MODEL_REQUIRED_GOLD
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_REQUIRED_GOLD
+   :outertype: ConfigurationValues
+
+MODEL_REQUIRED_WOOD
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_REQUIRED_WOOD
+   :outertype: ConfigurationValues
+
+MODEL_TIME_LIMIT
+^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final ConfigurationValues MODEL_TIME_LIMIT
+   :outertype: ConfigurationValues
+

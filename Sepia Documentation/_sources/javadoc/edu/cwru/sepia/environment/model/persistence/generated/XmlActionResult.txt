@@ -1,0 +1,93 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.action ActionFeedback
+
+XmlActionResult
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlActionResult
+
+   Java class for ActionResult complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="ActionResult">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="action" type="{}Action"/>
+              <element name="feedback" type="{}ActionFeedback"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+action
+^^^^^^
+
+.. java:field:: @XmlElement protected XmlAction action
+   :outertype: XmlActionResult
+
+feedback
+^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ActionFeedback feedback
+   :outertype: XmlActionResult
+
+Methods
+-------
+getAction
+^^^^^^^^^
+
+.. java:method:: public XmlAction getAction()
+   :outertype: XmlActionResult
+
+   Gets the value of the action property.
+
+   :return: possible object is \ :java:ref:`XmlAction`\
+
+getFeedback
+^^^^^^^^^^^
+
+.. java:method:: public ActionFeedback getFeedback()
+   :outertype: XmlActionResult
+
+   Gets the value of the feedback property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+setAction
+^^^^^^^^^
+
+.. java:method:: public void setAction(XmlAction value)
+   :outertype: XmlActionResult
+
+   Sets the value of the action property.
+
+   :param value: allowed object is \ :java:ref:`XmlAction`\
+
+setFeedback
+^^^^^^^^^^^
+
+.. java:method:: public void setFeedback(ActionFeedback value)
+   :outertype: XmlActionResult
+
+   Sets the value of the feedback property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+

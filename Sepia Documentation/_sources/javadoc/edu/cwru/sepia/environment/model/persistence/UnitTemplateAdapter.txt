@@ -1,0 +1,28 @@
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlUnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode.Type
+
+UnitTemplateAdapter
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class UnitTemplateAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static UnitTemplate fromXml(XmlUnitTemplate xml, int player)
+   :outertype: UnitTemplateAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlUnitTemplate toXml(UnitTemplate ut)
+   :outertype: UnitTemplateAdapter
+

@@ -1,0 +1,115 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util Map
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment TurnTracker
+
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.experiment Configuration
+
+Model
+=====
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public interface Model extends Serializable
+
+   The interface for model, which transitions its state as executing given actions.
+
+Methods
+-------
+addActions
+^^^^^^^^^^
+
+.. java:method::  void addActions(Map<Integer, Action> actions, int sendingPlayerNumber)
+   :outertype: Model
+
+   Validate and add actions to the list of actions to execute
+
+   :param actions:
+   :param sendingPlayerNumber:
+
+createNewWorld
+^^^^^^^^^^^^^^
+
+.. java:method::  void createNewWorld()
+   :outertype: Model
+
+   Have the model create a new world.
+
+executeStep
+^^^^^^^^^^^
+
+.. java:method::  void executeStep()
+   :outertype: Model
+
+   Execute actions and do anything else that needs to be done
+
+getConfiguration
+^^^^^^^^^^^^^^^^
+
+.. java:method::  Configuration getConfiguration()
+   :outertype: Model
+
+getHistory
+^^^^^^^^^^
+
+.. java:method::  History getHistory()
+   :outertype: Model
+
+   Get the history of the model since the last new world was created.
+
+getState
+^^^^^^^^
+
+.. java:method::  State getState()
+   :outertype: Model
+
+   Get current state of the model
+
+   :return: current state of the model
+
+getVerbose
+^^^^^^^^^^
+
+.. java:method::  boolean getVerbose()
+   :outertype: Model
+
+isTerminated
+^^^^^^^^^^^^
+
+.. java:method::  boolean isTerminated()
+   :outertype: Model
+
+   Determine whether the current state is terminal.
+
+   :return: True if the current state is terminal, False otherwise.
+
+setConfiguration
+^^^^^^^^^^^^^^^^
+
+.. java:method::  void setConfiguration(Configuration configuration)
+   :outertype: Model
+
+setTurnTracker
+^^^^^^^^^^^^^^
+
+.. java:method::  void setTurnTracker(TurnTracker turnTracker)
+   :outertype: Model
+
+   Add the turn tracker to moderate who can move on a given turn.
+
+   :param turnTracker:
+
+setVerbose
+^^^^^^^^^^
+
+.. java:method::  void setVerbose(boolean verbosity)
+   :outertype: Model
+

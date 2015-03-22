@@ -1,0 +1,62 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+DeathLog
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class DeathLog implements Serializable, DeepEquatable
+
+   A read only class that represents the death of something
+
+   :author: The Condor
+
+Constructors
+------------
+DeathLog
+^^^^^^^^
+
+.. java:constructor:: public DeathLog(int deadunitid, int player)
+   :outertype: DeathLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: DeathLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: DeathLog
+
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: DeathLog
+
+getDeadUnitID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getDeadUnitID()
+   :outertype: DeathLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: DeathLog
+
+toString
+^^^^^^^^
+
+.. java:method:: public String toString()
+   :outertype: DeathLog
+

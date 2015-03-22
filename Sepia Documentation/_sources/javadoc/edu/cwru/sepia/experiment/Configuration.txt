@@ -1,0 +1,186 @@
+.. java:import:: org.w3c.dom Document
+
+.. java:import:: org.w3c.dom Node
+
+.. java:import:: org.w3c.dom NodeList
+
+.. java:import:: org.xml.sax SAXException
+
+.. java:import:: java.io File
+
+.. java:import:: java.io IOException
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Iterator
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Set
+
+Configuration
+=============
+
+.. java:package:: edu.cwru.sepia.experiment
+   :noindex:
+
+.. java:type:: public class Configuration
+
+   Manages a list of configurable properties and allows for saving to/loading from a file.
+
+   :author: Tim
+
+Constructors
+------------
+Configuration
+^^^^^^^^^^^^^
+
+.. java:constructor:: public Configuration()
+   :outertype: Configuration
+
+Methods
+-------
+containsKey
+^^^^^^^^^^^
+
+.. java:method:: public boolean containsKey(String key)
+   :outertype: Configuration
+
+get
+^^^
+
+.. java:method:: public Object get(String key)
+   :outertype: Configuration
+
+get
+^^^
+
+.. java:method:: public <T> T get(String key, T fallback)
+   :outertype: Configuration
+
+   :param key: The name of the property to get.
+   :param fallback: A value to use if no such property is set.
+
+getBoolean
+^^^^^^^^^^
+
+.. java:method:: public Boolean getBoolean(String key)
+   :outertype: Configuration
+
+   Get a boolean property
+
+   :param key:
+
+getBoolean
+^^^^^^^^^^
+
+.. java:method:: public Boolean getBoolean(String key, boolean fallback)
+   :outertype: Configuration
+
+   :param key: The name of the property to get.
+   :param fallback: A value to use if no such property is set.
+
+getDouble
+^^^^^^^^^
+
+.. java:method:: public Double getDouble(String key)
+   :outertype: Configuration
+
+getDouble
+^^^^^^^^^
+
+.. java:method:: public Double getDouble(String key, Double fallback)
+   :outertype: Configuration
+
+   :param key: The name of the property to get.
+   :param fallback: A value to use if no such property is set.
+
+getInt
+^^^^^^
+
+.. java:method:: public Integer getInt(String key)
+   :outertype: Configuration
+
+   :param key:
+
+getInt
+^^^^^^
+
+.. java:method:: public Integer getInt(String key, int fallback)
+   :outertype: Configuration
+
+   Get an integer property
+
+   :param key: The name of the property to get.
+   :param fallback: A value to use if no such property is set.
+
+getKeys
+^^^^^^^
+
+.. java:method:: public Set<String> getKeys()
+   :outertype: Configuration
+
+getString
+^^^^^^^^^
+
+.. java:method:: public String getString(String key)
+   :outertype: Configuration
+
+getString
+^^^^^^^^^
+
+.. java:method:: public String getString(String key, String fallback)
+   :outertype: Configuration
+
+   :param key: The name of the property to get.
+   :param fallback: A value to use if no such property is set.
+
+loadPreferenceFormatConfiguration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static Configuration loadPreferenceFormatConfiguration(String configFilePath)
+   :outertype: Configuration
+
+   Treat a file as a java preferences file and load it into a configuration, without the unsafe use of java's preferences.
+
+   :param configFilePath:
+   :return: a configuration parsed from the file
+
+put
+^^^
+
+.. java:method:: public void put(String key, String value)
+   :outertype: Configuration
+
+put
+^^^
+
+.. java:method:: public void put(String key, boolean value)
+   :outertype: Configuration
+
+put
+^^^
+
+.. java:method:: public void put(String key, int value)
+   :outertype: Configuration
+
+put
+^^^
+
+.. java:method:: public void put(String key, double value)
+   :outertype: Configuration
+
+put
+^^^
+
+.. java:method:: public <T> void put(String key, T value)
+   :outertype: Configuration
+
+toString
+^^^^^^^^
+
+.. java:method:: @Override public String toString()
+   :outertype: Configuration
+

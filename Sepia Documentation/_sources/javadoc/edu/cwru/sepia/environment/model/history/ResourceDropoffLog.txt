@@ -1,0 +1,76 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceType
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+ResourceDropoffLog
+==================
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class ResourceDropoffLog implements Serializable, DeepEquatable
+
+   A read only class documenting an historic event wherein resources are dropped off (deposited)
+
+   :author: The Condor
+
+Constructors
+------------
+ResourceDropoffLog
+^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public ResourceDropoffLog(int gathererid, int controller, int amountpickedup, ResourceType resource, int depotid)
+   :outertype: ResourceDropoffLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: ResourceDropoffLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: ResourceDropoffLog
+
+getAmountDroppedOff
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getAmountDroppedOff()
+   :outertype: ResourceDropoffLog
+
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: ResourceDropoffLog
+
+getDepotID
+^^^^^^^^^^
+
+.. java:method:: public int getDepotID()
+   :outertype: ResourceDropoffLog
+
+getGathererID
+^^^^^^^^^^^^^
+
+.. java:method:: public int getGathererID()
+   :outertype: ResourceDropoffLog
+
+getResourceType
+^^^^^^^^^^^^^^^
+
+.. java:method:: public ResourceType getResourceType()
+   :outertype: ResourceDropoffLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: ResourceDropoffLog
+

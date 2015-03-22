@@ -1,0 +1,26 @@
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+ResourceNodeAdapter
+===================
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class ResourceNodeAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public ResourceNode fromXml(XmlResourceNode xml)
+   :outertype: ResourceNodeAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public XmlResourceNode toXml(ResourceNode node)
+   :outertype: ResourceNodeAdapter
+

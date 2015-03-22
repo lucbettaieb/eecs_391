@@ -1,0 +1,91 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlSeeAlso
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+.. java:import:: javax.xml.bind.annotation.adapters XmlJavaTypeAdapter
+
+.. java:import:: edu.cwru.sepia.action ActionType
+
+XmlAction
+=========
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType @XmlSeeAlso public class XmlAction
+
+   Java class for Action complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="Action">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="unitId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="actionType" type="{}ActionType"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+actionType
+^^^^^^^^^^
+
+.. java:field:: @XmlElement @XmlJavaTypeAdapter protected ActionType actionType
+   :outertype: XmlAction
+
+unitId
+^^^^^^
+
+.. java:field:: protected int unitId
+   :outertype: XmlAction
+
+Methods
+-------
+getActionType
+^^^^^^^^^^^^^
+
+.. java:method:: public ActionType getActionType()
+   :outertype: XmlAction
+
+   Gets the value of the actionType property.
+
+   :return: possible object is \ :java:ref:`String`\
+
+getUnitId
+^^^^^^^^^
+
+.. java:method:: public int getUnitId()
+   :outertype: XmlAction
+
+   Gets the value of the unitId property.
+
+setActionType
+^^^^^^^^^^^^^
+
+.. java:method:: public void setActionType(ActionType value)
+   :outertype: XmlAction
+
+   Sets the value of the actionType property.
+
+   :param value: allowed object is \ :java:ref:`String`\
+
+setUnitId
+^^^^^^^^^
+
+.. java:method:: public void setUnitId(int value)
+   :outertype: XmlAction
+
+   Sets the value of the unitId property.
+

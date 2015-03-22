@@ -1,0 +1,179 @@
+===============
+ Combat Agents
+===============
+
+This section will give you a basic overview of how you command your
+different units to fight. A basic enemy AI is included so that you can
+experiment with the API.
+
+Setting up the Combat Agent
+---------------------------
+
+To start download the `combat_files.zip
+<_static/combat_files.zip>`_. This zip file contains two folders:
+``data``, and ``agents``. Copy the file from the data folder into your
+projects data folder and copy the agents folder to your project. You
+should now see these files in the Eclipse Package Explorer tab. If you
+don't you may need to refresh by right clicking on the package name
+and selecting ``Refresh`` or by pressing F5.
+
+Next you will need to make an empty class. Just as in the Resource
+Collection tutorial right click on the ``src`` folder and create a new
+java class that inherits from the ``Agent`` class. This tutorial
+assumes you name your agent ``MyCombatAgent``. Once you have created
+your default agent open the ``CombatAgentConfig.xml`` in the data
+folder and modify the first ``<ClassName>`` tag to be the classpath of
+your newly created agent.
+
+Next duplicate one of the run configurations from the previous
+tutorials. On the ``Arguments`` tab change the config file to the new
+``CombatAgentConfig.xml``. Finally click on the classpath tab and add
+the new ``agents`` folder to the class path by clicking the
+``Advanced`` button and then select ``Add Folders``. Save the run
+configuration.
+
+At this point you can use the run configuration which will start a new
+map. In the top right corner are the enemy units and in the middle are
+your units. The *f* units are Footmen. These units can only attack
+adjacent squares. The *T* unit is a tower, which is an immobile unit
+with long attack range. The *a* units are archers, they have long
+attack range, but low health. The *b* units are Ballista they have
+medium range and high attack, but low health.
+
+Attacking the Enemy
+-------------------
+
+To attack an enemy unit you need the unit ID of your unit that is
+attacking and the unit ID of the enemy unit being attacked. The
+easiest way to attack is to use a CompoundAttack action. This will
+take care of moving the agent towards the specified enemy unit until
+that unit is within range.
+
+Here is a simple example of an agent that just assigns every unit to
+attack a single enemy unit until that unit is killed. Obviously this
+is a terrible strategy and in your assignments you will attempt to do
+better, but this demonstrates how to make a compound attack
+action. You can download the `MyCombatAgent.java file here <_static/agents/MyCombatAgent/MyCombatAgent.java>`_.
+
+.. code-block:: java
+
+	public class MyCombatAgent extends Agent {	
+
+		private int enemyPlayerNum = 1;	
+
+		public MyCombatAgent(int playernum, String[] otherargs) {	
+			super(playernum);	
+
+			if(otherargs.length > 0)	
+			{	
+				enemyPlayerNum = new Integer(otherargs[0]);	
+			}	
+
+			System.out.println("Constructed MyCombatAgent");	
+		}	
+
+		@Override	
+		public Map<Integer, Action> initialStep(StateView newstate,	
+				HistoryView statehistory) {	
+			// This stores the action that each unit will perform	
+			// if there are no changes to the current actions then this	
+			// map will be empty	
+			Map<Integer, Action> actions = new HashMap<Integer, Action>();	
+
+			// This is a list of all of your units	
+			// Refer to the resource agent example for ways of	
+			// differentiating between different unit types based on	
+			// the list of IDs	
+			List<Integer> myUnitIDs = newstate.getUnitIds(playernum);	
+
+			// This is a list of enemy units	
+			List<Integer> enemyUnitIDs = newstate.getUnitIds(enemyPlayerNum);	
+
+			if(enemyUnitIDs.size() == 0)	
+			{	
+				// Nothing to do because there is no one left to attack	
+				return actions;	
+			}	
+
+			// start by commanding every single unit to attack an enemy unit	
+			for(Integer myUnitID : myUnitIDs)	
+			{	
+				// Command all of my units to attack the first enemy unit in the list	
+				actions.put(myUnitID, Action.createCompoundAttack(myUnitID, enemyUnitIDs.get(0)));	
+			}	
+
+			return actions;	
+		}	
+
+		@Override	
+		public Map<Integer, Action> middleStep(StateView newstate,	
+				HistoryView statehistory) {	
+			// This stores the action that each unit will perform	
+			// if there are no changes to the current actions then this	
+			// map will be empty	
+			Map<Integer, Action> actions = new HashMap<Integer, Action>();	
+
+			// This is a list of enemy units	
+			List<Integer> enemyUnitIDs = newstate.getUnitIds(enemyPlayerNum);	
+
+			if(enemyUnitIDs.size() == 0)	
+			{	
+				// Nothing to do because there is no one left to attack	
+				return actions;	
+			}	
+
+			int currentStep = newstate.getTurnNumber();	
+
+			// go through the action history	
+			for(ActionResult feedback : statehistory.getCommandFeedback(playernum, currentStep-1).values())	
+			{	
+				// if the previous action is no longer in progress (either due to failure or completion)	
+				// then add a new action for this unit	
+				if(feedback.getFeedback() != ActionFeedback.INCOMPLETE)	
+				{	
+					// attack the first enemy unit in the list	
+					int unitID = feedback.getAction().getUnitId();	
+					actions.put(unitID, Action.createCompoundAttack(unitID, enemyUnitIDs.get(0)));				
+				}	
+			}	
+
+			return actions;	
+		}	
+
+		@Override	
+		public void terminalStep(StateView newstate, HistoryView statehistory) {	
+			System.out.println("Finished the episode");	
+		}	
+
+		@Override	
+		public void savePlayerData(OutputStream os) {	
+			// TODO Auto-generated method stub	
+
+		}	
+
+		@Override	
+		public void loadPlayerData(InputStream is) {	
+			// TODO Auto-generated method stub	
+
+		}	
+
+	}	
+
+First thing to notice is that this agent accepts additional arguments
+in its constructor. All of the arguments are passed to the agent as
+strings. So you will need to convert them to the correct data type
+depending on the application.
+
+Secondly in this agent we have a separate initial and middle
+step. This is because the first step commands every unit to attack a
+single enemy unit. Every other step checks for the completion of the
+previous command. If an action has completed its command it gets
+assigned another attack action. This repeats until either all of the
+enemy's are killed or all of the agent's units are killed. In this
+case all of the agent's units will die.
+
+The statehistory is also useful for detecting events like unit deaths
+and changes in health. These features may be useful when constructing
+your own agents. For instance you may want to check in the middle step
+whether any of your units have died in the last step and if so
+readjust your strategy.

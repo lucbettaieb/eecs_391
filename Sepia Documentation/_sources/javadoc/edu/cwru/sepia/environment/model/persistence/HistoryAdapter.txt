@@ -1,0 +1,30 @@
+.. java:import:: edu.cwru.sepia.environment.model.history History
+
+.. java:import:: edu.cwru.sepia.environment.model.history PlayerHistory
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlHistory
+
+.. java:import:: edu.cwru.sepia.environment.model.persistence.generated XmlPlayerHistory
+
+HistoryAdapter
+==============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence
+   :noindex:
+
+.. java:type:: public class HistoryAdapter
+
+Methods
+-------
+fromXml
+^^^^^^^
+
+.. java:method:: public static History fromXml(XmlHistory xml)
+   :outertype: HistoryAdapter
+
+toXml
+^^^^^
+
+.. java:method:: public static XmlHistory toXml(History history)
+   :outertype: HistoryAdapter
+

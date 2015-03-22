@@ -1,0 +1,62 @@
+Direction
+=========
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public enum Direction
+
+   A basic enumeration of the eight directions in which a primitive action can be taken. Directions are treated the same as screen coordinates: East is positive x, South is positive y.
+
+   :author: Tim
+
+Enum Constants
+--------------
+EAST
+^^^^
+
+.. java:field:: public static final Direction EAST
+   :outertype: Direction
+
+NORTH
+^^^^^
+
+.. java:field:: public static final Direction NORTH
+   :outertype: Direction
+
+NORTHEAST
+^^^^^^^^^
+
+.. java:field:: public static final Direction NORTHEAST
+   :outertype: Direction
+
+NORTHWEST
+^^^^^^^^^
+
+.. java:field:: public static final Direction NORTHWEST
+   :outertype: Direction
+
+SOUTH
+^^^^^
+
+.. java:field:: public static final Direction SOUTH
+   :outertype: Direction
+
+SOUTHEAST
+^^^^^^^^^
+
+.. java:field:: public static final Direction SOUTHEAST
+   :outertype: Direction
+
+SOUTHWEST
+^^^^^^^^^
+
+.. java:field:: public static final Direction SOUTHWEST
+   :outertype: Direction
+
+WEST
+^^^^
+
+.. java:field:: public static final Direction WEST
+   :outertype: Direction
+

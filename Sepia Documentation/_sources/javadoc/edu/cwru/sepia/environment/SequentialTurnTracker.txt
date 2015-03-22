@@ -1,0 +1,72 @@
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util Random
+
+.. java:import:: edu.cwru.sepia.agent Agent
+
+SequentialTurnTracker
+=====================
+
+.. java:package:: edu.cwru.sepia.environment
+   :noindex:
+
+.. java:type:: public class SequentialTurnTracker implements TurnTracker
+
+   A class that gives priority to a single player at a time. This is a cycle with order randomly generated each episode.
+
+   :author: The Condor
+
+Constructors
+------------
+SequentialTurnTracker
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public SequentialTurnTracker(Random r)
+   :outertype: SequentialTurnTracker
+
+Methods
+-------
+addPlayer
+^^^^^^^^^
+
+.. java:method:: @Override public void addPlayer(Integer playerNumber)
+   :outertype: SequentialTurnTracker
+
+hasHadTurnBefore
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean hasHadTurnBefore(int playerNumber)
+   :outertype: SequentialTurnTracker
+
+isAgentsTurn
+^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isAgentsTurn(Agent agent)
+   :outertype: SequentialTurnTracker
+
+isPlayersTurn
+^^^^^^^^^^^^^
+
+.. java:method:: @Override public boolean isPlayersTurn(int playerNumber)
+   :outertype: SequentialTurnTracker
+
+newEpisodeAndStep
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Override public void newEpisodeAndStep()
+   :outertype: SequentialTurnTracker
+
+newStep
+^^^^^^^
+
+.. java:method:: @Override public void newStep()
+   :outertype: SequentialTurnTracker
+
+removePlayer
+^^^^^^^^^^^^
+
+.. java:method:: @Override public void removePlayer(Integer playerNumber)
+   :outertype: SequentialTurnTracker
+

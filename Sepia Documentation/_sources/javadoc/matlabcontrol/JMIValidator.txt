@@ -1,0 +1,30 @@
+.. java:import:: java.lang.reflect Method
+
+.. java:import:: java.lang.reflect Modifier
+
+.. java:import:: java.util HashSet
+
+JMIValidator
+============
+
+.. java:package:: matlabcontrol
+   :noindex:
+
+.. java:type::  class JMIValidator
+
+   Validates that the methods used by \ :java:ref:`JMIWrapper`\  are present in the current Java Virtual Machine, which should always be MATLAB's JVM when this class is used. This is done because \ ``jmi.jar``\  is entirely undocumented and could change in any future release without notice. If that occurred it could result in a number of exceptions that could be insufficiently informative to resolve the issue. This class throws detailed exceptions when an expected method (or class the method belongs to) is not found.
+
+   :author: \ `Joshua Kaplan <mailto:nonother@gmail.com>`_\
+
+Methods
+-------
+validateJMIMethods
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: static void validateJMIMethods() throws MatlabConnectionException
+   :outertype: JMIValidator
+
+   Checks that all of the methods matlabcontrol uses are present. If they are all present then nothing will happen. If not, then an informative exception is thrown.
+
+   :throws MatlabConnectionException:
+

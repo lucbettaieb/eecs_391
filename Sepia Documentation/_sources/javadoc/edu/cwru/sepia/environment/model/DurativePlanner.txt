@@ -1,0 +1,250 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util LinkedList
+
+.. java:import:: java.util PriorityQueue
+
+.. java:import:: edu.cwru.sepia.action Action
+
+.. java:import:: edu.cwru.sepia.environment.model.state ResourceNode
+
+.. java:import:: edu.cwru.sepia.environment.model.state State
+
+.. java:import:: edu.cwru.sepia.environment.model.state Template
+
+.. java:import:: edu.cwru.sepia.environment.model.state Unit
+
+.. java:import:: edu.cwru.sepia.environment.model.state UnitTemplate
+
+.. java:import:: edu.cwru.sepia.environment.model.state State.StateView
+
+.. java:import:: edu.cwru.sepia.util Direction
+
+.. java:import:: edu.cwru.sepia.util DistanceMetrics
+
+DurativePlanner
+===============
+
+.. java:package:: edu.cwru.sepia.environment.model
+   :noindex:
+
+.. java:type:: public class DurativePlanner implements Serializable
+
+   An implementation of basic planning methods extended to the case of actions that take time to act.
+
+Constructors
+------------
+DurativePlanner
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public DurativePlanner(State state)
+   :outertype: DurativePlanner
+
+Methods
+-------
+calculateAttackDuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateAttackDuration(Unit u, Unit target)
+   :outertype: DurativePlanner
+
+   This is a temporary debug method, remove it when you are done
+
+calculateDepositDuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateDepositDuration(Unit u, Unit townhall)
+   :outertype: DurativePlanner
+
+   Calculate the duration of a
+
+   :param u:
+   :param townhall:
+
+calculateGatherDuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateGatherDuration(Unit u, ResourceNode target)
+   :outertype: DurativePlanner
+
+   A simple calculation for determining the amount
+
+   :param u:
+   :param target:
+
+calculateMaxMoveDuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateMaxMoveDuration(Unit u)
+   :outertype: DurativePlanner
+
+   .. parsed-literal::
+
+      Calculate the maximum move possible for a Unit.
+      These values must tie to
+
+   :param u: The unit whose maximum move we are probing.
+
+calculateMoveDuration
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateMoveDuration(Unit u, int startingx, int startingy, Direction d)
+   :outertype: DurativePlanner
+
+   .. parsed-literal::
+
+      Calculate the move duration for a unit.
+      These values must tie to
+
+   :param u:
+   :param startingx:
+   :param startingy:
+   :param d:
+
+calculateProductionDuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static int calculateProductionDuration(Unit u, Template t)
+   :outertype: DurativePlanner
+
+   This is a temporary debug method, remove it when you are done
+
+getDirections
+^^^^^^^^^^^^^
+
+.. java:method:: public MovePlan getDirections(Unit u, int startingx, int startingy, int endingx, int endingy, int tolerancedistance, boolean isFirstMove)
+   :outertype: DurativePlanner
+
+   .. parsed-literal::
+
+      Uses A* to calculate the directions to arrive at the specified
+      location.
+      Returns a path if and only if there is a valid path.
+      When you wish upon A* ...
+
+   :param u: The unit being moved. Necessary for calculating durative actions
+   :param startingx:
+   :param startingy:
+   :param endingx:
+   :param endingy:
+   :param tolerancedistance: The distance at which to stop trying to seek (IE, 0 is on top of it, 1 is next to it, etc) Note that the distance should count diagonals as 1 dist
+   :param isFirstMove: Whether this is the first move in a larger plan (and thus that the current progress toward a move should be included)
+   :return: A move plan with the success, path, and final x and y coordinates.
+
+planAttack
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planAttack(Unit actor, Unit target)
+   :outertype: DurativePlanner
+
+   Uses \ :java:ref:`getDirections(StateView,int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to follow them. then adds an attack command.
+
+   :param actor:
+   :param target:
+   :return: A series of actions that move the actor to the target and attacks the target
+
+planAttack
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planAttack(int actor, int target)
+   :outertype: DurativePlanner
+
+planBuild
+^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planBuild(Unit actor, int targetX, int targetY, UnitTemplate template)
+   :outertype: DurativePlanner
+
+   Plan a compound build action in which the unit moves to a target and then
+
+   :param actor:
+   :param targetX:
+   :param targetY:
+   :param template:
+
+planBuild
+^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planBuild(int actor, int targetX, int targetY, int template)
+   :outertype: DurativePlanner
+
+planDeposit
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planDeposit(Unit actor, Unit target)
+   :outertype: DurativePlanner
+
+   Plan a compound deposit action in which the unit moves next to the target town hall and then deposits into it
+
+   :param actor:
+   :param target:
+   :param distance:
+
+planDeposit
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planDeposit(int actor, int target)
+   :outertype: DurativePlanner
+
+planFail
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planFail(int actor)
+   :outertype: DurativePlanner
+
+planGather
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planGather(Unit actor, ResourceNode target)
+   :outertype: DurativePlanner
+
+   Plan a compound gather action in which the unit moves next to the target node and then gathers from it.
+
+   :param actor:
+   :param target:
+   :return: A series of actions that move the actor to the target and gathers from the target
+
+planGather
+^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planGather(int actor, int target)
+   :outertype: DurativePlanner
+
+planMove
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planMove(Unit actor, int x, int y)
+   :outertype: DurativePlanner
+
+   Uses \ :java:ref:`getDirections(int,int,int,int,int,boolean)`\  to get directions to the specified place and \ :java:ref:`planMove(Unit,LinkedList)`\  to follow them.
+
+   :param actor:
+   :param x:
+   :param y:
+
+planMove
+^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planMove(int i, int x, int y)
+   :outertype: DurativePlanner
+
+planPermanentFail
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planPermanentFail(int actor)
+   :outertype: DurativePlanner
+
+planProduce
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planProduce(Unit actor, Template template)
+   :outertype: DurativePlanner
+
+planProduce
+^^^^^^^^^^^
+
+.. java:method:: public LinkedList<Action> planProduce(int actor, int template)
+   :outertype: DurativePlanner
+

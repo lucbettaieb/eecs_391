@@ -1,0 +1,67 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.io PrintStream
+
+Logger
+======
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public class Logger
+
+   A utility class for logging errors. Only has a single instance, which by default sends messages to \ :java:ref:`System.err`\ . A different target may be provided using \ :java:ref:`open(String)`\  or \ :java:ref:`open(OutputStream)`\ .
+
+   :author: Tim
+
+Methods
+-------
+close
+^^^^^
+
+.. java:method:: public void close()
+   :outertype: Logger
+
+   Closes the currently opened file or stream and reverts to logging to \ :java:ref:`System.err`\ .
+
+getInstance
+^^^^^^^^^^^
+
+.. java:method:: public static Logger getInstance()
+   :outertype: Logger
+
+open
+^^^^
+
+.. java:method:: public boolean open(String filename)
+   :outertype: Logger
+
+   Attempts to redirect messages to a file.
+
+   :param filename: - the name of the file in which to store messages
+   :return: whether the file was successfully opened
+
+open
+^^^^
+
+.. java:method:: public boolean open(OutputStream stream)
+   :outertype: Logger
+
+   Attempts to redirect messages to an output stream.
+
+   :param stream: - the name of the stream to which to send messages
+   :return: whether the stream was successfully opened
+
+recordMessage
+^^^^^^^^^^^^^
+
+.. java:method:: public void recordMessage(String message, MessageLevel level)
+   :outertype: Logger
+
+   Records a message to the currently opened stream or file.
+
+   :param message:
+   :param level: - the level of urgency of the message
+

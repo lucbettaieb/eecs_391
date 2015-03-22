@@ -1,0 +1,45 @@
+.. java:import:: java.io File
+
+.. java:import:: java.io OutputStream
+
+.. java:import:: java.io PrintStream
+
+Logger.MessageLevel
+===================
+
+.. java:package:: edu.cwru.sepia.util
+   :noindex:
+
+.. java:type:: public static enum MessageLevel
+   :outertype: Logger
+
+   A list of different levels of urgency of messages
+
+   :author: Tim
+
+Enum Constants
+--------------
+CRITICAL_ERROR
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final Logger.MessageLevel CRITICAL_ERROR
+   :outertype: Logger.MessageLevel
+
+ERROR
+^^^^^
+
+.. java:field:: public static final Logger.MessageLevel ERROR
+   :outertype: Logger.MessageLevel
+
+OBSERVATION
+^^^^^^^^^^^
+
+.. java:field:: public static final Logger.MessageLevel OBSERVATION
+   :outertype: Logger.MessageLevel
+
+WARNING
+^^^^^^^
+
+.. java:field:: public static final Logger.MessageLevel WARNING
+   :outertype: Logger.MessageLevel
+

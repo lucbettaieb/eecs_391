@@ -1,0 +1,60 @@
+.. java:import:: java.io Serializable
+
+.. java:import:: edu.cwru.sepia.util DeepEquatable
+
+BirthLog
+========
+
+.. java:package:: edu.cwru.sepia.environment.model.history
+   :noindex:
+
+.. java:type:: public class BirthLog implements Serializable, DeepEquatable
+
+   A read only class that represents the birth of something
+
+Constructors
+------------
+BirthLog
+^^^^^^^^
+
+.. java:constructor:: public BirthLog(int newunitid, int producerid, int player)
+   :outertype: BirthLog
+
+Methods
+-------
+deepEquals
+^^^^^^^^^^
+
+.. java:method:: @Override public boolean deepEquals(Object other)
+   :outertype: BirthLog
+
+equals
+^^^^^^
+
+.. java:method:: @Override public boolean equals(Object other)
+   :outertype: BirthLog
+
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: BirthLog
+
+getNewUnitID
+^^^^^^^^^^^^
+
+.. java:method:: public int getNewUnitID()
+   :outertype: BirthLog
+
+getParentID
+^^^^^^^^^^^
+
+.. java:method:: public int getParentID()
+   :outertype: BirthLog
+
+hashCode
+^^^^^^^^
+
+.. java:method:: @Override public int hashCode()
+   :outertype: BirthLog
+

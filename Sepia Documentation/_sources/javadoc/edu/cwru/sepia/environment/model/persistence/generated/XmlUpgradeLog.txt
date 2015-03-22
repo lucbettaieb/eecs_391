@@ -1,0 +1,104 @@
+.. java:import:: javax.xml.bind.annotation XmlAccessType
+
+.. java:import:: javax.xml.bind.annotation XmlAccessorType
+
+.. java:import:: javax.xml.bind.annotation XmlElement
+
+.. java:import:: javax.xml.bind.annotation XmlType
+
+XmlUpgradeLog
+=============
+
+.. java:package:: edu.cwru.sepia.environment.model.persistence.generated
+   :noindex:
+
+.. java:type:: @XmlAccessorType @XmlType public class XmlUpgradeLog
+
+   Java class for UpgradeLog complex type.
+
+   The following schema fragment specifies the expected content contained within this class.
+
+   .. parsed-literal::
+
+      <complexType name="UpgradeLog">
+        <complexContent>
+          <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+            <sequence>
+              <element name="UpgradeTemplateID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="ProducingUnitID" type="{http://www.w3.org/2001/XMLSchema}int"/>
+              <element name="Controller" type="{http://www.w3.org/2001/XMLSchema}int"/>
+            </sequence>
+          </restriction>
+        </complexContent>
+      </complexType>
+
+Fields
+------
+controller
+^^^^^^^^^^
+
+.. java:field:: @XmlElement protected int controller
+   :outertype: XmlUpgradeLog
+
+producingUnitID
+^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected int producingUnitID
+   :outertype: XmlUpgradeLog
+
+upgradeTemplateID
+^^^^^^^^^^^^^^^^^
+
+.. java:field:: @XmlElement protected int upgradeTemplateID
+   :outertype: XmlUpgradeLog
+
+Methods
+-------
+getController
+^^^^^^^^^^^^^
+
+.. java:method:: public int getController()
+   :outertype: XmlUpgradeLog
+
+   Gets the value of the controller property.
+
+getProducingUnitID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getProducingUnitID()
+   :outertype: XmlUpgradeLog
+
+   Gets the value of the producingUnitID property.
+
+getUpgradeTemplateID
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public int getUpgradeTemplateID()
+   :outertype: XmlUpgradeLog
+
+   Gets the value of the upgradeTemplateID property.
+
+setController
+^^^^^^^^^^^^^
+
+.. java:method:: public void setController(int value)
+   :outertype: XmlUpgradeLog
+
+   Sets the value of the controller property.
+
+setProducingUnitID
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setProducingUnitID(int value)
+   :outertype: XmlUpgradeLog
+
+   Sets the value of the producingUnitID property.
+
+setUpgradeTemplateID
+^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public void setUpgradeTemplateID(int value)
+   :outertype: XmlUpgradeLog
+
+   Sets the value of the upgradeTemplateID property.
+

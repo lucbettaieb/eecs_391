@@ -1,0 +1,100 @@
+.. java:import:: java.awt Color
+
+.. java:import:: java.awt Font
+
+.. java:import:: java.awt Graphics
+
+.. java:import:: java.awt Polygon
+
+.. java:import:: java.awt Rectangle
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+DrawingStrategy
+===============
+
+.. java:package:: edu.cwru.sepia.agent.visual
+   :noindex:
+
+.. java:type:: public abstract class DrawingStrategy
+
+Fields
+------
+bounds
+^^^^^^
+
+.. java:field:: protected Rectangle bounds
+   :outertype: DrawingStrategy
+
+info
+^^^^
+
+.. java:field::  String info
+   :outertype: DrawingStrategy
+
+Methods
+-------
+charGraphic
+^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy charGraphic(char c)
+   :outertype: DrawingStrategy
+
+draw
+^^^^
+
+.. java:method:: public abstract void draw(Graphics g, int tlx, int tly)
+   :outertype: DrawingStrategy
+
+fogGraphic
+^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy fogGraphic()
+   :outertype: DrawingStrategy
+
+   graphic for the fog of war
+
+infoGraphic
+^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy infoGraphic()
+   :outertype: DrawingStrategy
+
+mineGraphic
+^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy mineGraphic()
+   :outertype: DrawingStrategy
+
+revealedMineGraphic
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy revealedMineGraphic()
+   :outertype: DrawingStrategy
+
+revealedTreeGraphic
+^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy revealedTreeGraphic()
+   :outertype: DrawingStrategy
+
+selectedGraphic
+^^^^^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy selectedGraphic()
+   :outertype: DrawingStrategy
+
+setInfo
+^^^^^^^
+
+.. java:method:: public void setInfo(String info)
+   :outertype: DrawingStrategy
+
+treeGraphic
+^^^^^^^^^^^
+
+.. java:method:: public static DrawingStrategy treeGraphic()
+   :outertype: DrawingStrategy
+
