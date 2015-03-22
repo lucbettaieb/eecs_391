@@ -1,8 +1,8 @@
 Planner and action agent will communicate using a simple language, rendered as a String.
     This ensures that the PEAgent output will work for grading.
     
-Our STRIPS like planner can probably get away with 3 verbs: HARVEST, DEPOSIT, and MOVE.
-    Finally, 4 direct objects are required: TOWNHALL, WOOD, GOLD, FOOD
+Our STRIPS like planner has 4 important verbs: HARVEST, DEPOSIT, MOVE, and CREATE.
+    Finally, 5 direct objects are required: TOWNHALL, WOOD, GOLD, FOOD, and PEASANT
     
 Sample valid sentences:
     HARVEST1(WOOD)
