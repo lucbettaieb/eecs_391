@@ -5,10 +5,12 @@ import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.agent.Agent;
 import edu.cwru.sepia.agent.planner.actions.*;
 import edu.cwru.sepia.environment.model.history.History;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Template;
 import edu.cwru.sepia.environment.model.state.Unit;
 
+import javax.annotation.Resource;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
@@ -90,6 +92,12 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        //compoundGather, and compoundDeposit
+        StripsAction nextAction;
+        while(!plan.empty()){
+            nextAction = plan.pop();
+            
+        }
         // TODO: Implement me!
         return null;
     }
@@ -156,7 +164,7 @@ public class PEAgent extends Agent {
         }
         
         private void parseVerb(){
-            if(value.contains("move")) verb = "move";
+            if(value.contains("move")) verb = "move";//Moves are ignored.  Compound actions are used instead.
             if(value.contains("get")) verb = "get";
             if(value.contains("put")) verb = "put";
         }
@@ -172,5 +180,48 @@ public class PEAgent extends Agent {
             nouns.addAll(Arrays.asList(inQuestion.split(",")));
         }
     }
-    
+
+    /**
+     * Find the nearest resource to my position
+     *      it must be of the specified type
+     *      it must not be empty      
+     * @param resources arrayList of ResourceViews on the map
+     * @param resourceName name of requested resource, as a String
+     * @param myPosition my current position
+     * @return the best destination, or -1 if impossible
+     */
+    private int getNearestNonemptyResource(ArrayList<ResourceNode.ResourceView> resources, String resourceName, Position myPosition){
+        ResourceNode.Type requiredType = getTypeFromString(resourceName);
+        
+        int shortestDistance = Integer.MAX_VALUE;
+        int shortestDistanceID = -1;
+        for(ResourceNode.ResourceView resource: resources){
+            if(resource.getType() == requiredType && resource.getAmountRemaining()>0){
+                //if it's what we want, and there's some left.
+                int distance = myPosition.chebyshevDistance(new Position(resource.getXPosition(), resource.getYPosition()));
+                if (distance < shortestDistance){
+                    shortestDistanceID = resource.getID();
+                }
+            }
+        }
+        return shortestDistanceID;
+    }
+
+    /**
+     *
+     * @param resourceName requested resource, as a case insensitive string
+     * @return the
+     */
+    private ResourceNode.Type getTypeFromString(String resourceName){
+        ResourceNode.Type requiredType = null;
+        if(resourceName.toLowerCase().contains("gold")) requiredType = ResourceNode.Type.GOLD_MINE;
+        if(resourceName.toLowerCase().contains("wood")) requiredType = ResourceNode.Type.TREE;
+        if(resourceName.toLowerCase().contains("tree")) requiredType = ResourceNode.Type.TREE;
+        if(requiredType == null){
+            System.err.println("Error! Invalid resourceName given in getNearestNonemptyResource!");
+            System.err.println("Expected: gold, wood");
+            System.err.println("Received: "+resourceName);
+        }
+        return requiredType;
+    }
 }
