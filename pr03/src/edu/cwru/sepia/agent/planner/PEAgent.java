@@ -1,19 +1,17 @@
 package edu.cwru.sepia.agent.planner;
 
+import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.agent.Agent;
 import edu.cwru.sepia.agent.planner.actions.*;
 import edu.cwru.sepia.environment.model.history.History;
-import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Template;
 import edu.cwru.sepia.environment.model.state.Unit;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * This is an outline of the PEAgent. Implement the provided methods. You may add your own methods and members.
@@ -119,4 +117,60 @@ public class PEAgent extends Agent {
     public void loadPlayerData(InputStream inputStream) {
 
     }
+    //Takes a single Plan action, and parses it into a more usable form
+    private class Token{
+        /*
+            Language:
+                Verb->ID->(->Args->)
+                
+                Args := Noun
+                     := Noun , Args
+                     
+                Verb := Move
+                     := Get
+                     := Put
+                
+                ID   := 1
+                     := 2
+                     := 3
+                     
+            This is code is not resilient at all.
+            Do not pass it malformed requests.
+         */
+        private String value;
+        private String verb;
+        private int id;
+        private ArrayList<String> nouns;
+        
+        public Token(String value){
+            this.value = value;
+            this.nouns = new ArrayList<String>();
+        }
+
+        public void parse(){
+            this.value = this.value.replace(" ","");
+            this.value = this.value.toLowerCase();
+            parseVerb();
+            parseID();
+            parseNouns();
+        }
+        
+        private void parseVerb(){
+            if(value.contains("move")) verb = "move";
+            if(value.contains("get")) verb = "get";
+            if(value.contains("put")) verb = "put";
+        }
+        
+        private void parseID(){
+            if(value.contains("1")) id = 1;
+            if(value.contains("2")) id = 2;
+            if(value.contains("3")) id = 3;
+        }
+        
+        private void parseNouns(){
+            String inQuestion = value.substring(value.indexOf('('), value.indexOf(')'));
+            nouns.addAll(Arrays.asList(inQuestion.split(",")));
+        }
+    }
+    
 }
