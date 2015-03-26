@@ -97,38 +97,39 @@ public class PEAgent extends Agent {
         
         //initialize our return variable
         Map<Integer, Action> returnVar = new HashMap<>();
+        
         while(!plan.empty()){//while we still have moves to take
             int nextID = new Token(plan.peek().getSentence()).id;
             if(!returnVar.containsKey(nextID)){//if we haven't planned an action for this unit
+                //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
-                
-                //TODO: check if the unit is midway through a compound action, acting accordingly
-                
                 returnVar.put(nextID, nextAction);
             } else break;
         }
+        
+        //return a null if it's empty.  Just trying to be nicer to other people's code
         return returnVar.isEmpty() ? null : returnVar;
     }
 
     /**
      * Returns a SEPIA version of the specified Strips Action.
-     * @param action StripsAction
+     * @param action StripsAction action to take, as an Object implementing the StripsAction interface
      * @return SEPIA representation of same action
      */
     private Action createSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units) {
-        Token token = new Token(action.getSentence());
+        Token token = new Token(action);//parse the action into a more easily handled form
         int unitID = peasantIdMap.get(token.id);
-        Unit.UnitView myUnit = null;
-        for(Unit.UnitView unit: units){
-            if(unit.getID() == unitID) myUnit = unit;
-        }
+        Unit.UnitView myUnit = getUnitFromID(unitID, units);
         if(myUnit != null && myUnit.getTemplateView().getDurationDeposit() + myUnit.getTemplateView().getDurationGatherGold() +
                 myUnit.getTemplateView().getDurationGatherWood() + myUnit.getTemplateView().getDurationMove()>0){
+            
             System.err.println("Unit "+myUnit.getID()+" is trying to get a new action while unfinished.");
             System.err.println("\nYou're gonna have a bad time, and this code won't work.  Busy loop?");
         }
         Position myPosition = new Position(myUnit);
-        switch (token.verb){//dear luc: if this line is complaining, switch "project language level" to 8 (or 7)
+        System.out.println("Creating action from the following token: ");
+        System.out.println(token.toString());
+        switch (token.verb){
             case "get":
                 System.out.println(unitID+" is gathering resource "+token.nounEnums.get(0));
                 return Action.createCompoundGather(unitID, 
@@ -151,7 +152,7 @@ public class PEAgent extends Agent {
 
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
-
+        System.out.println("Terminal step reached.");
     }
 
     @Override
@@ -291,5 +292,18 @@ public class PEAgent extends Agent {
             System.err.println("Received: "+resourceName);
         }
         return requiredType;
+    }
+
+    /**
+     *
+     * @param unitID ID number of the unit you're looking for
+     * @param units list of units to look through
+     * @return the unit with the given ID, null if not found
+     */
+    private Unit.UnitView getUnitFromID(int unitID, List<Unit.UnitView> units){
+        for(Unit.UnitView unit: units){
+            if(unit.getID() == unitID) return unit;
+        }
+        return null;
     }
 }
