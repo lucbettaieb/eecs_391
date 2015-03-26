@@ -1,6 +1,5 @@
 package edu.cwru.sepia.agent.planner;
 
-import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.agent.Agent;
 import edu.cwru.sepia.agent.planner.actions.*;
@@ -10,7 +9,6 @@ import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Template;
 import edu.cwru.sepia.environment.model.state.Unit;
 
-import javax.annotation.Resource;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
@@ -32,9 +30,8 @@ public class PEAgent extends Agent {
 
     public PEAgent(int playernum, Stack<StripsAction> plan) {
         super(playernum);
-        peasantIdMap = new HashMap<Integer, Integer>();
+        peasantIdMap = new HashMap<>();
         this.plan = plan;
-
     }
 
     @Override
@@ -125,15 +122,26 @@ public class PEAgent extends Agent {
         for(Unit.UnitView unit: units){
             if(unit.getID() == unitID) myUnit = unit;
         }
+        if(myUnit != null && myUnit.getTemplateView().getDurationDeposit() + myUnit.getTemplateView().getDurationGatherGold() +
+                myUnit.getTemplateView().getDurationGatherWood() + myUnit.getTemplateView().getDurationMove()>0){
+            System.err.println("Unit "+myUnit.getID()+" is trying to get a new action while unfinished.");
+            System.err.println("\nYou're gonna have a bad time, and this code won't work.  Busy loop?");
+        }
         Position myPosition = new Position(myUnit);
         switch (token.verb){//dear luc: if this line is complaining, switch "project language level" to 8 (or 7)
             case "get":
+                System.out.println(unitID+" is gathering resource "+token.nounEnums.get(0));
                 return Action.createCompoundGather(unitID, 
                         getNearestNonemptyResource(resourceList,token.nounEnums.get(0), myPosition));
             case "move"://don't care, taken care of by compound statements
+                System.out.println(unitID + " encountered a 'move' command.  Ignoring...");
                 break;
             case "put":
+                System.out.println(unitID+" is depositing a resource");
                 return Action.createCompoundDeposit(unitID, townhallId);
+            case "make":
+                System.out.println("Creating new peasant, in a completely PG manner");
+                return Action.createPrimitiveProduction(townhallId, peasantTemplateId);
             default:
                 System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
                 break;
@@ -176,18 +184,23 @@ public class PEAgent extends Agent {
             Do not pass it malformed requests.
          */
         private String value;
-        private String verb;
-        private int id;
-        private ArrayList<ResourceNode.Type> nounEnums;
+        protected String verb;
+        protected int id;
+        protected ArrayList<ResourceNode.Type> nounEnums;
         
         public Token(String value){
             this.value = value;
             this.nounEnums = new ArrayList<>();
         }
+        
+        public Token (StripsAction stripsAction){
+            this(stripsAction.getSentence());
+        }
 
         public void parse(){
             this.value = this.value.replace(" ","");
             this.value = this.value.toLowerCase();
+            this.id = -1;
             parseVerb();
             parseID();
             parseNouns();
@@ -200,12 +213,18 @@ public class PEAgent extends Agent {
             if(value.contains("get")) verb = "get";
             if(value.contains("deposit")) verb = "put";
             if(value.contains("put")) verb = "put";
+            if(value.contains("create")) verb = "make";
+            if(value.contains("spawn")) verb = "make";
+            if(value.contains("make")) verb = "make";
+            if(value.contains("build")) verb = "make";
+            if(value.contains("build")) verb = "produce";
         }
         
         private void parseID(){
             if(value.contains("1")) id = 1;
             if(value.contains("2")) id = 2;
             if(value.contains("3")) id = 3;
+            //if no ID is found, it's set to -1
         }
         
         private void parseNouns(){
@@ -240,7 +259,8 @@ public class PEAgent extends Agent {
      * @param myPosition my current position
      * @return the best destination, or -1 if impossible
      */
-    private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources, ResourceNode.Type requiredType, Position myPosition){
+    private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources, 
+                                           ResourceNode.Type requiredType, Position myPosition){
         int shortestDistance = Integer.MAX_VALUE;
         int shortestDistanceID = -1;
         for(ResourceNode.ResourceView resource: resources){
