@@ -40,13 +40,15 @@ public class PEAgent extends Agent {
     @Override
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
         // gets the townhall ID and the peasant ID
+        int dummyIndex = 1;
         for(int unitId : stateView.getUnitIds(playernum)) {
             Unit.UnitView unit = stateView.getUnit(unitId);
             String unitType = unit.getTemplateView().getName().toLowerCase();
             if(unitType.equals("townhall")) {
                 townhallId = unitId;
             } else if(unitType.equals("peasant")) {
-                peasantIdMap.put(unitId, unitId);//TODO: does this actually do what they specify?
+                peasantIdMap.put(dummyIndex, unitId);//I changed this line from unitId, unitId.
+                dummyIndex++;
             }
         }
 
@@ -97,7 +99,6 @@ public class PEAgent extends Agent {
         //compoundGather, and compoundDeposit
         while(!plan.empty()){
             Action nextAction = createSepiaAction(plan.pop(), resources, units);
-            
         }
         // TODO: Implement me!
         return null;
@@ -110,17 +111,22 @@ public class PEAgent extends Agent {
      */
     private Action createSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units) {
         Token token = new Token(action.getSentence());
-        
+        int unitID = peasantIdMap.get(token.id);
+        Unit.UnitView myUnit = null;
+        for(Unit.UnitView unit: units){
+            if(unit.getID() == unitID) myUnit = unit;
+        }
+        Position myPosition = new Position(myUnit);
         switch (token.verb){//dear luc: if this is complaining, switch "project language level" to 8 (or 7)
             case "get":
-                Action.createCompoundGather(peasantIdMap.get(1), 
-                        getNearestNonemptyResource(resourceList,token.nounEnums, myPosition));
-                break;
-            case "move":
+                return Action.createCompoundGather(unitID, 
+                        getNearestNonemptyResource(resourceList,token.nounEnums.get(0), myPosition));
+            case "move"://don't care, taken care of by compound statements
                 break;
             case "put":
-                break;
+                return Action.createCompoundDeposit(unitID, townhallId);
             default:
+                System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
                 break;
         }
         return null;
@@ -180,7 +186,10 @@ public class PEAgent extends Agent {
         
         private void parseVerb(){
             if(value.contains("move")) verb = "move";//Moves are ignored.  Compound actions are used instead.
+            if(value.contains("gather")) verb = "get";
+            if(value.contains("harvest")) verb = "get";
             if(value.contains("get")) verb = "get";
+            if(value.contains("deposit")) verb = "put";
             if(value.contains("put")) verb = "put";
         }
         
@@ -222,7 +231,7 @@ public class PEAgent extends Agent {
      * @param myPosition my current position
      * @return the best destination, or -1 if impossible
      */
-    private int getNearestNonemptyResource(ArrayList<ResourceNode.ResourceView> resources, ResourceNode.Type requiredType, Position myPosition){
+    private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources, ResourceNode.Type requiredType, Position myPosition){
         int shortestDistance = Integer.MAX_VALUE;
         int shortestDistanceID = -1;
         for(ResourceNode.ResourceView resource: resources){
