@@ -94,14 +94,23 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        //copy the useful variables from stateView
         List<ResourceNode.ResourceView> resources = stateView.getAllResourceNodes();
         List<Unit.UnitView> units = stateView.getAllUnits();
-        //compoundGather, and compoundDeposit
-        while(!plan.empty()){
-            Action nextAction = createSepiaAction(plan.pop(), resources, units);
+        
+        //initialize our return variable
+        Map<Integer, Action> returnVar = new HashMap<>();
+        while(!plan.empty()){//while we still have moves to take
+            int nextID = new Token(plan.peek().getSentence()).id;
+            if(!returnVar.containsKey(nextID)){//if we haven't planned an action for this unit
+                Action nextAction = createSepiaAction(plan.pop(), resources, units);
+                
+                //TODO: check if the unit is midway through a compound action, acting accordingly
+                
+                returnVar.put(nextID, nextAction);
+            } else break;
         }
-        // TODO: Implement me!
-        return null;
+        return returnVar.isEmpty() ? null : returnVar;
     }
 
     /**
@@ -117,7 +126,7 @@ public class PEAgent extends Agent {
             if(unit.getID() == unitID) myUnit = unit;
         }
         Position myPosition = new Position(myUnit);
-        switch (token.verb){//dear luc: if this is complaining, switch "project language level" to 8 (or 7)
+        switch (token.verb){//dear luc: if this line is complaining, switch "project language level" to 8 (or 7)
             case "get":
                 return Action.createCompoundGather(unitID, 
                         getNearestNonemptyResource(resourceList,token.nounEnums.get(0), myPosition));
