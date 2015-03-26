@@ -1,5 +1,7 @@
 package edu.cwru.sepia.agent.planner;
 
+import edu.cwru.sepia.environment.model.state.ResourceNode;
+import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
 
 import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.List;
  * I've provided you with a simple Position class with some helper methods. Use this for any place you need to track
  * a location. If you need modify the methods and add new ones. If you make changes add a note here about what was
  * changed and why.
+ *
+ *  added more constructors to make a Position straight from UnitView and ResourceView
  *
  * This class is immutable, meaning any changes creates an entirely separate copy.
  */
@@ -33,6 +37,17 @@ public class Position {
         x = pos.x;
         y = pos.y;
     }
+    
+    public Position(Unit.UnitView unit){
+        x = unit.getXPosition();
+        y = unit.getYPosition();
+    }
+    
+    public Position(ResourceNode.ResourceView resource){
+        x = resource.getXPosition();
+        y = resource.getYPosition();
+    }
+    
 
     /**
      * Gives the position one step in the specified direciton.
@@ -116,36 +131,21 @@ public class Position {
         int yDiff = position.y - y;
 
         // figure out the direction the footman needs to move in
-        if(xDiff == 1 && yDiff == 1)
-        {
+        if (xDiff == 1 && yDiff == 1) {
             return Direction.SOUTHEAST;
-        }
-        else if(xDiff == 1 && yDiff == 0)
-        {
+        } else if (xDiff == 1 && yDiff == 0) {
             return Direction.EAST;
-        }
-        else if(xDiff == 1 && yDiff == -1)
-        {
+        } else if (xDiff == 1 && yDiff == -1) {
             return Direction.NORTHEAST;
-        }
-        else if(xDiff == 0 && yDiff == 1)
-        {
+        } else if (xDiff == 0 && yDiff == 1) {
             return Direction.SOUTH;
-        }
-        else if(xDiff == 0 && yDiff == -1)
-        {
+        } else if (xDiff == 0 && yDiff == -1) {
             return Direction.NORTH;
-        }
-        else if(xDiff == -1 && yDiff == 1)
-        {
+        } else if (xDiff == -1 && yDiff == 1) {
             return Direction.SOUTHWEST;
-        }
-        else if(xDiff == -1 && yDiff == 0)
-        {
+        } else if (xDiff == -1 && yDiff == 0) {
             return Direction.WEST;
-        }
-        else if(xDiff == -1 && yDiff == -1)
-        {
+        } else if (xDiff == -1 && yDiff == -1) {
             return Direction.NORTHWEST;
         }
 

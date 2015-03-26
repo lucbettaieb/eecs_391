@@ -11,7 +11,9 @@ public interface StripsAction {
     /*Things that I think would be useful to add:
         a VERB enum, containing whatever verbs you want to use
         a NOUN enum, containing whatever direct objects (wood, gold, townhall) you want to use
+        Or just pop a string in here.
      */
+    public String getSentence();
     /**
      * Returns true if the provided GameState meets all of the necessary conditions for this action to successfully
      * execute.

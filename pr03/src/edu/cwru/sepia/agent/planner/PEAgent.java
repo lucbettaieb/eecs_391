@@ -46,7 +46,7 @@ public class PEAgent extends Agent {
             if(unitType.equals("townhall")) {
                 townhallId = unitId;
             } else if(unitType.equals("peasant")) {
-                peasantIdMap.put(unitId, unitId);
+                peasantIdMap.put(unitId, unitId);//TODO: does this actually do what they specify?
             }
         }
 
@@ -92,10 +92,11 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        List<ResourceNode.ResourceView> resources = stateView.getAllResourceNodes();
+        List<Unit.UnitView> units = stateView.getAllUnits();
         //compoundGather, and compoundDeposit
-        StripsAction nextAction;
         while(!plan.empty()){
-            nextAction = plan.pop();
+            Action nextAction = createSepiaAction(plan.pop(), resources, units);
             
         }
         // TODO: Implement me!
@@ -107,7 +108,21 @@ public class PEAgent extends Agent {
      * @param action StripsAction
      * @return SEPIA representation of same action
      */
-    private Action createSepiaAction(StripsAction action) {
+    private Action createSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units) {
+        Token token = new Token(action.getSentence());
+        
+        switch (token.verb){//dear luc: if this is complaining, switch "project language level" to 8 (or 7)
+            case "get":
+                Action.createCompoundGather(peasantIdMap.get(1), 
+                        getNearestNonemptyResource(resourceList,token.nounEnums, myPosition));
+                break;
+            case "move":
+                break;
+            case "put":
+                break;
+            default:
+                break;
+        }
         return null;
     }
 
@@ -148,11 +163,11 @@ public class PEAgent extends Agent {
         private String value;
         private String verb;
         private int id;
-        private ArrayList<String> nouns;
+        private ArrayList<ResourceNode.Type> nounEnums;
         
         public Token(String value){
             this.value = value;
-            this.nouns = new ArrayList<String>();
+            this.nounEnums = new ArrayList<>();
         }
 
         public void parse(){
@@ -177,7 +192,24 @@ public class PEAgent extends Agent {
         
         private void parseNouns(){
             String inQuestion = value.substring(value.indexOf('('), value.indexOf(')'));
-            nouns.addAll(Arrays.asList(inQuestion.split(",")));
+            for(String noun: inQuestion.split(",")){
+                ResourceNode.Type type = getTypeFromString(noun);
+                if(type != null) nounEnums.add(type);
+            }
+        }
+        
+        @Override
+        public String toString(){
+            StringBuilder returnVar = new StringBuilder();
+            returnVar.append(verb);
+            returnVar.append(id).append('(');
+            for(ResourceNode.Type type: nounEnums) {
+                returnVar.append(type.toString());
+                returnVar.append(',');
+            }
+            if(returnVar.lastIndexOf(",") >=0) returnVar.deleteCharAt(returnVar.lastIndexOf(","));
+            returnVar.append(')');
+            return returnVar.toString();
         }
     }
 
@@ -186,13 +218,11 @@ public class PEAgent extends Agent {
      *      it must be of the specified type
      *      it must not be empty      
      * @param resources arrayList of ResourceViews on the map
-     * @param resourceName name of requested resource, as a String
+     * @param resources name of requested resource, as a String
      * @param myPosition my current position
      * @return the best destination, or -1 if impossible
      */
-    private int getNearestNonemptyResource(ArrayList<ResourceNode.ResourceView> resources, String resourceName, Position myPosition){
-        ResourceNode.Type requiredType = getTypeFromString(resourceName);
-        
+    private int getNearestNonemptyResource(ArrayList<ResourceNode.ResourceView> resources, ResourceNode.Type requiredType, Position myPosition){
         int shortestDistance = Integer.MAX_VALUE;
         int shortestDistanceID = -1;
         for(ResourceNode.ResourceView resource: resources){
@@ -210,7 +240,7 @@ public class PEAgent extends Agent {
     /**
      *
      * @param resourceName requested resource, as a case insensitive string
-     * @return the
+     * @return the enum associated with the queried string, null if not found
      */
     private ResourceNode.Type getTypeFromString(String resourceName){
         ResourceNode.Type requiredType = null;
