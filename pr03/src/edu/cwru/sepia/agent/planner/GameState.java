@@ -66,6 +66,7 @@ public class GameState implements Comparable<GameState> {
         this.requiredWood = parent.requiredWood;
         this.buildPeasants = parent.buildPeasants;
         this.costToThisNode = parent.costToThisNode + costToMe;
+        //TODO: keep looking into this.
     }
 
     /**
@@ -102,7 +103,7 @@ public class GameState implements Comparable<GameState> {
         double heursitic = 0d;
         heursitic += remainingGold / requiredGold;
         heursitic += remainingWood / requiredWood;
-        heursitic += buildPeasants==builtPeasant ? 10 : 0;
+        heursitic += buildPeasants==builtPeasant ? 0 : 1;
         return heursitic;
     }
 
@@ -139,7 +140,7 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public boolean equals(Object o) {
-        return o.hashCode() == this.hashCode();
+        return this.getClass() == o.getClass() && o.hashCode() == this.hashCode();
     }
 
     /**
@@ -150,8 +151,8 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public int hashCode() {
-        if( builtPeasant){
-            return state.hashCode()+remainingGold*10+remainingWood;
+        if(builtPeasant){
+            return state.hashCode() + remainingGold * 10 + remainingWood;
         } else {
             return state.hashCode() + remainingGold * 10 + remainingWood + 1000;
         }
