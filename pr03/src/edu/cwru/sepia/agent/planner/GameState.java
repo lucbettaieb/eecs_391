@@ -22,6 +22,16 @@ import java.util.List;
  * class/structure you use to represent actions.
  */
 public class GameState implements Comparable<GameState> {
+    
+    final State.StateView state;
+    final int playerNum;
+    final int requiredGold;
+    int remainingGold;
+    final int requiredWood;
+    int remainingWood;
+    final boolean buildPeasants;
+    boolean builtPeasant;
+    
 
     /**
      * Construct a GameState from a stateview object. This is used to construct the initial search node. All other
@@ -34,6 +44,14 @@ public class GameState implements Comparable<GameState> {
      * @param buildPeasants True if the BuildPeasant action should be considered
      */
     public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants) {
+        this.state = state;
+        this.playerNum = playernum;
+        this.requiredGold = requiredGold;
+        this.remainingGold = requiredGold;
+        this.requiredWood = requiredWood;
+        this.remainingWood = requiredWood;
+        this.buildPeasants = buildPeasants;
+        this.builtPeasant = false;
         // TODO: Implement me!
     }
 
@@ -118,6 +136,7 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public int hashCode() {
+        
         // TODO: Implement me!
         return 0;
     }

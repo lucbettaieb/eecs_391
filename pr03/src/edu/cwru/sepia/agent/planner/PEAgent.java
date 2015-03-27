@@ -103,7 +103,7 @@ public class PEAgent extends Agent {
             if(!returnVar.containsKey(nextID)){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
-                returnVar.put(nextID, nextAction);
+                if(nextAction != null)  returnVar.put(nextID, nextAction);
             } else break;
         }
         
@@ -256,7 +256,7 @@ public class PEAgent extends Agent {
      *      it must be of the specified type
      *      it must not be empty      
      * @param resources arrayList of ResourceViews on the map
-     * @param resources name of requested resource, as a String
+     * @param requiredType name of requested resource, as a String
      * @param myPosition my current position
      * @return the best destination, or -1 if impossible
      */
