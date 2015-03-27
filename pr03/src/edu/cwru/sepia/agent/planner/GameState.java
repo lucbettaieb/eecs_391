@@ -31,6 +31,7 @@ public class GameState implements Comparable<GameState> {
     int remainingWood;
     final boolean buildPeasants;
     boolean builtPeasant;
+    final double costToThisNode;
     
 
     /**
@@ -43,7 +44,7 @@ public class GameState implements Comparable<GameState> {
      * @param requiredWood The goal amount of wood (e.g. 200 for the small scenario)
      * @param buildPeasants True if the BuildPeasant action should be considered
      */
-    public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants) {
+    public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants){
         this.state = state;
         this.playerNum = playernum;
         this.requiredGold = requiredGold;
@@ -52,7 +53,19 @@ public class GameState implements Comparable<GameState> {
         this.remainingWood = requiredWood;
         this.buildPeasants = buildPeasants;
         this.builtPeasant = false;
-        // TODO: Implement me!
+        this.costToThisNode = 0d;
+    }
+
+    /**
+     * my constructor 
+     */
+    public GameState (GameState parent, double costToMe){
+        this.state = parent.state;//I don't know if this is correct.  We may need to generate the new state
+        this.playerNum = parent.playerNum;
+        this.requiredGold = parent.requiredGold;
+        this.requiredWood = parent.requiredWood;
+        this.buildPeasants = parent.buildPeasants;
+        this.costToThisNode = parent.costToThisNode + costToMe;
     }
 
     /**
@@ -63,8 +76,7 @@ public class GameState implements Comparable<GameState> {
      * @return true if the goal conditions are met in this instance of game state.
      */
     public boolean isGoal() {
-        // TODO: Implement me!
-        return false;
+        return remainingGold<= 0 && remainingWood <= 0 && builtPeasant==buildPeasants;
     }
 
     /**
@@ -87,8 +99,11 @@ public class GameState implements Comparable<GameState> {
      * @return The value estimated remaining cost to reach a goal state from this state.
      */
     public double heuristic() {
-        // TODO: Implement me!
-        return 0.0;
+        double heursitic = 0d;
+        heursitic += remainingGold / requiredGold;
+        heursitic += remainingWood / requiredWood;
+        heursitic += buildPeasants==builtPeasant ? 10 : 0;
+        return heursitic;
     }
 
     /**
@@ -99,8 +114,7 @@ public class GameState implements Comparable<GameState> {
      * @return The current cost to reach this goal
      */
     public double getCost() {
-        // TODO: Implement me!
-        return 0.0;
+        return costToThisNode;
     }
 
     /**
@@ -112,7 +126,8 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public int compareTo(GameState o) {
-        // TODO: Implement me!
+        if (this.getCost() < o.getCost()) return -1;
+        if (this.getCost() > o.getCost()) return 1;
         return 0;
     }
 
@@ -124,8 +139,7 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public boolean equals(Object o) {
-        // TODO: Implement me!
-        return false;
+        return o.hashCode() == this.hashCode();
     }
 
     /**
@@ -136,8 +150,10 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public int hashCode() {
-        
-        // TODO: Implement me!
-        return 0;
+        if( builtPeasant){
+            return state.hashCode()+remainingGold*10+remainingWood;
+        } else {
+            return state.hashCode() + remainingGold * 10 + remainingWood + 1000;
+        }
     }
 }
