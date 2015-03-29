@@ -85,5 +85,11 @@ public class StripsPool {
             this.sentence.addAll(Arrays.asList(stripsAtoms));
         }
         
+        @Override
+        public String toString(){
+            StringBuilder returnVar = new StringBuilder();
+            for(StripsAtom atom: sentence) returnVar.append(atom.toString()).append(' ');
+            return returnVar.toString().trim();
+        }
     }
 }
