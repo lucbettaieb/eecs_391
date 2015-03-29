@@ -8,15 +8,19 @@ import edu.cwru.sepia.agent.planner.GameState;
 public class DepositAction implements StripsAction{
     @Override
     public String getSentence() {
-        return null;
+        return "DEPOSIT";
     }
 
     @Override
+    //A peasant needs to have gold to deposit
+    //The peasant in question needs to be next to a town hall
     public boolean preconditionsMet(GameState state) {
         return false;
     }
 
     @Override
+    //The peasant has no more gold
+    //The town hall has more gold
     public GameState apply(GameState state) {
         return null;
     }

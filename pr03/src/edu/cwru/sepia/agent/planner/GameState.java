@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner;
 
 import edu.cwru.sepia.environment.model.state.State;
+import edu.cwru.sepia.environment.model.state.Unit;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class GameState implements Comparable<GameState> {
     final boolean buildPeasants;
     boolean builtPeasant;
     final double costToThisNode;
+
+    private int numPeasants;
     
 
     /**
@@ -54,6 +57,17 @@ public class GameState implements Comparable<GameState> {
         this.buildPeasants = buildPeasants;
         this.builtPeasant = false;
         this.costToThisNode = 0d;
+
+        //Added code here to determine how many peasants are on the field.
+        numPeasants = 0;
+        for(int unitId : state.getUnitIds(playernum)) {
+            Unit.UnitView unit = state.getUnit(unitId);
+            String unitType = unit.getTemplateView().getName().toLowerCase();
+            if(unitType.equals("peasant")) {
+                numPeasants++;
+            }
+        }
+        System.out.println("There are "+numPeasants+" peasants present.");
     }
 
     /**
@@ -157,4 +171,29 @@ public class GameState implements Comparable<GameState> {
             return state.hashCode() + remainingGold * 10 + remainingWood + 1000;
         }
     }
+
+    //Getters
+
+    public int getPlayerNum(){
+        return playerNum;
+    }
+    public int getRequiredGold(){
+        return requiredGold;
+    }
+    public int getRequiredWood(){
+        return requiredWood;
+    }
+    public int getRemainingGold(){
+        return remainingGold;
+    }
+    public int getRemainingWood(){
+        return remainingWood;
+    }
+    public boolean getBuildPeasants(){
+        return buildPeasants;
+    }
+    public int getNumPeasants(){
+        return numPeasants;
+    }
+
 }

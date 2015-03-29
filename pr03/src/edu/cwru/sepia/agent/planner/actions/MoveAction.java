@@ -12,11 +12,14 @@ public class MoveAction implements StripsAction {
     }
 
     @Override
+    //The peasant must exist?  We're getting into some existential questions here.
+    //I don't know
     public boolean preconditionsMet(GameState state) {
         return false;
     }
 
     @Override
+    //Make dat sucka move.
     public GameState apply(GameState state) {
         return null;
     }
