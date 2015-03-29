@@ -9,9 +9,6 @@ import edu.cwru.sepia.environment.model.state.State;
 import java.io.*;
 import java.util.*;
 
-/**
- * Created by Devin on 3/15/15.
- */
 public class PlannerAgent extends Agent {
 
     final int requiredWood;
@@ -90,10 +87,31 @@ public class PlannerAgent extends Agent {
      * @param startState The state which is being planned from
      * @return The plan or null if no plan is found.
      */
+
     private Stack<StripsAction> AstarSearch(GameState startState) {
         // TODO: Implement me!
+        // we have a start state...  and we need a list of possible actions...
+
+        ArrayList<StripsAction> openList = new ArrayList<StripsAction>(); //initialize open list
+        ArrayList<StripsAction> closedList = new ArrayList<StripsAction>(); //initialize closed list
+
+        openList.add(startState); //add initial state to the open list
+
+        while(openList.size() > 0){
+
+        }
+
         return null;
     }
+
+    //We need some way of generating possible actions for each state of the game...
+    //But wouldn't this just be meaningless?  All actions are "possible" but some might have a heuristic of zero
+    //so that's how I'll handle it!  This method will return a list of actual
+    private List<StripsAction> getPossibleActions(GameState currentState){
+        ArrayList<StripsAction> actionList = new List<StripsAction>;
+
+    }
+
 
     /**
      * This has been provided for you. Each strips action is converted to a string with the toString method. This means

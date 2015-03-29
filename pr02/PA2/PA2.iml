@@ -7,17 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Sepia" level="project" />
+    <orderEntry type="library" name="_static" level="project" />
     <orderEntry type="library" name="Sepia1" level="project" />
-    <orderEntry type="library" exported="" name="Sepia" level="project" />
     <orderEntry type="module" module-name="pr01" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/archer_agent" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>

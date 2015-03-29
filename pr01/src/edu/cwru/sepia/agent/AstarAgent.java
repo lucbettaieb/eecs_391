@@ -386,6 +386,7 @@ public class AstarAgent extends Agent {
      */
     private Stack<MapLocation> AstarSearch(MapLocation start, MapLocation goal, int xExtent, int yExtent,
                                            MapLocation enemyFootmanLoc, Set<MapLocation> resourceLocations) {
+
         Queue<MapLocation> closedSet = new LinkedList<MapLocation>();//nodes already considered
         PriorityQueue<MapLocation> fastOpenSet = new PriorityQueue<MapLocation>();
         fastOpenSet.add(start);//gotta add the starting position to the open set
