@@ -1,5 +1,6 @@
 package edu.cwru.sepia.agent.planner;
 
+import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 
@@ -23,18 +24,28 @@ import java.util.List;
  * class/structure you use to represent actions.
  */
 public class GameState implements Comparable<GameState> {
-    
-    final State.StateView state;
-    final int playerNum;
-    final int requiredGold;
-    int remainingGold;
-    final int requiredWood;
-    int remainingWood;
-    final boolean buildPeasants;
-    boolean builtPeasant;
-    final double costToThisNode;
+    //Fields, these should be private
 
-    private int numPeasants;
+    private final State.StateView state; //The StateView of the world which allows us to query the actual "state" of SEPIA
+    private final int playerNum;         //The player number of the agent that is planning TODO: What is this?  Do we need it?
+
+    private final int requiredWood;      //The goal amount of wood we need to win the game (which you just lost)
+    private int remainingWood;           //The amount of wood that is left on the map
+    private int ownedWood;               //The amount of wood we have
+
+    private final boolean buildPeasants; //Whether or not we're going to be building peasants in this scenario
+    private boolean builtPeasant;        //Did we build a peasant yet? TODO: Is this necessary?
+
+
+    private final int requiredGold;      //The amount of gold we need to win the game
+    private int remainingGold;           //How much gold that is left on the map
+    private int ownedGold;               //The amount of gold we have, this will be updated by the DepositAction
+
+    private int numPeasants;             //How many peasants?  Never too many.
+
+    private int amountFood;              //Ya gotta eat.  But only 3 at a time.
+
+    private final double costToThisNode; //TODO: What does this even do?
     
 
     /**
@@ -50,13 +61,19 @@ public class GameState implements Comparable<GameState> {
     public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants){
         this.state = state;
         this.playerNum = playernum;
+
         this.requiredGold = requiredGold;
-        this.remainingGold = requiredGold;
+        this.remainingGold = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
+
         this.requiredWood = requiredWood;
-        this.remainingWood = requiredWood;
+        this.remainingWood = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
+
         this.buildPeasants = buildPeasants;
-        this.builtPeasant = false;
-        this.costToThisNode = 0d;
+        this.builtPeasant = false;          //I guess I have not yet built a peasant
+        this.costToThisNode = 0d;           //TODO: What does this mean?
+
+        ownedGold = 0; //You initially own nothing.
+
 
         //Added code here to determine how many peasants are on the field.
         numPeasants = 0;
@@ -65,13 +82,19 @@ public class GameState implements Comparable<GameState> {
             String unitType = unit.getTemplateView().getName().toLowerCase();
             if(unitType.equals("peasant")) {
                 numPeasants++;
+            } else if(unitType.equals("townhall")) {
+                int townhallID = unitId; //I think this will set the townhallID to the townhall's ID. TODO: Right, Aidan?
             }
         }
         System.out.println("There are "+numPeasants+" peasants present.");
+
+        //Add food into the mix here... vvv
+        this.amountFood = state.getUnit(townhallID).
+
     }
 
     /**
-     * my constructor 
+     * myConstructor
      */
     public GameState (GameState parent, double costToMe){
         this.state = parent.state;//I don't know if this is correct.  We may need to generate the new state
