@@ -40,16 +40,19 @@ public class DepositAction implements StripsAction{
             if(p.getPeasantID() == depositPeasant.getPeasantID()){
                 if(p.getCargoType().equals(ResourceType.GOLD)){
                     //Give gold to TownHall
-                    
+                    postDepositState.addToOwnedGold();
                 } else{
                     //Give wood to TownHall
+                    postDepositState.addToOwnedWood();
                 }
+                //The townhall in the next state now has more gold or wood
 
                 p.resetBools();
                 p.setBesideTH(true);
+                //The existential peasant's only life-affirming attribute is that it is indeed beside the town hall. :)
 
             }
         }
-        return null;
+        return postDepositState;
     }
 }
