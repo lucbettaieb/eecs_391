@@ -329,6 +329,14 @@ public class GameState implements Comparable<GameState> {
         public void setBesideTH(boolean besideTH) {
             this.besideTH = besideTH;
         }
+
+        public void resetBools(){
+            besideGold = false;
+            besideWood = false;
+            besideTH = false;
+            hasGold = false;
+            hasWood = false;
+        }
     }
 
     public class ExistentialForest extends ExistentialBeing{

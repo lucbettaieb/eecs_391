@@ -26,7 +26,7 @@ public class DepositAction implements StripsAction{
     //So,   1. Find peasant next to a town hall
     //      2. Check if that peasant is carrying cargo
     public boolean preconditionsMet(GameState state) {
-        if(depositPeasant.isNextToTownHall() && depositPeasant.hasWood() || depositPeasant.hasGold()){ //TODO: Change this when aidan updates the booleans
+        if(depositPeasant.isBesideTH() && depositPeasant.isHasWood() || depositPeasant.isHasGold()){
             return true;
         } else return false;
     }
@@ -35,11 +35,10 @@ public class DepositAction implements StripsAction{
     //The peasant has no more gold
     //The town hall has more gold
     public GameState apply(GameState state) {
-        GameState postDepositState = new GameState(state, 0d); //TODO: Maybe change 0d to something that makes sense for Astar
+        GameState postDepositState = new GameState(state, 0d, this); //TODO: Maybe change 0d to something that makes sense for Astar
         for (GameState.ExistentialPeasant p : postDepositState.getPeasantTracker()){
             if(p.getPeasantID() == depositPeasant.getPeasantID()){
-                // Set all boolean tracking features of the deposit peasant in the new state to false
-                //
+
             }
         }
         return null;
