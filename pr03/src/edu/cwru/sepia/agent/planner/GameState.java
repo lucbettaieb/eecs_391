@@ -227,7 +227,7 @@ public class GameState implements Comparable<GameState> {
         ownedPeasants++;
     }
 
-    //Methods for use by DepositAction
+    //Methods for use by DepositAction, and I swear I'm cool.
     public void addToOwnedGold(){
         ownedGold = ownedGold + 100;
     }
