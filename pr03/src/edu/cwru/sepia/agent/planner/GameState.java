@@ -330,6 +330,7 @@ public class GameState implements Comparable<GameState> {
             this.besideTH = besideTH;
         }
 
+        //Method to reset booleans to all false after applying an action to easily update bools
         public void resetBools(){
             besideGold = false;
             besideWood = false;
