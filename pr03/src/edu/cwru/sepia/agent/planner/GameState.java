@@ -30,8 +30,6 @@ public class GameState implements Comparable<GameState> {
     private final State.StateView state; //The StateView of the world which allows us to query the actual "state" of SEPIA
     private final int playerNum;         //The player number of the agent that is planning TODO: What is this?  Do we need it?
 
-    private Unit.UnitView townhall;
-
     private final int requiredWood;      //The goal amount of wood we need to win the game (which you just lost)
     private int remainingWood;           //The amount of wood that is left on the map
     private int ownedWood;               //The amount of wood we have, updated by DepositAction
@@ -47,6 +45,8 @@ public class GameState implements Comparable<GameState> {
     private ArrayList<ExistentialPeasant> peasantTracker;
     private ArrayList<ExistentialGoldMine> goldMineTracker;
     private ArrayList<ExistentialForest> forestTracker;
+
+    private ExistentialTownHall townhall;
 
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
     private int amountFood;              //Ya gotta eat.  But only 3 at a time.
@@ -90,7 +90,7 @@ public class GameState implements Comparable<GameState> {
                 peasantTracker.add(new ExistentialPeasant(unit.getXPosition(), unit.getYPosition(), unit.getCargoType(), unit.getCargoAmount(), peasantTracker.size()+1));
 
             } else if(unitType.equals("townhall")) {
-                townhall = unit;
+                townhall = new ExistentialTownHall(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()); //TODO: Does it make sense to have a cargo amount for townhall?
 
             } else if(unitType.equals("forest")){
                 forestTracker.add(new ExistentialForest(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
@@ -213,8 +213,8 @@ public class GameState implements Comparable<GameState> {
     }
 
     public void addPeasant(){
-        int x = townhall.getXPosition() + 1;
-        int y = townhall.getYPosition() + 1;
+        int x = townhall.xPosition + 1;
+        int y = townhall.yPosition + 1;
         peasantTracker.add(new ExistentialPeasant(x, y, null, 0, peasantTracker.size()));
     }
 
@@ -252,6 +252,8 @@ public class GameState implements Comparable<GameState> {
     public ArrayList<ExistentialGoldMine> getGoldMineTracker() { return goldMineTracker; }
 
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
+
+    public ExistentialTownHall getTownhall() { return townhall; }
 
     public abstract class ExistentialBeing{ //use this to test for unit adjacentcy
         int xPosition, yPosition;
@@ -308,6 +310,12 @@ public class GameState implements Comparable<GameState> {
 
     public class ExistentialGoldMine extends ExistentialBeing{
         public ExistentialGoldMine(int xPos, int yPos, int amountCargo){
+            super(xPos, yPos, amountCargo);
+        }
+    }
+
+    public class ExistentialTownHall extends ExistentialBeing{
+        public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
         }
     }

@@ -15,6 +15,12 @@ public class DepositAction implements StripsAction{
     //So,   1. Find peasant next to a town hall
     //      2. Check if that peasant is carrying cargo
     public boolean preconditionsMet(GameState state) {
+        int peasantOfInterest;
+        for(GameState.ExistentialPeasant p : state.getPeasantTracker()){
+            if(p.isNextTo(state.getTownhall())){
+
+            }
+        }
     }
 
     @Override
