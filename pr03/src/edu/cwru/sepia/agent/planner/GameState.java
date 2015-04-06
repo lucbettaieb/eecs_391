@@ -41,6 +41,7 @@ public class GameState implements Comparable<GameState> {
     private int ownedPeasants;        //Did we build a peasant yet? TODO: Is this necessary? 
                                                 //TODO: TODONE: See constructor.  We receive it as a boolean,
                                                 //so we can track the number we have and the number required if you'd rather.
+    private boolean buildPeasants;
 
     private ArrayList<ExistentialPeasant> peasantTracker;
     private ArrayList<ExistentialGoldMine> goldMineTracker;
@@ -76,6 +77,7 @@ public class GameState implements Comparable<GameState> {
         this.woodOnField = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
         this.ownedPeasants = state.getUnits(playernum).size();
         this.requiredPeasants = ownedPeasants + (buildPeasants ? 1 : 0);
+        this.buildPeasants = buildPeasants;
         this.ownedGold = 0; //You initially own nothing...
         this.ownedWood = 0;
         this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
@@ -258,6 +260,9 @@ public class GameState implements Comparable<GameState> {
     }
     public int getNumPeasants(){
         return numPeasants;
+    }
+    public boolean getBuildPeasants(){
+        return buildPeasants;
     }
     public int getUnusedFood() { return unusedFood; }
     public ArrayList<ExistentialPeasant> getPeasantTracker() { return peasantTracker; }
