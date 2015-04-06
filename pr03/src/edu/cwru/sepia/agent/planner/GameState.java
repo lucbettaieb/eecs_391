@@ -323,7 +323,6 @@ public class GameState implements Comparable<GameState> {
         //NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
         public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
-            this.resourceMap = new HashMap<>();
         }
     }
 }
