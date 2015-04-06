@@ -206,7 +206,7 @@ public class GameState_ implements Comparable<GameState_> {
      */
     @Override
     public int hashCode() {
-        return remainingGold * 3 + woodOnField + peasantTracker.hashCode();
+        return remainingGold * 31 + woodOnField + peasantTracker.hashCode();
     }
 
     //Methods for use by CreateAction
@@ -250,7 +250,7 @@ public class GameState_ implements Comparable<GameState_> {
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
     public ExistentialTownHall getTownhall() { return townhall; }
 
-    public abstract class ExistentialBeing{ //use this to test for unit adjacency
+    public abstract class ExistentialBeing{
         Position position;
         int amountCargo;
         public ExistentialBeing(int xPos, int yPos, int amountCargo){
@@ -275,25 +275,39 @@ public class GameState_ implements Comparable<GameState_> {
             this.cargoType = cargoType;
             this.peasantID = pID; //ExistentialPeasant ID's are their location in the arrayList-1.  So the 0th peasant has a peasant ID of 1, and so on.
         }
-
-        public int getPeasantID() { return peasantID; }
-
+        public int getPeasantID() { return this.peasantID; }
         public int getAmountWood(){
             return cargoType.equals(ResourceType.WOOD) ? amountCargo : 0;
         }
-        
         public int getAmountGold(){
             return cargoType.equals(ResourceType.GOLD) ? amountCargo : 0;
         }
-        
         public int removeAmount(int amountToRemove){
             return (amountCargo -= amountToRemove);
+        }
+        public void harvestForest(ExistentialForest harvestingLocation){
+            if(this.amountCargo > 0){
+                System.err.println("ERROR! PEASANT ATTEMPTED TO HARVEST WHILE CARRYING CARGO!");
+            } else {
+                this.amountCargo = harvestingLocation.harvest();
+                this.cargoType = ResourceType.WOOD;
+            }
+        }
+        public void harvestGold(ExistentialGoldMine harvestingLocation){
+            if(this.amountCargo > 0){
+                System.err.println("ERROR! PEASANT ATTEMPTED TO HARVEST WHILE CARRYING CARGO!");
+            } else {
+                this.amountCargo = harvestingLocation.harvest();
+                this.cargoType = ResourceType.GOLD;
+            }
         }
     }
 
     public class ExistentialForest extends ExistentialBeing{
+        private ResourceType cargoType;
         public ExistentialForest(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
+            this.cargoType = ResourceType.WOOD;
         }
 
         /**
@@ -316,8 +330,10 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     public class ExistentialGoldMine extends ExistentialBeing{
+        private ResourceType cargoType;
         public ExistentialGoldMine(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
+            this.cargoType = ResourceType.GOLD;
         }
 
         /**
