@@ -272,7 +272,7 @@ public class GameState implements Comparable<GameState> {
     
     public class ExistentialPeasant extends ExistentialBeing {
         private int peasantID;
-        boolean besideGold;
+        boolean besideGold; //i'm here, I promise
         boolean besideWood;
         boolean besideTH;
         boolean hasGold;
