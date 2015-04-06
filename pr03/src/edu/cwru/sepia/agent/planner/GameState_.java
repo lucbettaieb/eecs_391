@@ -37,8 +37,8 @@ public class GameState_ implements Comparable<GameState_> {
     private int woodOnField;           //The amount of wood that is left on the map
     private int ownedWood;               //The amount of wood we have, updated by DepositAction
     private final int requiredGold;      //The amount of gold we need to win the game
-    private int remainingGold;           //How much gold that is left on the map
-    private int goldOnField;               //The amount of gold we have, this will be updated by the DepositAction
+    private int goldOnField;           //How much gold that is left on the map
+    private int ownedGold;               //The amount of gold we have, this will be updated by the DepositAction
     
     private final int requiredPeasants; //Whether or not we're going to be building peasants in this scenario
     private int ownedPeasants;        //Did we build a peasant yet? TODO: Is this necessary? 
@@ -54,7 +54,7 @@ public class GameState_ implements Comparable<GameState_> {
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
     private int amountFood;              //Ya gotta eat.  But only 3 at a time.
 
-    private final double costToThisNode; //TODO: What does this even do?
+    private final double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
 
 
     /**
@@ -72,18 +72,15 @@ public class GameState_ implements Comparable<GameState_> {
         this.playerNum = playernum;
 
         this.requiredGold = requiredGold;
-        this.remainingGold = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
-
+        this.goldOnField = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
         this.requiredWood = requiredWood;
         this.woodOnField = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
-
         this.ownedPeasants = state.getUnits(playernum).size();
         this.requiredPeasants = ownedPeasants + (buildPeasants ? 1 : 0);
-        
-        this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
-
-        this.goldOnField = 0; //You initially own nothing...
+        this.ownedGold = 0; //You initially own nothing...
         this.ownedWood = 0;
+        this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
+        
 
         //Added code here to determine how many peasants are on the field.
         this.numPeasants = 0;
@@ -133,7 +130,7 @@ public class GameState_ implements Comparable<GameState_> {
      * @return true if the goal conditions are met in this instance of game state.
      */
     public boolean isGoal() {
-        return remainingGold<= 0 && woodOnField <= 0 && ownedPeasants == requiredPeasants;
+        return requiredGold<= ownedGold && requiredWood <= ownedWood && ownedPeasants == requiredPeasants;
     }
 
     /**
@@ -158,8 +155,8 @@ public class GameState_ implements Comparable<GameState_> {
     public double heuristic() {
         //TODO: this is a bad heuristic.  Use distance to next destination, and other things.
         double heursitic = 0d;
-        heursitic += remainingGold / requiredGold;
-        heursitic += woodOnField / requiredWood;
+        heursitic += ownedGold / requiredGold;
+        heursitic += ownedWood / requiredWood;
         heursitic += requiredPeasants == ownedPeasants ? 0 : 1;
         return heursitic;
     }
@@ -208,7 +205,7 @@ public class GameState_ implements Comparable<GameState_> {
      */
     @Override
     public int hashCode() {
-        return remainingGold * 31 + woodOnField + peasantTracker.hashCode();
+        return ownedGold * 31 + ownedWood + peasantTracker.hashCode();
     }
 
     //Methods for use by CreateAction
@@ -234,9 +231,11 @@ public class GameState_ implements Comparable<GameState_> {
     public int getRequiredWood(){
         return requiredWood;
     }
-    public int getRemainingGold(){
-        return remainingGold;
+    public int getOwnedGold(){
+        return ownedGold;
     }
+    public int getOwnedWood() { return ownedWood; }
+    public int getGoldOnField() { return goldOnField; }
     public int getWoodOnField(){
         return woodOnField;
     }
@@ -309,7 +308,7 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     public class ExistentialForest extends ExistentialBeing{
-        private ResourceType cargoType;
+        private final ResourceType cargoType;
         public ExistentialForest(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
             this.cargoType = ResourceType.WOOD;
@@ -335,7 +334,7 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     public class ExistentialGoldMine extends ExistentialBeing{
-        private ResourceType cargoType;
+        private final ResourceType cargoType;
         public ExistentialGoldMine(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
             this.cargoType = ResourceType.GOLD;
@@ -361,7 +360,8 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     public class ExistentialTownHall extends ExistentialBeing{
-        Map<ResourceType, Integer> resourceMap;
+        //NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
+        Map<ResourceType, Integer> resourceMap;//amount of WOOD and GOLD the townhall has.
         public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
             this.resourceMap = new HashMap<>();

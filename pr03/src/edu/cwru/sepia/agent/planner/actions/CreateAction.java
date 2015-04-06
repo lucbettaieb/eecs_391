@@ -15,7 +15,7 @@ public class CreateAction implements StripsAction {
     @Override
     public boolean preconditionsMet(GameState state) {
         //Needs to have buildPeasants true
-        //Needs 400 food per peasant created
+        //Needs 400 gold per peasant created
         //Town Hall has 3 food and each peasant needs 1 food.  (ie, max of 3 peasants on the map at a time.)
         return(state.getBuildPeasants() && (state.getRequiredGold() - state.getRemainingGold()) >= 400 && state.getNumPeasants() < 3); //TODO: Consider changing this, the required - remaining is weird af.
     }
