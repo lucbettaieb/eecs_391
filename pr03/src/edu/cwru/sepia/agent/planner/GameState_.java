@@ -54,7 +54,7 @@ public class GameState_ implements Comparable<GameState_> {
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
     private int amountFood;              //Ya gotta eat.  But only 3 at a time.
 
-    private final double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
+    private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
 
 
     /**
@@ -110,15 +110,17 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     /**
-     * myConstructor, used as you traverse the state space during A*
+     * myConstructor, used as you traverse the state space during A
+     * Updates the values of wood/gold on field (this requires the parent to change their goldMine/forestTracker)
      */
     public GameState_(GameState_ parent, double costToMe){
-        this.state = parent.state;//I don't know if this is correct.  We may need to generate the new state
-        this.playerNum = parent.playerNum;
-        this.requiredGold = parent.requiredGold;
-        this.requiredWood = parent.requiredWood;
-        this.requiredPeasants = parent.requiredPeasants;
+        this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), parent.getRequiredPeasants() == parent.ownedPeasants);
+        
         this.costToThisNode = parent.costToThisNode + costToMe;
+        woodOnField = goldOnField = 0;
+        for(ExistentialForest forest : parent.forestTracker) woodOnField += forest.getAmountCargo();
+        for(ExistentialGoldMine goldMine : parent.goldMineTracker) goldOnField += goldMine.getAmountCargo();
+        
         //TODO: keep looking into this.
     }
 
@@ -205,7 +207,7 @@ public class GameState_ implements Comparable<GameState_> {
      */
     @Override
     public int hashCode() {
-        return ownedGold * 31 + ownedWood + peasantTracker.hashCode();
+        return goldMineTracker.hashCode()*3 + forestTracker.hashCode()*5 + peasantTracker.hashCode()*7;
     }
 
     //Methods for use by CreateAction
@@ -217,9 +219,8 @@ public class GameState_ implements Comparable<GameState_> {
         int x = townhall.position.x + 1;
         int y = townhall.position.y + 1;
         peasantTracker.add(new ExistentialPeasant(x, y, null, 0, peasantTracker.size()));
+        ownedPeasants++;
     }
-
-    public void iBuiltAPeasant(){ ownedPeasants++; }
 
     //Getters
     public int getPlayerNum(){
@@ -251,6 +252,11 @@ public class GameState_ implements Comparable<GameState_> {
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
     public ExistentialTownHall getTownhall() { return townhall; }
 
+    /**
+     * I am the abstract representation of everything in the map.
+     * Goldmines, Forests, Peasants, and TownHalls all extend me. 
+     * I have a Position and an amount of cargo.  You can check if I'm beside another ExistentialBeing.
+     */
     public abstract class ExistentialBeing{
         Position position;
         int amountCargo;
@@ -265,8 +271,7 @@ public class GameState_ implements Comparable<GameState_> {
         }
 
     }
-
-
+    
     public class ExistentialPeasant extends ExistentialBeing{
         private int peasantID;
         private ResourceType cargoType;
