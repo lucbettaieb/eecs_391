@@ -261,6 +261,23 @@ public class GameState implements Comparable<GameState> {
     public int getNumPeasants(){
         return numPeasants;
     }
+
+    public void setWoodOnField(int woodOnField) {
+        this.woodOnField = woodOnField;
+    }
+
+    public void setGoldOnField(int goldOnField) {
+        this.goldOnField = goldOnField;
+    }
+
+    public void setOwnedWood(int ownedWood) {
+        this.ownedWood = ownedWood;
+    }
+
+    public void setOwnedGold(int ownedGold) {
+        this.ownedGold = ownedGold;
+    }
+
     public boolean getBuildPeasants(){
         return buildPeasants;
     }

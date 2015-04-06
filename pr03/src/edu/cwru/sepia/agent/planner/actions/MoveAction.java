@@ -12,7 +12,7 @@ public class MoveAction implements StripsAction {
     private ResourceType resourceType;
     
     public MoveAction(int peasantOfInterest, ResourceType resourceType){
-        this.peasantOfInterest = peasantOfInterest;
+        this.peasantOfInterest = peasantOfInterest - 1;
         this.resourceType = resourceType;
     }
     
@@ -39,11 +39,14 @@ public class MoveAction implements StripsAction {
     @Override
     //Make dat sucka move.
     public GameState apply(GameState state) {
+        GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
         GameState returnVar = new GameState(state,0d,this);
-        state.getPeasantTracker().get(peasantOfInterest).resetBools();
-        if(this.resourceType == null)state.getPeasantTracker().get(peasantOfInterest).setBesideTH(true);
-        else if(this.resourceType == ResourceType.WOOD) state.getPeasantTracker().get(peasantOfInterest).setBesideWood(true);
-        else if(this.resourceType == ResourceType.GOLD) state.getPeasantTracker().get(peasantOfInterest).setBesideGold(true);
+        peasant.setBesideGold(false);
+        peasant.setBesideWood(false);
+        peasant.setBesideTH(false);
+        if(this.resourceType == null)peasant.setBesideTH(true);
+        else if(this.resourceType == ResourceType.WOOD) peasant.setBesideWood(true);
+        else if(this.resourceType == ResourceType.GOLD) peasant.setBesideGold(true);
         return returnVar;
     }
 }
