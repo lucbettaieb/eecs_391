@@ -38,6 +38,15 @@ public class DepositAction implements StripsAction{
         GameState postDepositState = new GameState(state, 0d, this); //TODO: Maybe change 0d to something that makes sense for Astar
         for (GameState.ExistentialPeasant p : postDepositState.getPeasantTracker()){
             if(p.getPeasantID() == depositPeasant.getPeasantID()){
+                if(p.getCargoType().equals(ResourceType.GOLD)){
+                    //Give gold to TownHall
+                    
+                } else{
+                    //Give wood to TownHall
+                }
+
+                p.resetBools();
+                p.setBesideTH(true);
 
             }
         }

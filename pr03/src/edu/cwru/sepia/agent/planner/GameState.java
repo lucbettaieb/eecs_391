@@ -227,6 +227,14 @@ public class GameState implements Comparable<GameState> {
         ownedPeasants++;
     }
 
+    //Methods for use by DepositAction
+    public void addToOwnedGold(){
+        ownedGold = ownedGold + 100;
+    }
+    public void addToOwnedWood(){
+        ownedWood = ownedWood + 100;
+    }
+
     //Getters
     public int getPlayerNum(){
         return playerNum;
@@ -372,4 +380,5 @@ public class GameState implements Comparable<GameState> {
             super(hasCargo);
         }
     }
+
 }
