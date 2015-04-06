@@ -16,9 +16,16 @@ public class MoveAction implements StripsAction {
         this.resourceType = resourceType;
     }
     
+    //if you're moving to TH, don't specify a resource.
+    public MoveAction(int peasantOfInterest){
+        this.peasantOfInterest = peasantOfInterest;
+    }
+    
     
     @Override
     public String getSentence() {
+        if(resourceType == null) return "MOVE("+peasantOfInterest+",TOWNHALL)";
+        
         return "MOVE("+peasantOfInterest+","+resourceType.toString()+")";
     }
 
@@ -33,11 +40,10 @@ public class MoveAction implements StripsAction {
     //Make dat sucka move.
     public GameState apply(GameState state) {
         GameState returnVar = new GameState(state,0d,this);
-        state.getPeasantTracker().get(peasantOfInterest).setBesideGold(false);
-        state.getPeasantTracker().get(peasantOfInterest).setBesideWood(false);
-        state.getPeasantTracker().get(peasantOfInterest).setBesideTH(false);
-        if(this.resourceType == ResourceType.WOOD) state.getPeasantTracker().get(peasantOfInterest).setBesideWood(true);
-        if(this.resourceType == ResourceType.GOLD) state.getPeasantTracker().get(peasantOfInterest).setBesideGold(true);
+        state.getPeasantTracker().get(peasantOfInterest).resetBools();
+        if(this.resourceType == null)state.getPeasantTracker().get(peasantOfInterest).setBesideTH(true);
+        else if(this.resourceType == ResourceType.WOOD) state.getPeasantTracker().get(peasantOfInterest).setBesideWood(true);
+        else if(this.resourceType == ResourceType.GOLD) state.getPeasantTracker().get(peasantOfInterest).setBesideGold(true);
         return returnVar;
     }
 }
