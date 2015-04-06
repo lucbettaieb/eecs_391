@@ -6,7 +6,9 @@ import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class is used to represent the state of the game after applying one of the avaiable actions. It will also
@@ -80,11 +82,11 @@ public class GameState_ implements Comparable<GameState_> {
         
         this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
 
-        goldOnField = 0; //You initially own nothing...
-        ownedWood = 0;
+        this.goldOnField = 0; //You initially own nothing...
+        this.ownedWood = 0;
 
         //Added code here to determine how many peasants are on the field.
-        numPeasants = 0;
+        this.numPeasants = 0;
         for(int unitId : state.getUnitIds(playernum)) {
             Unit.UnitView unit = state.getUnit(unitId);
             String unitType = unit.getTemplateView().getName().toLowerCase();
@@ -301,6 +303,9 @@ public class GameState_ implements Comparable<GameState_> {
                 this.cargoType = ResourceType.GOLD;
             }
         }
+        public void depositCargo(ExistentialTownHall depositLocation){
+            depositLocation.depositCargo(amountCargo, cargoType);
+        }
     }
 
     public class ExistentialForest extends ExistentialBeing{
@@ -356,17 +361,29 @@ public class GameState_ implements Comparable<GameState_> {
     }
 
     public class ExistentialTownHall extends ExistentialBeing{
+        Map<ResourceType, Integer> resourceMap;
         public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
+            this.resourceMap = new HashMap<>();
         }
 
         /**
-         * attempts to create a peasant
-         * @return true if successful
+         * puts 'amountToDeposit' cargo of type 'cargoType' into the townhall
+         * @param amountToDeposit amount of cargo to deposit
+         * @param cargoType type of cargo to deposit (WOOD, GOLD)
          */
-        public boolean createPeasant(){
-            return false;
-            
+        public void depositCargo(int amountToDeposit, ResourceType cargoType){
+            if(!resourceMap.containsKey(cargoType)) resourceMap.put(cargoType, amountToDeposit);
+            else resourceMap.replace(cargoType, resourceMap.get(cargoType)+amountToDeposit);
+        }
+        
+
+        /**
+         * @return true if a new Peasant can be created
+         */
+        public boolean canICreatePeasant(){
+            //I have to have gold, and I have to have at least 400 gold, and I have to have at least 3 food.
+            return resourceMap.containsKey(ResourceType.GOLD) && resourceMap.get(ResourceType.GOLD)>=400 && amountCargo>=3;
         }
     }
 }
