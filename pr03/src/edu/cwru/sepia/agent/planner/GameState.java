@@ -1,5 +1,6 @@
 package edu.cwru.sepia.agent.planner;
 
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
@@ -50,6 +51,9 @@ public class GameState implements Comparable<GameState> {
 
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
     private int amountFood;              //Ya gotta eat.  But only 3 at a time.
+    
+    private int goldOnField;
+    private int woodOnField;
 
     private final double costToThisNode; //TODO: What does this even do?
     
@@ -102,7 +106,7 @@ public class GameState implements Comparable<GameState> {
         }
 
         this.amountFood = state.getSupplyCap(playernum); //TODO: Does playernum make sense here?
-
+        this.enumerateResourcesOnField(this.state.getAllResourceNodes());
     }
 
     /**
@@ -317,6 +321,14 @@ public class GameState implements Comparable<GameState> {
     public class ExistentialTownHall extends ExistentialBeing{
         public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
+        }
+    }
+    
+    
+    private void enumerateResourcesOnField(List<ResourceNode.ResourceView> resources){
+        for(ResourceNode.ResourceView resource : resources){
+            if(resource.getType() == ResourceNode.Type.TREE) this.woodOnField += resource.getAmountRemaining();
+            if(resource.getType() == ResourceNode.Type.GOLD_MINE) this.goldOnField += resource.getAmountRemaining();
         }
     }
 }
