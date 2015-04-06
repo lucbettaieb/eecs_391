@@ -89,16 +89,16 @@ public class GameState implements Comparable<GameState> {
             
             switch (unitType) {
                 case "peasant":
-                    peasantTracker.add(new ExistentialPeasant(unit.getXPosition(), unit.getYPosition(), unit.getCargoType(), unit.getCargoAmount(), peasantTracker.size() + 1));
+                    peasantTracker.add(new ExistentialPeasant(unit.getCargoType(), unit.getCargoAmount() == 0, peasantTracker.size() + 1));
                     break;
                 case "townhall":
-                    townhall = new ExistentialTownHall(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()); //TODO: Does it make sense to
+                    townhall = new ExistentialTownHall(unit.getCargoAmount() == 0); //TODO: Does it make sense to
                     break;
                 case "forest":
-                    forestTracker.add(new ExistentialForest(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
+                    forestTracker.add(new ExistentialForest(unit.getCargoAmount() == 0, unit.getCargoAmount()));
                     break;
                 case "goldmine":
-                    goldMineTracker.add(new ExistentialGoldMine(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
+                    goldMineTracker.add(new ExistentialGoldMine(unit.getCargoAmount() == 0, unit.getCargoAmount()));
                     break;
                 default:
                     System.out.println(unitType + "LOOK AT ME IM MR MEESEEKS: YOU SCREWED UP YOUR STRING EQUALS CHECKING IN GAMESTATE CONSTRUCTOR.");
@@ -223,9 +223,7 @@ public class GameState implements Comparable<GameState> {
     }
 
     public void addPeasant(){
-        int x = townhall.position.x + 1;
-        int y = townhall.position.y + 1;
-        peasantTracker.add(new ExistentialPeasant(x, y, null, 0, peasantTracker.size()));
+        peasantTracker.add(new ExistentialPeasant(null, false, peasantTracker.size()));
         ownedPeasants++;
     }
 
@@ -265,64 +263,92 @@ public class GameState implements Comparable<GameState> {
      * I have a Position and an amount of cargo.  You can check if I'm beside another ExistentialBeing.
      */
     public abstract class ExistentialBeing{
-        Position position;
-        int amountCargo;
-        public ExistentialBeing(int xPos, int yPos, int amountCargo){
-            this.amountCargo = amountCargo;
-            this.position = new Position(xPos, yPos);
+        boolean  hasCargo;
+        public ExistentialBeing(boolean hasCargo){
+            this.hasCargo = hasCargo;
         }
-        public int getAmountCargo() { return amountCargo; }
-        public boolean isNextTo(ExistentialBeing other){
-            return this.position.isAdjacent(other.position);
-        }
-
+        public boolean getHasCargo() { return hasCargo; }
     }
     
     public class ExistentialPeasant extends ExistentialBeing {
         private int peasantID;
-
+        boolean besideGold;
+        boolean besideWood;
+        boolean besideTH;
+        boolean hasGold;
+        boolean hasWood;
+        
         private ResourceType cargoType;
 
-        public ExistentialPeasant(int xPos, int yPos, ResourceType cargoType, int amountCargo, int pID) {
-            super(xPos, yPos, amountCargo);
+        public ExistentialPeasant(ResourceType cargoType, boolean hasCargo, int pID) {
+            super(hasCargo);
             this.cargoType = cargoType;
             this.peasantID = pID; //ExistentialPeasant ID's are their location in the arrayList-1.  So the 0th peasant has a peasant ID of 1, and so on.
         }
         public int getPeasantID() { return this.peasantID; }
-        public int getAmountWood(){
-            return cargoType.equals(ResourceType.WOOD) ? amountCargo : 0;
-        }
-        public int getAmountGold(){
-            return cargoType.equals(ResourceType.GOLD) ? amountCargo : 0;
-        }
-        public int removeAmount(int amountToRemove){
-            return (amountCargo -= amountToRemove);
-        }
         public ResourceType getCargoType() {
             return cargoType;
+        }
+        
+        public boolean isHasWood() {
+            return hasWood;
+        }
+
+        public void setHasWood(boolean hasWood) {
+            this.hasWood = hasWood;
+        }
+
+        public boolean isHasGold() {
+            return hasGold;
+        }
+
+        public void setHasGold(boolean hasGold) {
+            this.hasGold = hasGold;
+        }
+
+        public boolean isBesideTH() {
+            return besideTH;
+        }
+
+        public boolean isBesideWood() {
+            return besideWood;
+        }
+
+        public boolean isBesideGold() {
+            return besideGold;
         }
     }
 
     public class ExistentialForest extends ExistentialBeing{
         private final ResourceType cargoType;
-        public ExistentialForest(int xPos, int yPos, int amountCargo){
-            super(xPos, yPos, amountCargo);
+        private int amountCargo;
+        public ExistentialForest(boolean hasCargo, int amountCargo){
+            super(hasCargo);
             this.cargoType = ResourceType.WOOD;
+        }
+
+        public int getAmountCargo(){
+            return amountCargo;
         }
     }
 
     public class ExistentialGoldMine extends ExistentialBeing{
         private final ResourceType cargoType;
-        public ExistentialGoldMine(int xPos, int yPos, int amountCargo){
-            super(xPos, yPos, amountCargo);
+        private int amountCargo;
+        public ExistentialGoldMine(boolean hasCargo, int amountCargo){
+            super(hasCargo);
             this.cargoType = ResourceType.GOLD;
+        }
+        
+        public int getAmountCargo(){
+            return amountCargo;
         }
     }
 
     public class ExistentialTownHall extends ExistentialBeing{
         //NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
-        public ExistentialTownHall(int xPos, int yPos, int amountCargo){
-            super(xPos, yPos, amountCargo);
+        public ExistentialTownHall(boolean hasCargo){
+            super(hasCargo);
         }
     }
 }
