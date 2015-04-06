@@ -47,7 +47,7 @@ public class Position {
         x = resource.getXPosition();
         y = resource.getYPosition();
     }
-    
+
 
     /**
      * Gives the position one step in the specified direciton.
@@ -191,5 +191,23 @@ public class Position {
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";
+    }
+
+    /**
+     * returns a list of adjacent positions, which are in bounds and not blocked by a resource
+     * @param blocks ResourceViews on the map (things that will block your path)
+     * @param xExtent x length of the map
+     * @param yExtent y length of the map
+     * @return positions adjacent to destination, that are in bounds and not occupied
+     */
+    public List<Position> getLegalAdjacentPositions(List<ResourceNode.ResourceView> blocks, int xExtent, int yExtent){
+        List<Position> returnVar = this.getAdjacentPositions();
+        for(Position position: returnVar){
+            for(ResourceNode.ResourceView block : blocks){
+                if(position.equals(new Position(block)) || ! position.inBounds(xExtent, yExtent)) returnVar.remove(position);
+            }
+        }
+
+        return returnVar;
     }
 }

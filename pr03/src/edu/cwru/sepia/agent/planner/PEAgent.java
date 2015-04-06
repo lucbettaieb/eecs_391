@@ -190,25 +190,7 @@ public class PEAgent extends Agent {
     }
     
     //Takes a single Plan action, and parses it into a more usable form
-    private class Token{
-        /*
-            Language:
-                Verb->ID->(->Args->)
-                
-                Args := Noun
-                     := Noun , Args
-                     
-                Verb := Move
-                     := Get
-                     := Put
-                
-                ID   := 1
-                     := 2
-                     := 3
-                     
-            This is code is not resilient at all.
-            Do not pass it malformed requests.
-         */
+    private class Token {
         private String value;
         protected String verb;
         protected int id;
