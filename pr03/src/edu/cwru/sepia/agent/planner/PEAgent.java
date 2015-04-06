@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner;
 
 import edu.cwru.sepia.action.Action;
+import edu.cwru.sepia.action.ActionResult;
 import edu.cwru.sepia.agent.Agent;
 import edu.cwru.sepia.agent.planner.actions.*;
 import edu.cwru.sepia.environment.model.history.History;
@@ -91,16 +92,38 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        
+        if(stateView.getTurnNumber()==0) {
+            System.err.println("ERROR! TURN 0 ENCOUNTERED IN PEAGENT MIDDLESTEP!");
+            return null;
+        }
         //copy the useful variables from stateView
         List<ResourceNode.ResourceView> resources = stateView.getAllResourceNodes();
         List<Unit.UnitView> units = stateView.getAllUnits();
+        Map<Integer, ActionResult> actionResults = historyView.getCommandFeedback(playernum, stateView.getTurnNumber() - 1);
         
         //initialize our return variable
         Map<Integer, Action> returnVar = new HashMap<>();
         
         while(!plan.empty()){//while we still have moves to take
             int nextID = new Token(plan.peek().getSentence()).id;
-            if(!returnVar.containsKey(nextID)){//if we haven't planned an action for this unit
+            boolean actionAlreadyTaken;
+            boolean durativeComplete;
+            
+            {//block to show what I'm playing with.  TODO: remove the block, but keep the code.
+                actionAlreadyTaken = returnVar.containsKey(nextID);
+                durativeComplete = actionResults.containsKey(nextID) && actionResults.get(nextID).toString().toLowerCase().equals("complete");
+                if (actionResults.containsKey(nextID)){
+                    /*
+                    SEPIA documentation to the rescue!
+                    just kidding.  I have no idea what to expect from ActionResult,
+                    so I'm just printing it out.
+                     */
+                    System.out.println("Peasant: "+nextID+" has believes its durative status is: "+actionResults.get(nextID).toString().toLowerCase());
+                }
+            }
+            
+            if(!actionAlreadyTaken && !durativeComplete){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
                 if(nextAction != null)  returnVar.put(nextID, nextAction);
@@ -135,6 +158,7 @@ public class PEAgent extends Agent {
                 return Action.createCompoundGather(unitID, 
                         getNearestNonemptyResource(resourceList,token.nounEnums.get(0), myPosition));
             case "move"://don't care, taken care of by compound statements
+                //return Action.createCompoundMove(unitID, x,y);
                 System.out.println(unitID + " encountered a 'move' command.  Ignoring...");
                 break;
             case "put":
@@ -164,6 +188,7 @@ public class PEAgent extends Agent {
     public void loadPlayerData(InputStream inputStream) {
 
     }
+    
     //Takes a single Plan action, and parses it into a more usable form
     private class Token{
         /*
