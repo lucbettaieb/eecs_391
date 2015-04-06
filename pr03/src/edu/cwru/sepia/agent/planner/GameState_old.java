@@ -1,11 +1,12 @@
 package edu.cwru.sepia.agent.planner;
 
-import edu.cwru.sepia.agent.planner.actions.StripsAction;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is used to represent the state of the game after applying one of the avaiable actions. It will also
@@ -24,23 +25,23 @@ import java.util.*;
  * I recommend storing the actions that generated the instance of the GameState_old in this class using whatever
  * class/structure you use to represent actions.
  */
-public class GameState implements Comparable<GameState> {
+public class GameState_old implements Comparable<GameState_old> {
     //Fields, these should be private
 
     private final State.StateView state; //The StateView of the world which allows us to query the actual "state" of SEPIA
     private final int playerNum;         //The player number of the agent that is planning TODO: What is this?  Do we need it?
 
     private final int requiredWood;      //The goal amount of wood we need to win the game (which you just lost)
-    private int woodOnField;           //The amount of wood that is left on the map
+    private int remainingWood;           //The amount of wood that is left on the map
     private int ownedWood;               //The amount of wood we have, updated by DepositAction
+
+    private final boolean buildPeasants; //Whether or not we're going to be building peasants in this scenario
+    private boolean builtPeasant;        //Did we build a peasant yet? TODO: Is this necessary?
+
+
     private final int requiredGold;      //The amount of gold we need to win the game
-    private int goldOnField;           //How much gold that is left on the map
+    private int remainingGold;           //How much gold that is left on the map
     private int ownedGold;               //The amount of gold we have, this will be updated by the DepositAction
-    
-    private final int requiredPeasants; //Whether or not we're going to be building peasants in this scenario
-    private int ownedPeasants;        //Did we build a peasant yet? TODO: Is this necessary? 
-                                                //TODO: TODONE: See constructor.  We receive it as a boolean,
-                                                //so we can track the number we have and the number required if you'd rather.
 
     private ArrayList<ExistentialPeasant> peasantTracker;
     private ArrayList<ExistentialGoldMine> goldMineTracker;
@@ -49,12 +50,13 @@ public class GameState implements Comparable<GameState> {
     private ExistentialTownHall townhall;
 
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
-    private int unusedFood;              //Ya gotta eat.  But only 3 at a time
+    private int amountFood;              //Ya gotta eat.  But only 3 at a time.
+    
+    private int goldOnField;
+    private int woodOnField;
 
-    private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
-    private Set<String> STRIPSDescription;
-    private final Set<String> goalState;
-    private StripsAction parentAction;
+    private final double costToThisNode; //TODO: What does this even do?
+    
 
     /**
      * Construct a GameState_old from a stateview object. This is used to construct the initial search node. All other
@@ -66,65 +68,57 @@ public class GameState implements Comparable<GameState> {
      * @param requiredWood The goal amount of wood (e.g. 200 for the small scenario)
      * @param buildPeasants True if the BuildPeasant action should be considered
      */
-    public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants){
+    public GameState_old(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants){
         this.state = state;
         this.playerNum = playernum;
 
         this.requiredGold = requiredGold;
-        this.goldOnField = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
+        this.remainingGold = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
+
         this.requiredWood = requiredWood;
-        this.woodOnField = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
-        this.ownedPeasants = state.getUnits(playernum).size();
-        this.requiredPeasants = ownedPeasants + (buildPeasants ? 1 : 0);
-        this.ownedGold = 0; //You initially own nothing...
-        this.ownedWood = 0;
-        this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
-        
+        this.remainingWood = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
+
+        this.buildPeasants = buildPeasants;
+        this.builtPeasant = false;          //I guess I have not yet built a peasant
+        this.costToThisNode = 0d;           //TODO: What does this mean?
+
+        ownedGold = 0; //You initially own nothing... TODO: Right?  There are no initial amounts of resources that peasants own, yeah?
+        ownedWood = 0;
 
         //Added code here to determine how many peasants are on the field.
-        this.numPeasants = 0;
+        numPeasants = 0;
         for(int unitId : state.getUnitIds(playernum)) {
             Unit.UnitView unit = state.getUnit(unitId);
             String unitType = unit.getTemplateView().getName().toLowerCase();
-            
-            switch (unitType) {
-                case "peasant":
-                    peasantTracker.add(new ExistentialPeasant(unit.getXPosition(), unit.getYPosition(), unit.getCargoType(), unit.getCargoAmount(), peasantTracker.size() + 1));
-                    break;
-                case "townhall":
-                    townhall = new ExistentialTownHall(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()); //TODO: Does it make sense to
-                    break;
-                case "forest":
-                    forestTracker.add(new ExistentialForest(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
-                    break;
-                case "goldmine":
-                    goldMineTracker.add(new ExistentialGoldMine(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
-                    break;
-                default:
-                    System.out.println(unitType + "LOOK AT ME IM MR MEESEEKS: YOU SCREWED UP YOUR STRING EQUALS CHECKING IN GAMESTATE CONSTRUCTOR.");
-                    break;
+            if(unitType.equals("peasant")) {
+                peasantTracker.add(new ExistentialPeasant(unit.getXPosition(), unit.getYPosition(), unit.getCargoType(), unit.getCargoAmount(), peasantTracker.size()+1));
+
+            } else if(unitType.equals("townhall")) {
+                townhall = new ExistentialTownHall(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()); //TODO: Does it make sense to have a cargo amount for townhall?
+
+            } else if(unitType.equals("forest")){
+                forestTracker.add(new ExistentialForest(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
+
+            } else if(unitType.equals("goldmine")){
+                goldMineTracker.add(new ExistentialGoldMine(unit.getXPosition(), unit.getYPosition(), unit.getCargoAmount()));
             }
+            else System.out.println(unitType + "LOOK AT ME IM MR MEESEEKS: YOU SCREWED UP YOUR STRING EQUALS CHECKING IN GAMESTATE CONSTRUCTOR.");
         }
-        this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants; //TODO: Does playernum make sense here?  TODONE: yes.
-        this.STRIPSDescription = new HashSet<>();
-        this.goalState = new HashSet<>(); 
-        goalState.add("GOLD("+requiredGold+")");
-        goalState.add("WOOD(" + requiredWood + ")");
-        goalState.add("PEASANTS(" + requiredPeasants + ")");
+
+        this.amountFood = state.getSupplyCap(playernum); //TODO: Does playernum make sense here?
+        this.enumerateResourcesOnField(this.state.getAllResourceNodes());
     }
 
     /**
-     * myConstructor, used as you traverse the state space during A
-     * Updates the values of wood/gold on field (this requires the parent to change their goldMine/forestTracker)
+     * myConstructor
      */
-    public GameState(GameState parent, double costToMe, StripsAction parentAction){
-        this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), parent.getRequiredPeasants() == parent.ownedPeasants);
-        
+    public GameState_old(GameState_old parent, double costToMe){
+        this.state = parent.state;//I don't know if this is correct.  We may need to generate the new state
+        this.playerNum = parent.playerNum;
+        this.requiredGold = parent.requiredGold;
+        this.requiredWood = parent.requiredWood;
+        this.buildPeasants = parent.buildPeasants;
         this.costToThisNode = parent.costToThisNode + costToMe;
-        woodOnField = goldOnField = 0;
-        for(ExistentialForest forest : parent.forestTracker) woodOnField += forest.getAmountCargo();
-        for(ExistentialGoldMine goldMine : parent.goldMineTracker) goldOnField += goldMine.getAmountCargo();
-        this.parentAction = parentAction;
         //TODO: keep looking into this.
     }
 
@@ -136,7 +130,7 @@ public class GameState implements Comparable<GameState> {
      * @return true if the goal conditions are met in this instance of game state.
      */
     public boolean isGoal() {
-        return this.STRIPSDescription.containsAll(goalState);
+        return remainingGold<= 0 && remainingWood <= 0 && builtPeasant==buildPeasants;
     }
 
     /**
@@ -145,10 +139,7 @@ public class GameState implements Comparable<GameState> {
      *
      * @return A list of the possible successor states and their associated actions
      */
-    public List<GameState> generateChildren() {
-        
-        
-        
+    public List<GameState_old> generateChildren() {
         // TODO: Implement me!
         return null;
     }
@@ -162,11 +153,10 @@ public class GameState implements Comparable<GameState> {
      * @return The value estimated remaining cost to reach a goal state from this state.
      */
     public double heuristic() {
-        //TODO: this is a bad heuristic.  Use distance to next destination, and other things.
         double heursitic = 0d;
-        heursitic += ownedGold / requiredGold;
-        heursitic += ownedWood / requiredWood;
-        heursitic += requiredPeasants == ownedPeasants ? 0 : 1;
+        heursitic += remainingGold / requiredGold;
+        heursitic += remainingWood / requiredWood;
+        heursitic += buildPeasants==builtPeasant ? 0 : 1;
         return heursitic;
     }
 
@@ -189,7 +179,7 @@ public class GameState implements Comparable<GameState> {
      * @return 1 if this state costs more than the other, 0 if equal, -1 otherwise
      */
     @Override
-    public int compareTo(GameState o) {
+    public int compareTo(GameState_old o) {
         if (this.getCost() < o.getCost()) return -1;
         if (this.getCost() > o.getCost()) return 1;
         return 0;
@@ -214,22 +204,30 @@ public class GameState implements Comparable<GameState> {
      */
     @Override
     public int hashCode() {
-        return goldMineTracker.hashCode()*3 + forestTracker.hashCode()*5 + peasantTracker.hashCode()*7;
+        if(builtPeasant){
+            return state.hashCode() + remainingGold * 10 + remainingWood;
+        } else {
+            return state.hashCode() + remainingGold * 10 + remainingWood + 1000;
+        }
     }
 
     //Methods for use by CreateAction
     public void removeOneFood(){
-        unusedFood--;
+        amountFood--;
     }
 
     public void addPeasant(){
-        int x = townhall.position.x + 1;
-        int y = townhall.position.y + 1;
+        int x = townhall.xPosition + 1;
+        int y = townhall.yPosition + 1;
         peasantTracker.add(new ExistentialPeasant(x, y, null, 0, peasantTracker.size()));
-        ownedPeasants++;
+    }
+
+    public void iBuiltAPeasant(){
+        builtPeasant = true;
     }
 
     //Getters
+
     public int getPlayerNum(){
         return playerNum;
     }
@@ -239,91 +237,98 @@ public class GameState implements Comparable<GameState> {
     public int getRequiredWood(){
         return requiredWood;
     }
-    public int getOwnedGold(){
-        return ownedGold;
+    public int getRemainingGold(){
+        return remainingGold;
     }
-    public int getOwnedWood() { return ownedWood; }
-    public int getGoldOnField() { return goldOnField; }
-    public int getWoodOnField(){
-        return woodOnField;
+    public int getRemainingWood(){
+        return remainingWood;
     }
-    public int getRequiredPeasants(){
-        return requiredPeasants;
+    public boolean getBuildPeasants(){
+        return buildPeasants;
     }
     public int getNumPeasants(){
         return numPeasants;
     }
-    public int getUnusedFood() { return unusedFood; }
+    public int getAmountFood() { return amountFood; }
+
     public ArrayList<ExistentialPeasant> getPeasantTracker() { return peasantTracker; }
+
     public ArrayList<ExistentialGoldMine> getGoldMineTracker() { return goldMineTracker; }
+
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
+
     public ExistentialTownHall getTownhall() { return townhall; }
 
-    /**
-     * I am the abstract representation of everything in the map.
-     * Goldmines, Forests, Peasants, and TownHalls all extend me. 
-     * I have a Position and an amount of cargo.  You can check if I'm beside another ExistentialBeing.
-     */
-    public abstract class ExistentialBeing{
-        Position position;
+    public abstract class ExistentialBeing{ //use this to test for unit adjacentcy
+        int xPosition, yPosition;
         int amountCargo;
         public ExistentialBeing(int xPos, int yPos, int amountCargo){
+            this.xPosition = xPos;
+            this.yPosition = yPos;
             this.amountCargo = amountCargo;
-            this.position = new Position(xPos, yPos);
         }
+        public int getxPosition() { return xPosition; }
+
+        public int getyPosition() { return yPosition; }
+
         public int getAmountCargo() { return amountCargo; }
+
         public boolean isNextTo(ExistentialBeing other){
-            return this.position.isAdjacent(other.position);
+            return (Math.abs(this.xPosition - other.getxPosition()) <= 1 &&  Math.abs(this.yPosition - other.getyPosition()) <= 1);
         }
 
     }
-    
-    public class ExistentialPeasant extends ExistentialBeing {
-        private int peasantID;
 
+
+    public class ExistentialPeasant extends ExistentialBeing{
+        private int peasantID;
         private ResourceType cargoType;
 
         public ExistentialPeasant(int xPos, int yPos, ResourceType cargoType, int amountCargo, int pID) {
             super(xPos, yPos, amountCargo);
+
             this.cargoType = cargoType;
             this.peasantID = pID; //ExistentialPeasant ID's are their location in the arrayList-1.  So the 0th peasant has a peasant ID of 1, and so on.
         }
-        public int getPeasantID() { return this.peasantID; }
+
+        public int getPeasantID() { return peasantID; }
+
         public int getAmountWood(){
-            return cargoType.equals(ResourceType.WOOD) ? amountCargo : 0;
+            if(cargoType.equals(ResourceType.WOOD)){
+                return amountCargo;
+            } else return 0;
         }
+
         public int getAmountGold(){
-            return cargoType.equals(ResourceType.GOLD) ? amountCargo : 0;
-        }
-        public int removeAmount(int amountToRemove){
-            return (amountCargo -= amountToRemove);
-        }
-        public ResourceType getCargoType() {
-            return cargoType;
+            if(cargoType.equals(ResourceType.GOLD)){
+                return amountCargo;
+            } else return 0;
         }
     }
 
     public class ExistentialForest extends ExistentialBeing{
-        private final ResourceType cargoType;
         public ExistentialForest(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
-            this.cargoType = ResourceType.WOOD;
         }
     }
 
     public class ExistentialGoldMine extends ExistentialBeing{
-        private final ResourceType cargoType;
         public ExistentialGoldMine(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
-            this.cargoType = ResourceType.GOLD;
         }
     }
 
     public class ExistentialTownHall extends ExistentialBeing{
-        //NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
         public ExistentialTownHall(int xPos, int yPos, int amountCargo){
             super(xPos, yPos, amountCargo);
-            this.resourceMap = new HashMap<>();
+        }
+    }
+    
+    
+    private void enumerateResourcesOnField(List<ResourceNode.ResourceView> resources){
+        for(ResourceNode.ResourceView resource : resources){
+            if(resource.getType() == ResourceNode.Type.TREE) this.woodOnField += resource.getAmountRemaining();
+            if(resource.getType() == ResourceNode.Type.GOLD_MINE) this.goldOnField += resource.getAmountRemaining();
         }
     }
 }
