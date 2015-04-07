@@ -25,8 +25,8 @@ public class MoveAction implements StripsAction {
     
     @Override
     public String getSentence() {
-        if(resourceType == null) return "MOVE("+peasantOfInterest+",TOWNHALL)";
-        return "MOVE("+peasantOfInterest.toString()+","+resourceType.toString()+")";
+        if(resourceType == null) return "MOVE("+peasantOfInterest.getPeasantID()+",TOWNHALL)";
+        return "MOVE("+peasantOfInterest.getPeasantID()+","+resourceType.toString()+")";
     }
 
     @Override
@@ -34,6 +34,13 @@ public class MoveAction implements StripsAction {
     //I don't know
     public boolean preconditionsMet(GameState state) {
         return true;//no preconditions
+    }
+    
+    public static boolean canMove(GameState.ExistentialPeasant peasant, ResourceType resourceType){
+        if(peasant.isBesideTH() && resourceType == null) return false;
+        if(peasant.isBesideGold() && resourceType != null) return false;
+        if(peasant.isBesideWood() && resourceType != null) return false;
+        return true;
     }
 
     @Override

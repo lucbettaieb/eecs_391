@@ -170,31 +170,31 @@ public class GameState implements Comparable<GameState> {
         //TODO: because we're planning for each peasant, things get funny
         List<GameState> children = new ArrayList<>();
         if(PlannerAgent.debug) {
-            System.out.println("Currently generating children of state: "+this.toString());
+            System.out.println("Currently generating children of state: "+this.hashCode());
             if(this.parentAction == null){
                 System.out.println("This state had NO parent action.");
-            } else System.out.println("This state's parent action was: "+this.parentAction.getName());
+            } else System.out.println("This state's parent action was: "+this.parentAction.toString());
         }
         for(ExistentialPeasant peasant: peasantTracker){
             if(HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)){
                 if(PlannerAgent.debug) System.out.println("Considering a harvest WOOD command");
-                HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.WOOD);
+                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
                 children.add(harvestAction.apply(this));
             } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)){
                 if(PlannerAgent.debug) System.out.println("Considering a harvest GOLD command");
-                HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.GOLD);
+                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
                 children.add(harvestAction.apply(this));
             }
             //you can always move to wood, gold, or the townhall, so unconditionally add them.
             if(parentAction== null ||(parentAction != null && !parentAction.getName().equals("MOVE"))){
                 //if I didn't have a parent, or my parent was not MOVE, add these move commands.
-                //don't double move.
+                //don't double move, and don't move to the same place.
                 if(PlannerAgent.debug) System.out.println("Considering a MOVE command");
-                children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
-                children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
-                children.add(new MoveAction(peasant).apply(this));
+                if(MoveAction.canMove(peasant, ResourceType.WOOD)) children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+                if(MoveAction.canMove(peasant, ResourceType.GOLD)) children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+                if(MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
             }
-            
+
             //TODO: fix this for the static preconditionsMet implementation
             DepositAction depositAction = new DepositAction(peasant);
             if(depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));

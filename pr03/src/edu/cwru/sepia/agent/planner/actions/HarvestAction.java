@@ -9,23 +9,28 @@ import edu.cwru.sepia.environment.model.state.ResourceType;
  */
 public class HarvestAction implements StripsAction {
     public String getName() { return"HARVEST";}
-    private int peasantOfInterest = -1;
+    private GameState.ExistentialPeasant peasantOfInterest;
     private ResourceType resourceType;
-    public HarvestAction(int peasantOfInterest, ResourceType resourceType){
+    public HarvestAction(GameState.ExistentialPeasant peasantOfInterest, ResourceType resourceType){
         this.peasantOfInterest = peasantOfInterest;
         this.resourceType = resourceType;
     }
 
     @Override
     public String getSentence() {
-        return "DEPOSIT("+peasantOfInterest+", "+resourceType.toString()+")";
+        return "HARVEST("+peasantOfInterest.getPeasantID()+", "+resourceType.toString()+")";
+    }
+
+    @Override
+    public String toString(){
+        return getSentence();
     }
 
     @Override
     //The peasant has to have nothing
     //The peasant must be next to either a mine or a forest
     public boolean preconditionsMet(GameState state) {
-        GameState.ExistentialPeasant peasant =  state.getPeasantTracker().get(peasantOfInterest);
+        GameState.ExistentialPeasant peasant =  state.getPeasantTracker().get(peasantOfInterest.getPeasantID());
         if(peasant.isHasGold() || peasant.isHasWood()) return false;
         switch (resourceType){
             case WOOD:
@@ -70,16 +75,17 @@ public class HarvestAction implements StripsAction {
             System.err.println("ERROR! ATTEMPTED TO HARVEST WHEN NOT POSSIBLE");
             return null;
         }
-        GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
         GameState postHarvestState = new GameState(state,1d,this);
-
+        GameState.ExistentialPeasant peasant = postHarvestState.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        
         if(this.resourceType == ResourceType.WOOD) {
             peasant.setHasWood(true);
+            peasant.setBesideWood(true);
             postHarvestState.setWoodOnField(postHarvestState.getWoodOnField()-100);
             peasant.setCargoType(ResourceType.WOOD); //need to keep your resource type updated for use in DepositAction
-        }
-        else if(this.resourceType == ResourceType.GOLD) {
+        } else if(this.resourceType == ResourceType.GOLD) {
             peasant.setHasGold(true);
+            peasant.setBesideGold(true);
             postHarvestState.setGoldOnField(postHarvestState.getGoldOnField()-100);
             peasant.setCargoType(ResourceType.GOLD); //need to keep your resource type updated for use in DepositAction
         }

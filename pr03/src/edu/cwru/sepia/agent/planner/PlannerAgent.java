@@ -96,15 +96,20 @@ public class PlannerAgent extends Agent {
             GameState Q = openSet.poll();
             for(GameState successor : Q.generateChildren()){
                 //for all possible moves from here:
-                if(successor.isGoal()) return generatePath(successor);
-                
+                if(successor.isGoal()) {
+                    if(debug) System.out.println("found path! recursing to generate stack.");
+                    return generatePath(successor);
+                }
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
                 if(debug) {
                     System.out.println("finished considering child "+successor.hashCode()+", with cost "+successor.getCost());
                     System.out.println("Number of items in the openlist: "+openSet.size());
                 }
             }//end of for each child
-            if(debug) System.out.println("finished considering all children");
+            if(debug) {
+                System.out.println("finished considering all children");
+                System.out.println("the current path is: \n"+stringifyPath(generatePath(Q)));
+            }
         }//end of open set.  We're done now.
         System.err.println("No path to goal. Cannot plan. Exiting...");
         System.exit(1);
@@ -120,8 +125,17 @@ public class PlannerAgent extends Agent {
         return shouldAdd;
     }
     
+    public String stringifyPath(Stack<StripsAction> path){
+        String returnVar="";
+        StripsAction action;
+        while(!path.empty()){
+            action = path.pop();
+            returnVar += action.toString() + '\n';
+        }
+        return returnVar.trim();
+    }
+    
     public Stack<StripsAction> generatePath(GameState destination){
-        if(debug) System.out.println("found path! recursing to generate stack.");
         Stack<StripsAction> path = new Stack<>();
         boolean isGoal = true;
         while(destination.getParentState() != null){

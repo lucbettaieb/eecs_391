@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner.actions;
 
 import edu.cwru.sepia.agent.planner.GameState;
+import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
@@ -26,7 +27,12 @@ public class DepositAction implements StripsAction{
     //So,   1. Find peasant next to a town hall
     //      2. Check if that peasant is carrying cargo
     public boolean preconditionsMet(GameState state) {
-        if(depositPeasant.isBesideTH() && depositPeasant.isHasWood() || depositPeasant.isHasGold()){
+        if(PlannerAgent.debug) {
+            System.out.println("checking preconditions on deposit: BesideTH: "+depositPeasant.isBesideTH());
+            System.out.println("hasWood: "+depositPeasant.isHasWood());
+            System.out.println("hasGold: "+depositPeasant.isHasGold());
+        }
+        if(depositPeasant.isBesideTH() && (depositPeasant.isHasWood() || depositPeasant.isHasGold())){
             if(depositPeasant.isHasWood()) depositPeasant.setCargoType(ResourceType.WOOD);
             if(depositPeasant.isHasGold()) depositPeasant.setCargoType(ResourceType.GOLD);
             return true;
@@ -37,29 +43,28 @@ public class DepositAction implements StripsAction{
     //The peasant has no more gold
     //The town hall has more gold
     public GameState apply(GameState state) {
+        if(PlannerAgent.debug) System.out.println("APPLYING DEPOSIT ACTION");
         if(!preconditionsMet(state)){
             System.err.println("ERROR: ATTEMPTED TO APPLY DEPOSIT WHEN PRECONDITIONS NOT MET.");
             return state;
         }
 
-        GameState postDepositState = new GameState(state, 1d, this); //TODO: Maybe change 0d to something that makes sense for Astar
-        if(depositPeasant.getCargoType() == null){
-            System.err.println("ERROR! PEASANT'S CARGO WAS NULL!");
-            System.err.println(depositPeasant.toString());
-        }
-
+        GameState postDepositState = new GameState(state, 1d, this);
         GameState.ExistentialPeasant newPeasant = postDepositState.getPeasantTracker().get(depositPeasant.getPeasantID());
-
-        if(depositPeasant.getCargoType().equals(ResourceType.GOLD)){
+        
+        if(newPeasant.getCargoType().equals(ResourceType.GOLD)){
             //Give gold to TownHall
             postDepositState.addToOwnedGold();
-        } else{
+        } else if(newPeasant.getCargoType().equals(ResourceType.WOOD)){
             //Give wood to TownHall
             postDepositState.addToOwnedWood();
+        } else {
+            System.err.println("Error while getting peasant cargo type.  Perhaps peasant instantiation doesn't copy?");
         }
         //The townhall in the next state now has more gold or wood
         newPeasant.resetBools();
         newPeasant.setBesideTH(true);
+        newPeasant.setCargoType(null);
         //The existential peasant's only life-affirming attribute is that it is indeed beside the town hall. :)
         return postDepositState;
     }
