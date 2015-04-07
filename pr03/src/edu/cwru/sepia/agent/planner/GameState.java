@@ -27,19 +27,19 @@ import java.util.*;
 public class GameState implements Comparable<GameState> {
     //Fields, these should be private
 
-    private final State.StateView state; //The StateView of the world which allows us to query the actual "state" of SEPIA
-    private final int playerNum;         //The player number of the agent that is planning TODO: What is this?  Do we need it?
+    private final State.StateView state;    //The StateView of the world which allows us to query the actual "state" of SEPIA
+    private final int playerNum;            //The player number of the agent that is planning TODO: What is this?  Do we need it?
 
-    private final int requiredWood;      //The goal amount of wood we need to win the game (which you just lost)
-    private int woodOnField;           //The amount of wood that is left on the map
-    private int ownedWood;               //The amount of wood we have, updated by DepositAction
-    private final int requiredGold;      //The amount of gold we need to win the game
-    private int goldOnField;           //How much gold that is left on the map
-    private int ownedGold;               //The amount of gold we have, this will be updated by the DepositAction
+    private final int requiredWood;         //The goal amount of wood we need to win the game (which you just lost)
+    private int woodOnField;                //The amount of wood that is left on the map
+    private int ownedWood;                  //The amount of wood we have, updated by DepositAction
+    private final int requiredGold;         //The amount of gold we need to win the game
+    private int goldOnField;                //How much gold that is left on the map
+    private int ownedGold;                  //The amount of gold we have, this will be updated by the DepositAction
     
-    private final int requiredPeasants; //Whether or not we're going to be building peasants in this scenario
-    private int ownedPeasants;        //Did we build a peasant yet? TODO: Is this necessary? 
-                                                //TODO: TODONE: See constructor.  We receive it as a boolean,
+    private final int requiredPeasants;     //Whether or not we're going to be building peasants in this scenario
+    private int ownedPeasants;              //Did we build a peasant yet?   Is this necessary?
+                                                                            //DONE: See constructor.  We receive it as a boolean,
                                                 //so we can track the number we have and the number required if you'd rather.
     private boolean buildPeasants;
 
@@ -48,11 +48,15 @@ public class GameState implements Comparable<GameState> {
     private ArrayList<ExistentialForest> forestTracker;
     private ExistentialTownHall townhall;
 
-    private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
-    private int unusedFood;              //Ya gotta eat.  But only 3 at a time
+    private int numPeasants = peasantTracker.size();
+    private int unusedFood;                 //Ya gotta eat.  But only 3 at a time
 
     private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
     private StripsAction parentAction = null;
+
+    //Heuristic Stuff
+    private double c;
+    private double h = -1;
     
     /**
      * Construct a GameState_old from a stateview object. This is used to construct the initial search node. All other
@@ -91,7 +95,7 @@ public class GameState implements Comparable<GameState> {
             
             switch (unitType) {
                 case "peasant":
-                    peasantTracker.add(new ExistentialPeasant(unit.getCargoType(), unit.getCargoAmount() == 0, peasantTracker.size() + 1));
+                    peasantTracker.add(new ExistentialPeasant(unit.getCargoType(), unit.getCargoAmount() == 0, peasantTracker.size()));
                     break;
                 case "townhall":
                     townhall = new ExistentialTownHall(unit.getCargoAmount() == 0); //TODO: Does it make sense to
@@ -108,6 +112,9 @@ public class GameState implements Comparable<GameState> {
             }
         }
         this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants; //TODO: Does playernum make sense here?  TODONE: yes.
+
+
+        c = 0; //Cost thing for AStar is initially 0
     }
 
     /**
@@ -123,6 +130,8 @@ public class GameState implements Comparable<GameState> {
         for(ExistentialForest forest : parent.forestTracker) woodOnField += forest.getAmountCargo();
         for(ExistentialGoldMine goldMine : parent.goldMineTracker) goldOnField += goldMine.getAmountCargo();
         this.parentAction = parentAction;
+
+        c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
         //TODO: keep looking into this.
     }
 
@@ -146,30 +155,30 @@ public class GameState implements Comparable<GameState> {
      * @return A list of the possible successor states and their associated actions
      */
     public List<GameState> generateChildren() {
-        List<GameState> returnVar = new ArrayList<>();
+        List<GameState> children = new ArrayList<>();
         for(ExistentialPeasant peasant: peasantTracker){
             
             if(HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)){
                 HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.WOOD);
-                returnVar.add(harvestAction.apply(this));
+                children.add(harvestAction.apply(this));
             } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)){
                 HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.GOLD);
-                returnVar.add(harvestAction.apply(this));
+                children.add(harvestAction.apply(this));
             }
             //you can always move to wood, gold, or the townhall, so unconditionally add them.
-            returnVar.add(new MoveAction(peasant.getPeasantID(), ResourceType.WOOD).apply(this));
-            returnVar.add(new MoveAction(peasant.getPeasantID(), ResourceType.GOLD).apply(this));
-            returnVar.add(new MoveAction(peasant.getPeasantID()).apply(this));
+            children.add(new MoveAction(peasant.getPeasantID(), ResourceType.WOOD).apply(this));
+            children.add(new MoveAction(peasant.getPeasantID(), ResourceType.GOLD).apply(this));
+            children.add(new MoveAction(peasant.getPeasantID()).apply(this));
 
             //TODO: fix this for the static preconditionsMet implementation
             DepositAction depositAction = new DepositAction(peasant);
-            if(depositAction.preconditionsMet(this)) returnVar.add(depositAction.apply(this));
+            if(depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
             
             //TODO: fix this for the static preconditionsMet implementation
             CreateAction createAction = new CreateAction();
-            if(createAction.preconditionsMet(this)) returnVar.add(createAction.apply(this));
+            if(createAction.preconditionsMet(this)) children.add(createAction.apply(this));
         }
-        return returnVar;
+        return children;
     }
 
     /**
@@ -181,12 +190,25 @@ public class GameState implements Comparable<GameState> {
      * @return The value estimated remaining cost to reach a goal state from this state.
      */
     public double heuristic() {
-        //TODO: this is a bad heuristic.  Use distance to next destination, and other things.
-        double heursitic = 0d;
-        heursitic += ownedGold / requiredGold;
-        heursitic += ownedWood / requiredWood;
-        heursitic += requiredPeasants == ownedPeasants ? 0 : 1;
-        return heursitic;
+        double h = 0;
+        if(parentAction.name.equals("MOVE")){
+            //Move Action Handling
+
+            return h;
+        } else if(parentAction.name.equals("HARVEST")){
+            //Harvest Action Handling
+
+            return h;
+        } else if(parentAction.name.equals("DEPOSIT")){
+            //Deposit Action Handling
+
+            return h;
+        } else if(parentAction.name.equals("CREATE")){
+            //Create Action Handling
+
+            return h;
+        } else return h;
+
     }
 
     /**
@@ -374,7 +396,7 @@ public class GameState implements Comparable<GameState> {
             this.besideTH = besideTH;
         }
 
-        //Method to reset booleans to all false after applying an action to easily update bools
+        //Method to reset booleans to all false after applying an action to easily update booleans
         public void resetBools(){
             besideGold = false;
             besideWood = false;

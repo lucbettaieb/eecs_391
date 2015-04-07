@@ -7,6 +7,7 @@ import edu.cwru.sepia.environment.model.state.ResourceType;
  * Created by luc on 3/28/15.
  */
 public class DepositAction implements StripsAction{
+    public static String name = "DEPOSIT";
     private GameState.ExistentialPeasant depositPeasant;
 
     public DepositAction(GameState.ExistentialPeasant p){

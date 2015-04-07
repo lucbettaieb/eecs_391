@@ -8,6 +8,7 @@ import edu.cwru.sepia.environment.model.state.ResourceType;
  * Created by luc on 3/28/15.
  */
 public class MoveAction implements StripsAction {
+    public static String name = "MOVE";
     private int peasantOfInterest = -1;
     private ResourceType resourceType;
     

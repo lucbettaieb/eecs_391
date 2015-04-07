@@ -8,6 +8,7 @@ import edu.cwru.sepia.agent.planner.GameState;
  * of a StripsAction.
  */
 public interface StripsAction {
+    public static String name;
     /*Things that I think would be useful to add:
         a VERB enum, containing whatever verbs you want to use
         a NOUN enum, containing whatever direct objects (wood, gold, townhall) you want to use

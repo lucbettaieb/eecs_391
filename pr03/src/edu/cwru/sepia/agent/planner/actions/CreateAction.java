@@ -6,6 +6,10 @@ import edu.cwru.sepia.agent.planner.GameState;
  * Created by luc on 3/28/15.
  */
 public class CreateAction implements StripsAction {
+    public static String name = "CREATE";
+    public CreateAction(){
+        //Hello, I am constructor.  Nice to meet you.
+    }
 
     @Override
     public String getSentence() {
