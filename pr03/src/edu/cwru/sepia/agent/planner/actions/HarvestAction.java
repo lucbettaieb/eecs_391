@@ -51,16 +51,18 @@ public class HarvestAction implements StripsAction {
     public GameState apply(GameState state) {
         if(!preconditionsMet(state)) return null;
         GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
-        GameState returnVar = new GameState(state,0d,this);
+        GameState postHarvestState = new GameState(state,0d,this);
+
         if(this.resourceType == ResourceType.WOOD) {
             peasant.setHasWood(true);
-            returnVar.setWoodOnField(returnVar.getWoodOnField()-100);
-
+            postHarvestState.setWoodOnField(postHarvestState.getWoodOnField()-100);
+            peasant.setCargoType(ResourceType.WOOD); //need to keep your resource type updated for use in DepositAction
         }
         else if(this.resourceType == ResourceType.GOLD) {
             peasant.setHasGold(true);
-            returnVar.setGoldOnField(returnVar.getGoldOnField()-100);
+            postHarvestState.setGoldOnField(postHarvestState.getGoldOnField()-100);
+            peasant.setCargoType(ResourceType.GOLD); //need to keep your resource type updated for use in DepositAction
         }
-        return returnVar;
+        return postHarvestState;
     }
 }
