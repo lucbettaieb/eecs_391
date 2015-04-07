@@ -166,9 +166,9 @@ public class GameState implements Comparable<GameState> {
                 children.add(harvestAction.apply(this));
             }
             //you can always move to wood, gold, or the townhall, so unconditionally add them.
-            children.add(new MoveAction(peasant.getPeasantID(), ResourceType.WOOD).apply(this));
-            children.add(new MoveAction(peasant.getPeasantID(), ResourceType.GOLD).apply(this));
-            children.add(new MoveAction(peasant.getPeasantID()).apply(this));
+            children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+            children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+            children.add(new MoveAction(peasant).apply(this));
 
             //TODO: fix this for the static preconditionsMet implementation
             DepositAction depositAction = new DepositAction(peasant);
@@ -197,7 +197,7 @@ public class GameState implements Comparable<GameState> {
             //-----------------------
             //Move Action Handling
             //-----------------------
-
+            if(parentState == null || parentState.parentAction == null) return this.h;
             if(parentState.parentAction.getName().equals("MOVE")){      //...and you just moved...
                 h += 1000;                                              //...what do you think you're doing???
             }
@@ -210,9 +210,8 @@ public class GameState implements Comparable<GameState> {
             //-----------------------
 
             int numPeasantsWithCargo = 0;
-            for(int i = 0; i < peasantTracker.size(); i++){
-                ExistentialPeasant p = peasantTracker.get(i);
-                if(p.isHasGold() || p.isHasWood()) {
+            for (ExistentialPeasant p : peasantTracker) {
+                if (p.isHasGold() || p.isHasWood()) {
                     h += 10;                                            //...it's a little bad if a peasant already has cargo TODO:(maybe?)
                     numPeasantsWithCargo++;
                 }
@@ -226,9 +225,8 @@ public class GameState implements Comparable<GameState> {
             //-----------------------
 
             int numPeasantsWithCargo = 0;
-            for(int i = 0; i < peasantTracker.size(); i++){             //Look at all the peasants
-                ExistentialPeasant p = peasantTracker.get(i);
-                if(p.isHasGold() || p.isHasWood()){
+            for (ExistentialPeasant p : peasantTracker) {             //Look at all the peasants
+                if (p.isHasGold() || p.isHasWood()) {
                     numPeasantsWithCargo++;
                 }
             }
@@ -241,7 +239,7 @@ public class GameState implements Comparable<GameState> {
             //Create Action Handling
             //-----------------------
 
-            if(ownedGold < 400 || buildPeasants == false) h += 1000;    //If you don't have enough gold or you shouldn't be building peasants, that's bad.
+            if(ownedGold < 400 || !buildPeasants) h += 1000;    //If you don't have enough gold or you shouldn't be building peasants, that's bad.
             this.h = h;
             return h;
         } else {

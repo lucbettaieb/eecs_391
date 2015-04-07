@@ -9,17 +9,17 @@ import edu.cwru.sepia.environment.model.state.ResourceType;
  */
 public class MoveAction implements StripsAction {
     public String getName() { return "MOVE";}
-    private int peasantOfInterest = -1;
+    private GameState.ExistentialPeasant peasantOfInterest;
     private ResourceType resourceType;
     
-    public MoveAction(int peasantOfInterest, ResourceType resourceType){
-        this.peasantOfInterest = peasantOfInterest - 1;
+    public MoveAction(GameState.ExistentialPeasant peasantOfInterest, ResourceType resourceType){
+        this.peasantOfInterest = peasantOfInterest;
         this.resourceType = resourceType;
     }
     
     //if you're moving to TH, don't specify a resource.
-    public MoveAction(int peasantOfInterest){
-        this.peasantOfInterest = peasantOfInterest;
+    public MoveAction(GameState.ExistentialPeasant peasant){
+        this.peasantOfInterest = peasant;
     }
     
     
@@ -40,14 +40,13 @@ public class MoveAction implements StripsAction {
     @Override
     //Make dat sucka move.
     public GameState apply(GameState state) {
-        GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
         GameState returnVar = new GameState(state,0d,this);
-        peasant.setBesideGold(false);
-        peasant.setBesideWood(false);
-        peasant.setBesideTH(false);
-        if(this.resourceType == null)peasant.setBesideTH(true);
-        else if(this.resourceType == ResourceType.WOOD) peasant.setBesideWood(true);
-        else if(this.resourceType == ResourceType.GOLD) peasant.setBesideGold(true);
+        peasantOfInterest.setBesideGold(false);
+        peasantOfInterest.setBesideWood(false);
+        peasantOfInterest.setBesideTH(false);
+        if(this.resourceType == null)peasantOfInterest.setBesideTH(true);
+        else if(this.resourceType == ResourceType.WOOD) peasantOfInterest.setBesideWood(true);
+        else if(this.resourceType == ResourceType.GOLD) peasantOfInterest.setBesideGold(true);
         return returnVar;
     }
 }
