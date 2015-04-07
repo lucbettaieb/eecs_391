@@ -14,20 +14,27 @@ public class CreateAction implements StripsAction {
 
     @Override
     public boolean preconditionsMet(GameState state) {
-        //Needs to have buildPeasants true
-        //Needs 400 gold per peasant created
-        //Town Hall has 3 food and each peasant needs 1 food.  (ie, max of 3 peasants on the map at a time.)
-        return(state.() && state.getOwnedGold() >= 400 && state.getNumPeasants() < 3); //TODO: Consider changing this, the required - remaining is weird af.
+        //Needs to have buildPeasants true (check)
+        //Needs 400 gold per peasant created (check)
+        //Town Hall has 3 food and each peasant needs 1 food.  (ie, max of 3 peasants on the map at a time.) (check)
+        return(state.getBuildPeasants() && state.getOwnedGold() >= 400 && state.getNumPeasants() <= 3);
     }
 
     @Override
     public GameState apply(GameState state) {
+        GameState postCreationState = new GameState(state, 0d, this); //TODO: Change the cost to this node...
+
         //Removes 400 gold from the townhall
+        postCreationState.setOwnedGold(postCreationState.getOwnedGold() - 400);
+
+        //Remove 1 food
+        postCreationState.removeOneFood();
+
         //Increases the amount of peasants
-        //anything else?
-        state.removeOneFood();
-        state.addPeasant(); //a new peasant has been theoretically created.
-        state.iBuiltAPeasant();
-        return null;
+        postCreationState.addPeasant();
+        postCreationState.getPeasantTracker().get(postCreationState.getPeasantTracker().size() - 1).resetBools();       //makes sure nothing about it is true
+        postCreationState.getPeasantTracker().get(postCreationState.getPeasantTracker().size() - 1).setBesideTH(true);  //makes sure it knows where it is
+
+        return postCreationState;
     }
 }
