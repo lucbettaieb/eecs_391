@@ -131,7 +131,7 @@ public class GameState implements Comparable<GameState> {
      */
     public GameState(GameState parent, double costToMe, StripsAction parentAction){
         this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), 
-                parent.getRequiredPeasants() == parent.ownedPeasants);
+                parent.getRequiredPeasants() != parent.ownedPeasants);
         
         this.costToThisNode = parent.costToThisNode + costToMe;
         
