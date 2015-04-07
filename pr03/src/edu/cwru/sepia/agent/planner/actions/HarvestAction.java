@@ -16,7 +16,7 @@ public class HarvestAction implements StripsAction {
 
     @Override
     public String getSentence() {
-        return "HARVEST";
+        return "DEPOSIT("+peasantOfInterest+", "+resourceType.toString()+")";
     }
 
     @Override
