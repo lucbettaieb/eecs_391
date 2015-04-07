@@ -190,32 +190,59 @@ public class GameState implements Comparable<GameState> {
      *
      * @return The value estimated remaining cost to reach a goal state from this state.
      */
+
+    //TODO: Make this better!
     public double heuristic() {
         double h = 0;
-        if(parentAction.name.equals("MOVE")){
+        if(parentAction.getName().equals("MOVE")){                      //If you're trying to move
+            //-----------------------
             //Move Action Handling
+            //-----------------------
 
+            if(parentState.parentAction.getName().equals("MOVE")){      //...and you just moved...
+                h += 1000;                                              //...what do you think you're doing???
+            }
+            //anything else?
 
             return h;
-        } else if(parentAction.name.equals("HARVEST")){                 //If you're trying to harvest...
+        } else if(parentAction.getName().equals("HARVEST")){            //If you're trying to harvest...
+            //-----------------------
             //Harvest Action Handling
+            //-----------------------
+
             int numPeasantsWithCargo = 0;
             for(int i = 0; i < peasantTracker.size(); i++){
                 ExistentialPeasant p = peasantTracker.get(i);
                 if(p.isHasGold() || p.isHasWood()) {
-                    h += 10;                                            //...it's a little bad if a peasant already has cargo
+                    h += 10;                                            //...it's a little bad if a peasant already has cargo TODO:(maybe?)
                     numPeasantsWithCargo++;
                 }
             }
             if(numPeasantsWithCargo == peasantTracker.size()) h += 1000;//...and it's real bad if all peasants have cargo
 
             return h;
-        } else if(parentAction.name.equals("DEPOSIT")){
+        } else if(parentAction.getName().equals("DEPOSIT")){
+            //-----------------------
             //Deposit Action Handling
+            //-----------------------
+
+            int numPeasantsWithCargo = 0;
+            for(int i = 0; i < peasantTracker.size(); i++){             //Look at all the peasants
+                ExistentialPeasant p = peasantTracker.get(i);
+                if(p.isHasGold() || p.isHasWood()){
+                    numPeasantsWithCargo++;
+                }
+            }
+            if(numPeasantsWithCargo == 0) h += 1000;                    //If none of them have anything to deposit, that's bad.
 
             return h;
-        } else if(parentAction.name.equals("CREATE")){
+
+        } else if(parentAction.getName().equals("CREATE")){
+            //-----------------------
             //Create Action Handling
+            //-----------------------
+
+            if(ownedGold < 400 || buildPeasants == false) h += 1000;    //If you don't have enough gold or you shouldn't be building peasants, that's bad.
 
             return h;
         } else return h;
