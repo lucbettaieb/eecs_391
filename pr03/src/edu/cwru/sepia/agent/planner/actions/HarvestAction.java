@@ -47,7 +47,7 @@ public class HarvestAction implements StripsAction {
 
     @Override
     //The peasant now has more gold or wood
-    //The mine or forest has less gold or wood
+    //The mine or forest has less gold orr wood
     public GameState apply(GameState state) {
         if(!preconditionsMet(state)) return null;
         GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
