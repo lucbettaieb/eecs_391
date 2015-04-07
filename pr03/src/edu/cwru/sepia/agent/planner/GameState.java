@@ -33,10 +33,10 @@ public class GameState implements Comparable<GameState> {
 
     private final int requiredWood;         //The goal amount of wood we need to win the game (which you just lost)
     private int woodOnField;                //The amount of wood that is left on the map
-    private int ownedWood;                  //The amount of wood we have, updated by DepositAction
+    private int ownedWood = 0;                  //The amount of wood we have, updated by DepositAction
     private final int requiredGold;         //The amount of gold we need to win the game
     private int goldOnField;                //How much gold that is left on the map
-    private int ownedGold;                  //The amount of gold we have, this will be updated by the DepositAction
+    private int ownedGold = 0;                  //The amount of gold we have, this will be updated by the DepositAction
     
     private final int requiredPeasants;     //Whether or not we're going to be building peasants in this scenario
     private int ownedPeasants;              //Did we build a peasant yet?   Is this necessary?
@@ -52,7 +52,7 @@ public class GameState implements Comparable<GameState> {
     private int numPeasants;
     private int unusedFood;                 //Ya gotta eat.  But only 3 at a time
 
-    private double costToThisNode;
+    private double costToThisNode = 0d;
     private StripsAction parentAction = null;
     private GameState parentState = null;
 
@@ -93,10 +93,7 @@ public class GameState implements Comparable<GameState> {
         this.requiredWood = requiredWood;
         this.ownedPeasants = state.getUnits(playernum).size();
         this.requiredPeasants = ownedPeasants + (buildPeasants ? 1 : 0);
-        this.buildPeasants = buildPeasants;
-        this.ownedGold = 0; //You initially own nothing...
-        this.ownedWood = 0;
-        this.costToThisNode = 0d;
+        this.buildPeasants = buildPeasants;;
         this.peasantTracker = new ArrayList<>();
         this.goldMineTracker = new ArrayList<>();
         this.forestTracker = new ArrayList<>();
@@ -143,7 +140,7 @@ public class GameState implements Comparable<GameState> {
         this.parentAction = parentAction;
         this.parentState = parent;
         c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
-        assert c == costToThisNode;
+        assert c == costToThisNode;//TODO: these are the same variable, so remove one of them.
         //TODO: keep looking into this.
     }
 
