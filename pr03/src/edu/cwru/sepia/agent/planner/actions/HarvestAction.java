@@ -33,6 +33,17 @@ public class HarvestAction implements StripsAction {
         }
         return false;
     }
+    
+    public static boolean canHarvest(GameState.ExistentialPeasant peasant, GameState state, ResourceType resourceType){
+        if(peasant.isHasGold() || peasant.isHasWood()) return false;
+        switch (resourceType){
+            case WOOD:
+                return state.getWoodOnField() >0 && peasant.isBesideWood();
+            case GOLD:
+                return state.getGoldOnField() >0 && peasant.isBesideGold();
+        }
+        return false;
+    }
 
     @Override
     //The peasant now has more gold or wood
