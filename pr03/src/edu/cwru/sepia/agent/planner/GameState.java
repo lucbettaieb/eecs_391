@@ -46,17 +46,14 @@ public class GameState implements Comparable<GameState> {
     private ArrayList<ExistentialPeasant> peasantTracker;
     private ArrayList<ExistentialGoldMine> goldMineTracker;
     private ArrayList<ExistentialForest> forestTracker;
-
     private ExistentialTownHall townhall;
 
     private int numPeasants = peasantTracker.size();    //How many peasants?  Never too many.  >3 peasants spoil the broth.
     private int unusedFood;              //Ya gotta eat.  But only 3 at a time
 
     private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
-    private Set<String> STRIPSDescription;
-    private final Set<String> goalState;
-    private StripsAction parentAction;
-
+    private StripsAction parentAction = null;
+    
     /**
      * Construct a GameState_old from a stateview object. This is used to construct the initial search node. All other
      * nodes should be constructed from the another constructor you create or by factory functions that you create.
@@ -80,7 +77,10 @@ public class GameState implements Comparable<GameState> {
         this.buildPeasants = buildPeasants;
         this.ownedGold = 0; //You initially own nothing...
         this.ownedWood = 0;
-        this.costToThisNode = 0d;           //TODO: What does this mean? TODONE: A*'s g(x) value.
+        this.costToThisNode = 0d;
+        this.peasantTracker = new ArrayList<>();
+        this.goldMineTracker = new ArrayList<>();
+        this.forestTracker = new ArrayList<>();
         
 
         //Added code here to determine how many peasants are on the field.
@@ -108,11 +108,6 @@ public class GameState implements Comparable<GameState> {
             }
         }
         this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants; //TODO: Does playernum make sense here?  TODONE: yes.
-        this.STRIPSDescription = new HashSet<>();
-        this.goalState = new HashSet<>(); 
-        goalState.add("GOLD("+requiredGold+")");
-        goalState.add("WOOD(" + requiredWood + ")");
-        goalState.add("PEASANTS(" + requiredPeasants + ")");
     }
 
     /**
@@ -120,7 +115,8 @@ public class GameState implements Comparable<GameState> {
      * Updates the values of wood/gold on field (this requires the parent to change their goldMine/forestTracker)
      */
     public GameState(GameState parent, double costToMe, StripsAction parentAction){
-        this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), parent.getRequiredPeasants() == parent.ownedPeasants);
+        this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), 
+                parent.getRequiredPeasants() == parent.ownedPeasants);
         
         this.costToThisNode = parent.costToThisNode + costToMe;
         woodOnField = goldOnField = 0;
@@ -138,7 +134,9 @@ public class GameState implements Comparable<GameState> {
      * @return true if the goal conditions are met in this instance of game state.
      */
     public boolean isGoal() {
-        return this.STRIPSDescription.containsAll(goalState);
+        return this.requiredGold <= this.ownedGold && 
+                this.requiredWood <= this.ownedWood && 
+                this.requiredPeasants <= this.ownedPeasants;
     }
 
     /**
@@ -280,23 +278,19 @@ public class GameState implements Comparable<GameState> {
     public int getNumPeasants(){
         return numPeasants;
     }
-
     public void setWoodOnField(int woodOnField) {
         this.woodOnField = woodOnField;
     }
-
     public void setGoldOnField(int goldOnField) {
         this.goldOnField = goldOnField;
     }
-
     public void setOwnedWood(int ownedWood) {
         this.ownedWood = ownedWood;
     }
-
     public void setOwnedGold(int ownedGold) {
         this.ownedGold = ownedGold;
     }
-
+    public StripsAction getParentAction() { return this.parentAction;}
     public boolean getBuildPeasants(){
         return buildPeasants;
     }
