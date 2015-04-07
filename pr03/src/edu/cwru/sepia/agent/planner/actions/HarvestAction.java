@@ -69,7 +69,7 @@ public class HarvestAction implements StripsAction {
 
     @Override
     //The peasant now has more gold or wood
-    //The mine or forest has less gold orr wood
+    //The mine or forest has less gold or wood
     public GameState apply(GameState state) {
         if(!preconditionsMet(state)) {
             System.err.println("ERROR! ATTEMPTED TO HARVEST WHEN NOT POSSIBLE");

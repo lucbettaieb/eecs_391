@@ -169,6 +169,9 @@ public class GameState implements Comparable<GameState> {
     public List<GameState> generateChildren() {
         //TODO: because we're planning for each peasant, things get funny
         List<GameState> children = new ArrayList<>();
+        if(parentAction != null && parentAction.getName().toLowerCase().equals("harvest")){
+            System.out.println("break!");
+        }
         if(PlannerAgent.debug) {
             System.out.println("Currently generating children of state: "+this.hashCode());
             if(this.parentAction == null){
@@ -219,8 +222,8 @@ public class GameState implements Comparable<GameState> {
     public double heuristic() {
         //return badHeuristic();
         return goodHeuristic();
-
     }
+    
     public double goodHeuristic(){
         /*
         to get gold:
@@ -377,10 +380,10 @@ public class GameState implements Comparable<GameState> {
 
     //Methods for use by DepositAction, and I swear I'm cool.
     public void addToOwnedGold(){
-        ownedGold = ownedGold + 100;
+        ownedGold += 100;
     }
     public void addToOwnedWood(){
-        ownedWood = ownedWood + 100;
+        ownedWood += 100;
     }
 
     //Getters
