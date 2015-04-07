@@ -195,9 +195,19 @@ public class GameState implements Comparable<GameState> {
         if(parentAction.name.equals("MOVE")){
             //Move Action Handling
 
+
             return h;
-        } else if(parentAction.name.equals("HARVEST")){
+        } else if(parentAction.name.equals("HARVEST")){                 //If you're trying to harvest...
             //Harvest Action Handling
+            int numPeasantsWithCargo = 0;
+            for(int i = 0; i < peasantTracker.size(); i++){
+                ExistentialPeasant p = peasantTracker.get(i);
+                if(p.isHasGold() || p.isHasWood()) {
+                    h += 10;                                            //...it's a little bad if a peasant already has cargo
+                    numPeasantsWithCargo++;
+                }
+            }
+            if(numPeasantsWithCargo == peasantTracker.size()) h += 1000;//...and it's real bad if all peasants have cargo
 
             return h;
         } else if(parentAction.name.equals("DEPOSIT")){
