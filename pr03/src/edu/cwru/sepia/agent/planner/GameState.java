@@ -317,6 +317,7 @@ public class GameState implements Comparable<GameState> {
             this.hasCargo = hasCargo;
         }
         public boolean getHasCargo() { return hasCargo; }
+
     }
     
     public class ExistentialPeasant extends ExistentialBeing {
@@ -386,6 +387,10 @@ public class GameState implements Comparable<GameState> {
             besideTH = false;
             hasGold = false;
             hasWood = false;
+        }
+
+        public void setCargoType(ResourceType cargoType) {
+            this.cargoType = cargoType;
         }
     }
 

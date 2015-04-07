@@ -55,6 +55,7 @@ public class HarvestAction implements StripsAction {
         if(this.resourceType == ResourceType.WOOD) {
             peasant.setHasWood(true);
             returnVar.setWoodOnField(returnVar.getWoodOnField()-100);
+
         }
         else if(this.resourceType == ResourceType.GOLD) {
             peasant.setHasGold(true);
