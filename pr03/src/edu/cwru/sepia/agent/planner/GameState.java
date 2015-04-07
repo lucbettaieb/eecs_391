@@ -203,7 +203,7 @@ public class GameState implements Comparable<GameState> {
                 h += 1000;                                              //...what do you think you're doing???
             }
             //anything else?
-
+            this.h = h;
             return h;
         } else if(parentAction.getName().equals("HARVEST")){            //If you're trying to harvest...
             //-----------------------
@@ -219,7 +219,7 @@ public class GameState implements Comparable<GameState> {
                 }
             }
             if(numPeasantsWithCargo == peasantTracker.size()) h += 1000;//...and it's real bad if all peasants have cargo
-
+            this.h = h;
             return h;
         } else if(parentAction.getName().equals("DEPOSIT")){
             //-----------------------
@@ -234,7 +234,7 @@ public class GameState implements Comparable<GameState> {
                 }
             }
             if(numPeasantsWithCargo == 0) h += 1000;                    //If none of them have anything to deposit, that's bad.
-
+            this.h = h;
             return h;
 
         } else if(parentAction.getName().equals("CREATE")){
@@ -243,9 +243,12 @@ public class GameState implements Comparable<GameState> {
             //-----------------------
 
             if(ownedGold < 400 || buildPeasants == false) h += 1000;    //If you don't have enough gold or you shouldn't be building peasants, that's bad.
-
+            this.h = h;
             return h;
-        } else return h;
+        } else {
+            this.h = h;
+            return h;
+        }
 
     }
 
