@@ -96,7 +96,6 @@ public class PlannerAgent extends Agent {
             for(GameState successor : Q.generateChildren()){
                 //for all possible moves from here:
                 if(successor.isGoal()) return generatePath(successor);
-                successor.setC(Q.getC() + 1);//successor's H, and therefore F values should be set now.
                 
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
             }//end of for each child

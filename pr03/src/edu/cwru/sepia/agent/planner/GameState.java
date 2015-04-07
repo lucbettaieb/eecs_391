@@ -48,7 +48,7 @@ public class GameState implements Comparable<GameState> {
     private ArrayList<ExistentialForest> forestTracker;
     private ExistentialTownHall townhall;
 
-    private int numPeasants = peasantTracker.size();
+    private int numPeasants;
     private int unusedFood;                 //Ya gotta eat.  But only 3 at a time
 
     private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
@@ -113,8 +113,7 @@ public class GameState implements Comparable<GameState> {
             }
         }
         this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants; //TODO: Does playernum make sense here?  TODONE: yes.
-
-
+        numPeasants = peasantTracker.size();
         c = 0; //Cost thing for AStar is initially 0
     }
 
@@ -367,6 +366,9 @@ public class GameState implements Comparable<GameState> {
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
     public ExistentialTownHall getTownhall() { return townhall; }
     public GameState getParentState(){ return this.parentState; }
+    public int getF(){
+        return (int) (this.costToThisNode + this.heuristic());
+    }
 
     /**
      * I am the abstract representation of everything in the map.
