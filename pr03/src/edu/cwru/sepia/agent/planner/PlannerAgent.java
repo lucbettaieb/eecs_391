@@ -89,27 +89,49 @@ public class PlannerAgent extends Agent {
      */
 
     private Stack<StripsAction> AstarSearch(GameState startState) {
-        // TODO: Implement me!
-        // we have a start state...  and we need a list of possible actions...
-
-        ArrayList<StripsAction> openList = new ArrayList<StripsAction>(); //initialize open list
-        ArrayList<StripsAction> closedList = new ArrayList<StripsAction>(); //initialize closed list
-
-        openList.add(startState); //add initial state to the open list
-
-        while(openList.size() > 0){
-
-        }
-
+        PriorityQueue<GameState> openSet = new PriorityQueue<>(); //initialize open list
+        openSet.add(startState); //add initial state to the open list
+        while(openSet.size() > 0){
+            GameState Q = openSet.poll();
+            for(GameState successor : Q.generateChildren()){
+                //for all possible moves from here:
+                if(successor.isGoal()) return generatePath(successor);
+                successor.setC(Q.getC() + 1);//successor's H, and therefore F values should be set now.
+                
+                if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
+            }//end of for each child
+        }//end of open set.  We're done now.
+        System.err.println("No path to goal. Cannot plan. Exiting...");
+        System.exit(1);
         return null;
+    }
+    
+    private boolean shouldAddToOpenSet(GameState successor, PriorityQueue<GameState> openSet){
+        boolean shouldAdd = true;
+        for(GameState node: openSet){
+            //skip: already going to visit it, with a better path
+            if(node.getF() < successor.getF()) shouldAdd = false;
+        }
+        return shouldAdd;
+    }
+    
+    public Stack<StripsAction> generatePath(GameState destination){
+        Stack<StripsAction> path = new Stack<>();
+        boolean isGoal = true;
+        while(destination.getParentState() != null){
+            if(!isGoal) path.add(destination.getParentAction());
+            isGoal = false;
+            destination = destination.getParentState();
+        }
+        return path;
     }
 
     //We need some way of generating possible actions for each state of the game...
     //But wouldn't this just be meaningless?  All actions are "possible" but some might have a heuristic of zero
     //so that's how I'll handle it!  This method will return a list of actual
     private List<StripsAction> getPossibleActions(GameState currentState){
-        ArrayList<StripsAction> actionList = new List<StripsAction>;
-
+        ArrayList<StripsAction> actionList = new ArrayList<>();
+        return actionList;
     }
 
 

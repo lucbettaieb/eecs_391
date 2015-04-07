@@ -53,6 +53,7 @@ public class GameState implements Comparable<GameState> {
 
     private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
     private StripsAction parentAction = null;
+    private GameState parentState = null;
 
     //Heuristic Stuff
     private double c;
@@ -130,7 +131,7 @@ public class GameState implements Comparable<GameState> {
         for(ExistentialForest forest : parent.forestTracker) woodOnField += forest.getAmountCargo();
         for(ExistentialGoldMine goldMine : parent.goldMineTracker) goldOnField += goldMine.getAmountCargo();
         this.parentAction = parentAction;
-
+        this.parentState = parent;
         c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
         //TODO: keep looking into this.
     }
@@ -321,6 +322,7 @@ public class GameState implements Comparable<GameState> {
     public ArrayList<ExistentialGoldMine> getGoldMineTracker() { return goldMineTracker; }
     public ArrayList<ExistentialForest> getForestTracker() { return forestTracker; }
     public ExistentialTownHall getTownhall() { return townhall; }
+    public GameState getParentState(){ return this.parentState; }
 
     /**
      * I am the abstract representation of everything in the map.
