@@ -52,7 +52,7 @@ public class GameState implements Comparable<GameState> {
     private int numPeasants;
     private int unusedFood;                 //Ya gotta eat.  But only 3 at a time
 
-    private double costToThisNode; //TODO: What does this even do? TODONE: this is the g(x) value in A*
+    private double costToThisNode;
     private StripsAction parentAction = null;
     private GameState parentState = null;
 
@@ -139,9 +139,7 @@ public class GameState implements Comparable<GameState> {
                 parent.getRequiredPeasants() == parent.ownedPeasants);
         
         this.costToThisNode = parent.costToThisNode + costToMe;
-        woodOnField = goldOnField = 0;
-        for(ExistentialForest forest : parent.forestTracker) woodOnField += forest.getAmountCargo();
-        for(ExistentialGoldMine goldMine : parent.goldMineTracker) goldOnField += goldMine.getAmountCargo();
+        
         this.parentAction = parentAction;
         this.parentState = parent;
         c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.

@@ -100,8 +100,7 @@ public class PlannerAgent extends Agent {
                 
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
                 if(debug) {
-                    System.out.println("finished considering child "+successor.hashCode());
-                    System.out.println("its cost was "+successor.getCost());
+                    System.out.println("finished considering child "+successor.hashCode()+", with cost "+successor.getCost());
                     System.out.println("Number of items in the openlist: "+openSet.size());
                 }
             }//end of for each child

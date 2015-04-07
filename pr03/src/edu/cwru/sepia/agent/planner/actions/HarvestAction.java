@@ -12,7 +12,7 @@ public class HarvestAction implements StripsAction {
     private int peasantOfInterest = -1;
     private ResourceType resourceType;
     public HarvestAction(int peasantOfInterest, ResourceType resourceType){
-        this.peasantOfInterest = peasantOfInterest - 1;
+        this.peasantOfInterest = peasantOfInterest;
         this.resourceType = resourceType;
     }
 
@@ -66,7 +66,10 @@ public class HarvestAction implements StripsAction {
     //The peasant now has more gold or wood
     //The mine or forest has less gold orr wood
     public GameState apply(GameState state) {
-        if(!preconditionsMet(state)) return null;
+        if(!preconditionsMet(state)) {
+            System.err.println("ERROR! ATTEMPTED TO HARVEST WHEN NOT POSSIBLE");
+            return null;
+        }
         GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
         GameState postHarvestState = new GameState(state,1d,this);
 
