@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class PlannerAgent extends Agent {
+    final static boolean debug = true;
 
     final int requiredWood;
     final int requiredGold;
@@ -87,8 +88,8 @@ public class PlannerAgent extends Agent {
      * @param startState The state which is being planned from
      * @return The plan or null if no plan is found.
      */
-
     private Stack<StripsAction> AstarSearch(GameState startState) {
+        
         PriorityQueue<GameState> openSet = new PriorityQueue<>(); //initialize open list
         openSet.add(startState); //add initial state to the open list
         while(openSet.size() > 0){
@@ -98,7 +99,9 @@ public class PlannerAgent extends Agent {
                 if(successor.isGoal()) return generatePath(successor);
                 
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
+                if(debug) System.out.println("finished considering child.");
             }//end of for each child
+            if(debug) System.out.println("finished considering all children");
         }//end of open set.  We're done now.
         System.err.println("No path to goal. Cannot plan. Exiting...");
         System.exit(1);
@@ -115,6 +118,7 @@ public class PlannerAgent extends Agent {
     }
     
     public Stack<StripsAction> generatePath(GameState destination){
+        if(debug) System.out.println("found path! recursing to generate stack.");
         Stack<StripsAction> path = new Stack<>();
         boolean isGoal = true;
         while(destination.getParentState() != null){

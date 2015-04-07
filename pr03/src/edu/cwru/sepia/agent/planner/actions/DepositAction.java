@@ -36,7 +36,7 @@ public class DepositAction implements StripsAction{
     //The peasant has no more gold
     //The town hall has more gold
     public GameState apply(GameState state) {
-        GameState postDepositState = new GameState(state, 0d, this); //TODO: Maybe change 0d to something that makes sense for Astar
+        GameState postDepositState = new GameState(state, 1d, this); //TODO: Maybe change 0d to something that makes sense for Astar
         for (GameState.ExistentialPeasant p : postDepositState.getPeasantTracker()){
             if(p.getPeasantID() == depositPeasant.getPeasantID()){
                 if(p.getCargoType().equals(ResourceType.GOLD)){

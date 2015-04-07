@@ -52,7 +52,7 @@ public class HarvestAction implements StripsAction {
     public GameState apply(GameState state) {
         if(!preconditionsMet(state)) return null;
         GameState.ExistentialPeasant peasant = state.getPeasantTracker().get(peasantOfInterest);
-        GameState postHarvestState = new GameState(state,0d,this);
+        GameState postHarvestState = new GameState(state,1d,this);
 
         if(this.resourceType == ResourceType.WOOD) {
             peasant.setHasWood(true);

@@ -92,7 +92,7 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        
+        if(PlannerAgent.debug) System.out.println("beginning new middleStep in PEAgent");
         if(stateView.getTurnNumber()==0) {
             System.err.println("ERROR! TURN 0 ENCOUNTERED IN PEAGENT MIDDLESTEP!");
             return null;

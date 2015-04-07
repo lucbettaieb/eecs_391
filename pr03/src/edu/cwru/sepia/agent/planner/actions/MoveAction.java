@@ -40,7 +40,7 @@ public class MoveAction implements StripsAction {
     @Override
     //Make dat sucka move.
     public GameState apply(GameState state) {
-        GameState returnVar = new GameState(state,0d,this);
+        GameState returnVar = new GameState(state,1d,this);
         peasantOfInterest.setBesideGold(false);
         peasantOfInterest.setBesideWood(false);
         peasantOfInterest.setBesideTH(false);

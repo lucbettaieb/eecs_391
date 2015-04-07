@@ -26,7 +26,7 @@ public class CreateAction implements StripsAction {
 
     @Override
     public GameState apply(GameState state) {
-        GameState postCreationState = new GameState(state, 0d, this); //TODO: Change the cost to this node...
+        GameState postCreationState = new GameState(state, 1d, this); //TODO: Change the cost to this node...
 
         //Removes 400 gold from the townhall
         postCreationState.setOwnedGold(postCreationState.getOwnedGold() - 400);
