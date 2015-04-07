@@ -1,6 +1,6 @@
 package edu.cwru.sepia.agent.planner;
 
-import edu.cwru.sepia.agent.planner.actions.StripsAction;
+import edu.cwru.sepia.agent.planner.actions.*;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
@@ -148,11 +148,30 @@ public class GameState implements Comparable<GameState> {
      * @return A list of the possible successor states and their associated actions
      */
     public List<GameState> generateChildren() {
-        
-        
-        
-        // TODO: Implement me!
-        return null;
+        List<GameState> returnVar = new ArrayList<>();
+        for(ExistentialPeasant peasant: peasantTracker){
+            
+            if(HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)){
+                HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.WOOD);
+                returnVar.add(harvestAction.apply(this));
+            } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)){
+                HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.GOLD);
+                returnVar.add(harvestAction.apply(this));
+            }
+            //you can always move to wood, gold, or the townhall, so unconditionally add them.
+            returnVar.add(new MoveAction(peasant.getPeasantID(), ResourceType.WOOD).apply(this));
+            returnVar.add(new MoveAction(peasant.getPeasantID(), ResourceType.GOLD).apply(this));
+            returnVar.add(new MoveAction(peasant.getPeasantID()).apply(this));
+
+            //TODO: fix this for the static preconditionsMet implementation
+            DepositAction depositAction = new DepositAction(peasant);
+            if(depositAction.preconditionsMet(this)) returnVar.add(depositAction.apply(this));
+            
+            //TODO: fix this for the static preconditionsMet implementation
+            CreateAction createAction = new CreateAction();
+            if(createAction.preconditionsMet(this)) returnVar.add(createAction.apply(this));
+        }
+        return returnVar;
     }
 
     /**
