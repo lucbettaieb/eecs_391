@@ -7,7 +7,7 @@ import edu.cwru.sepia.environment.model.state.ResourceType;
  * Created by luc on 3/28/15.
  */
 public class HarvestAction implements StripsAction {
-    public static String name = "HARVEST";
+    public String getName() { return"HARVEST";}
     private int peasantOfInterest = -1;
     private ResourceType resourceType;
     public HarvestAction(int peasantOfInterest, ResourceType resourceType){
