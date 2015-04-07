@@ -263,6 +263,10 @@ public class GameState implements Comparable<GameState> {
         return costToThisNode;
     }
 
+    public double getC(){           //Why?  Because I can.
+        return getCost();
+    }
+
     /**
      * This is necessary to use your state in the Java priority queue. See the official priority queue and Comparable
      * interface documentation to learn how this function should work.
