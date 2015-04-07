@@ -22,6 +22,11 @@ public class DepositAction implements StripsAction{
     }
 
     @Override
+    public String toString(){
+        return getSentence();
+    }
+
+    @Override
     //A peasant needs to have gold to deposit
     //The peasant in question needs to be next to a town hall
     //So,   1. Find peasant next to a town hall
@@ -51,6 +56,12 @@ public class DepositAction implements StripsAction{
 
         GameState postDepositState = new GameState(state, 1d, this);
         GameState.ExistentialPeasant newPeasant = postDepositState.getPeasantTracker().get(depositPeasant.getPeasantID());
+        newPeasant.setBesideGold(depositPeasant.isBesideGold());
+        newPeasant.setBesideWood(depositPeasant.isBesideWood());
+        newPeasant.setBesideTH(depositPeasant.isBesideTH());
+        newPeasant.setHasGold(depositPeasant.isHasGold());
+        newPeasant.setHasWood(depositPeasant.isHasWood());
+        newPeasant.setCargoType(depositPeasant.getCargoType());
         
         if(newPeasant.getCargoType().equals(ResourceType.GOLD)){
             //Give gold to TownHall

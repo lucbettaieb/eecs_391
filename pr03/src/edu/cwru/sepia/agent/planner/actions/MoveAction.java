@@ -54,6 +54,7 @@ public class MoveAction implements StripsAction {
         newPeasant.setBesideTH(false);
         newPeasant.setHasGold(peasantOfInterest.isHasGold());
         newPeasant.setHasWood(peasantOfInterest.isHasWood());
+        newPeasant.setCargoType(peasantOfInterest.getCargoType());
         if(this.resourceType == null)newPeasant.setBesideTH(true);
         else if(this.resourceType == ResourceType.WOOD) newPeasant.setBesideWood(true);
         else if(this.resourceType == ResourceType.GOLD) newPeasant.setBesideGold(true);

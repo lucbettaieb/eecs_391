@@ -467,6 +467,10 @@ public class GameState implements Comparable<GameState> {
         }
         public int getPeasantID() { return this.peasantID; }
         public ResourceType getCargoType() {
+            if(cargoType == null){
+                if(hasGold && !hasWood) cargoType = ResourceType.GOLD;
+                if(hasWood && !hasGold) cargoType = ResourceType.WOOD;
+            }
             return cargoType;
         }
         
