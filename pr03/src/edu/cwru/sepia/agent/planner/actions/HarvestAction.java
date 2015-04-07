@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner.actions;
 
 import edu.cwru.sepia.agent.planner.GameState;
+import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
@@ -36,14 +37,29 @@ public class HarvestAction implements StripsAction {
     }
     
     public static boolean canHarvest(GameState.ExistentialPeasant peasant, GameState state, ResourceType resourceType){
-        if(peasant.isHasGold() || peasant.isHasWood()) return false;
+        if(peasant.isHasGold() || peasant.isHasWood()) {
+            if(PlannerAgent.debug) System.out.println("Peasant was carrying something.  Cannot consider Harvesting.");
+            return false;
+        }
         switch (resourceType){
             case WOOD:
-                return state.getWoodOnField() >0 && peasant.isBesideWood();
+                boolean canHarvest = state.getWoodOnField() >0 && peasant.isBesideWood();
+                if(PlannerAgent.debug) {
+                    System.out.println("Calculating if peasant: "+peasant.toString()+" can harvest WOOD, result is "+canHarvest);
+                    System.out.println("Wood on field: "+state.getWoodOnField()+"\t Beside wood: "+peasant.isBesideWood());
+                }
+                return canHarvest;
             case GOLD:
-                return state.getGoldOnField() >0 && peasant.isBesideGold();
+                canHarvest = state.getGoldOnField() >0 && peasant.isBesideGold();
+                if(PlannerAgent.debug) {
+                    System.out.println("Calculating if peasant: "+peasant.toString()+" can harvest GOLD, result is "+canHarvest);
+                    System.out.println("Gold on field: "+state.getGoldOnField()+"\t Beside gold: "+peasant.isBesideGold());
+                }
+                return canHarvest;
+            default:
+                if(PlannerAgent.debug) System.out.println("Peasant wanted to harvest unknown type. failing.");
+                return false;
         }
-        return false;
     }
 
     @Override

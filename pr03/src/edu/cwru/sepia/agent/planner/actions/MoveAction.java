@@ -1,7 +1,7 @@
 package edu.cwru.sepia.agent.planner.actions;
 
 import edu.cwru.sepia.agent.planner.GameState;
-import edu.cwru.sepia.agent.planner.GameState_old;
+import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
@@ -26,8 +26,7 @@ public class MoveAction implements StripsAction {
     @Override
     public String getSentence() {
         if(resourceType == null) return "MOVE("+peasantOfInterest+",TOWNHALL)";
-        
-        return "MOVE("+peasantOfInterest+","+resourceType.toString()+")";
+        return "MOVE("+peasantOfInterest.toString()+","+resourceType.toString()+")";
     }
 
     @Override
@@ -40,13 +39,20 @@ public class MoveAction implements StripsAction {
     @Override
     //Make dat sucka move.
     public GameState apply(GameState state) {
+        if(PlannerAgent.debug)System.out.println("Applying a MOVE: "+getSentence());
         GameState returnVar = new GameState(state,1d,this);
-        peasantOfInterest.setBesideGold(false);
-        peasantOfInterest.setBesideWood(false);
-        peasantOfInterest.setBesideTH(false);
-        if(this.resourceType == null)peasantOfInterest.setBesideTH(true);
-        else if(this.resourceType == ResourceType.WOOD) peasantOfInterest.setBesideWood(true);
-        else if(this.resourceType == ResourceType.GOLD) peasantOfInterest.setBesideGold(true);
+        GameState.ExistentialPeasant newPeasant = returnVar.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        newPeasant.setBesideGold(false);
+        newPeasant.setBesideWood(false);
+        newPeasant.setBesideTH(false);
+        if(this.resourceType == null)newPeasant.setBesideTH(true);
+        else if(this.resourceType == ResourceType.WOOD) newPeasant.setBesideWood(true);
+        else if(this.resourceType == ResourceType.GOLD) newPeasant.setBesideGold(true);
         return returnVar;
+    }
+    
+    @Override 
+    public String toString(){
+        return getSentence();
     }
 }

@@ -113,13 +113,15 @@ public class PEAgent extends Agent {
             {//block to show what I'm playing with.  TODO: remove the block, but keep the code.
                 actionAlreadyTaken = returnVar.containsKey(nextID);
                 durativeComplete = actionResults.containsKey(nextID) && actionResults.get(nextID).toString().toLowerCase().equals("complete");
-                if (actionResults.containsKey(nextID)){
+                if (actionResults.containsKey(nextID)) {
                     /*
                     SEPIA documentation to the rescue!
                     just kidding.  I have no idea what to expect from ActionResult,
                     so I'm just printing it out.
                      */
-                    System.out.println("Peasant: "+nextID+" has believes its durative status is: "+actionResults.get(nextID).toString().toLowerCase());
+                    if (PlannerAgent.debug) {
+                        System.out.println("Peasant: " + nextID + " has believes its durative status is: " + actionResults.get(nextID).toString().toLowerCase());
+                    }
                 }
             }
             

@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner;
 
 import edu.cwru.sepia.agent.planner.actions.*;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
@@ -70,13 +71,26 @@ public class GameState implements Comparable<GameState> {
      * @param buildPeasants True if the BuildPeasant action should be considered
      */
     public GameState(State.StateView state, int playernum, int requiredGold, int requiredWood, boolean buildPeasants){
+        peasantTracker = new ArrayList<>();
+        goldMineTracker = new ArrayList<>();
+        forestTracker = new ArrayList<>();
         this.state = state;
+        List<ResourceNode.ResourceView> resources = state.getAllResourceNodes();
         this.playerNum = playernum;
 
         this.requiredGold = requiredGold;
-        this.goldOnField = state.getResourceAmount(playernum, ResourceType.GOLD); //I think this makes a little more sense..
+        this.goldOnField = this.woodOnField = 0;
+        for(ResourceNode.ResourceView resource : resources){
+            if (resource.getType() == ResourceNode.Type.GOLD_MINE) {
+                goldOnField += resource.getAmountRemaining();
+                goldMineTracker.add(new ExistentialGoldMine(true, resource.getAmountRemaining()));
+            }
+            if (resource.getType() == ResourceNode.Type.TREE) {
+                woodOnField += resource.getAmountRemaining();
+                forestTracker.add(new ExistentialForest(true, resource.getAmountRemaining()));
+            }
+        }
         this.requiredWood = requiredWood;
-        this.woodOnField = state.getResourceAmount(playernum, ResourceType.WOOD); //..since we want to know the remaining resources available to the peasant(s)
         this.ownedPeasants = state.getUnits(playernum).size();
         this.requiredPeasants = ownedPeasants + (buildPeasants ? 1 : 0);
         this.buildPeasants = buildPeasants;
@@ -86,7 +100,6 @@ public class GameState implements Comparable<GameState> {
         this.peasantTracker = new ArrayList<>();
         this.goldMineTracker = new ArrayList<>();
         this.forestTracker = new ArrayList<>();
-        
 
         //Added code here to determine how many peasants are on the field.
         this.numPeasants = 0;
@@ -132,6 +145,7 @@ public class GameState implements Comparable<GameState> {
         this.parentAction = parentAction;
         this.parentState = parent;
         c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
+        assert c == costToThisNode;
         //TODO: keep looking into this.
     }
 
@@ -155,21 +169,34 @@ public class GameState implements Comparable<GameState> {
      * @return A list of the possible successor states and their associated actions
      */
     public List<GameState> generateChildren() {
+        //TODO: because we're planning for each peasant, things get funny
         List<GameState> children = new ArrayList<>();
+        if(PlannerAgent.debug) {
+            System.out.println("Currently generating children of state: "+this.toString());
+            if(this.parentAction == null){
+                System.out.println("This state had NO parent action.");
+            } else System.out.println("This state's parent action was: "+this.parentAction.getName());
+        }
         for(ExistentialPeasant peasant: peasantTracker){
-            
             if(HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)){
+                if(PlannerAgent.debug) System.out.println("Considering a harvest WOOD command");
                 HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.WOOD);
                 children.add(harvestAction.apply(this));
             } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)){
+                if(PlannerAgent.debug) System.out.println("Considering a harvest GOLD command");
                 HarvestAction harvestAction = new HarvestAction(peasant.getPeasantID(), ResourceType.GOLD);
                 children.add(harvestAction.apply(this));
             }
             //you can always move to wood, gold, or the townhall, so unconditionally add them.
-            children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
-            children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
-            children.add(new MoveAction(peasant).apply(this));
-
+            if(parentAction== null ||(parentAction != null && !parentAction.getName().equals("MOVE"))){
+                //if I didn't have a parent, or my parent was not MOVE, add these move commands.
+                //don't double move.
+                if(PlannerAgent.debug) System.out.println("Considering a MOVE command");
+                children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+                children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+                children.add(new MoveAction(peasant).apply(this));
+            }
+            
             //TODO: fix this for the static preconditionsMet implementation
             DepositAction depositAction = new DepositAction(peasant);
             if(depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
@@ -192,12 +219,45 @@ public class GameState implements Comparable<GameState> {
 
     //TODO: Make this better!
     public double heuristic() {
-        return badHeuristic();
-        //return goodHeuristic();
+        //return badHeuristic();
+        return goodHeuristic();
 
     }
     public double goodHeuristic(){
-        return -1;
+        /*
+        to get gold:
+        MOVE -> HARVEST -> MOVE -> DEPOSIT
+        e.g. 4 steps.
+         */
+        int peasantsLeft = requiredPeasants - ownedPeasants;
+        switch (parentAction.getName().toLowerCase()){
+            case "move":
+                h += 2;
+                h += ((requiredGold - ownedGold)/100)*4;//how many loads of gold are left
+                h += ((requiredWood - ownedWood)/100)*4;
+                if(peasantsLeft > 0) h += 16;//4 loads of gold to make a peasant.
+                break;
+            case "harvest":
+                h += 3;
+                h += ((requiredGold - ownedGold)/100)*4;
+                h += ((requiredWood - ownedWood)/100)*4;
+                if(peasantsLeft > 0) h += 16;//4 loads of gold to make a peasant.
+                break;
+            case "deposit":
+                h += ((requiredGold - ownedGold)/100)*4;
+                h += ((requiredWood - ownedWood)/100)*4;
+                if(peasantsLeft > 0) h += 16;//4 loads of gold to make a peasant.
+                break;
+            case "create":
+                h += ((requiredGold - ownedGold)/100)*4;
+                h += ((requiredWood - ownedWood)/100)*4;
+                if(peasantsLeft > 0) h += 16;//4 loads of gold to make a peasant.
+                break;
+            default:
+                System.err.println("ERROR! UNKNOWN ACTION ENCOUNTERED IN GAMESTATE!");
+                break;
+        }
+        return 0d;
     }
     public double badHeuristic(){
         double h = 0;
@@ -264,7 +324,7 @@ public class GameState implements Comparable<GameState> {
      * @return The current cost to reach this goal
      */
     public double getCost() {
-        return costToThisNode;
+        return (int) (this.costToThisNode + this.heuristic());
     }
 
     public double getC(){           //Why?  Because I can.
@@ -460,6 +520,16 @@ public class GameState implements Comparable<GameState> {
 
         public void setCargoType(ResourceType cargoType) {
             this.cargoType = cargoType;
+        }
+        
+        @Override
+        public String toString(){
+            StringBuilder sb = new StringBuilder();
+            sb.append("\tID: ").append(peasantID).append("\n\tCargo Type: ").append(cargoType == null?"NULL": cargoType.toString());
+            sb.append("\n\tHolding Wood: ").append(hasWood).append("\n\tHolding Gold: ").append(hasGold);
+            sb.append("\n\tBeside Gold: ").append(besideGold).append("\n\tBeside Wood: ");
+            sb.append(besideWood).append("\n\tBeside TH: ").append(besideTH).append('\n');
+            return sb.toString();
         }
     }
 

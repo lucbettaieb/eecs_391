@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class PlannerAgent extends Agent {
-    final static boolean debug = true;
+    public final static boolean debug = true;
 
     final int requiredWood;
     final int requiredGold;
@@ -99,7 +99,11 @@ public class PlannerAgent extends Agent {
                 if(successor.isGoal()) return generatePath(successor);
                 
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
-                if(debug) System.out.println("finished considering child.");
+                if(debug) {
+                    System.out.println("finished considering child "+successor.hashCode());
+                    System.out.println("its cost was "+successor.getCost());
+                    System.out.println("Number of items in the openlist: "+openSet.size());
+                }
             }//end of for each child
             if(debug) System.out.println("finished considering all children");
         }//end of open set.  We're done now.
