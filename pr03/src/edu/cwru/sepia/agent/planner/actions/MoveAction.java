@@ -48,6 +48,10 @@ public class MoveAction implements StripsAction {
     public GameState apply(GameState state) {
         if(PlannerAgent.debug)System.out.println("Applying a MOVE: "+getSentence());
         GameState returnVar = new GameState(state,1d,this);
+        if(peasantOfInterest.getPeasantID()>0){
+            System.out.println("gotcha!");
+            //TODO: we get an error here if a new peasant gets made
+        }
         GameState.ExistentialPeasant newPeasant = returnVar.getPeasantTracker().get(peasantOfInterest.getPeasantID());
         newPeasant.setBesideGold(false);
         newPeasant.setBesideWood(false);
