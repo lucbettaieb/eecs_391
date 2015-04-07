@@ -192,6 +192,14 @@ public class GameState implements Comparable<GameState> {
 
     //TODO: Make this better!
     public double heuristic() {
+        return badHeuristic();
+        //return goodHeuristic();
+
+    }
+    public double goodHeuristic(){
+        return -1;
+    }
+    public double badHeuristic(){
         double h = 0;
         if(parentAction.getName().equals("MOVE")){                      //If you're trying to move
             //-----------------------
@@ -246,7 +254,6 @@ public class GameState implements Comparable<GameState> {
             this.h = h;
             return h;
         }
-
     }
 
     /**
