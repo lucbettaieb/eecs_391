@@ -118,7 +118,8 @@ public class PEAgent extends Agent {
                 //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
 
-                //ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units);
+                //ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units); //this is maybe
+                //return parseActions(createGeneralSepiaAction(plan.pop(), resources, units));
 
                 if(nextAction != null)  {
                     returnVar.put(unitID, nextAction);
@@ -166,6 +167,13 @@ public class PEAgent extends Agent {
         return null;
     }
 
+    /**
+     * Attempt to handle multiple unit action pairs.
+     * @param action
+     * @param resourceList
+     * @param units
+     * @return a list of actions for each peasant that exists
+     */
     private ArrayList<Action> createGeneralSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units){
         ArrayList<Action> retActions = new ArrayList<>();
 
