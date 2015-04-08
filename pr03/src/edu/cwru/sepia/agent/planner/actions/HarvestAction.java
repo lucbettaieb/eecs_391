@@ -30,6 +30,11 @@ public class HarvestAction implements StripsAction {
         return getSentence();
     }
 
+    /**
+     * Function to return true if the preconditions of applying a HARVEST action are met.
+     * @param state GameState to check if action is applicable
+     * @return true if the peasant in question is next to a mine or forest and is not carrying anything.
+     */
     @Override
     //The peasant has to have nothing
     //The peasant must be next to either a mine or a forest
@@ -44,7 +49,14 @@ public class HarvestAction implements StripsAction {
         }
         return false;
     }
-    
+
+    /**
+     * A function for use in generateChildren that returns true if the peasant in question can harvest the resource in question.
+     * @param peasant the ExistentialPeasant that we'll be checking 'if can harvest'.
+     * @param state The state of the game in which the ExistentialPeasant exists...  or doesn't? (joking..)
+     * @param resourceType The resource type we're trying to acquire
+     * @return true if the peasant can do the thing we're querying.
+     */
     public static boolean canHarvest(GameState.ExistentialPeasant peasant, GameState state, ResourceType resourceType){
         if(peasant.isHasGold() || peasant.isHasWood()) {
             if(PlannerAgent.debug) System.out.println("Peasant was carrying something.  Cannot consider Harvesting.");
@@ -71,6 +83,11 @@ public class HarvestAction implements StripsAction {
         }
     }
 
+    /**
+     * Function to apply a HarvestAction to the game state.
+     * @param state State to apply action to
+     * @return a new GameState with a harvest action applied to it.
+     */
     @Override
     //The peasant now has more gold or wood
     //The mine or forest has less gold or wood

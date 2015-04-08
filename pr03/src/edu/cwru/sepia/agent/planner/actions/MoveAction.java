@@ -25,8 +25,8 @@ public class MoveAction implements StripsAction {
     public MoveAction(GameState.ExistentialPeasant peasant){
         this.peasantOfInterest = peasant;
     }
-    
-    
+
+
     @Override
     public String getSentence() {
         if(resourceType == null) return "MOVE("+peasantOfInterest.getPeasantID()+",TOWNHALL)";
@@ -34,12 +34,16 @@ public class MoveAction implements StripsAction {
     }
 
     @Override
-    //The peasant must exist?  We're getting into some existential questions here.
-    //I don't know
     public boolean preconditionsMet(GameState state) {
         return true;//no preconditions
     }
-    
+
+    /**
+     * Static method to check if the preconditions for moving are true for use in the generateChildren function.
+     * @param peasant to see if can Move
+     * @param resourceType the resource we're checking to see if we can move to.  null is townhall
+     * @return true if we can move to resourcrType (null is townhall)
+     */
     public static boolean canMove(GameState.ExistentialPeasant peasant, ResourceType resourceType){
         if(peasant.isBesideTH() && resourceType == null) return false;
         if(peasant.isBesideGold() && resourceType != null) return false;
@@ -47,8 +51,12 @@ public class MoveAction implements StripsAction {
         return true;
     }
 
+    /**
+     * Function to apply the move action to a new state and return it
+     * @param state State to apply action to
+     * @return a new state in which a move action is applied.
+     */
     @Override
-    //Make dat sucka move.
     public GameState apply(GameState state) {
         if(PlannerAgent.debug)System.out.println("Applying a MOVE: "+getSentence());
         GameState returnVar = new GameState(state,1d,this);
