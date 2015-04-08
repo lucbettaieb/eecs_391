@@ -261,10 +261,13 @@ public class PEAgent extends Agent {
         }
         
         private void parseNouns(){
+            if(value.indexOf('(')<0 || value.indexOf('(')<0){
+                System.err.println("ERROR unparseable noun!");
+                return;
+            }
             String inQuestion = value.substring(value.indexOf('('), value.indexOf(')'));
             String[] nouns = inQuestion.split(",");
             if(nouns.length==2) nounEnums.add(getTypeFromString(nouns[1]));
-            
         }
         
         @Override
@@ -338,5 +341,13 @@ public class PEAgent extends Agent {
             if(unit.getID() == unitID) return unit;
         }
         return null;
+    }
+    
+    private Map<Integer, Action> parseActions(ArrayList<Action> actions){
+        Map<Integer, Action> returnVar = new HashMap<>();
+        for(Action action: actions){
+            returnVar.put(action.getUnitId(), action);
+        }
+        return returnVar;
     }
 }

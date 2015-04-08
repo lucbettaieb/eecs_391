@@ -172,33 +172,36 @@ public class GameState implements Comparable<GameState> {
     public List<GameState> generateChildren() {
         //TODO: because we're planning for each peasant, things get funny
         List<GameState> children = new ArrayList<>();
-        ExistentialPeasant peasant;
-        if(peasantTracker.size()>0){
-            peasant = peasantTracker.get(0);
-        } else return new ArrayList<>();
-        if (HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)) {
-            HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
-            children.add(harvestAction.apply(this));
-        } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)) {
-            HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
-            children.add(harvestAction.apply(this));
-        }
-        //you can always move to wood, gold, or the townhall, so unconditionally add them.
-        if (parentAction == null || !parentAction.getName().equals("MOVE")) {
-            //if I didn't have a parent, or my parent was not MOVE, add these move commands.
-            //don't double move, and don't move to the same place.
-            if (MoveAction.canMove(peasant, ResourceType.WOOD))
-                children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
-            if (MoveAction.canMove(peasant, ResourceType.GOLD))
-                children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
-            if (MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
-        }
+        
+        //ExistentialPeasant peasant;
+        //if(peasantTracker.size()>0)peasant = peasantTracker.get(0);
+        //else return new ArrayList<>();
+        
+        for(ExistentialPeasant peasant : peasantTracker) {
+            if (HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)) {
+                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
+                children.add(harvestAction.apply(this));
+            } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)) {
+                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
+                children.add(harvestAction.apply(this));
+            }
+            //you can always move to wood, gold, or the townhall, so unconditionally add them.
+            if (parentAction == null || !parentAction.getName().equals("MOVE")) {
+                //if I didn't have a parent, or my parent was not MOVE, add these move commands.
+                //don't double move, and don't move to the same place.
+                if (MoveAction.canMove(peasant, ResourceType.WOOD))
+                    children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+                if (MoveAction.canMove(peasant, ResourceType.GOLD))
+                    children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+                if (MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
+            }
 
-        DepositAction depositAction = new DepositAction(peasant);
-        if (depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
+            DepositAction depositAction = new DepositAction(peasant);
+            if (depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
 
-        CreateAction createAction = new CreateAction();
-        if (createAction.preconditionsMet(this)) children.add(createAction.apply(this));
+            CreateAction createAction = new CreateAction();
+            if (createAction.preconditionsMet(this)) children.add(createAction.apply(this));
+        }
 
         return children;
     }
