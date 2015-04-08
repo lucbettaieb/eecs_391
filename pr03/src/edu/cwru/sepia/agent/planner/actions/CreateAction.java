@@ -3,10 +3,10 @@ package edu.cwru.sepia.agent.planner.actions;
 import edu.cwru.sepia.agent.planner.GameState;
 
 /**
- * Created by Luc Bettaieb on 3/28/15.
- *
  * CreateAction.java
- *  A class to represent the STRIPS "CREATE" action.
+ * A class to represent the STRIPS "CREATE" action.
+ *
+ * Aidan Campbell and Luc Bettaieb
  */
 
 public class CreateAction implements StripsAction {

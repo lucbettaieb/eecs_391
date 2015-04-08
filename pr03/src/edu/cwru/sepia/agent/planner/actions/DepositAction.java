@@ -5,11 +5,12 @@ import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
- * Created by Luc Bettaieb on 3/28/15.
- *
  * DepositAction.java
- *  A class to represent the STRIPS "DEPOSIT" action.
+ * A class to represent the STRIPS "DEPOSIT" action.
+ *
+ * Aidan Campbell and Luc Bettaieb
  */
+
 public class DepositAction implements StripsAction{
     public String getName() { return "DEPOSIT";}
 

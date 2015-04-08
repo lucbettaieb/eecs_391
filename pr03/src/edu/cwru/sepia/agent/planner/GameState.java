@@ -9,6 +9,13 @@ import edu.cwru.sepia.environment.model.state.Unit;
 import java.util.*;
 
 /**
+ * GameState.java
+ * A class to represent the state of the game.
+ *
+ * Aidan Campbell and Luc Bettaieb
+ */
+
+/**
  * This class is used to represent the state of the game after applying one of the avaiable actions. It will also
  * track the A* specific information such as the parent pointer and the cost and heuristic function. Remember that
  * unlike the path planning A* from the first assignment the cost of an action may be more than 1. Specifically the cost

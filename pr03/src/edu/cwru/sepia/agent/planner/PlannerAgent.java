@@ -9,6 +9,13 @@ import edu.cwru.sepia.environment.model.state.State;
 import java.io.*;
 import java.util.*;
 
+/**
+ * PlannerAgent.java
+ * A class provide planning functionality for gathering certain amounts of resources in SEPIA.
+ *
+ * Aidan Campbell and Luc Bettaieb
+ */
+
 public class PlannerAgent extends Agent {
     public final static boolean debug = true;
 

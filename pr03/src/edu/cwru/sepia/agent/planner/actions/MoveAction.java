@@ -5,8 +5,12 @@ import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
- * Created by luc on 3/28/15.
+ * MoveAction.java
+ * A class to represent the STRIPS "MOVE" action.
+ *
+ * Aidan Campbell and Luc Bettaieb
  */
+
 public class MoveAction implements StripsAction {
     public String getName() { return "MOVE";}
     private GameState.ExistentialPeasant peasantOfInterest;
