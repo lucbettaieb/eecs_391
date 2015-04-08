@@ -42,7 +42,7 @@ public class MoveAction implements StripsAction {
      * Static method to check if the preconditions for moving are true for use in the generateChildren function.
      * @param peasant to see if can Move
      * @param resourceType the resource we're checking to see if we can move to.  null is townhall
-     * @return true if we can move to resourcrType (null is townhall)
+     * @return true if we can move to resourceType (null is townhall)
      */
     public static boolean canMove(GameState.ExistentialPeasant peasant, ResourceType resourceType){
         if(peasant.isBesideTH() && resourceType == null) return false;
@@ -59,7 +59,14 @@ public class MoveAction implements StripsAction {
     @Override
     public GameState apply(GameState state) {
         GameState returnVar = new GameState(state,1d,this);
-        GameState.ExistentialPeasant newPeasant = returnVar.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        GameState.ExistentialPeasant newPeasant;
+        
+        if(returnVar.getPeasantTracker().size() > peasantOfInterest.getPeasantID()){
+             newPeasant = returnVar.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        } else {
+            newPeasant = returnVar.initializePeasant();
+        }
+       
         newPeasant.setBesideGold(false);
         newPeasant.setBesideWood(false);
         newPeasant.setBesideTH(false);

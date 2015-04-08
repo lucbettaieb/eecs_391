@@ -527,4 +527,10 @@ public class GameState implements Comparable<GameState> {
         }
     }
 
+    
+    public ExistentialPeasant initializePeasant(){
+        ExistentialPeasant newPeasent = new ExistentialPeasant(null, false, this.peasantTracker.size());
+        this.peasantTracker.add(newPeasent);
+        return newPeasent;
+    }
 }

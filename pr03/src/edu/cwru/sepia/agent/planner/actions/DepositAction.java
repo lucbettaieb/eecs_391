@@ -64,7 +64,14 @@ public class DepositAction implements StripsAction{
         }
 
         GameState postDepositState = new GameState(state, 1d, this);
-        GameState.ExistentialPeasant newPeasant = postDepositState.getPeasantTracker().get(depositPeasant.getPeasantID());
+        GameState.ExistentialPeasant newPeasant;
+        if(postDepositState.getPeasantTracker().size() > depositPeasant.getPeasantID()){
+            newPeasant = postDepositState.getPeasantTracker().get(depositPeasant.getPeasantID());
+        } else {
+            newPeasant = postDepositState.initializePeasant();
+        }
+        
+        
         newPeasant.setBesideGold(depositPeasant.isBesideGold());
         newPeasant.setBesideWood(depositPeasant.isBesideWood());
         newPeasant.setBesideTH(depositPeasant.isBesideTH());

@@ -85,19 +85,25 @@ public class HarvestAction implements StripsAction {
             System.err.println("ERROR! ATTEMPTED TO HARVEST WHEN NOT POSSIBLE");
             return null;
         }
+        
         GameState postHarvestState = new GameState(state,1d,this);
-        GameState.ExistentialPeasant peasant = postHarvestState.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        GameState.ExistentialPeasant newPeasant;
+        if(postHarvestState.getPeasantTracker().size() > peasantOfInterest.getPeasantID()){
+            newPeasant = postHarvestState.getPeasantTracker().get(peasantOfInterest.getPeasantID());
+        } else {
+            newPeasant = postHarvestState.initializePeasant();
+        }
         
         if(this.resourceType == ResourceType.WOOD) {
-            peasant.setHasWood(true);
-            peasant.setBesideWood(true);
+            newPeasant.setHasWood(true);
+            newPeasant.setBesideWood(true);
             postHarvestState.setWoodOnField(postHarvestState.getWoodOnField()-100);
-            peasant.setCargoType(ResourceType.WOOD); //need to keep your resource type updated for use in DepositAction
+            newPeasant.setCargoType(ResourceType.WOOD); //need to keep your resource type updated for use in DepositAction
         } else if(this.resourceType == ResourceType.GOLD) {
-            peasant.setHasGold(true);
-            peasant.setBesideGold(true);
+            newPeasant.setHasGold(true);
+            newPeasant.setBesideGold(true);
             postHarvestState.setGoldOnField(postHarvestState.getGoldOnField()-100);
-            peasant.setCargoType(ResourceType.GOLD); //need to keep your resource type updated for use in DepositAction
+            newPeasant.setCargoType(ResourceType.GOLD); //need to keep your resource type updated for use in DepositAction
         }
         return postHarvestState;
     }
