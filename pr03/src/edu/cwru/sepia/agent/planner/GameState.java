@@ -101,7 +101,7 @@ public class GameState implements Comparable<GameState> {
         for(int unitId : state.getUnitIds(playernum)) {
             Unit.UnitView unit = state.getUnit(unitId);
             String unitType = unit.getTemplateView().getName().toLowerCase();
-            
+
             switch (unitType) {
                 case "peasant":
                     peasantTracker.add(new ExistentialPeasant(unit.getCargoType(), unit.getCargoAmount() == 0, peasantTracker.size()));
@@ -256,7 +256,7 @@ public class GameState implements Comparable<GameState> {
                 System.err.println("ERROR! UNKNOWN ACTION ENCOUNTERED IN GAMESTATE!");
                 break;
         }
-        return 0d;
+        return h;
     }
     public double badHeuristic(){
         double h = 0;
