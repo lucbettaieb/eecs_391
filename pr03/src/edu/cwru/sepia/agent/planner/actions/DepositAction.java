@@ -66,11 +66,14 @@ public class DepositAction implements StripsAction{
         if(newPeasant.getCargoType().equals(ResourceType.GOLD)){
             //Give gold to TownHall
             postDepositState.addToOwnedGold();
+
         } else if(newPeasant.getCargoType().equals(ResourceType.WOOD)){
             //Give wood to TownHall
             postDepositState.addToOwnedWood();
+
         } else {
             System.err.println("Error while getting peasant cargo type.  Perhaps peasant instantiation doesn't copy?");
+
         }
         //The townhall in the next state now has more gold or wood
         newPeasant.resetBools();

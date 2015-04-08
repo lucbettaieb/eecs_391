@@ -50,12 +50,11 @@ public class GameState implements Comparable<GameState> {
     private int numPeasants;
     private int unusedFood;                 //Ya gotta eat.  But only 3 at a time
 
-    private double costToThisNode = 0d;
     private StripsAction parentAction = null;
     private GameState parentState = null;
 
     //Heuristic Stuff
-    private double c;
+    private double c = 0d;
     private double h = -1;
     
     /**
@@ -133,16 +132,15 @@ public class GameState implements Comparable<GameState> {
         this(parent.state, parent.getPlayerNum(), parent.getRequiredGold(), parent.getRequiredWood(), 
                 parent.getRequiredPeasants() != parent.ownedPeasants);
         
-        this.costToThisNode = parent.costToThisNode + costToMe;
-        
         this.parentAction = parentAction;
         this.parentState = parent;
         this.ownedGold = parent.ownedGold;
         this.ownedWood = parent.ownedWood;
         this.ownedPeasants = parent.ownedPeasants;
-        c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
-        assert c == costToThisNode;//TODO: these are the same variable, so remove one of them.
-        //TODO: keep looking into this.
+        this.c = parent.c + costToMe; //Updating cost here when a new GameState is created from a StripsAction being performed.
+
+
+        //TODO: Do we still need to keep looking in to this?
     }
 
     /**
@@ -176,33 +174,35 @@ public class GameState implements Comparable<GameState> {
                 System.out.println("This state had NO parent action.");
             } else System.out.println("This state's parent action was: "+this.parentAction.toString());
         }
-        for(ExistentialPeasant peasant: peasantTracker){
-            if(HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)){
-                if(PlannerAgent.debug) System.out.println("Considering a harvest WOOD command");
+        for(ExistentialPeasant peasant: peasantTracker) {
+            if (HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)) {
+                if (PlannerAgent.debug) System.out.println("Considering a harvest WOOD command");
                 HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
                 children.add(harvestAction.apply(this));
-            } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)){
-                if(PlannerAgent.debug) System.out.println("Considering a harvest GOLD command");
+            } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)) {
+                if (PlannerAgent.debug) System.out.println("Considering a harvest GOLD command");
                 HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
                 children.add(harvestAction.apply(this));
             }
             //you can always move to wood, gold, or the townhall, so unconditionally add them.
-            if(parentAction== null ||(parentAction != null && !parentAction.getName().equals("MOVE"))){
+            if (parentAction == null || (parentAction != null && !parentAction.getName().equals("MOVE"))) {
                 //if I didn't have a parent, or my parent was not MOVE, add these move commands.
                 //don't double move, and don't move to the same place.
-                if(PlannerAgent.debug) System.out.println("Considering a MOVE command");
-                if(MoveAction.canMove(peasant, ResourceType.WOOD)) children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
-                if(MoveAction.canMove(peasant, ResourceType.GOLD)) children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
-                if(MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
+                if (PlannerAgent.debug) System.out.println("Considering a MOVE command");
+                if (MoveAction.canMove(peasant, ResourceType.WOOD))
+                    children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+                if (MoveAction.canMove(peasant, ResourceType.GOLD))
+                    children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+                if (MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
             }
 
             //TODO: fix this for the static preconditionsMet implementation
             DepositAction depositAction = new DepositAction(peasant);
-            if(depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
-            
+            if (depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
+
             //TODO: fix this for the static preconditionsMet implementation
             CreateAction createAction = new CreateAction();
-            if(createAction.preconditionsMet(this)) children.add(createAction.apply(this));
+            if (createAction.preconditionsMet(this)) children.add(createAction.apply(this));
         }
         return children;
     }
@@ -323,11 +323,7 @@ public class GameState implements Comparable<GameState> {
      * @return The current cost to reach this goal
      */
     public double getCost() {
-        return (int) (this.costToThisNode + this.heuristic());
-    }
-
-    public double getC(){           //Why?  Because I can.
-        return getCost();
+        return (int) (this.c + this.heuristic());
     }
 
     /**
@@ -431,7 +427,7 @@ public class GameState implements Comparable<GameState> {
     public ExistentialTownHall getTownhall() { return townhall; }
     public GameState getParentState(){ return this.parentState; }
     public int getF(){
-        return (int) (this.costToThisNode + this.heuristic());
+        return (int) (this.c + this.heuristic());
     }
 
     /**
