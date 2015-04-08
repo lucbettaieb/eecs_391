@@ -172,31 +172,34 @@ public class GameState implements Comparable<GameState> {
     public List<GameState> generateChildren() {
         //TODO: because we're planning for each peasant, things get funny
         List<GameState> children = new ArrayList<>();
-        for(ExistentialPeasant peasant: peasantTracker) {
-            if (HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)) {
-                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
-                children.add(harvestAction.apply(this));
-            } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)) {
-                HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
-                children.add(harvestAction.apply(this));
-            }
-            //you can always move to wood, gold, or the townhall, so unconditionally add them.
-            if (parentAction == null || (parentAction != null && !parentAction.getName().equals("MOVE"))) {
-                //if I didn't have a parent, or my parent was not MOVE, add these move commands.
-                //don't double move, and don't move to the same place.
-                if (MoveAction.canMove(peasant, ResourceType.WOOD))
-                    children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
-                if (MoveAction.canMove(peasant, ResourceType.GOLD))
-                    children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
-                if (MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
-            }
-            
-            DepositAction depositAction = new DepositAction(peasant);
-            if (depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
-
-            CreateAction createAction = new CreateAction();
-            if (createAction.preconditionsMet(this)) children.add(createAction.apply(this));
+        ExistentialPeasant peasant;
+        if(peasantTracker.size()>0){
+            peasant = peasantTracker.get(0);
+        } else return new ArrayList<>();
+        if (HarvestAction.canHarvest(peasant, this, ResourceType.WOOD)) {
+            HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.WOOD);
+            children.add(harvestAction.apply(this));
+        } else if (HarvestAction.canHarvest(peasant, this, ResourceType.GOLD)) {
+            HarvestAction harvestAction = new HarvestAction(peasant, ResourceType.GOLD);
+            children.add(harvestAction.apply(this));
         }
+        //you can always move to wood, gold, or the townhall, so unconditionally add them.
+        if (parentAction == null || !parentAction.getName().equals("MOVE")) {
+            //if I didn't have a parent, or my parent was not MOVE, add these move commands.
+            //don't double move, and don't move to the same place.
+            if (MoveAction.canMove(peasant, ResourceType.WOOD))
+                children.add(new MoveAction(peasant, ResourceType.WOOD).apply(this));
+            if (MoveAction.canMove(peasant, ResourceType.GOLD))
+                children.add(new MoveAction(peasant, ResourceType.GOLD).apply(this));
+            if (MoveAction.canMove(peasant, null)) children.add(new MoveAction(peasant).apply(this));
+        }
+
+        DepositAction depositAction = new DepositAction(peasant);
+        if (depositAction.preconditionsMet(this)) children.add(depositAction.apply(this));
+
+        CreateAction createAction = new CreateAction();
+        if (createAction.preconditionsMet(this)) children.add(createAction.apply(this));
+
         return children;
     }
 
@@ -250,62 +253,6 @@ public class GameState implements Comparable<GameState> {
                 break;
         }
         return h;
-    }
-    public double badHeuristic(){
-        double h = 0;
-        if(parentAction.getName().equals("MOVE")){                      //If you're trying to move
-            //-----------------------
-            //Move Action Handling
-            //-----------------------
-            if(parentState == null || parentState.parentAction == null) return this.h;
-            if(parentState.parentAction.getName().equals("MOVE")){      //...and you just moved...
-                h += 1000;                                              //...what do you think you're doing???
-            }
-            //anything else?
-            this.h = h;
-            return h;
-        } else if(parentAction.getName().equals("HARVEST")){            //If you're trying to harvest...
-            //-----------------------
-            //Harvest Action Handling
-            //-----------------------
-
-            int numPeasantsWithCargo = 0;
-            for (ExistentialPeasant p : peasantTracker) {
-                if (p.isHasGold() || p.isHasWood()) {
-                    h += 10;                                            //...it's a little bad if a peasant already has cargo TODO:(maybe?)
-                    numPeasantsWithCargo++;
-                }
-            }
-            if(numPeasantsWithCargo == peasantTracker.size()) h += 1000;//...and it's real bad if all peasants have cargo
-            this.h = h;
-            return h;
-        } else if(parentAction.getName().equals("DEPOSIT")){
-            //-----------------------
-            //Deposit Action Handling
-            //-----------------------
-
-            int numPeasantsWithCargo = 0;
-            for (ExistentialPeasant p : peasantTracker) {             //Look at all the peasants
-                if (p.isHasGold() || p.isHasWood()) {
-                    numPeasantsWithCargo++;
-                }
-            }
-            if(numPeasantsWithCargo == 0) h += 1000;                    //If none of them have anything to deposit, that's bad.
-            this.h = h;
-            return h;
-
-        } else if(parentAction.getName().equals("CREATE")){
-            //-----------------------
-            //Create Action Handling
-            //-----------------------
-
-            if(ownedGold < 400 || !buildPeasants) h += 1000;    //If you don't have enough gold or you shouldn't be building peasants, that's bad.
-            this.h = h;
-            return h;
-        } else {
-            this.h = h;
-            return h;
-        }
     }
 
     /**
