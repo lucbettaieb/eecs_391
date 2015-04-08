@@ -144,10 +144,8 @@ public class PlannerAgent extends Agent {
     
     public Stack<StripsAction> generatePath(GameState destination){
         Stack<StripsAction> path = new Stack<>();
-        boolean isGoal = true;
         while(destination.getParentState() != null){
-            if(!isGoal) path.add(destination.getParentAction());
-            isGoal = false;
+            path.add(destination.getParentAction());
             destination = destination.getParentState();
         }
         return path;

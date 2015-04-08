@@ -1,6 +1,7 @@
 package edu.cwru.sepia.agent.planner;
 
 import edu.cwru.sepia.action.Action;
+import edu.cwru.sepia.action.ActionFeedback;
 import edu.cwru.sepia.action.ActionResult;
 import edu.cwru.sepia.agent.Agent;
 import edu.cwru.sepia.agent.planner.actions.*;
@@ -92,11 +93,6 @@ public class PEAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        if(PlannerAgent.debug) System.out.println("beginning new middleStep in PEAgent");
-        if(stateView.getTurnNumber()==0) {
-            System.err.println("ERROR! TURN 0 ENCOUNTERED IN PEAGENT MIDDLESTEP!");
-            return null;
-        }
         //copy the useful variables from stateView
         List<ResourceNode.ResourceView> resources = stateView.getAllResourceNodes();
         List<Unit.UnitView> units = stateView.getAllUnits();
@@ -106,29 +102,24 @@ public class PEAgent extends Agent {
         Map<Integer, Action> returnVar = new HashMap<>();
         
         while(!plan.empty()){//while we still have moves to take
-            int nextID = new Token(plan.peek().getSentence()).id;
+            int unitID = new Token(plan.peek().getSentence()).id;
             boolean actionAlreadyTaken;
-            boolean durativeComplete;
+            boolean durativeComplete = false;
             
-            {//block to show what I'm playing with.  TODO: remove the block, but keep the code.
-                actionAlreadyTaken = returnVar.containsKey(nextID);
-                durativeComplete = actionResults.containsKey(nextID) && actionResults.get(nextID).toString().toLowerCase().equals("complete");
-                if (actionResults.containsKey(nextID)) {
-                    /*
-                    SEPIA documentation to the rescue!
-                    just kidding.  I have no idea what to expect from ActionResult,
-                    so I'm just printing it out.
-                     */
-                    if (PlannerAgent.debug) {
-                        System.out.println("Peasant: " + nextID + " has believes its durative status is: " + actionResults.get(nextID).toString().toLowerCase());
-                    }
-                }
+            actionAlreadyTaken = returnVar.containsKey(unitID);
+            
+            if (actionResults.containsKey(unitID)) {
+                durativeComplete = actionResults.get(unitID).getFeedback() == ActionFeedback.COMPLETED;
             }
-            
-            if(!actionAlreadyTaken && !durativeComplete){//if we haven't planned an action for this unit
+
+
+            if(!actionAlreadyTaken && durativeComplete){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
-                if(nextAction != null)  returnVar.put(nextID, nextAction);
+                if(nextAction != null)  {
+                    returnVar.put(unitID, nextAction);
+                    System.out.println("Created action "+ nextAction.toString());
+                }
             } else break;
         }
         
@@ -147,7 +138,7 @@ public class PEAgent extends Agent {
         Unit.UnitView myUnit = getUnitFromID(unitID, units);
         if(myUnit != null && myUnit.getTemplateView().getDurationDeposit() + myUnit.getTemplateView().getDurationGatherGold() +
                 myUnit.getTemplateView().getDurationGatherWood() + myUnit.getTemplateView().getDurationMove()>0){
-            
+
             System.err.println("Unit "+myUnit.getID()+" is trying to get a new action while unfinished.");
             System.err.println("\nYou're gonna have a bad time, and this code won't work.  Busy loop?");
         }
@@ -193,8 +184,8 @@ public class PEAgent extends Agent {
     
     //Takes a single Plan action, and parses it into a more usable form
     private class Token {
-        private String value;
-        protected String verb;
+        private String value = "default";
+        protected String verb = "default";
         protected int id;
         protected ArrayList<ResourceNode.Type> nounEnums;
         
@@ -228,7 +219,7 @@ public class PEAgent extends Agent {
             if(value.contains("spawn")) verb = "make";
             if(value.contains("make")) verb = "make";
             if(value.contains("build")) verb = "make";
-            if(value.contains("build")) verb = "produce";
+            if(value.contains("produce")) verb = "make";
         }
         
         private void parseID(){
@@ -240,10 +231,9 @@ public class PEAgent extends Agent {
         
         private void parseNouns(){
             String inQuestion = value.substring(value.indexOf('('), value.indexOf(')'));
-            for(String noun: inQuestion.split(",")){
-                ResourceNode.Type type = getTypeFromString(noun);
-                if(type != null) nounEnums.add(type);
-            }
+            String[] nouns = inQuestion.split(",");
+            if(nouns.length==2) nounEnums.add(getTypeFromString(nouns[1]));
+            
         }
         
         @Override
@@ -252,7 +242,8 @@ public class PEAgent extends Agent {
             returnVar.append(verb);
             returnVar.append(id).append('(');
             for(ResourceNode.Type type: nounEnums) {
-                returnVar.append(type.toString());
+                if(type != null) returnVar.append(type.toString());
+                else returnVar.append("townhall");
                 returnVar.append(',');
             }
             if(returnVar.lastIndexOf(",") >=0) returnVar.deleteCharAt(returnVar.lastIndexOf(","));
@@ -272,6 +263,7 @@ public class PEAgent extends Agent {
      */
     private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources, 
                                            ResourceNode.Type requiredType, Position myPosition){
+        if(requiredType == null) return townhallId;
         int shortestDistance = Integer.MAX_VALUE;
         int shortestDistanceID = -1;
         for(ResourceNode.ResourceView resource: resources){
@@ -296,11 +288,7 @@ public class PEAgent extends Agent {
         if(resourceName.toLowerCase().contains("gold")) requiredType = ResourceNode.Type.GOLD_MINE;
         if(resourceName.toLowerCase().contains("wood")) requiredType = ResourceNode.Type.TREE;
         if(resourceName.toLowerCase().contains("tree")) requiredType = ResourceNode.Type.TREE;
-        if(requiredType == null){
-            System.err.println("Error! Invalid resourceName given in getNearestNonemptyResource!");
-            System.err.println("Expected: gold, wood");
-            System.err.println("Received: "+resourceName);
-        }
+        if(resourceName.toLowerCase().contains("townhall")) requiredType = null;
         return requiredType;
     }
 
