@@ -151,10 +151,18 @@ public class PEAgent extends Agent {
      */
     private Action createSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units) {
         Token token = new Token(action);//parse the action into a more easily handled form
-        int unitID = peasantIdMap.get(token.id);
-        Unit.UnitView myUnit = getUnitFromID(unitID, units);
+        int unitID = -1;
+        Unit.UnitView myUnit = null;
+        Position myPosition = null;
+        if(token.id >= 0){
+            if(peasantIdMap.size() <= token.id){
+                unitID = token.id;
+            } else  unitID = peasantIdMap.get(token.id);
+            myUnit = getUnitFromID(unitID, units);
+            myPosition = new Position(myUnit);
+        }
         
-        Position myPosition = new Position(myUnit);
+        
         System.out.println("Creating action from the following token: ");
         System.out.println(token.toString());
         switch (token.verb){
