@@ -13,6 +13,7 @@ import edu.cwru.sepia.environment.model.state.Unit;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -116,6 +117,9 @@ public class PEAgent extends Agent {
             if(!actionAlreadyTaken && durativeComplete){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
                 Action nextAction = createSepiaAction(plan.pop(), resources, units);
+
+                //ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units);
+
                 if(nextAction != null)  {
                     returnVar.put(unitID, nextAction);
                     System.out.println("Created action "+ nextAction.toString());
@@ -155,6 +159,38 @@ public class PEAgent extends Agent {
             case "make":
                 System.out.println("Creating new peasant, in a completely PG manner");
                 return Action.createPrimitiveProduction(townhallId, peasantTemplateId);
+            default:
+                System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
+                break;
+        }
+        return null;
+    }
+
+    private ArrayList<Action> createGeneralSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units){
+        ArrayList<Action> retActions = new ArrayList<>();
+
+        Token token = new Token(action); //parse
+
+        ArrayList<Unit.UnitView> myUnits = new ArrayList<>(); //my list of peasants
+        for(Unit.UnitView unit:units) if(unit.getTemplateView().getName().toLowerCase().equals("peasant")) myUnits.add(unit);
+
+        switch (token.verb){
+            case "get":
+                for(Unit.UnitView unit:myUnits) retActions.add(Action.createCompoundGather(unit.getID(), getNearestNonemptyResource(resourceList, token.nounEnums.get(0), new Position(unit.getXPosition(), unit.getYPosition()))));
+                return retActions;
+
+            case "move"://don't care, taken care of by compound statements
+                //return Action.createCompoundMove(unitID, x,y);
+                System.out.println(" encountered a 'move' command.  Ignoring...");
+                break;
+            case "put":
+                for(Unit.UnitView unit:myUnits) retActions.add(Action.createCompoundDeposit(unit.getID(), townhallId));
+                System.out.println("minions are depositing a resource");
+                return retActions;
+            case "make":
+                System.out.println("Creating new peasant, in a completely PG manner");
+                retActions.add(Action.createPrimitiveProduction(townhallId, peasantTemplateId))
+                return retActions;
             default:
                 System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
                 break;
