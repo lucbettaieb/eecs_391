@@ -201,6 +201,7 @@ public class PEAgent extends Agent {
         public Token(String value){
             this.value = value;
             this.nounEnums = new ArrayList<>();
+            parse();
         }
         
         public Token (StripsAction stripsAction){
@@ -231,9 +232,9 @@ public class PEAgent extends Agent {
         }
         
         private void parseID(){
-            if(value.contains("1")) id = 1;
-            if(value.contains("2")) id = 2;
-            if(value.contains("3")) id = 3;
+            if(value.contains("0")) id = 1;
+            if(value.contains("1")) id = 2;
+            if(value.contains("2")) id = 3;
             //if no ID is found, it's set to -1
         }
         
