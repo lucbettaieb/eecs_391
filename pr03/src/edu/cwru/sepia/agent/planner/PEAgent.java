@@ -116,15 +116,27 @@ public class PEAgent extends Agent {
 
             if(!actionAlreadyTaken && durativeComplete){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
-                Action nextAction = createSepiaAction(plan.pop(), resources, units);
+                //Action nextAction = createSepiaAction(plan.pop(), resources, units); //this is good
 
-                //ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units); //this is maybe
+                ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units); //this is maybe
+
                 //return parseActions(createGeneralSepiaAction(plan.pop(), resources, units));
 
-                if(nextAction != null)  {
-                    returnVar.put(unitID, nextAction);
-                    System.out.println("Created action "+ nextAction.toString());
+//                if(nextAction != null)  {
+//                    returnVar.put(unitID, nextAction);
+//                    System.out.println("Created action "+ nextAction.toString());
+//                }
+                if(nextActions != null) {
+                    ArrayList<Action> goodActions = new ArrayList<>();
+                    for (int i = 0; i < nextActions.size(); i++) {
+                        if (nextActions.get(i) != null) {
+                            goodActions.add(nextActions.get(i));
+                        }
+
+                    }
+                    return parseActions(goodActions);
                 }
+
             } else break;
         }
         
