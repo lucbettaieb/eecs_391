@@ -189,7 +189,7 @@ public class PEAgent extends Agent {
                 return retActions;
             case "make":
                 System.out.println("Creating new peasant, in a completely PG manner");
-                retActions.add(Action.createPrimitiveProduction(townhallId, peasantTemplateId))
+                retActions.add(Action.createPrimitiveProduction(townhallId, peasantTemplateId));
                 return retActions;
             default:
                 System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
