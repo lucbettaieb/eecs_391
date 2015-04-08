@@ -119,7 +119,7 @@ public class GameState implements Comparable<GameState> {
                     break;
             }
         }
-        this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants; //TODO: Does playernum make sense here?  TODONE: yes.
+        this.unusedFood = state.getSupplyCap(playernum) - ownedPeasants;
         numPeasants = peasantTracker.size();
         c = 0; //Cost thing for AStar is initially 0
     }
