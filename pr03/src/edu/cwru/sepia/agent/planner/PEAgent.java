@@ -136,12 +136,7 @@ public class PEAgent extends Agent {
         Token token = new Token(action);//parse the action into a more easily handled form
         int unitID = peasantIdMap.get(token.id);
         Unit.UnitView myUnit = getUnitFromID(unitID, units);
-        if(myUnit != null && myUnit.getTemplateView().getDurationDeposit() + myUnit.getTemplateView().getDurationGatherGold() +
-                myUnit.getTemplateView().getDurationGatherWood() + myUnit.getTemplateView().getDurationMove()>0){
-
-            System.err.println("Unit "+myUnit.getID()+" is trying to get a new action while unfinished.");
-            System.err.println("\nYou're gonna have a bad time, and this code won't work.  Busy loop?");
-        }
+        
         Position myPosition = new Position(myUnit);
         System.out.println("Creating action from the following token: ");
         System.out.println(token.toString());
