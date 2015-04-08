@@ -256,16 +256,20 @@ public class PEAgent extends Agent {
      * @param myPosition my current position
      * @return the best destination, or -1 if impossible
      */
-    private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources, 
+    private int getNearestNonemptyResource(List<ResourceNode.ResourceView> resources,
                                            ResourceNode.Type requiredType, Position myPosition){
         if(requiredType == null) return townhallId;
-        int shortestDistance = Integer.MAX_VALUE;
+        int shortestDistance = 10000;
         int shortestDistanceID = -1;
         for(ResourceNode.ResourceView resource: resources){
-            if(resource.getType() == requiredType && resource.getAmountRemaining()>0){
+
+            if(resource.getType().equals(requiredType) && resource.getAmountRemaining()>0){
                 //if it's what we want, and there's some left.
+
                 int distanceToThisResource = myPosition.chebyshevDistance(new Position(resource.getXPosition(), resource.getYPosition()));
+
                 if (distanceToThisResource < shortestDistance){
+                    shortestDistance = distanceToThisResource;
                     shortestDistanceID = resource.getID();
                 }
             }
