@@ -116,16 +116,9 @@ public class PEAgent extends Agent {
 
             if(!actionAlreadyTaken && durativeComplete){//if we haven't planned an action for this unit
                 //create the action from this next planned item, and put it in the map of actions to take
-                //Action nextAction = createSepiaAction(plan.pop(), resources, units); //this is good
-
+                
                 ArrayList<Action> nextActions = createGeneralSepiaAction(plan.pop(), resources, units); //this is maybe
 
-                //return parseActions(createGeneralSepiaAction(plan.pop(), resources, units));
-
-//                if(nextAction != null)  {
-//                    returnVar.put(unitID, nextAction);
-//                    System.out.println("Created action "+ nextAction.toString());
-//                }
                 if(nextActions != null) {
                     ArrayList<Action> goodActions = new ArrayList<>();
                     for (int i = 0; i < nextActions.size(); i++) {
@@ -142,49 +135,6 @@ public class PEAgent extends Agent {
         
         //return a null if it's empty.  Just trying to be nicer to other people's code
         return returnVar.isEmpty() ? null : returnVar;
-    }
-
-    /**
-     * Returns a SEPIA version of the specified Strips Action.
-     * @param action StripsAction action to take, as an Object implementing the StripsAction interface
-     * @return SEPIA representation of same action
-     */
-    private Action createSepiaAction(StripsAction action, List<ResourceNode.ResourceView> resourceList, List<Unit.UnitView> units) {
-        Token token = new Token(action);//parse the action into a more easily handled form
-        int unitID = -1;
-        Unit.UnitView myUnit = null;
-        Position myPosition = null;
-        if(token.id >= 0){
-            if(peasantIdMap.size() <= token.id){
-                unitID = token.id;
-            } else  unitID = peasantIdMap.get(token.id);
-            myUnit = getUnitFromID(unitID, units);
-            myPosition = new Position(myUnit);
-        }
-        
-        
-        System.out.println("Creating action from the following token: ");
-        System.out.println(token.toString());
-        switch (token.verb){
-            case "get":
-                System.out.println(unitID+" is gathering resource "+token.nounEnums.get(0));
-                return Action.createCompoundGather(unitID, 
-                        getNearestNonemptyResource(resourceList,token.nounEnums.get(0), myPosition));
-            case "move"://don't care, taken care of by compound statements
-                //return Action.createCompoundMove(unitID, x,y);
-                System.out.println(unitID + " encountered a 'move' command.  Ignoring...");
-                break;
-            case "put":
-                System.out.println(unitID+" is depositing a resource");
-                return Action.createCompoundDeposit(unitID, townhallId);
-            case "make":
-                System.out.println("Creating new peasant, in a completely PG manner");
-                return Action.createPrimitiveProduction(townhallId, peasantTemplateId);
-            default:
-                System.err.println("Error! unrecognized verb '"+token.verb+"' was used! expected, 'get' or 'put'");
-                break;
-        }
-        return null;
     }
 
     /**
@@ -290,7 +240,7 @@ public class PEAgent extends Agent {
         
         private void parseNouns(){
             if(value.indexOf('(')<0 || value.indexOf('(')<0){
-                System.err.println("ERROR unparseable noun!");
+                //wanted to make a new unit.
                 return;
             }
             String inQuestion = value.substring(value.indexOf('('), value.indexOf(')'));
