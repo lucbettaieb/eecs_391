@@ -42,11 +42,6 @@ public class DepositAction implements StripsAction{
     //So,   1. Find peasant next to a town hall
     //      2. Check if that peasant is carrying cargo
     public boolean preconditionsMet(GameState state) {
-        if(PlannerAgent.debug) {
-            System.out.println("checking preconditions on deposit: BesideTH: "+depositPeasant.isBesideTH());
-            System.out.println("hasWood: "+depositPeasant.isHasWood());
-            System.out.println("hasGold: "+depositPeasant.isHasGold());
-        }
         if(depositPeasant.isBesideTH() && (depositPeasant.isHasWood() || depositPeasant.isHasGold())){
             if(depositPeasant.isHasWood()) depositPeasant.setCargoType(ResourceType.WOOD);
             if(depositPeasant.isHasGold()) depositPeasant.setCargoType(ResourceType.GOLD);
@@ -63,7 +58,6 @@ public class DepositAction implements StripsAction{
     //The peasant has no more gold
     //The town hall has more gold
     public GameState apply(GameState state) {
-        if(PlannerAgent.debug) System.out.println("APPLYING DEPOSIT ACTION");
         if(!preconditionsMet(state)){
             System.err.println("ERROR: ATTEMPTED TO APPLY DEPOSIT WHEN PRECONDITIONS NOT MET.");
             return state;

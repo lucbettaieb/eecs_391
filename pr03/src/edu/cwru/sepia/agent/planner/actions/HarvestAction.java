@@ -59,24 +59,13 @@ public class HarvestAction implements StripsAction {
      */
     public static boolean canHarvest(GameState.ExistentialPeasant peasant, GameState state, ResourceType resourceType){
         if(peasant.isHasGold() || peasant.isHasWood()) {
-            if(PlannerAgent.debug) System.out.println("Peasant was carrying something.  Cannot consider Harvesting.");
             return false;
         }
         switch (resourceType){
             case WOOD:
-                boolean canHarvest = state.getWoodOnField() >0 && peasant.isBesideWood();
-                if(PlannerAgent.debug) {
-                    System.out.println("Calculating if peasant: "+peasant.toString()+" can harvest WOOD, result is "+canHarvest);
-                    System.out.println("Wood on field: "+state.getWoodOnField()+"\t Beside wood: "+peasant.isBesideWood());
-                }
-                return canHarvest;
+                return state.getWoodOnField() >0 && peasant.isBesideWood();
             case GOLD:
-                canHarvest = state.getGoldOnField() >0 && peasant.isBesideGold();
-                if(PlannerAgent.debug) {
-                    System.out.println("Calculating if peasant: "+peasant.toString()+" can harvest GOLD, result is "+canHarvest);
-                    System.out.println("Gold on field: "+state.getGoldOnField()+"\t Beside gold: "+peasant.isBesideGold());
-                }
-                return canHarvest;
+                return state.getGoldOnField() >0 && peasant.isBesideGold();
             default:
                 if(PlannerAgent.debug) System.out.println("Peasant wanted to harvest unknown type. failing.");
                 return false;

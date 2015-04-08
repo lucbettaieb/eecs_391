@@ -105,18 +105,11 @@ public class PlannerAgent extends Agent {
                 //for all possible moves from here:
                 if(successor.isGoal()) {
                     if(debug) System.out.println("found path! recursing to generate stack.");
+                    System.out.println(stringifyPath(generatePath(successor)));
                     return generatePath(successor);
                 }
                 if(shouldAddToOpenSet(successor, openSet)) openSet.add(successor);
-                if(debug) {
-                    System.out.println("finished considering child "+successor.hashCode()+", with cost "+successor.getCost());
-                    System.out.println("Number of items in the openlist: "+openSet.size());
-                }
             }//end of for each child
-            if(debug) {
-                System.out.println("finished considering all children");
-                System.out.println("the current path is: \n"+stringifyPath(generatePath(Q)));
-            }
         }//end of open set.  We're done now.
         System.err.println("No path to goal. Cannot plan. Exiting...");
         System.exit(1);
@@ -149,14 +142,6 @@ public class PlannerAgent extends Agent {
             destination = destination.getParentState();
         }
         return path;
-    }
-
-    //We need some way of generating possible actions for each state of the game...
-    //But wouldn't this just be meaningless?  All actions are "possible" but some might have a heuristic of zero
-    //so that's how I'll handle it!  This method will return a list of actual
-    private List<StripsAction> getPossibleActions(GameState currentState){
-        ArrayList<StripsAction> actionList = new ArrayList<>();
-        return actionList;
     }
 
 
