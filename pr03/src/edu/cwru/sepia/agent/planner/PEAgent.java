@@ -104,13 +104,13 @@ public class PEAgent extends Agent {
         while(!plan.empty()){//while we still have moves to take
             int unitID = new Token(plan.peek().getSentence()).id;
             boolean actionAlreadyTaken;
-            boolean durativeComplete = false;
+            boolean durativeComplete;
             
             actionAlreadyTaken = returnVar.containsKey(unitID);
             
             if (actionResults.containsKey(unitID)) {
                 durativeComplete = actionResults.get(unitID).getFeedback() == ActionFeedback.COMPLETED;
-            }
+            } else durativeComplete = true;
 
 
             if(!actionAlreadyTaken && durativeComplete){//if we haven't planned an action for this unit
@@ -269,8 +269,8 @@ public class PEAgent extends Agent {
         for(ResourceNode.ResourceView resource: resources){
             if(resource.getType() == requiredType && resource.getAmountRemaining()>0){
                 //if it's what we want, and there's some left.
-                int distance = myPosition.chebyshevDistance(new Position(resource.getXPosition(), resource.getYPosition()));
-                if (distance < shortestDistance){
+                int distanceToThisResource = myPosition.chebyshevDistance(new Position(resource.getXPosition(), resource.getYPosition()));
+                if (distanceToThisResource < shortestDistance){
                     shortestDistanceID = resource.getID();
                 }
             }
