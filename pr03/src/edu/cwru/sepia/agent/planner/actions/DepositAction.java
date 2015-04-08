@@ -5,10 +5,14 @@ import edu.cwru.sepia.agent.planner.PlannerAgent;
 import edu.cwru.sepia.environment.model.state.ResourceType;
 
 /**
- * Created by luc on 3/28/15.
+ * Created by Luc Bettaieb on 3/28/15.
+ *
+ * DepositAction.java
+ *  A class to represent the STRIPS "DEPOSIT" action.
  */
 public class DepositAction implements StripsAction{
-    public String getName() { return"DEPOSIT";}
+    public String getName() { return "DEPOSIT";}
+
     private GameState.ExistentialPeasant depositPeasant;
 
     public DepositAction(GameState.ExistentialPeasant p){
@@ -26,6 +30,11 @@ public class DepositAction implements StripsAction{
         return getSentence();
     }
 
+    /**
+     * Function to return true if preconditions are met.
+     * @param state GameState to check if action is applicable
+     * @return TRUE if the necessary preconditions for depositing a resource are valid.  (You have a resource, and you're next to town hall.)
+     */
     @Override
     //A peasant needs to have gold to deposit
     //The peasant in question needs to be next to a town hall
@@ -44,6 +53,11 @@ public class DepositAction implements StripsAction{
         } else return false;
     }
 
+    /**
+     * A function to apply the deposit action to the game state
+     * @param state State to apply action to
+     * @return a new state with the deposit action applied to it.
+     */
     @Override
     //The peasant has no more gold
     //The town hall has more gold

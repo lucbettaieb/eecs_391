@@ -362,17 +362,25 @@ public class GameState implements Comparable<GameState> {
         return goldMineTracker.hashCode()*3 + forestTracker.hashCode()*5 + peasantTracker.hashCode()*7;
     }
 
-    //Methods for use by CreateAction
+    /**
+     * Removes one food for when a peasant is created.
+     */
     public void removeOneFood(){
         unusedFood--;
     }
 
+    /**
+     * Adds a peasant to the peasant tracker.  TODO: This method may be underused.
+     * No cargo initially, so null cargo type, false for having cargo.  Peasant ID is it's index location in the ArrayList+1.
+     */
     public void addPeasant(){
         peasantTracker.add(new ExistentialPeasant(null, false, peasantTracker.size()));
         ownedPeasants++;
     }
 
-    //Methods for use by DepositAction, and I swear I'm cool.
+    /**
+     * Deposit action methods.  Will add 100 to ownedGold or ownedWood
+     */
     public void addToOwnedGold(){
         ownedGold += 100;
     }
@@ -380,7 +388,9 @@ public class GameState implements Comparable<GameState> {
         ownedWood += 100;
     }
 
-    //Getters
+    /**
+     * Getters and setters.
+     */
     public int getPlayerNum(){
         return playerNum;
     }
@@ -393,7 +403,7 @@ public class GameState implements Comparable<GameState> {
     public int getOwnedGold(){
         return ownedGold;
     }
-    public int getOwnedWood() { return ownedWood; }
+    public int getOwnedWood() { return ownedWood; } //TODO: We may not need this.
     public int getGoldOnField() { return goldOnField; }
     public int getWoodOnField(){
         return woodOnField;
@@ -443,10 +453,13 @@ public class GameState implements Comparable<GameState> {
         public boolean getHasCargo() { return hasCargo; }
 
     }
-    
+
+    /**
+     * An existential peasant.  Used to track what the peasants on the map are doing for planning purposes.
+     */
     public class ExistentialPeasant extends ExistentialBeing {
         private int peasantID;
-        boolean besideGold; //i'm here, I promise
+        boolean besideGold;
         boolean besideWood;
         boolean besideTH;
         boolean hasGold;
@@ -532,6 +545,9 @@ public class GameState implements Comparable<GameState> {
         }
     }
 
+    /**
+     * An existential forest to keep track of forest locations and how much wood they have left.
+     */
     public class ExistentialForest extends ExistentialBeing{
         private final ResourceType cargoType;
         private int amountCargo;
@@ -545,6 +561,9 @@ public class GameState implements Comparable<GameState> {
         }
     }
 
+    /**
+     * An existential gold mind (lol) to keep track of gold mine locations and how much gold they have left.
+     */
     public class ExistentialGoldMine extends ExistentialBeing{
         private final ResourceType cargoType;
         private int amountCargo;
@@ -558,8 +577,11 @@ public class GameState implements Comparable<GameState> {
         }
     }
 
+    /**
+     * An existential town hall to keep track of where the town hall is... or something.
+     * NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
+     */
     public class ExistentialTownHall extends ExistentialBeing{
-        //NOTE: the 'amountCargo' inherited from 'ExistentialBeing' is the amount of food.
         public ExistentialTownHall(boolean hasCargo){
             super(hasCargo);
         }
