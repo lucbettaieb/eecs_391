@@ -3,12 +3,13 @@ package edu.cwru.sepia.agent;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionFeedback;
 import edu.cwru.sepia.action.ActionResult;
-import edu.cwru.sepia.action.TargetedAction;
-import edu.cwru.sepia.environment.model.history.DamageLog;
 import edu.cwru.sepia.environment.model.history.DeathLog;
 import edu.cwru.sepia.environment.model.history.History;
+import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
+import edu.cwru.sepia.util.Direction;
+import jdk.nashorn.internal.ir.ReturnNode;
 
 import java.io.*;
 import java.util.*;
@@ -152,6 +153,8 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        removeKilledUnits(historyView, stateView.getTurnNumber());
+        List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         return null;
     }
 
@@ -375,5 +378,41 @@ public class RLAgent extends Agent {
     @Override
     public void loadPlayerData(InputStream inputStream) {
 
+    }
+
+    /**
+     * removes killed units from the myfootmen and enemyfootmen fields
+     * @param history history for the current game
+     * @param currentTurnNumber the turn number about to be executed (i.e. not subtracted by 1)
+     */
+    private void removeKilledUnits(History.HistoryView history, int currentTurnNumber){
+        if(currentTurnNumber<=0) return;
+        for(DeathLog deathLog : history.getDeathLogs(currentTurnNumber -1)) {
+            int deadUnitID = deathLog.getDeadUnitID();
+            int deadUnitsPlayer = deathLog.getController();
+            System.out.println("Player: " + deathLog.getController() + " unit: " + deadUnitID);
+            if(deadUnitsPlayer == ENEMY_PLAYERNUM)enemyFootmen.remove(deadUnitID);
+            else myFootmen.remove(deadUnitID);
+        }
+        
+        
+    }
+
+    /**
+     * enumerates my footmen that just finished an action
+     * i.e. footmen that just completed an action
+     * @param historyView history for the current game
+     * @param currentTurnNumber the turn number about to be executed (i.e. not subtracted by 1)
+     * @return the list of footman's IDs that are now idle
+     */
+    private List<Integer> getIdleFootmen(History.HistoryView historyView, int currentTurnNumber) {
+        List<Integer> returnVar = new ArrayList<>();
+
+        Map<Integer, ActionResult> actionResults = historyView.getCommandFeedback(playernum, currentTurnNumber - 1);
+        for (ActionResult result : actionResults.values()) {
+            System.out.println(result.toString());
+            if(result.getFeedback() == ActionFeedback.COMPLETED)returnVar.add(result.getAction().getUnitId());
+        }
+        return returnVar;
     }
 }
