@@ -1,5 +1,6 @@
 package edu.cwru.sepia.agent;
 
+import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionFeedback;
 import edu.cwru.sepia.action.ActionResult;
@@ -168,7 +169,7 @@ public class RLAgent extends Agent {
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
 
         // MAKE SURE YOU CALL printTestData after you finish a test episode.
-
+        printTestData(Arrays.asList(weights));
         // Save your weights
         saveWeights(weights);
 
