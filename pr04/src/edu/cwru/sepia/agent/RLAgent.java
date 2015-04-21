@@ -38,7 +38,7 @@ public class RLAgent extends Agent {
     public static final int NUM_FEATURES = 5;//TODO: change this value as features get added/removed
     public final Random random = new Random(12345);
     @Deprecated
-    public Double[] weights; //q function weights, TODO: move to weights in FeatureVector
+    public Double[] weights; //q function weights, TODO: read into featureVector after loading, and rewrite before closing
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -95,7 +95,8 @@ public class RLAgent extends Agent {
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
         if(!exploitationMode) averageReward = 0d;//we're exploring, dora!
-        
+        featureVector = new FeatureVector();
+        featureVector.featureWeights = convertDoubleTodouble(weights);
         return middleStep(stateView, historyView);
     }
 
@@ -133,7 +134,7 @@ public class RLAgent extends Agent {
             //TODO: incomplete
             currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
             if(!this.exploitationMode) {//TODO: this.
-                double[] features = calculateFeatureVector(stateView,historyView, footmanID,-1);
+                double[] features = calculateFeatureVector(stateView, historyView, footmanID, -1);
                 updateQFunction(featureVector.featureWeights, features);
             }
         }
@@ -151,12 +152,15 @@ public class RLAgent extends Agent {
      */
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
-        //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
-        Double[] weight = Arrays.stream(featureVector.featureWeights).boxed().toArray(Double[]::new);
+        //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
+        weights = convertdoubleToDouble(featureVector.featureWeights);
         
-        printTestData(Arrays.asList(weight));//TODO: something about averaging weights before printing and saving
-        saveWeights(weight);
-
+        if(!exploitationMode){//we're in exploration mode
+            averageReward = averageReward + (currentReward-averageReward)/(currentEpisodeNumber%10);
+        }
+        printTestData(Arrays.asList(weights));//TODO: something about averaging weights before printing and saving
+        saveWeights(weights);
+        currentEpisodeNumber++;
     }
 
     /**
@@ -485,5 +489,16 @@ public class RLAgent extends Agent {
         
         
         return returnVar;
+    }
+    
+    
+    private Double[] convertdoubleToDouble(double[] input){
+        //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
+        return Arrays.stream(input).boxed().toArray(Double[]::new);
+    }
+    
+    private double[] convertDoubleTodouble(Double[] input){
+        //convoluded code below courtesy of: http://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
+        return Arrays.stream(input).mapToDouble(i->i).toArray();
     }
 }
