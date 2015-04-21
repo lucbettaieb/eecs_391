@@ -16,6 +16,8 @@ import java.io.*;
 import java.util.*;
 
 public class RLAgent extends Agent {
+    protected static final boolean debug = true;//debug flag, used for being verbose
+    
 
     /**
      * Set in the constructor. Defines how many learning episodes your agent should run for.
@@ -24,32 +26,17 @@ public class RLAgent extends Agent {
      */
     public final int numEpisodes;
 
-    /**
-     * List of your footmen and your enemies footmen
-     */
-    private List<Integer> myFootmen;
-    private List<Integer> enemyFootmen;
+    private List<Integer> myFootmen;//IDs of my footmen
+    private List<Integer> enemyFootmen;//IDs of footmen owned by ENEMY_PLAYERNUM
 
     /**
      * Convenience variable specifying enemy agent number. Use this whenever referring
      * to the enemy agent. We will make sure it is set to the proper number when testing your code.
      */
     public static final int ENEMY_PLAYERNUM = 1;
-
-    /**
-     * Set this to whatever size your feature vector is.
-     */
-    public static final int NUM_FEATURES = 5;
-
-    /** Use this random number generator for your epsilon exploration. When you submit we will
-     * change this seed so make sure that your agent works for more than the default seed.
-     */
+    public static final int NUM_FEATURES = 5;//TODO: change this value as features get added/removed
     public final Random random = new Random(12345);
-
-    /**
-     * Your Q-function weights.
-     */
-    public Double[] weights;
+    public Double[] weights; //q function weights
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -60,34 +47,36 @@ public class RLAgent extends Agent {
     public final double learningRate = .0001;
     public final double epsilon = .02;
 
+    /**
+     * Constructor for RLAgent object
+     * @param playernum my playerID
+     * @param args number of episodes in 0th location, whether to load weights in 1st location
+     */
     public RLAgent(int playernum, String[] args) {
         super(playernum);
+        if(debug) setVerbose(true);//"print out the action list each time it is chosen by getAction()"
 
         if (args.length >= 1) {
             numEpisodes = Integer.parseInt(args[0]);
             System.out.println("Running " + numEpisodes + " episodes.");
         } else {
-            numEpisodes = 10;
             System.out.println("Warning! Number of episodes not specified. Defaulting to 10 episodes.");
+            numEpisodes = 10;
         }
 
         boolean loadWeights = false;
-        if (args.length >= 2) {
-            loadWeights = Boolean.parseBoolean(args[1]);
-        } else {
-            System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
-        }
+        if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
+        else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
 
-        if (loadWeights) {
-            weights = loadWeights();
-        } else {
+        if (loadWeights) weights = loadWeights();
+        else {
             // initialize weights to random values between -1 and 1
             weights = new Double[NUM_FEATURES];
             for (int i = 0; i < weights.length; i++) {
                 weights[i] = random.nextDouble() * 2 - 1;
-            }
-        }
-    }
+            }//end of for loop
+        }//end of else statement
+    }//end of constructor
 
     /**
      * We've implemented some setup code for your convenience. Change what you need to.
@@ -154,6 +143,7 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        //boolean eventOccured? = hasEventOccured(stateView, historyView);
         removeKilledUnits(historyView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         return null;
@@ -169,7 +159,7 @@ public class RLAgent extends Agent {
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
 
         // MAKE SURE YOU CALL printTestData after you finish a test episode.
-        printTestData(Arrays.asList(weights));
+        printTestData(Arrays.asList(weights));//TODO: something about averaging weights before printing and saving
         // Save your weights
         saveWeights(weights);
 
@@ -199,6 +189,20 @@ public class RLAgent extends Agent {
      * @return The enemy footman ID this unit should attack
      */
     public int selectAction(State.StateView stateView, History.HistoryView historyView, int attackerId) {
+        /**
+         * epsilon-greedy says we follow the "best" action 1-epsilon percent of the time
+         * we take a random action epsilon percent of the time
+         * as we move forward, epsilon decays to 0
+         */
+        double bestActionProbability = 1-epsilon;
+        double rand = random.nextDouble();
+        boolean takeBestAction;
+        boolean exploreAction;
+        if(rand<bestActionProbability) takeBestAction = true;
+        else exploreAction = true;
+        //TODO: get list of actions, sorted by utility or value
+        //if(takeBestAction) choose first item in list
+        //else choose random item in list
         return -1;
     }
 
@@ -415,5 +419,32 @@ public class RLAgent extends Agent {
             if(result.getFeedback() == ActionFeedback.COMPLETED)returnVar.add(result.getAction().getUnitId());
         }
         return returnVar;
+    }
+    /**
+     * You give me the history and current state
+     * I tell you if someone was killed or attacked.
+     * This is deemed an "event", which is important and means weights should be updated
+     * @param historyView history of the current game
+     * @param stateView current state of the game
+     * @return whether an attack happened, or a player died
+     */
+    private boolean hasEventOccured(State.StateView stateView, History.HistoryView historyView){
+        if(stateView.getTurnNumber()<=0) return false;
+        int turnNumber = stateView.getTurnNumber();
+        if(historyView.getDeathLogs(turnNumber-1).size()>0) {
+            if(debug) out("a death was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
+            return true;//death occured
+        }
+        if(historyView.getDamageLogs(turnNumber-1).size()>0){
+            if(debug) out("damage was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
+            return true;
+        }
+        if(debug)out("No event was seen between turns "+(turnNumber-1)+" and "+turnNumber);
+        return false;
+    }
+    
+    //effectively a macro to make typing "system.out.println" more bearable.
+    public void out(String s){
+        System.out.println(s);
     }
 }
