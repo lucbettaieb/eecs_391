@@ -29,6 +29,8 @@ public class RLAgent extends Agent {
 
     private List<Integer> myFootmen;//IDs of my footmen
     private List<Integer> enemyFootmen;//IDs of footmen owned by ENEMY_PLAYERNUM
+    Map<Integer, Integer> unitHealth;
+    Map<Integer, Position> unitLocations;
 
     /**
      * Convenience variable specifying enemy agent number. Use this whenever referring
@@ -38,7 +40,8 @@ public class RLAgent extends Agent {
     public static final int NUM_FEATURES = 5;//TODO: change this value as features get added/removed
     public final Random random = new Random(12345);
     @Deprecated
-    public Double[] weights; //q function weights, TODO: read into featureVector after loading, and rewrite before closing
+    public Double[] weights; //q function weights
+                             //this is read on startup into FeatureVector, and written from FeatureVector on finish
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -50,7 +53,7 @@ public class RLAgent extends Agent {
     public final double epsilon = .02;
     public boolean exploitationMode = false;    //exploration/exploitation setting.
     public int currentEpisodeNumber = 0;        //what episode are we on?
-    private static double averageReward;        //reward across all games
+    private double averageReward;               //reward across all games
     private double currentReward;               //reward across this game
     private FeatureVector featureVector;        //features and stuff
 
@@ -83,6 +86,9 @@ public class RLAgent extends Agent {
                 weights[i] = random.nextDouble() * 2 - 1;
             }//end of for loop
         }//end of else statement
+        featureVector.featureWeights = convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
+        Map<Integer, Integer> unitHealth = new HashMap<>();
+        Map<Integer, Position> unitLocations = new HashMap<>();
     }//end of constructor
 
     /**
@@ -94,9 +100,12 @@ public class RLAgent extends Agent {
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
-        if(!exploitationMode) averageReward = 0d;//we're exploring, dora!
-        featureVector = new FeatureVector();
-        featureVector.featureWeights = convertDoubleTodouble(weights);
+        if(!this.exploitationMode) this.averageReward = 0d;//we're exploring, dora!
+        this.featureVector = new FeatureVector();
+        for(Unit.UnitView view : stateView.getAllUnits()){
+            this.unitHealth.put(view.getID(), view.getHP());
+            this.unitLocations.put(view.getID(), new Position(view));
+        }
         return middleStep(stateView, historyView);
     }
 
@@ -165,7 +174,7 @@ public class RLAgent extends Agent {
 
     /**
      * Calculate the updated weights for this agent. 
-     * @param oldWeights Weights prior to update
+     * @param oldWeights Weights prior to update, unused: located within the FeatureVector
      * @param oldFeatures Features from (s,a)
      * @param totalReward Cumulative discounted reward for this footman.
      * @param stateView Current state of the game.
@@ -176,7 +185,12 @@ public class RLAgent extends Agent {
     public double[] updateWeights(double[] oldWeights, double[] oldFeatures, double totalReward, 
                                   State.StateView stateView, History.HistoryView historyView, int footmanId) {
         
-        return null; //TODO: incomplete
+        double oldQ = featureVector.qFunction(oldFeatures);
+        int optimalEnemy = selectAction(stateView, historyView, footmanId);
+        double[] newFeatures = FeatureVector.getFeatures(footmanId, optimalEnemy, myFootmen, enemyFootmen,unitHealth, unitLocations);
+        double newQ = featureVector.qFunction(newFeatures);
+        double loss = calculateLoss(totalReward,newQ,oldQ);
+        return featureVector.updateWeights(oldFeatures, loss, alpha);
     }
 
     /**
@@ -282,13 +296,6 @@ public class RLAgent extends Agent {
      * @return The array of feature function outputs.
      */
     public double[] calculateFeatureVector(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
-
-        Map<Integer, Integer> unitHealth = new HashMap<>();
-        Map<Integer, Position> unitLocations = new HashMap<>();
-        for(Unit.UnitView view : stateView.getAllUnits()){
-            unitHealth.put(view.getID(), view.getHP());
-            unitLocations.put(view.getID(), new Position(view));
-        }
         return FeatureVector.getFeatures(attackerId, defenderId, myFootmen, enemyFootmen,unitHealth, unitLocations);
     }
 
@@ -486,19 +493,32 @@ public class RLAgent extends Agent {
     private Map<Integer, Integer> generateAttacks(State.StateView stateView){
         //TODO: incomplete
         Map<Integer, Integer> returnVar = new HashMap<>();
-        
-        
         return returnVar;
     }
-    
-    
+
+    /**
+     * you give me a double[]
+     * I give you the equivalent Double[] 
+     * @param input a double[]
+     * @return the Double[]
+     */
     private Double[] convertdoubleToDouble(double[] input){
         //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
         return Arrays.stream(input).boxed().toArray(Double[]::new);
     }
-    
+
+    /**
+     * you give me a Double[]
+     * I give you a double[]
+     * @param input a Double[]
+     * @return the double[]
+     */
     private double[] convertDoubleTodouble(Double[] input){
         //convoluded code below courtesy of: http://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
         return Arrays.stream(input).mapToDouble(i->i).toArray();
+    }
+    
+    private double calculateLoss(double reward, double newQ, double oldQ){
+        return (reward + gamma * newQ - oldQ);
     }
 }
