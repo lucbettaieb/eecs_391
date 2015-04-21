@@ -282,9 +282,32 @@ public class RLAgent extends Agent {
      * @return The current reward
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
-        double reward = -.5d;
+        double reward = -.2d;
         //TODO: discount based on "timestep"
-        return 0;
+            //this may already be taken care of by the use of gamma
+        if(!myFootmen.contains(footmanId)){
+            //this guy died.
+            reward -= 10;
+        }
+        int turnNumber  = stateView.getTurnNumber();
+        if(turnNumber<=0) return reward;
+        for(DamageLog log :  historyView.getDamageLogs(turnNumber - 1)){
+            if(log.getDefenderController() == playernum && log.getDefenderID() == footmanId){
+                reward -= log.getDamage();
+            }
+            if(log.getAttackerController() == playernum && log.getAttackerID() == footmanId){
+                reward += log.getDamage();
+            }
+        }
+        for(DeathLog log : historyView.getDeathLogs(turnNumber-1)){
+            if(log.getController() == playernum && myFootmen.contains(log.getDeadUnitID())){
+                reward -= 100;
+            }
+            if(log.getController() == ENEMY_PLAYERNUM && enemyFootmen.contains(log.getDeadUnitID())){
+                reward += 100;
+            }
+        }
+        return reward;
     }
 
     /**
