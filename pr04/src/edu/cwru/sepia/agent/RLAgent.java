@@ -8,6 +8,7 @@ import edu.cwru.sepia.environment.model.history.DeathLog;
 import edu.cwru.sepia.environment.model.history.History;
 import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
+import edu.cwru.sepia.environment.model.state.Template;
 import edu.cwru.sepia.environment.model.state.Unit;
 import edu.cwru.sepia.util.Direction;
 import jdk.nashorn.internal.ir.ReturnNode;
@@ -46,6 +47,11 @@ public class RLAgent extends Agent {
     public final double gamma = 0.9;
     public final double learningRate = .0001;
     public final double epsilon = .02;
+    public boolean exploitationMode = false;//exploration/exploitation setting.
+    public int currentEpisodeNumber = 0;//what episode are we on?
+    private static double averageReward;//reward across all games
+    private double currentReward;//reward across this game
+    private FeatureVector featureVector;
 
     /**
      * Constructor for RLAgent object
@@ -58,12 +64,12 @@ public class RLAgent extends Agent {
 
         if (args.length >= 1) {
             numEpisodes = Integer.parseInt(args[0]);
-            System.out.println("Running " + numEpisodes + " episodes.");
+            out("Running " + numEpisodes + " episodes.");
         } else {
-            System.out.println("Warning! Number of episodes not specified. Defaulting to 10 episodes.");
+            out("Warning! Number of episodes not specified. Defaulting to 10 episodes.");
             numEpisodes = 10;
         }
-
+        
         boolean loadWeights = false;
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
         else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
@@ -85,33 +91,10 @@ public class RLAgent extends Agent {
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
 
         // You will need to add code to check if you are in a testing or learning episode
-
-        // Find all of your units
-        myFootmen = new LinkedList<>();
-        for (Integer unitId : stateView.getUnitIds(playernum)) {
-            Unit.UnitView unit = stateView.getUnit(unitId);
-
-            String unitName = unit.getTemplateView().getName().toLowerCase();
-            if (unitName.equals("footman")) {
-                myFootmen.add(unitId);
-            } else {
-                System.err.println("Unknown unit type: " + unitName);
-            }
-        }
-
-        // Find all of the enemy units
-        enemyFootmen = new LinkedList<>();
-        for (Integer unitId : stateView.getUnitIds(ENEMY_PLAYERNUM)) {
-            Unit.UnitView unit = stateView.getUnit(unitId);
-
-            String unitName = unit.getTemplateView().getName().toLowerCase();
-            if (unitName.equals("footman")) {
-                enemyFootmen.add(unitId);
-            } else {
-                System.err.println("Unknown unit type: " + unitName);
-            }
-        }
-
+        enumerateUnits(stateView);
+        this.exploitationMode = this.currentEpisodeNumber % 5 > 2;//40% exploitation, 60% exploration
+        if(!exploitationMode) averageReward = 0d;//we're exploring, dora!
+        
         return middleStep(stateView, historyView);
     }
 
@@ -257,10 +240,7 @@ public class RLAgent extends Agent {
      * @param defenderId An enemy footman that your footman would be attacking
      * @return The approximate Q-value
      */
-    public double calcQValue(State.StateView stateView,
-                             History.HistoryView historyView,
-                             int attackerId,
-                             int defenderId) {
+    public double calcQValue(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
         return 0;
     }
 
@@ -281,11 +261,15 @@ public class RLAgent extends Agent {
      * @param defenderId An enemy footman. The one you are considering attacking.
      * @return The array of feature function outputs.
      */
-    public double[] calculateFeatureVector(State.StateView stateView,
-                                           History.HistoryView historyView,
-                                           int attackerId,
-                                           int defenderId) {
-        return null;
+    public double[] calculateFeatureVector(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
+
+        Map<Integer, Integer> unitHealth = new HashMap<>();
+        Map<Integer, Position> unitLocations = new HashMap<>();
+        for(Unit.UnitView view : stateView.getAllUnits()){
+            unitHealth.put(view.getID(), view.getHP());
+            unitLocations.put(view.getID(), new Position(view));
+        }
+        return FeatureVector.getFeatures(attackerId, defenderId, myFootmen, enemyFootmen,unitHealth, unitLocations);
     }
 
     /**
@@ -420,6 +404,39 @@ public class RLAgent extends Agent {
         }
         return returnVar;
     }
+
+    /**
+     *  fills the "myFootmen" and "enemyFootmen" fields
+     * @param stateView the stateview of the current board
+     */
+    private void enumerateUnits(State.StateView stateView){
+        // Find all of your units
+        myFootmen = new LinkedList<>();
+        for (Integer unitId : stateView.getUnitIds(playernum)) {
+            Unit.UnitView unit = stateView.getUnit(unitId);
+
+            String unitName = unit.getTemplateView().getName().toLowerCase();
+            if (unitName.equals("footman")) {
+                myFootmen.add(unitId);
+            } else {
+                System.err.println("Unknown unit type: " + unitName);
+            }
+        }
+
+        // Find all of the enemy units
+        enemyFootmen = new LinkedList<>();
+        for (Integer unitId : stateView.getUnitIds(ENEMY_PLAYERNUM)) {
+            Unit.UnitView unit = stateView.getUnit(unitId);
+
+            String unitName = unit.getTemplateView().getName().toLowerCase();
+            if (unitName.equals("footman")) {
+                enemyFootmen.add(unitId);
+            } else {
+                System.err.println("Unknown unit type: " + unitName);
+            }
+        }
+    }
+    
     /**
      * You give me the history and current state
      * I tell you if someone was killed or attacked.
@@ -446,5 +463,12 @@ public class RLAgent extends Agent {
     //effectively a macro to make typing "system.out.println" more bearable.
     public void out(String s){
         System.out.println(s);
+    }
+
+    private Map<Integer, Integer> generateAttacks(State.StateView stateView){
+        Map<Integer, Integer> returnVar = new HashMap<>();
+        
+        
+        return returnVar;
     }
 }
