@@ -1,9 +1,13 @@
 package edu.cwru.sepia.agent;
+/**
+ * reward calculation is not done 
+ */
 
 import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionFeedback;
 import edu.cwru.sepia.action.ActionResult;
+import edu.cwru.sepia.environment.model.history.DamageLog;
 import edu.cwru.sepia.environment.model.history.DeathLog;
 import edu.cwru.sepia.environment.model.history.History;
 import edu.cwru.sepia.environment.model.state.ResourceNode;
@@ -139,20 +143,32 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
+        
+        Map<Integer, Action> actionMap = new HashMap<>();
         boolean eventOccured = hasEventOccured(stateView, historyView);
         removeKilledUnits(historyView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
-        
-        if(!eventOccured) return null;//also happens on first turn
-        for(Integer footmanID:myFootmen){
-            //TODO: incomplete
+        if(idleFootmen.size()>0){
+            //generate a myfootmanID/enemyFootmanID K/V pair for all idle footmen
+            Map<Integer, Integer> temp = generateAttacks(idleFootmen);
+            for(Integer myFootman : temp.keySet()){
+                //turn the above K/V pair into a myfootmanID/Action K?V pair
+                actionMap.put(myFootman, Action.createCompoundAttack(myFootman, temp.get(myFootman)));
+            }
+            //reallocate attacks from these guys
+        }
+        if(!eventOccured) return actionMap;//also happens on first turn
+        Map<Integer, Integer> temp = generateAttacks(myFootmen);
+        for(Integer footmanID:temp.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
+            int targetID = temp.get(footmanID);
+            actionMap.put(footmanID, Action.createCompoundAttack(footmanID,targetID));
             currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
-            if(!this.exploitationMode) {//we're in exploration mode TODO: this.
-                double[] features = calculateFeatureVector(stateView, historyView, footmanID, -1);
+            if(!this.exploitationMode) {
+                double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
                 updateWeights(featureVector.featureWeights, features, currentReward, stateView, historyView, footmanID);
             }
         }
-        return null;
+        return actionMap;
     }
 
     /**
@@ -266,8 +282,8 @@ public class RLAgent extends Agent {
      * @return The current reward
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
-        
-        //TODO: incomplete
+        double reward = -.5d;
+        //TODO: discount based on "timestep"
         return 0;
     }
 
@@ -285,6 +301,7 @@ public class RLAgent extends Agent {
      * @param defenderId An enemy footman that your footman would be attacking
      * @return The approximate Q-value
      */
+    @Deprecated
     public double calcQValue(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
         double[] featureVectorValue = calculateFeatureVector(stateView, historyView, attackerId, defenderId);
         return featureVector.qFunction(featureVectorValue);
@@ -476,11 +493,11 @@ public class RLAgent extends Agent {
     
     /**
      * You give me the history and current state
-     * I tell you if someone was killed or attacked.
+     * I tell you if someone was killed or if I was attacked.
      * This is deemed an "event", which is important and means weights should be updated
      * @param historyView history of the current game
      * @param stateView current state of the game
-     * @return whether an attack happened, or a player died.  Defaults to false on first turn
+     * @return whether I was attacked happened, or a player died.  Defaults to false on first turn
      */
     private boolean hasEventOccured(State.StateView stateView, History.HistoryView historyView){
         if(stateView.getTurnNumber()<=0) return false;
@@ -489,9 +506,8 @@ public class RLAgent extends Agent {
             if(debug) out("a death was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
             return true;//death occured
         }
-        if(historyView.getDamageLogs(turnNumber-1).size()>0){
-            if(debug) out("damage was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
-            return true;
+        for(DamageLog damageLog : historyView.getDamageLogs(turnNumber-1)){
+            if(damageLog.getDefenderController() == playernum) return true;
         }
         if(debug)out("No event was seen between turns "+(turnNumber-1)+" and "+turnNumber);
         return false;
