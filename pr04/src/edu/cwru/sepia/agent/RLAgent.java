@@ -26,7 +26,6 @@ public class RLAgent extends Agent {
      * and call sys.exit(0)
      */
     public final int numEpisodes;
-
     private List<Integer> myFootmen;//IDs of my footmen
     private List<Integer> enemyFootmen;//IDs of footmen owned by ENEMY_PLAYERNUM
     Map<Integer, Integer> unitHealth;
@@ -37,11 +36,11 @@ public class RLAgent extends Agent {
      * to the enemy agent. We will make sure it is set to the proper number when testing your code.
      */
     public static final int ENEMY_PLAYERNUM = 1;
-    public static final int NUM_FEATURES = 5;//TODO: change this value as features get added/removed
+    public static final int NUM_FEATURES = FeatureVector.NUM_FEATURES;
     public final Random random = new Random(12345);
     @Deprecated
     public Double[] weights; //q function weights
-                             //this is read on startup into FeatureVector, and written from FeatureVector on finish
+                             //this is read on startup into FeatureVector, and written from FeatureVector before finish
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -73,7 +72,10 @@ public class RLAgent extends Agent {
             out("Warning! Number of episodes not specified. Defaulting to 50 episodes.");
             numEpisodes = 50;
         }
-        
+        if(currentEpisodeNumber > numEpisodes){
+            if(debug)out("finished all epochs, exiting");
+            System.exit(0);
+        }
         boolean loadWeights = false;
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
         else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
@@ -138,18 +140,18 @@ public class RLAgent extends Agent {
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
         boolean eventOccured = hasEventOccured(stateView, historyView);
-        if(!eventOccured) return null;
+        removeKilledUnits(historyView, stateView.getTurnNumber());
+        List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
+        
+        if(!eventOccured) return null;//also happens on first turn
         for(Integer footmanID:myFootmen){
             //TODO: incomplete
             currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
-            if(!this.exploitationMode) {//TODO: this.
+            if(!this.exploitationMode) {//we're in exploration mode TODO: this.
                 double[] features = calculateFeatureVector(stateView, historyView, footmanID, -1);
-                updateQFunction(featureVector.featureWeights, features);
+                updateWeights(featureVector.featureWeights, features, currentReward, stateView, historyView, footmanID);
             }
         }
-        
-        removeKilledUnits(historyView, stateView.getTurnNumber());
-        List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         return null;
     }
 
@@ -186,7 +188,7 @@ public class RLAgent extends Agent {
                                   State.StateView stateView, History.HistoryView historyView, int footmanId) {
         
         double oldQ = featureVector.qFunction(oldFeatures);
-        int optimalEnemy = selectAction(stateView, historyView, footmanId);
+        int optimalEnemy = selectAction(footmanId);
         double[] newFeatures = FeatureVector.getFeatures(footmanId, optimalEnemy, myFootmen, enemyFootmen,unitHealth, unitLocations);
         double newQ = featureVector.qFunction(newFeatures);
         double loss = calculateLoss(totalReward,newQ,oldQ);
@@ -197,28 +199,37 @@ public class RLAgent extends Agent {
      * Given a footman and the current state and history of the game select the enemy that this unit should
      * attack. This is where you would do the epsilon-greedy action selection.
      *
-     * @param stateView Current state of the game
-     * @param historyView The entire history of this episode
      * @param attackerId The footman that will be attacking
      * @return The enemy footman ID this unit should attack
      */
-    public int selectAction(State.StateView stateView, History.HistoryView historyView, int attackerId) {
-        //TODO: incomplete
+    public int selectAction(int attackerId) {
         /**
          * epsilon-greedy says we follow the "best" action 1-epsilon percent of the time
          * we take a random action epsilon percent of the time
          * as we move forward, epsilon decays to 0
          */
-        double bestActionProbability = 1-epsilon;
+        double bestActionProbability = 1-epsilon;//this converges to 1, so rand() > bestActionProbability causes exploration
         double rand = random.nextDouble();
-        boolean takeBestAction;
         boolean exploreAction;
-        if(rand<bestActionProbability) takeBestAction = true;
-        else exploreAction = true;
-        //TODO: get list of actions, sorted by utility or value
-        //if(takeBestAction) choose first item in list
-        //else choose random item in list
-        return -1;
+        exploreAction = rand >= bestActionProbability;
+        if(exploreAction && !exploitationMode){//we're not following the policy, and we're in exploitation
+            //TODO: above 'if' statement may not depend on exploitation mode
+            if(debug) out("disobeying the policy");
+            return randomEnemy();
+        } else {//we're either following the policy, or not exploring
+            if(debug) out("following the policy");
+            double qOfBestEnemy = Double.NEGATIVE_INFINITY;
+            int bestEnemy = enemyFootmen.get(0);//arbitrary first enemy
+            for(Integer enemyID : enemyFootmen){//for each enemy footman
+                double[] features = FeatureVector.getFeatures(attackerId, enemyID,myFootmen, enemyFootmen, unitHealth, unitLocations);
+                double q = featureVector.qFunction(features);
+                if(q > qOfBestEnemy){
+                    qOfBestEnemy = q;
+                    bestEnemy = enemyID;
+                }
+            }
+            return bestEnemy;
+        }
     }
 
     /**
@@ -255,6 +266,7 @@ public class RLAgent extends Agent {
      * @return The current reward
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
+        
         //TODO: incomplete
         return 0;
     }
@@ -406,7 +418,7 @@ public class RLAgent extends Agent {
         for(DeathLog deathLog : history.getDeathLogs(currentTurnNumber -1)) {
             int deadUnitID = deathLog.getDeadUnitID();
             int deadUnitsPlayer = deathLog.getController();
-            System.out.println("Player: " + deathLog.getController() + " unit: " + deadUnitID);
+            out("Player: " + deathLog.getController() + " unit: " + deadUnitID);
             if(deadUnitsPlayer == ENEMY_PLAYERNUM)enemyFootmen.remove(deadUnitID);
             else myFootmen.remove(deadUnitID);
         }
@@ -468,7 +480,7 @@ public class RLAgent extends Agent {
      * This is deemed an "event", which is important and means weights should be updated
      * @param historyView history of the current game
      * @param stateView current state of the game
-     * @return whether an attack happened, or a player died
+     * @return whether an attack happened, or a player died.  Defaults to false on first turn
      */
     private boolean hasEventOccured(State.StateView stateView, History.HistoryView historyView){
         if(stateView.getTurnNumber()<=0) return false;
@@ -490,9 +502,17 @@ public class RLAgent extends Agent {
         System.out.println(s);
     }
 
-    private Map<Integer, Integer> generateAttacks(State.StateView stateView){
-        //TODO: incomplete
+    /**
+     * you give me the footmen you want to assign attacks for
+     * I give you a map from my footmen to enemy footmen, indicating who the key should attack 
+     * @param idleFootmen footmen to assign attacks for
+     * @return a K/V pair, where the key is my footman, and the value is the enemy it should attack
+     */
+    private Map<Integer, Integer> generateAttacks(List<Integer> idleFootmen){
         Map<Integer, Integer> returnVar = new HashMap<>();
+        for(Integer footmanID : idleFootmen){
+            returnVar.put(footmanID, selectAction(footmanID));
+        }
         return returnVar;
     }
 
@@ -518,7 +538,19 @@ public class RLAgent extends Agent {
         return Arrays.stream(input).mapToDouble(i->i).toArray();
     }
     
+    
     private double calculateLoss(double reward, double newQ, double oldQ){
         return (reward + gamma * newQ - oldQ);
+    }
+
+    /**
+     * gets a random element from the enemyFootmen list
+     * useful for exploration in Q-learning
+     * @return ID of a random enemy footman who is alive
+     */
+    private int randomEnemy(){
+        //code adapted from: http://stackoverflow.com/questions/5034370/retrieving-a-random-item-from-arraylist
+        int index = random.nextInt(enemyFootmen.size());
+        return enemyFootmen.get(index);
     }
 }
