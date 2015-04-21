@@ -37,7 +37,8 @@ public class RLAgent extends Agent {
     public static final int ENEMY_PLAYERNUM = 1;
     public static final int NUM_FEATURES = 5;//TODO: change this value as features get added/removed
     public final Random random = new Random(12345);
-    public Double[] weights; //q function weights
+    @Deprecated
+    public Double[] weights; //q function weights, TODO: move to weights in FeatureVector
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -45,13 +46,13 @@ public class RLAgent extends Agent {
      * changing them.
      */
     public final double gamma = 0.9;
-    public final double learningRate = .0001;
+    public final double alpha = .0001;
     public final double epsilon = .02;
-    public boolean exploitationMode = false;//exploration/exploitation setting.
-    public int currentEpisodeNumber = 0;//what episode are we on?
-    private static double averageReward;//reward across all games
-    private double currentReward;//reward across this game
-    private FeatureVector featureVector;
+    public boolean exploitationMode = false;    //exploration/exploitation setting.
+    public int currentEpisodeNumber = 0;        //what episode are we on?
+    private static double averageReward;        //reward across all games
+    private double currentReward;               //reward across this game
+    private FeatureVector featureVector;        //features and stuff
 
     /**
      * Constructor for RLAgent object
@@ -66,8 +67,8 @@ public class RLAgent extends Agent {
             numEpisodes = Integer.parseInt(args[0]);
             out("Running " + numEpisodes + " episodes.");
         } else {
-            out("Warning! Number of episodes not specified. Defaulting to 10 episodes.");
-            numEpisodes = 10;
+            out("Warning! Number of episodes not specified. Defaulting to 50 episodes.");
+            numEpisodes = 50;
         }
         
         boolean loadWeights = false;
@@ -92,7 +93,7 @@ public class RLAgent extends Agent {
 
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
-        this.exploitationMode = this.currentEpisodeNumber % 5 > 2;//40% exploitation, 60% exploration
+        this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
         if(!exploitationMode) averageReward = 0d;//we're exploring, dora!
         
         return middleStep(stateView, historyView);
@@ -126,7 +127,17 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        //boolean eventOccured? = hasEventOccured(stateView, historyView);
+        boolean eventOccured = hasEventOccured(stateView, historyView);
+        if(!eventOccured) return null;
+        for(Integer footmanID:myFootmen){
+            //TODO: incomplete
+            currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
+            if(!this.exploitationMode) {//TODO: this.
+                double[] features = calculateFeatureVector(stateView,historyView, footmanID,-1);
+                updateQFunction(featureVector.featureWeights, features);
+            }
+        }
+        
         removeKilledUnits(historyView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         return null;
@@ -140,11 +151,11 @@ public class RLAgent extends Agent {
      */
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
-
-        // MAKE SURE YOU CALL printTestData after you finish a test episode.
-        printTestData(Arrays.asList(weights));//TODO: something about averaging weights before printing and saving
-        // Save your weights
-        saveWeights(weights);
+        //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
+        Double[] weight = Arrays.stream(featureVector.featureWeights).boxed().toArray(Double[]::new);
+        
+        printTestData(Arrays.asList(weight));//TODO: something about averaging weights before printing and saving
+        saveWeights(weight);
 
     }
 
@@ -158,8 +169,10 @@ public class RLAgent extends Agent {
      * @param footmanId The footman we are updating the weights for
      * @return The updated weight vector.
      */
-    public double[] updateWeights(double[] oldWeights, double[] oldFeatures, double totalReward, State.StateView stateView, History.HistoryView historyView, int footmanId) {
-        return null;
+    public double[] updateWeights(double[] oldWeights, double[] oldFeatures, double totalReward, 
+                                  State.StateView stateView, History.HistoryView historyView, int footmanId) {
+        
+        return null; //TODO: incomplete
     }
 
     /**
@@ -172,6 +185,7 @@ public class RLAgent extends Agent {
      * @return The enemy footman ID this unit should attack
      */
     public int selectAction(State.StateView stateView, History.HistoryView historyView, int attackerId) {
+        //TODO: incomplete
         /**
          * epsilon-greedy says we follow the "best" action 1-epsilon percent of the time
          * we take a random action epsilon percent of the time
@@ -223,6 +237,7 @@ public class RLAgent extends Agent {
      * @return The current reward
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
+        //TODO: incomplete
         return 0;
     }
 
@@ -241,7 +256,8 @@ public class RLAgent extends Agent {
      * @return The approximate Q-value
      */
     public double calcQValue(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
-        return 0;
+        double[] featureVectorValue = calculateFeatureVector(stateView, historyView, attackerId, defenderId);
+        return featureVector.qFunction(featureVectorValue);
     }
 
     /**
@@ -383,8 +399,6 @@ public class RLAgent extends Agent {
             if(deadUnitsPlayer == ENEMY_PLAYERNUM)enemyFootmen.remove(deadUnitID);
             else myFootmen.remove(deadUnitID);
         }
-        
-        
     }
 
     /**
@@ -466,6 +480,7 @@ public class RLAgent extends Agent {
     }
 
     private Map<Integer, Integer> generateAttacks(State.StateView stateView){
+        //TODO: incomplete
         Map<Integer, Integer> returnVar = new HashMap<>();
         
         
