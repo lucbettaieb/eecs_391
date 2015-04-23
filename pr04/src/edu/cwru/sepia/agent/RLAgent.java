@@ -188,7 +188,7 @@ public class RLAgent extends Agent {
         if(!exploitationMode){//we're in exploration mode
             averageReward = averageReward + (currentReward-averageReward)/(currentEpisodeNumber%10);
         }
-        printTestData(Arrays.asList(weights));//TODO: something about averaging weights before printing and saving
+        printTestData(Arrays.asList(weights));//TODO: I should print rewards here, not weights.
         saveWeights(weights);
         currentEpisodeNumber++;
     }
@@ -236,7 +236,6 @@ public class RLAgent extends Agent {
             if(debug) out("disobeying the policy");
             return randomEnemy();
         } else {//we're either following the policy, or not exploring
-            if(false) out("following the policy");
             double qOfBestEnemy = Double.NEGATIVE_INFINITY;
             int bestEnemy = enemyFootmen.get(0);//arbitrary first enemy
             for(Integer enemyID : enemyFootmen){//for each enemy footman
@@ -457,19 +456,24 @@ public class RLAgent extends Agent {
      * @param currentTurnNumber the turn number about to be executed (i.e. not subtracted by 1)
      */
     private void updateUnits(History.HistoryView history, State.StateView stateView, int currentTurnNumber){
-        if(currentTurnNumber<=0) return;
         for(Unit.UnitView view : stateView.getAllUnits()){
             this.unitHealth.put(view.getID(), view.getHP());
             this.unitLocations.put(view.getID(), new Position(view));
         }
+        if(currentTurnNumber<=0) return;
         for(DeathLog deathLog : history.getDeathLogs(currentTurnNumber -1)) {
             int deadUnitID = deathLog.getDeadUnitID();
             int deadUnitsPlayer = deathLog.getController();
-            out("Player: " + deathLog.getController() + " unit: " + deadUnitID);
             if(deadUnitsPlayer == ENEMY_PLAYERNUM){//was the dead unit owned by the enemy?
-                enemyFootmen.remove(enemyFootmen.indexOf(deadUnitID));
-            } else {//the dead unit was owned by me
-                myFootmen.remove(myFootmen.indexOf(deadUnitID));
+                this.enemyFootmen.remove(enemyFootmen.indexOf(deadUnitID));
+                out("Enemy player lost unit: "+deadUnitID+", they now have "+enemyFootmen.size()+" units left");
+            } else if(deadUnitsPlayer == playernum){//the dead unit was owned by me
+                this.myFootmen.remove(myFootmen.indexOf(deadUnitID));
+                out("I lost unit: "+deadUnitID+", I now have "+myFootmen.size()+" units left");
+            } else {
+                err("a unit owned by an unknown player died");
+                err("that player was "+deadUnitsPlayer);
+                err("and the unit was "+deadUnitID);
             }
         }
     }
@@ -498,26 +502,26 @@ public class RLAgent extends Agent {
      */
     private void enumerateUnits(State.StateView stateView){
         // Find all of your units
-        myFootmen = new LinkedList<>();
-        for (Integer unitId : stateView.getUnitIds(playernum)) {
+        this.myFootmen = new LinkedList<>();
+        for (Integer unitId : stateView.getUnitIds(playernum)) {//get all of my footmen, and my them in myFootmen
             Unit.UnitView unit = stateView.getUnit(unitId);
 
             String unitName = unit.getTemplateView().getName().toLowerCase();
             if (unitName.equals("footman")) {
-                myFootmen.add(unitId);
+                this.myFootmen.add(unitId);
             } else {
                 System.err.println("Unknown unit type: " + unitName);
             }
         }
 
         // Find all of the enemy units
-        enemyFootmen = new LinkedList<>();
-        for (Integer unitId : stateView.getUnitIds(ENEMY_PLAYERNUM)) {
+        this.enemyFootmen = new LinkedList<>();
+        for (Integer unitId : stateView.getUnitIds(ENEMY_PLAYERNUM)) {//get all their footmen and put them in enemyFootmen
             Unit.UnitView unit = stateView.getUnit(unitId);
 
             String unitName = unit.getTemplateView().getName().toLowerCase();
             if (unitName.equals("footman")) {
-                enemyFootmen.add(unitId);
+                this.enemyFootmen.add(unitId);
             } else {
                 System.err.println("Unknown unit type: " + unitName);
             }
@@ -549,6 +553,9 @@ public class RLAgent extends Agent {
     //effectively a macro to make typing "system.out.println" more bearable.
     public void out(String s){
         System.out.println(s);
+    }
+    public void err(String s){
+        System.err.println(s);
     }
 
     /**
