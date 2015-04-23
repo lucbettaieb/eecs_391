@@ -80,21 +80,24 @@ public class RLAgent extends Agent {
             if(debug)out("finished all epochs, exiting");
             System.exit(0);
         }
+        if(debug) out("deciding if I should load weights");
         boolean loadWeights = false;
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
         else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
-
+        if(debug) out("weights-loading decision made.");
         if (loadWeights) weights = loadWeights();
         else {
             // initialize weights to random values between -1 and 1
+            if(debug) out("randomizing weights");
             weights = new Double[NUM_FEATURES];
             for (int i = 0; i < weights.length; i++) {
                 weights[i] = random.nextDouble() * 2 - 1;
             }//end of for loop
         }//end of else statement
+        if(debug) out("converting weight types");
+        this.featureVector = new FeatureVector();//ugh. the next line caused me too much grief because it didn't report an NPE
         featureVector.featureWeights = convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
-        Map<Integer, Integer> unitHealth = new HashMap<>();
-        Map<Integer, Position> unitLocations = new HashMap<>();
+        if(debug) out("RLAgent constructor finished");
     }//end of constructor
 
     /**
@@ -102,7 +105,9 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
-
+        if(debug) out("Initial step hit");
+        this.unitHealth = new HashMap<>();
+        this.unitLocations = new HashMap<>();
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
@@ -143,7 +148,7 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        
+        if(debug) out("beginning execution of middle step");
         Map<Integer, Action> actionMap = new HashMap<>();
         boolean eventOccured = hasEventOccured(stateView, historyView);
         removeKilledUnits(historyView, stateView.getTurnNumber());
@@ -179,6 +184,7 @@ public class RLAgent extends Agent {
      */
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
+        if(debug) out("terminal step reached");
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
         
@@ -574,7 +580,10 @@ public class RLAgent extends Agent {
      */
     private double[] convertDoubleTodouble(Double[] input){
         //convoluded code below courtesy of: http://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
-        return Arrays.stream(input).mapToDouble(i->i).toArray();
+        if(debug) out("ready to convert Double to double");
+        double[] returnVar = Arrays.stream(input).mapToDouble(i->i).toArray();
+        if(debug) out("Converted Double to double");
+        return returnVar;
     }
     
     

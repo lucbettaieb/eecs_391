@@ -84,7 +84,6 @@ public class FeatureVector {
         for (int i = 0; i < featureWeights.length; i++) {
             featureWeights[i] += (alpha * lossFunction * updateVector[i]);
         }
-        
         return featureWeights;
     }
 
