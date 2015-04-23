@@ -94,6 +94,7 @@ public class RLAgent extends Agent {
         this.featureVector = new FeatureVector();//ugh. the next line caused me too much grief because it didn't report an NPE
         featureVector.featureWeights = convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
         if(debug) out("RLAgent constructor finished");
+        this.averageReward = new LinkedList<>();
     }//end of constructor
 
     /**
@@ -107,7 +108,9 @@ public class RLAgent extends Agent {
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
-        if(!this.exploitationMode) this.averageReward.set(epoch, 0d);//we're exploring, dora!
+        if(!this.exploitationMode) {
+            if(this.averageReward.size()<= epoch) this.averageReward.add(epoch, 0d);
+        }
         this.featureVector = new FeatureVector();
         for(Unit.UnitView view : stateView.getAllUnits()){
             this.unitHealth.put(view.getID(), view.getHP());
@@ -181,15 +184,17 @@ public class RLAgent extends Agent {
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
         if(debug) out("terminal step reached");
-        if(myFootmen.size()>0) out("victory");
-        else out("failure");
+        if(enemyFootmen.size()==1) out("victory");//==1 because I don't remove the last player before hitting this
+        else if(myFootmen.size()==1) out("failure");
+        else out("cannot determine victory or failure");
+        out("finished episode: "+currentEpisodeNumber+" in epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
-        
-        if(!exploitationMode){//we're in exploration mode
-            averageReward.set(epoch, averageReward.get(epoch) + (currentReward-averageReward.get(epoch))/(currentEpisodeNumber%10));
-        }
-        printTestData(Arrays.asList(weights));//TODO: I should print rewards here, not weights.
+
+        averageReward.set(epoch, averageReward.get(epoch) + 
+                (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % 10,1));
+
+        printTestData(this.averageReward);
         saveWeights(weights);
         currentEpisodeNumber++;
         if(currentEpisodeNumber % 10 == 0) epoch++;
@@ -598,7 +603,6 @@ public class RLAgent extends Agent {
         if(debug) out("Converted Double to double");
         return returnVar;
     }
-    
     
     private double calculateLoss(double reward, double newQ, double oldQ){
         return (reward + gamma * newQ - oldQ);
