@@ -183,10 +183,11 @@ public class RLAgent extends Agent {
      */
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
+        updateUnits(historyView, stateView, stateView.getTurnNumber());//update for killed players
         if(debug) out("terminal step reached");
-        if(enemyFootmen.size()==1) out("victory");//==1 because I don't remove the last player before hitting this
-        else if(myFootmen.size()==1) out("failure");
-        else out("cannot determine victory or failure");
+        if(enemyFootmen.size()==0) out("victory");
+        else if(myFootmen.size()==0) out("failure");
+        else err("cannot determine victory or failure");
         out("finished episode: "+currentEpisodeNumber+" in epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
