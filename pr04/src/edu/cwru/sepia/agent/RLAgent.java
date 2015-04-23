@@ -1,21 +1,16 @@
-package edu.cwru.sepia.agent;
+ package edu.cwru.sepia.agent;
 /**
  * reward calculation is not done 
  */
 
-import com.sun.tools.javac.util.ArrayUtils;
 import edu.cwru.sepia.action.Action;
 import edu.cwru.sepia.action.ActionFeedback;
 import edu.cwru.sepia.action.ActionResult;
 import edu.cwru.sepia.environment.model.history.DamageLog;
 import edu.cwru.sepia.environment.model.history.DeathLog;
 import edu.cwru.sepia.environment.model.history.History;
-import edu.cwru.sepia.environment.model.state.ResourceNode;
 import edu.cwru.sepia.environment.model.state.State;
-import edu.cwru.sepia.environment.model.state.Template;
 import edu.cwru.sepia.environment.model.state.Unit;
-import edu.cwru.sepia.util.Direction;
-import jdk.nashorn.internal.ir.ReturnNode;
 
 import java.io.*;
 import java.util.*;
@@ -151,7 +146,7 @@ public class RLAgent extends Agent {
         if(debug) out("beginning execution of middle step");
         Map<Integer, Action> actionMap = new HashMap<>();
         boolean eventOccured = hasEventOccured(stateView, historyView);
-        removeKilledUnits(historyView, stateView.getTurnNumber());
+        updateUnits(historyView, stateView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         if(idleFootmen.size()>0){
             //generate a myfootmanID/enemyFootmanID K/V pair for all idle footmen
@@ -185,6 +180,8 @@ public class RLAgent extends Agent {
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
         if(debug) out("terminal step reached");
+        if(myFootmen.size()>0) out("victory");
+        else out("failure");
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
         
@@ -239,7 +236,7 @@ public class RLAgent extends Agent {
             if(debug) out("disobeying the policy");
             return randomEnemy();
         } else {//we're either following the policy, or not exploring
-            if(debug) out("following the policy");
+            if(false) out("following the policy");
             double qOfBestEnemy = Double.NEGATIVE_INFINITY;
             int bestEnemy = enemyFootmen.get(0);//arbitrary first enemy
             for(Integer enemyID : enemyFootmen){//for each enemy footman
@@ -330,7 +327,7 @@ public class RLAgent extends Agent {
      * @param defenderId An enemy footman that your footman would be attacking
      * @return The approximate Q-value
      */
-    @Deprecated
+    @Deprecated //absorbed by the FeatureVector class
     public double calcQValue(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
         double[] featureVectorValue = calculateFeatureVector(stateView, historyView, attackerId, defenderId);
         return featureVector.qFunction(featureVectorValue);
@@ -459,14 +456,21 @@ public class RLAgent extends Agent {
      * @param history history for the current game
      * @param currentTurnNumber the turn number about to be executed (i.e. not subtracted by 1)
      */
-    private void removeKilledUnits(History.HistoryView history, int currentTurnNumber){
+    private void updateUnits(History.HistoryView history, State.StateView stateView, int currentTurnNumber){
         if(currentTurnNumber<=0) return;
+        for(Unit.UnitView view : stateView.getAllUnits()){
+            this.unitHealth.put(view.getID(), view.getHP());
+            this.unitLocations.put(view.getID(), new Position(view));
+        }
         for(DeathLog deathLog : history.getDeathLogs(currentTurnNumber -1)) {
             int deadUnitID = deathLog.getDeadUnitID();
             int deadUnitsPlayer = deathLog.getController();
             out("Player: " + deathLog.getController() + " unit: " + deadUnitID);
-            if(deadUnitsPlayer == ENEMY_PLAYERNUM)enemyFootmen.remove(deadUnitID);
-            else myFootmen.remove(deadUnitID);
+            if(deadUnitsPlayer == ENEMY_PLAYERNUM){//was the dead unit owned by the enemy?
+                enemyFootmen.remove(enemyFootmen.indexOf(deadUnitID));
+            } else {//the dead unit was owned by me
+                myFootmen.remove(myFootmen.indexOf(deadUnitID));
+            }
         }
     }
 
@@ -482,7 +486,7 @@ public class RLAgent extends Agent {
 
         Map<Integer, ActionResult> actionResults = historyView.getCommandFeedback(playernum, currentTurnNumber - 1);
         for (ActionResult result : actionResults.values()) {
-            System.out.println(result.toString());
+            //no, IntelliJ, I don't want to do a "collect" call with lambdas and things I don't understand.
             if(result.getFeedback() == ActionFeedback.COMPLETED)returnVar.add(result.getAction().getUnitId());
         }
         return returnVar;
@@ -526,10 +530,10 @@ public class RLAgent extends Agent {
      * This is deemed an "event", which is important and means weights should be updated
      * @param historyView history of the current game
      * @param stateView current state of the game
-     * @return whether I was attacked happened, or a player died.  Defaults to false on first turn
+     * @return whether I was attacked happened, or a player died.  Defaults to true on first turn
      */
     private boolean hasEventOccured(State.StateView stateView, History.HistoryView historyView){
-        if(stateView.getTurnNumber()<=0) return false;
+        if(stateView.getTurnNumber()<=0) return true;
         int turnNumber = stateView.getTurnNumber();
         if(historyView.getDeathLogs(turnNumber-1).size()>0) {
             if(debug) out("a death was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
