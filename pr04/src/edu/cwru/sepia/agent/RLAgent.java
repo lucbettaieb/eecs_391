@@ -72,10 +72,6 @@ public class RLAgent extends Agent {
             out("Warning! Number of episodes not specified. Defaulting to 50 episodes.");
             numEpisodes = 50;
         }
-        if(currentEpisodeNumber > numEpisodes){
-            if(debug)out("finished all epochs, exiting");
-            System.exit(0);
-        }
         if(debug) out("deciding if I should load weights");
         boolean loadWeights = false;
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
@@ -103,6 +99,10 @@ public class RLAgent extends Agent {
     @Override
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
         if(debug) out("Initial step hit");
+        if(currentEpisodeNumber > numEpisodes){
+            if(debug)out("finished all epochs, exiting");
+            System.exit(0);
+        }
         this.unitHealth = new HashMap<>();
         this.unitLocations = new HashMap<>();
         // You will need to add code to check if you are in a testing or learning episode
@@ -188,7 +188,7 @@ public class RLAgent extends Agent {
         if(enemyFootmen.size()==0) out("victory");
         else if(myFootmen.size()==0) out("failure");
         else err("cannot determine victory or failure");
-        out("finished episode: "+currentEpisodeNumber+" in epoch: "+epoch);
+        out("finished total episode: "+currentEpisodeNumber+" categorized under epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
 
@@ -196,7 +196,7 @@ public class RLAgent extends Agent {
                 (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % 10,1));
 
         printTestData(this.averageReward);
-        saveWeights(weights);
+        saveWeights(convertdoubleToDouble(featureVector.featureWeights));
         currentEpisodeNumber++;
         if(currentEpisodeNumber % 10 == 0) epoch++;
     }
