@@ -51,9 +51,10 @@ public class RLAgent extends Agent {
     public final double epsilon = .02;
     public boolean exploitationMode = false;    //exploration/exploitation setting.
     public int currentEpisodeNumber = 0;        //what episode are we on?
-    private double averageReward;               //reward across all games
+    private List<Double> averageReward;         //reward across this epoch
     private double currentReward;               //reward across this game
     private FeatureVector featureVector;        //features and stuff
+    private int epoch = 0;
 
     /**
      * Constructor for RLAgent object
@@ -106,7 +107,7 @@ public class RLAgent extends Agent {
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
-        if(!this.exploitationMode) this.averageReward = 0d;//we're exploring, dora!
+        if(!this.exploitationMode) this.averageReward.set(epoch, 0d);//we're exploring, dora!
         this.featureVector = new FeatureVector();
         for(Unit.UnitView view : stateView.getAllUnits()){
             this.unitHealth.put(view.getID(), view.getHP());
@@ -152,7 +153,7 @@ public class RLAgent extends Agent {
             //generate a myfootmanID/enemyFootmanID K/V pair for all idle footmen
             Map<Integer, Integer> temp = generateAttacks(idleFootmen);
             for(Integer myFootman : temp.keySet()){
-                //turn the above K/V pair into a myfootmanID/Action K?V pair
+                //turn the above K/V pair into a myfootmanID/Action K/V pair
                 actionMap.put(myFootman, Action.createCompoundAttack(myFootman, temp.get(myFootman)));
             }
             //reallocate attacks from these guys
@@ -186,11 +187,12 @@ public class RLAgent extends Agent {
         weights = convertdoubleToDouble(featureVector.featureWeights);
         
         if(!exploitationMode){//we're in exploration mode
-            averageReward = averageReward + (currentReward-averageReward)/(currentEpisodeNumber%10);
+            averageReward.set(epoch, averageReward.get(epoch) + (currentReward-averageReward.get(epoch))/(currentEpisodeNumber%10));
         }
         printTestData(Arrays.asList(weights));//TODO: I should print rewards here, not weights.
         saveWeights(weights);
         currentEpisodeNumber++;
+        if(currentEpisodeNumber % 10 == 0) epoch++;
     }
 
     /**
@@ -472,8 +474,8 @@ public class RLAgent extends Agent {
                 out("I lost unit: "+deadUnitID+", I now have "+myFootmen.size()+" units left");
             } else {
                 err("a unit owned by an unknown player died");
-                err("that player was "+deadUnitsPlayer);
-                err("and the unit was "+deadUnitID);
+                err("that player was " + deadUnitsPlayer);
+                err("and the unit was " + deadUnitID);
             }
         }
     }
