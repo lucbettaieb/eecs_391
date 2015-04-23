@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class FeatureVector {
 
-    public static final int NUM_FEATURES = 6; //The number of features to store
+    public static final int NUM_FEATURES = 7; //The number of features to store
     protected double[] featureWeights; //The weights of each feature
 
     /**
