@@ -27,10 +27,6 @@ public class FeatureVector {
      */
     public FeatureVector() {
         featureWeights = new double[NUM_FEATURES];
-        // to a random value between -1 and 1
-        for (int i = 0; i < featureWeights.length; i++) {
-            featureWeights[i] = Math.random() * 2 - 1;
-        }
     }
 
     /**

@@ -11,6 +11,9 @@
  * 
  * Lewicki on Q-Learning at CMU:
  * * http://www.cs.cmu.edu/afs/cs/academic/class/15381-s07/www/slides/050307reinforcementLearning2.pdf
+ * 
+ * There are several pre-scaffolded methods that had parameters I didn't use
+ * * the parameters were left in, which shows places I may have made mistakes in formulas
  */
 
 import edu.cwru.sepia.action.Action;
@@ -90,7 +93,10 @@ public class RLAgent extends Agent {
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
         else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
         if(debug) out("weights-loading decision made.");
-        if (loadWeights) weights = loadWeights();
+        if (loadWeights){
+            if(debug)out("loading weights");
+            weights = loadWeights();
+        }
         else {
             // initialize weights to random values between -1 and 1
             if(debug) out("randomizing weights");
@@ -100,7 +106,7 @@ public class RLAgent extends Agent {
             }//end of for loop
         }//end of else statement
         if(debug) out("converting weight types");
-        this.featureVector = new FeatureVector();//ugh. the next line caused me too much grief because it didn't report an NPE
+        this.featureVector = new FeatureVector();
         featureVector.featureWeights = convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
         if(debug) out("RLAgent constructor finished");
         this.averageReward = new LinkedList<>();
@@ -200,14 +206,16 @@ public class RLAgent extends Agent {
         weights = convertdoubleToDouble(featureVector.featureWeights);
 
         averageReward.set(epoch, averageReward.get(epoch) + 
-                (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % 10,1));
-
+                (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % 10,1));//don't divide by 0
+        //avgReward +=(currReward-avgReward)/(episode number in this epoch, defaulting to 1 if first episode)
+        
         printTestData(this.averageReward);
         saveWeights(convertdoubleToDouble(featureVector.featureWeights));
         currentEpisodeNumber++;
         if(currentEpisodeNumber % 10 == 0) {
             epoch++;
             printWeights(Arrays.asList(convertdoubleToDouble(featureVector.featureWeights)));
+            out("");
         }
     }
 
@@ -218,8 +226,7 @@ public class RLAgent extends Agent {
      * @param footmanId The footman we are updating the weights for
      * @return The updated weight vector.
      */
-    public double[] updateWeights(double[] oldFeatures, double totalReward,
-                                  int footmanId) {
+    public double[] updateWeights(double[] oldFeatures, double totalReward, int footmanId) {
         
         double oldQ = featureVector.qFunction(oldFeatures);
         int optimalEnemy = selectAction(footmanId);
@@ -610,7 +617,16 @@ public class RLAgent extends Agent {
         if(debug) out("Converted Double to double");
         return returnVar;
     }
-    
+
+    /**
+     * abstraction of the temporal difference function.  
+     * * Makes things nice and readable
+     * * Gamma is taken from "this"
+     * @param reward reward for a predetermined state/action
+     * @param newQ Q(s',a')
+     * @param oldQ Q(s ,a )
+     * @return the temporal difference: reward + gamma * newQ - oldQ_
+     */
     private double temporalDifference(double reward, double newQ, double oldQ){
         return (reward + gamma * newQ - oldQ);
     }
@@ -625,7 +641,12 @@ public class RLAgent extends Agent {
         int index = random.nextInt(enemyFootmen.size());
         return enemyFootmen.get(index);
     }
-    
+
+    /**
+     * copy of printTestData, to print the weights
+     * * called after every epoch, this is designed to show that weights converge eventually
+     * @param weights weight list for the features
+     */
     private void printWeights(List<Double> weights){
         System.out.println("");
         System.out.println("Feature Number      Weight value");
@@ -643,7 +664,13 @@ public class RLAgent extends Agent {
         }
         System.out.println("");
     }
-    
+
+    /**
+     * You give me a list of my footmen to allocate targets to
+     * * I give you a map of my unitIDs to intended Actions as a K/V pair
+     * @param specifiedFootmen footmen to generate Actions for
+     * @return the action map the footmen should take
+     */
     private Map<Integer, Action> allocateTargets(List<Integer> specifiedFootmen) {
         
         Map<Integer, Integer> idAttackTuple = generateAttacks(specifiedFootmen);
@@ -656,7 +683,14 @@ public class RLAgent extends Agent {
         
         return actionMap;
     }
-    
+
+    /**
+     * simplification, pulled out of middleStep.
+     * You give me the state/history, and a sourceID/targetID, I update the currentReward, and weights
+     * @param stateView current stateView
+     * @param historyView current historyView
+     * @param actionMap map of my unitIDs to intended Actions as a K/V pair
+     */
     private void updateRewardsAndWeights(State.StateView stateView, History.HistoryView historyView, Map<Integer, Action> actionMap){
         for(Integer footmanID : actionMap.keySet()){
             currentReward += calculateReward(stateView, historyView, footmanID);
@@ -664,7 +698,7 @@ public class RLAgent extends Agent {
             int targetID = actionMap.get(footmanID).getUnitId();
             if(!this.exploitationMode) {
                 double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
-                updateWeights(features, currentReward, footmanID);
+                this.updateWeights(features, currentReward, footmanID);
             }
         }
     }
