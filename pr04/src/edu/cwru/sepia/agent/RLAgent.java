@@ -1,7 +1,13 @@
  package edu.cwru.sepia.agent;
-/**
+/**Issues:
  * average reward isn't happy
+ *      Soumya mentioned that if this happened, we should use some normalization
  *
+ * the exploration/exploitation rates aren't completely in line with the document (ctrl+f "%" to find my implementation)
+ *  
+ *  
+ **Notes:
+ * A Unit's ID number does uniquely identify it on the field, not just within a player's unit set
  */
 
 import edu.cwru.sepia.action.Action;
@@ -56,7 +62,7 @@ public class RLAgent extends Agent {
     private double currentReward;               //reward across this game
     private FeatureVector featureVector;        //features and stuff
     private int epoch = 0;                      //one cycle of exploration/exploitation
-    private int victories=0;
+    private int episodesWon =0;
 
     /**
      * Constructor for RLAgent object
@@ -102,8 +108,8 @@ public class RLAgent extends Agent {
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
         if(debug) out("Initial step hit");
         if(currentEpisodeNumber > numEpisodes){
-            out(String.format("final stats: played %d games, won %d games, %f win rate", 
-                    this.currentEpisodeNumber, this.victories, (float)this.victories/(float)this.currentEpisodeNumber));
+            out(String.format("final stats: played %d games, won %d games, %f win rate",
+                    this.currentEpisodeNumber, this.episodesWon, (float) this.episodesWon / (float) this.currentEpisodeNumber));
             
             if(debug)out("finished all epochs, exiting");
             System.exit(0);
@@ -114,8 +120,9 @@ public class RLAgent extends Agent {
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % 10 > 2;//80% exploitation, 20% exploration
         if(!this.exploitationMode) {
+            if(debug) out("I'm in a non-learning (exploitation) episode");
             if(this.averageReward.size()<= epoch) this.averageReward.add(epoch, 0d);
-        }
+        } else if(debug) out("I'm in a learning (exploration) episode");
         this.featureVector = new FeatureVector();
         for(Unit.UnitView view : stateView.getAllUnits()){
             this.unitHealth.put(view.getID(), view.getHP());
@@ -152,7 +159,6 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        if(debug) out("beginning execution of middle step");
         Map<Integer, Action> actionMap = new HashMap<>();
         boolean eventOccured = hasEventOccured(stateView, historyView);
         updateUnits(historyView, stateView, stateView.getTurnNumber());
@@ -174,7 +180,12 @@ public class RLAgent extends Agent {
         for(Integer footmanID:idAttackTuple.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
             int targetID = idAttackTuple.get(footmanID);
             actionMap.put(footmanID, Action.createCompoundAttack(footmanID,targetID));
-            currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
+            //TODO: this next line causes infinity, then NaN issues
+            //currentReward += Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
+            currentReward += calculateReward(stateView, historyView, footmanID);
+            //currentReward /= 2;//so I'm gonna cut it down
+            
+            
             if(!this.exploitationMode) {
                 double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
                 updateWeights(featureVector.featureWeights, features, currentReward, stateView, historyView, footmanID);
@@ -195,10 +206,10 @@ public class RLAgent extends Agent {
         if(debug) out("terminal step reached");
         if(enemyFootmen.size()==0) {
             out("victory");
-            victories++;
+            episodesWon++;
         }
         else if(myFootmen.size()==0) out("failure");
-        else err("cannot determine victory or failure");
+        
         out("finished total episode: "+currentEpisodeNumber+" categorized under epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = convertdoubleToDouble(featureVector.featureWeights);
