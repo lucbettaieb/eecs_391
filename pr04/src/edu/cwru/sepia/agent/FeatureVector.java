@@ -7,6 +7,11 @@ import java.util.Map;
  – Health of friendly unit F
  – Health of enemy unit E
  – Is E the enemy unit that F is currently attacking?
+
+ To reweight:
+ w_i = w_i + \alpha * (R(s,a) + \gamma * max_{a'}(Q_w(s',a')) - Q_w(s,a)) * f_i(s,a)
+                      |---------------------------===========-----------|  << showing nested parentheses
+ 
  */
 
 /**
@@ -89,8 +94,17 @@ public class FeatureVector {
      * @param alpha - a variable alpha value
      */
     public double[] updateWeights(double[] updateVector, double temporalDifference, double alpha) {
+        /**
+         To reweight:
+         w_i = w_i + \alpha * (R(s,a) + \gamma * max_{a'}(Q_w(s',a')) - Q_w(s,a)) * f_i(s,a)
+         |---------------------------===========-----------|  << showing nested parentheses
+         */
+        
+        
         for (int i = 0; i < featureWeights.length; i++) {
+            
             featureWeights[i] += (alpha * temporalDifference * updateVector[i]);
+            
         }
         return featureWeights;
     }

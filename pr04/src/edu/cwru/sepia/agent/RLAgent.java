@@ -22,6 +22,7 @@ import edu.cwru.sepia.environment.model.history.History;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
@@ -164,33 +165,19 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
-        Map<Integer, Action> actionMap = new HashMap<>();
+
         boolean eventOccured = hasEventOccured(stateView, historyView);
         updateUnits(historyView, stateView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
-        Map<Integer, Integer> idAttackTuple;
         
-        if(idleFootmen.size()>0){
-            //generate a myfootmanID/enemyFootmanID K/V pair for all idle footmen
-            idAttackTuple = generateAttacks(idleFootmen);
-            for(Integer myFootman : idAttackTuple.keySet()){
-                //turn the above K/V pair into a myfootmanID/Action K/V pair
-                actionMap.put(myFootman, Action.createCompoundAttack(myFootman, idAttackTuple.get(myFootman)));
-            }
-            //reallocate attacks from these guys
-        }
-        if(!eventOccured) return actionMap;//also happens on first turn
-        idAttackTuple = generateAttacks(myFootmen);
+        if(!eventOccured) return allocateTargets(idleFootmen);//just reallocate attacks from the idle guys
         
-        for(Integer footmanID:idAttackTuple.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
-            int targetID = idAttackTuple.get(footmanID);
-            actionMap.put(footmanID, Action.createCompoundAttack(footmanID,targetID));
-            //TODO: this next line causes infinity, then NaN issues
-            //currentReward += Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
+        Map<Integer, Action> actionMap = allocateTargets(myFootmen);
+        
+        for(Integer footmanID : actionMap.keySet()){
             currentReward += calculateReward(stateView, historyView, footmanID);
             //currentReward /= 2;//so I'm gonna cut it down
-            
-            
+            int targetID = actionMap.get(footmanID).getUnitId();
             if(!this.exploitationMode) {
                 double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
                 updateWeights(featureVector.featureWeights, features, currentReward, stateView, historyView, footmanID);
@@ -665,5 +652,18 @@ public class RLAgent extends Agent {
             System.out.println(gamesPlayed + spaceBuffer.toString() + averageReward);
         }
         System.out.println("");
+    }
+    
+    private Map<Integer, Action> allocateTargets(List<Integer> specifiedFootmen) {
+        
+        Map<Integer, Integer> idAttackTuple = generateAttacks(specifiedFootmen);
+        Map<Integer, Action> actionMap = new HashMap<>();
+        for(Integer footmanID:idAttackTuple.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
+            
+            int targetID = idAttackTuple.get(footmanID);
+            actionMap.put(footmanID, Action.createCompoundAttack(footmanID,targetID));
+        }
+        
+        return actionMap;
     }
 }
