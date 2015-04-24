@@ -2,6 +2,13 @@ package edu.cwru.sepia.agent;
 import java.util.List;
 import java.util.Map;
 
+/** Soumya-blessed Feature examples
+ – #of other friendly units that are currently attacking E
+ – Health of friendly unit F
+ – Health of enemy unit E
+ – Is E the enemy unit that F is currently attacking?
+ */
+
 /**
  * A class for the "f(s,a)" feature vector
  *
@@ -49,6 +56,7 @@ public class FeatureVector {
      */
     public static double[] getFeatures(Integer myFootman, Integer enemyFootman, List<Integer> myFootmen, List<Integer> enemyFootmen,
                                        Map<Integer, Integer> unitHealth, Map<Integer, Position> unitLocations) {
+        
         double[] featureVector = new double[NUM_FEATURES];
         featureVector[0] = 1;//first feature value is always 1, because Devin said so
         featureVector[1] = unitHealth.get(enemyFootman);//enemy health
@@ -77,12 +85,12 @@ public class FeatureVector {
      * Updates the feature weights vector given a feature vector, a calculated loss function, and an alpha.
      *
      * @param updateVector - the feature vector to update the feature weights set with
-     * @param lossFunction - the calculated loss function
+     * @param temporalDifference - the calculated loss function
      * @param alpha - a variable alpha value
      */
-    public double[] updateWeights(double[] updateVector, double lossFunction, double alpha) {
+    public double[] updateWeights(double[] updateVector, double temporalDifference, double alpha) {
         for (int i = 0; i < featureWeights.length; i++) {
-            featureWeights[i] += (alpha * lossFunction * updateVector[i]);
+            featureWeights[i] += (alpha * temporalDifference * updateVector[i]);
         }
         return featureWeights;
     }

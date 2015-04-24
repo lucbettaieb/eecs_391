@@ -8,6 +8,9 @@
  *  
  **Notes:
  * A Unit's ID number does uniquely identify it on the field, not just within a player's unit set
+ * 
+ * Lewicki on Q-Learning at CMU:
+ * * http://www.cs.cmu.edu/afs/cs/academic/class/15381-s07/www/slides/050307reinforcementLearning2.pdf
  */
 
 import edu.cwru.sepia.action.Action;
@@ -53,9 +56,11 @@ public class RLAgent extends Agent {
      * but it is not recommended. If you do change them please let us know and explain your reasoning for
      * changing them.
      */
-    public final double gamma = 0.9;            //loss rate                 [0.9]
+    public final double gamma = 0.9;            //discount factor           [0.9]
     public final double alpha = .0001;          //learning rate             [0.0001]
+                                                //if we choose to decay alpha, Lewicki says alpha = k / (k + episodeNumber)
     public final double epsilon = .02;          //disobedience probability  [0.02]
+                                                //we are currently epsilon-greedy --we don't decay epsilon
     public boolean exploitationMode = false;    //exploration/exploitation setting.
     public int currentEpisodeNumber = 0;        //what episode are we on?
     private List<Double> averageReward;         //reward across this epoch
@@ -240,8 +245,9 @@ public class RLAgent extends Agent {
         int optimalEnemy = selectAction(footmanId);
         double[] newFeatures = FeatureVector.getFeatures(footmanId, optimalEnemy, myFootmen, enemyFootmen,unitHealth, unitLocations);
         double newQ = featureVector.qFunction(newFeatures);
-        double loss = calculateLoss(totalReward,newQ,oldQ);
-        return featureVector.updateWeights(oldFeatures, loss, alpha);
+        double td = temporalDifference(totalReward, newQ, oldQ);
+        //Qnew = Qold + \alpha*temporalDifference
+        return featureVector.updateWeights(oldFeatures, td, alpha);
     }
 
     /**
@@ -625,7 +631,7 @@ public class RLAgent extends Agent {
         return returnVar;
     }
     
-    private double calculateLoss(double reward, double newQ, double oldQ){
+    private double temporalDifference(double reward, double newQ, double oldQ){
         return (reward + gamma * newQ - oldQ);
     }
 
