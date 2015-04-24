@@ -15,8 +15,7 @@ import java.util.Map;
  */
 
 /**
- * A class for the "f(s,a)" feature vector
- *
+ * A class for the "f(s,a)" feature vector, and other useful functions
  */
 public class FeatureVector {
 
@@ -37,15 +36,19 @@ public class FeatureVector {
     /**
      * Determines the Q weight value by using the given feature vector.
      *
-     * @param featureVector - the vector of feature values to use in calculation
+     * @param valueOfFeatures - the vector of feature values to use in calculation: f_i(s,a)
      * @return the Q weight value of the given feature vector
+     * 
+     * this is the function Q_w(s,a)
+     * *
      */
-    public double qFunction(double[] featureVector) {
-        double qWeight = 0;
+    public double qFunction(double[] valueOfFeatures) {
+        //Q_s(s,a) = summation with i of: w_i*f_i(s,a)
+        double qW = 0;
         for (int i = 0; i < featureWeights.length; i++) {
-            qWeight += featureWeights[i] * featureVector[i];
+            qW += featureWeights[i] * valueOfFeatures[i];
         }
-        return qWeight;
+        return qW;
     }
 
     /**
@@ -58,9 +61,11 @@ public class FeatureVector {
      * @param enemyFootmen - a list of the enemy footmen currently in the game state
      * @param unitHealth - a list of the health of all units
      * @return the feature vector in reference to the given values
+     * 
+     *  this is the expanded form of f(s,a)
      */
-    public static double[] getFeatures(Integer myFootman, Integer enemyFootman, List<Integer> myFootmen, List<Integer> enemyFootmen,
-                                       Map<Integer, Integer> unitHealth, Map<Integer, Position> unitLocations) {
+    public static double[] fFunction(Integer myFootman, Integer enemyFootman, List<Integer> myFootmen, List<Integer> enemyFootmen,
+                                     Map<Integer, Integer> unitHealth, Map<Integer, Position> unitLocations) {
         
         double[] featureVector = new double[NUM_FEATURES];
         featureVector[0] = 1;//first feature value is always 1, because Devin said so

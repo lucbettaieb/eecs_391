@@ -22,7 +22,6 @@ import edu.cwru.sepia.environment.model.history.History;
 import edu.cwru.sepia.environment.model.state.State;
 import edu.cwru.sepia.environment.model.state.Unit;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
@@ -166,23 +165,17 @@ public class RLAgent extends Agent {
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
 
-        boolean eventOccured = hasEventOccured(stateView, historyView);
+        boolean eventOccurred = hasEventOccured(stateView, historyView);
         updateUnits(historyView, stateView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         
-        if(!eventOccured) return allocateTargets(idleFootmen);//just reallocate attacks from the idle guys
+        if(!eventOccurred) return allocateTargets(idleFootmen);
+        //just reallocate attacks from the idle guys if nothing important occurred
         
-        Map<Integer, Action> actionMap = allocateTargets(myFootmen);
+        Map<Integer, Action> actionMap = allocateTargets(myFootmen);//allocate attacks from everyone
         
-        for(Integer footmanID : actionMap.keySet()){
-            currentReward += calculateReward(stateView, historyView, footmanID);
-            //currentReward /= 2;//so I'm gonna cut it down
-            int targetID = actionMap.get(footmanID).getUnitId();
-            if(!this.exploitationMode) {
-                double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
-                updateWeights(featureVector.featureWeights, features, currentReward, stateView, historyView, footmanID);
-            }
-        }
+        updateRewardsAndWeights(stateView, historyView, actionMap);//update currentReward, and calls updateWeight
+        
         return actionMap;
     }
 
@@ -219,21 +212,18 @@ public class RLAgent extends Agent {
     }
 
     /**
-     * Calculate the updated weights for this agent. 
-     * @param oldWeights Weights prior to update, unused: located within the FeatureVector
+     * Calculate the updated weights for this agent.
      * @param oldFeatures Features from (s,a)
      * @param totalReward Cumulative discounted reward for this footman.
-     * @param stateView Current state of the game.
-     * @param historyView History of the game up until this point
      * @param footmanId The footman we are updating the weights for
      * @return The updated weight vector.
      */
-    public double[] updateWeights(double[] oldWeights, double[] oldFeatures, double totalReward, 
-                                  State.StateView stateView, History.HistoryView historyView, int footmanId) {
+    public double[] updateWeights(double[] oldFeatures, double totalReward,
+                                  int footmanId) {
         
         double oldQ = featureVector.qFunction(oldFeatures);
         int optimalEnemy = selectAction(footmanId);
-        double[] newFeatures = FeatureVector.getFeatures(footmanId, optimalEnemy, myFootmen, enemyFootmen,unitHealth, unitLocations);
+        double[] newFeatures = FeatureVector.fFunction(footmanId, optimalEnemy, myFootmen, enemyFootmen, unitHealth, unitLocations);
         double newQ = featureVector.qFunction(newFeatures);
         double td = temporalDifference(totalReward, newQ, oldQ);
         //Qnew = Qold + \alpha*temporalDifference
@@ -265,7 +255,7 @@ public class RLAgent extends Agent {
             double qOfBestEnemy = Double.NEGATIVE_INFINITY;
             int bestEnemy = enemyFootmen.get(0);//arbitrary first enemy
             for(Integer enemyID : enemyFootmen){//for each enemy footman
-                double[] features = FeatureVector.getFeatures(attackerId, enemyID,myFootmen, enemyFootmen, unitHealth, unitLocations);
+                double[] features = FeatureVector.fFunction(attackerId, enemyID, myFootmen, enemyFootmen, unitHealth, unitLocations);
                 double q = featureVector.qFunction(features);
                 if(q > qOfBestEnemy){
                     qOfBestEnemy = q;
@@ -374,7 +364,7 @@ public class RLAgent extends Agent {
      * @return The array of feature function outputs.
      */
     public double[] calculateFeatureVector(State.StateView stateView, History.HistoryView historyView, int attackerId, int defenderId) {
-        return FeatureVector.getFeatures(attackerId, defenderId, myFootmen, enemyFootmen,unitHealth, unitLocations);
+        return FeatureVector.fFunction(attackerId, defenderId, myFootmen, enemyFootmen, unitHealth, unitLocations);
     }
 
     /**
@@ -665,5 +655,17 @@ public class RLAgent extends Agent {
         }
         
         return actionMap;
+    }
+    
+    private void updateRewardsAndWeights(State.StateView stateView, History.HistoryView historyView, Map<Integer, Action> actionMap){
+        for(Integer footmanID : actionMap.keySet()){
+            currentReward += calculateReward(stateView, historyView, footmanID);
+            //currentReward /= 2;//so I'm gonna cut it down
+            int targetID = actionMap.get(footmanID).getUnitId();
+            if(!this.exploitationMode) {
+                double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
+                updateWeights(features, currentReward, footmanID);
+            }
+        }
     }
 }
