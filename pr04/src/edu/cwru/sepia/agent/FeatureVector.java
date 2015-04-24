@@ -82,7 +82,7 @@ public class FeatureVector {
     }
 
     /**
-     * Updates the feature weights vector given a feature vector, a calculated loss function, and an alpha.
+     * Updates the feature weights vector given a feature vector, the temporal difference, and alpha.
      *
      * @param updateVector - the feature vector to update the feature weights set with
      * @param temporalDifference - the calculated loss function
@@ -104,7 +104,9 @@ public class FeatureVector {
      * @param unitLocations - the list of unit locations
      * @return if the given enemy is the closest enemy in terms of the Chebyshev distance
      */
-    private static boolean isNearestEnemy(Integer myFootmanID, Integer enemyFootmanID, List<Integer> enemyFootmen, Map<Integer, Position> unitLocations) {
+    private static boolean isNearestEnemy(Integer myFootmanID, Integer enemyFootmanID, 
+                                          List<Integer> enemyFootmen, Map<Integer, Position> unitLocations) {
+        
         Position footmanLoc = unitLocations.get(myFootmanID);
         int closestDistance = footmanLoc.chebyshevDistance(unitLocations.get(enemyFootmanID));
         for (Integer curEnemy : enemyFootmen) {

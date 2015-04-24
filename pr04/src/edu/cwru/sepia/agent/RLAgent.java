@@ -225,7 +225,10 @@ public class RLAgent extends Agent {
         printTestData(this.averageReward);
         saveWeights(convertdoubleToDouble(featureVector.featureWeights));
         currentEpisodeNumber++;
-        if(currentEpisodeNumber % 10 == 0) epoch++;
+        if(currentEpisodeNumber % 10 == 0) {
+            epoch++;
+            printWeights(Arrays.asList(convertdoubleToDouble(featureVector.featureWeights)));
+        }
     }
 
     /**
@@ -644,5 +647,23 @@ public class RLAgent extends Agent {
         //code adapted from: http://stackoverflow.com/questions/5034370/retrieving-a-random-item-from-arraylist
         int index = random.nextInt(enemyFootmen.size());
         return enemyFootmen.get(index);
+    }
+    
+    private void printWeights(List<Double> weights){
+        System.out.println("");
+        System.out.println("Feature Number      Weight value");
+        System.out.println("--------------      ---------------");
+        for (int i = 0; i < weights.size(); i++) {
+            String gamesPlayed = Integer.toString(i);
+            String averageReward = String.format("%.2f", weights.get(i));
+
+            int numSpaces = "-------------     ".length() - gamesPlayed.length();
+            StringBuffer spaceBuffer = new StringBuffer(numSpaces);
+            for (int j = 0; j < numSpaces; j++) {
+                spaceBuffer.append(" ");
+            }
+            System.out.println(gamesPlayed + spaceBuffer.toString() + averageReward);
+        }
+        System.out.println("");
     }
 }
