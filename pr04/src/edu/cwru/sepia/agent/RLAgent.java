@@ -1,6 +1,7 @@
  package edu.cwru.sepia.agent;
 /**
- * reward calculation is not done 
+ * average reward isn't happy
+ *
  */
 
 import edu.cwru.sepia.action.Action;
@@ -46,15 +47,16 @@ public class RLAgent extends Agent {
      * but it is not recommended. If you do change them please let us know and explain your reasoning for
      * changing them.
      */
-    public final double gamma = 0.9;
-    public final double alpha = .0001;
-    public final double epsilon = .02;
+    public final double gamma = 0.9;            //loss rate                 [0.9]
+    public final double alpha = .0001;          //learning rate             [0.0001]
+    public final double epsilon = .02;          //disobedience probability  [0.02]
     public boolean exploitationMode = false;    //exploration/exploitation setting.
     public int currentEpisodeNumber = 0;        //what episode are we on?
     private List<Double> averageReward;         //reward across this epoch
     private double currentReward;               //reward across this game
     private FeatureVector featureVector;        //features and stuff
-    private int epoch = 0;
+    private int epoch = 0;                      //one cycle of exploration/exploitation
+    private int victories=0;
 
     /**
      * Constructor for RLAgent object
@@ -100,6 +102,9 @@ public class RLAgent extends Agent {
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
         if(debug) out("Initial step hit");
         if(currentEpisodeNumber > numEpisodes){
+            out(String.format("final stats: played %d games, won %d games, %f win rate", 
+                    this.currentEpisodeNumber, this.victories, (float)this.victories/(float)this.currentEpisodeNumber));
+            
             if(debug)out("finished all epochs, exiting");
             System.exit(0);
         }
@@ -152,19 +157,22 @@ public class RLAgent extends Agent {
         boolean eventOccured = hasEventOccured(stateView, historyView);
         updateUnits(historyView, stateView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
+        Map<Integer, Integer> idAttackTuple;
+        
         if(idleFootmen.size()>0){
             //generate a myfootmanID/enemyFootmanID K/V pair for all idle footmen
-            Map<Integer, Integer> temp = generateAttacks(idleFootmen);
-            for(Integer myFootman : temp.keySet()){
+            idAttackTuple = generateAttacks(idleFootmen);
+            for(Integer myFootman : idAttackTuple.keySet()){
                 //turn the above K/V pair into a myfootmanID/Action K/V pair
-                actionMap.put(myFootman, Action.createCompoundAttack(myFootman, temp.get(myFootman)));
+                actionMap.put(myFootman, Action.createCompoundAttack(myFootman, idAttackTuple.get(myFootman)));
             }
             //reallocate attacks from these guys
         }
         if(!eventOccured) return actionMap;//also happens on first turn
-        Map<Integer, Integer> temp = generateAttacks(myFootmen);
-        for(Integer footmanID:temp.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
-            int targetID = temp.get(footmanID);
+        idAttackTuple = generateAttacks(myFootmen);
+        
+        for(Integer footmanID:idAttackTuple.keySet()){//if an event occurred, reallocate all targets.  Map.put overwrites old value
+            int targetID = idAttackTuple.get(footmanID);
             actionMap.put(footmanID, Action.createCompoundAttack(footmanID,targetID));
             currentReward = Math.max(currentReward, calculateReward(stateView, historyView, footmanID));
             if(!this.exploitationMode) {
@@ -185,7 +193,10 @@ public class RLAgent extends Agent {
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
         updateUnits(historyView, stateView, stateView.getTurnNumber());//update for killed players
         if(debug) out("terminal step reached");
-        if(enemyFootmen.size()==0) out("victory");
+        if(enemyFootmen.size()==0) {
+            out("victory");
+            victories++;
+        }
         else if(myFootmen.size()==0) out("failure");
         else err("cannot determine victory or failure");
         out("finished total episode: "+currentEpisodeNumber+" categorized under epoch: "+epoch);
@@ -238,7 +249,7 @@ public class RLAgent extends Agent {
         double bestActionProbability = 1-epsilon;//this converges to 1, so rand() > bestActionProbability causes exploration
         double rand = random.nextDouble();
         boolean exploreAction;
-        exploreAction = rand >= bestActionProbability;
+        exploreAction = (rand >= bestActionProbability);
         if(exploreAction && !exploitationMode){//we're not following the policy, and we're in exploitation
             //TODO: above 'if' statement may not depend on exploitation mode
             if(debug) out("disobeying the policy");
@@ -293,8 +304,6 @@ public class RLAgent extends Agent {
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
         double reward = -.2d;
-        //TODO: discount based on "timestep"
-            //this may already be taken care of by the use of gamma
         if(!myFootmen.contains(footmanId)){
             //this guy died.
             reward -= 10;
@@ -302,10 +311,10 @@ public class RLAgent extends Agent {
         int turnNumber  = stateView.getTurnNumber();
         if(turnNumber<=0) return reward;
         for(DamageLog log :  historyView.getDamageLogs(turnNumber - 1)){
-            if(log.getDefenderController() == playernum && log.getDefenderID() == footmanId){
+            if(log.getDefenderController() == playernum){
                 reward -= log.getDamage();
             }
-            if(log.getAttackerController() == playernum && log.getAttackerID() == footmanId){
+            if(log.getAttackerController() == playernum){
                 reward += log.getDamage();
             }
         }
