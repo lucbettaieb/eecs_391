@@ -109,7 +109,7 @@ public class FeatureVector {
             featureWeights[i] += (alpha * temporalDifference * updateVector[i]);
             
         }
-        normalizeWeights();
+        normalize();
         return featureWeights;
     }
 
@@ -152,14 +152,14 @@ public class FeatureVector {
         return adjacent;
     }
     
-    private void normalizeWeights(){
-        Double objectArr[] = RLAgent.convertdoubleToDouble(featureWeights);
+    private void normalize(){
+        Double objectArr[] = Utils.convertdoubleToDouble(featureWeights);
         Double max = Collections.max(Arrays.asList(objectArr));
         Double min = Collections.min(Arrays.asList(objectArr));
         
         for(int i = 0; i<featureWeights.length;i++){
             featureWeights[i] = 2*(featureWeights[i]-min)/(max-min)-1;
         }
-    }//end of normalizeWeights
+    }//end of normalize
 
 }

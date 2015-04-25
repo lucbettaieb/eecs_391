@@ -98,7 +98,7 @@ public class RLAgent extends Agent {
         if(debug) out("weights-loading decision made.");
         if (loadWeights){
             if(debug)out("loading weights");
-            weights = loadWeights();
+            weights = Utils.loadWeights();
         }
         else {
             // initialize weights to random values between -1 and 1
@@ -110,7 +110,7 @@ public class RLAgent extends Agent {
         }//end of else statement
         if(debug) out("converting weight types");
         this.featureVector = new FeatureVector();
-        this.featureVector.featureWeights = convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
+        this.featureVector.featureWeights = Utils.convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
         if(debug) out("RLAgent constructor finished");
         this.averageReward = new LinkedList<>();
     }//end of constructor
@@ -174,9 +174,9 @@ public class RLAgent extends Agent {
     @Override
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
 
-        boolean eventOccurred = hasEventOccured(stateView, historyView);
+        boolean eventOccurred = Utils.hasEventOccured(stateView, historyView, playernum);
         this.updateUnits(historyView, stateView, stateView.getTurnNumber());
-        List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
+        List<Integer> idleFootmen = Utils.getIdleFootmen(historyView, stateView.getTurnNumber(), playernum);
         
         if(!eventOccurred) return allocateTargets(idleFootmen);
         //just reallocate attacks from the idle guys if nothing important occurred
@@ -206,18 +206,19 @@ public class RLAgent extends Agent {
         
         out("finished total episode: "+currentEpisodeNumber+" categorized under epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
-        weights = convertdoubleToDouble(featureVector.featureWeights);
+        weights = Utils.convertdoubleToDouble(featureVector.featureWeights);
 
         averageReward.set(epoch, averageReward.get(epoch) + 
                 (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % EPOCH_LENGTH,1));//don't divide by 0
         //avgReward +=(currReward-avgReward)/(episode number in this epoch, defaulting to 1 if first episode)
+        //TODO: normalize averageReward?
         
         printTestData(this.averageReward);
-        saveWeights(convertdoubleToDouble(featureVector.featureWeights));
+        saveWeights(Utils.convertdoubleToDouble(featureVector.featureWeights));
         currentEpisodeNumber++;
         if(currentEpisodeNumber % EPOCH_LENGTH == 0) {
             epoch++;
-            printWeights(Arrays.asList(convertdoubleToDouble(featureVector.featureWeights)));
+            Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
             out("");
         }
     }
@@ -411,47 +412,11 @@ public class RLAgent extends Agent {
         }
     }
 
-    /**
-     * DO NOT CHANGE THIS!
-     *
-     * This function will load the weights stored at agent_weights/weights.txt. The contents of this file
-     * can be created using the saveWeights function. You will use this function if the load weights argument
-     * of the agent is set to 1.
-     *
-     * @return The array of weights
-     */
-    public Double[] loadWeights() {
-        File path = new File("agent_weights/weights.txt");
-        if (!path.exists()) {
-            System.err.println("Failed to load weights. File does not exist");
-            return null;
-        }
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-            String line;
-            List<Double> weights = new LinkedList<>();
-            while((line = reader.readLine()) != null) {
-                weights.add(Double.parseDouble(line));
-            }
-            reader.close();
-
-            return weights.toArray(new Double[weights.size()]);
-        } catch(IOException ex) {
-            System.err.println("Failed to load weights from file. Reason: " + ex.getMessage());
-        }
-        return null;
-    }
+    @Override
+    public void savePlayerData(OutputStream outputStream) {}
 
     @Override
-    public void savePlayerData(OutputStream outputStream) {
-
-    }
-
-    @Override
-    public void loadPlayerData(InputStream inputStream) {
-
-    }
+    public void loadPlayerData(InputStream inputStream) {}
 
     /**
      * removes killed units from the myfootmen and enemyfootmen fields
@@ -480,24 +445,6 @@ public class RLAgent extends Agent {
                 //this is a tolerable error, so we'll continue execution
             }
         }
-    }
-
-    /**
-     * enumerates my footmen that just finished an action
-     * i.e. footmen that just completed an action
-     * @param historyView history for the current game
-     * @param currentTurnNumber the turn number about to be executed (i.e. not subtracted by 1)
-     * @return the list of footman's IDs that are now idle
-     */
-    private List<Integer> getIdleFootmen(History.HistoryView historyView, int currentTurnNumber) {
-        List<Integer> returnVar = new ArrayList<>();
-
-        Map<Integer, ActionResult> actionResults = historyView.getCommandFeedback(playernum, currentTurnNumber - 1);
-        for (ActionResult result : actionResults.values()) {
-            //no, IntelliJ, I don't want to do a "collect" call with lambdas and things I don't understand.
-            if(result.getFeedback() == ActionFeedback.COMPLETED)returnVar.add(result.getAction().getUnitId());
-        }
-        return returnVar;
     }
 
     /**
@@ -532,28 +479,6 @@ public class RLAgent extends Agent {
         }
     }
     
-    /**
-     * You give me the history and current state
-     * I tell you if someone was killed or if I was attacked.
-     * This is deemed an "event", which is important and means weights should be updated
-     * @param historyView history of the current game
-     * @param stateView current state of the game
-     * @return whether I was attacked happened, or a player died.  Defaults to true on first turn
-     */
-    private boolean hasEventOccured(State.StateView stateView, History.HistoryView historyView){
-        if(stateView.getTurnNumber()<=0) return true;
-        int turnNumber = stateView.getTurnNumber();
-        if(historyView.getDeathLogs(turnNumber-1).size()>0) {
-            if(debug) out("a death was seen. an event occured between turns "+(turnNumber-1)+" and "+turnNumber);
-            return true;//death occured
-        }
-        for(DamageLog damageLog : historyView.getDamageLogs(turnNumber-1)){
-            if(damageLog.getDefenderController() == playernum) return true;
-        }
-        if(debug)out("No event was seen between turns "+(turnNumber-1)+" and "+turnNumber);
-        return false;
-    }
-    
     //effectively a macro to make typing "system.out.println" more bearable.
     public static void out(String s){
         System.out.println(s);
@@ -577,44 +502,6 @@ public class RLAgent extends Agent {
     }
 
     /**
-     * you give me a double[]
-     * I give you the equivalent Double[] 
-     * @param input a double[]
-     * @return the Double[]
-     */
-    protected static Double[] convertdoubleToDouble(double[] input){
-        //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
-        return Arrays.stream(input).boxed().toArray(Double[]::new);
-    }
-
-    /**
-     * you give me a Double[]
-     * I give you a double[]
-     * @param input a Double[]
-     * @return the double[]
-     */
-    protected static double[] convertDoubleTodouble(Double[] input){
-        //convoluded code below courtesy of: http://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
-        if(debug) out("ready to convert Double to double");
-        double[] returnVar = Arrays.stream(input).mapToDouble(i->i).toArray();
-        if(debug) out("Converted Double to double");
-        return returnVar;
-    }
-
-    /**
-     * abstraction of the temporal difference function.  
-     * * Makes things nice and readable
-     * * Gamma is taken from "this"
-     * @param reward reward for a predetermined state/action
-     * @param newQ Q(s',a')
-     * @param oldQ Q(s ,a )
-     * @return the temporal difference: reward + gamma * newQ - oldQ_
-     */
-    private double temporalDifference(double reward, double newQ, double oldQ){
-        return (reward + gamma * newQ - oldQ);
-    }
-
-    /**
      * gets a random element from the enemyFootmen list
      * useful for exploration in Q-learning
      * @return ID of a random enemy footman who is alive
@@ -623,29 +510,6 @@ public class RLAgent extends Agent {
         //code adapted from: http://stackoverflow.com/questions/5034370/retrieving-a-random-item-from-arraylist
         int index = random.nextInt(enemyFootmen.size());
         return enemyFootmen.get(index);
-    }
-
-    /**
-     * copy of printTestData, to print the weights
-     * * called after every epoch, this is designed to show that weights converge eventually
-     * @param weights weight list for the features
-     */
-    private void printWeights(List<Double> weights){
-        System.out.println("");
-        System.out.println("Feature Number      Weight value");
-        System.out.println("--------------      ---------------");
-        for (int i = 0; i < weights.size(); i++) {
-            String gamesPlayed = Integer.toString(i);
-            String averageReward = String.format("%.2f", weights.get(i));
-
-            int numSpaces = "-------------     ".length() - gamesPlayed.length();
-            StringBuffer spaceBuffer = new StringBuffer(numSpaces);
-            for (int j = 0; j < numSpaces; j++) {
-                spaceBuffer.append(" ");
-            }
-            System.out.println(gamesPlayed + spaceBuffer.toString() + averageReward);
-        }
-        System.out.println("");
     }
 
     /**
@@ -687,7 +551,7 @@ public class RLAgent extends Agent {
                 int optimalEnemy = selectAction(footmanID);
                 double[] fValues = FeatureVector.fFunction(footmanID, optimalEnemy, myFootmen, enemyFootmen, unitHealth, unitLocations);
                 double newQ = featureVector.qFunction(fValues);
-                double td = temporalDifference(currentReward, newQ, oldQ);
+                double td = Utils.temporalDifference(currentReward, gamma, newQ, oldQ);
                 //Qnew = Qold + \alpha*temporalDifference
                 featureVector.updateWeights(features, td, alpha);
             }
