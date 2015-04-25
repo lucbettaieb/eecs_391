@@ -175,7 +175,7 @@ public class RLAgent extends Agent {
     public Map<Integer, Action> middleStep(State.StateView stateView, History.HistoryView historyView) {
 
         boolean eventOccurred = hasEventOccured(stateView, historyView);
-        updateUnits(historyView, stateView, stateView.getTurnNumber());
+        this.updateUnits(historyView, stateView, stateView.getTurnNumber());
         List<Integer> idleFootmen = getIdleFootmen(historyView, stateView.getTurnNumber());
         
         if(!eventOccurred) return allocateTargets(idleFootmen);
@@ -220,24 +220,6 @@ public class RLAgent extends Agent {
             printWeights(Arrays.asList(convertdoubleToDouble(featureVector.featureWeights)));
             out("");
         }
-    }
-
-    /**
-     * Calculate the updated weights for this agent.
-     * @param oldFeatures Features from (s,a)
-     * @param totalReward Cumulative discounted reward for this footman.
-     * @param footmanId The footman we are updating the weights for
-     * @return The updated weight vector.
-     */
-    public double[] updateWeights(double[] oldFeatures, double totalReward, int footmanId) {
-        
-        double oldQ = featureVector.qFunction(oldFeatures);
-        int optimalEnemy = selectAction(footmanId);
-        double[] fValues = FeatureVector.fFunction(footmanId, optimalEnemy, myFootmen, enemyFootmen, unitHealth, unitLocations);
-        double newQ = featureVector.qFunction(fValues);
-        double td = temporalDifference(totalReward, newQ, oldQ);
-        //Qnew = Qold + \alpha*temporalDifference
-        return featureVector.updateWeights(oldFeatures, td, alpha);
     }
 
     /**
@@ -699,7 +681,15 @@ public class RLAgent extends Agent {
             int targetID = actionMap.get(footmanID).getUnitId();
             if(!this.exploitationMode) {
                 double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
-                this.updateWeights(features, currentReward, footmanID);
+                
+                //update the weights:
+                double oldQ = featureVector.qFunction(features);
+                int optimalEnemy = selectAction(footmanID);
+                double[] fValues = FeatureVector.fFunction(footmanID, optimalEnemy, myFootmen, enemyFootmen, unitHealth, unitLocations);
+                double newQ = featureVector.qFunction(fValues);
+                double td = temporalDifference(currentReward, newQ, oldQ);
+                //Qnew = Qold + \alpha*temporalDifference
+                featureVector.updateWeights(features, td, alpha);
             }
         }
     }
