@@ -555,10 +555,10 @@ public class RLAgent extends Agent {
     }
     
     //effectively a macro to make typing "system.out.println" more bearable.
-    public void out(String s){
+    public static void out(String s){
         System.out.println(s);
     }
-    public void err(String s){
+    public static void err(String s){
         System.err.println(s);
     }
 
@@ -582,7 +582,7 @@ public class RLAgent extends Agent {
      * @param input a double[]
      * @return the Double[]
      */
-    private Double[] convertdoubleToDouble(double[] input){
+    protected static Double[] convertdoubleToDouble(double[] input){
         //convoluded code below courtesy of: http://stackoverflow.com/questions/880581/how-to-convert-int-to-integer-in-java
         return Arrays.stream(input).boxed().toArray(Double[]::new);
     }
@@ -593,7 +593,7 @@ public class RLAgent extends Agent {
      * @param input a Double[]
      * @return the double[]
      */
-    private double[] convertDoubleTodouble(Double[] input){
+    protected static double[] convertDoubleTodouble(Double[] input){
         //convoluded code below courtesy of: http://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
         if(debug) out("ready to convert Double to double");
         double[] returnVar = Arrays.stream(input).mapToDouble(i->i).toArray();
