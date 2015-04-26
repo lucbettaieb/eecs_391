@@ -39,21 +39,21 @@ public class RLAgent extends Agent {
      * When starting an episode. If the count is greater than this value print a message
      * and call sys.exit(0)
      */
-    public final int numEpisodes;
-    private List<Integer> myFootmen;//IDs of my footmen
-    private List<Integer> enemyFootmen;//IDs of footmen owned by ENEMY_PLAYERNUM
-    Map<Integer, Integer> unitHealth;
-    Map<Integer, Position> unitLocations;
+    protected final int numEpisodes;
+    protected List<Integer> myFootmen;//IDs of my footmen
+    protected List<Integer> enemyFootmen;//IDs of footmen owned by ENEMY_PLAYERNUM
+    protected Map<Integer, Integer> unitHealth;
+    protected Map<Integer, Position> unitLocations;
 
     /**
      * Convenience variable specifying enemy agent number. Use this whenever referring
      * to the enemy agent. We will make sure it is set to the proper number when testing your code.
      */
-    public static final int ENEMY_PLAYERNUM = 1;
-    public static final int NUM_FEATURES = FeatureVector.NUM_FEATURES;
-    public final Random random = new Random(12345);
+    protected static final int ENEMY_PLAYERNUM = 1;
+    protected static final int NUM_FEATURES = FeatureVector.NUM_FEATURES;
+    protected final Random random = new Random(12345);
     @Deprecated
-    public Double[] weights; //q function weights
+    protected Double[] weights; //q function weights
                              //this is read on startup into FeatureVector, and written from FeatureVector before finish
 
     /**
@@ -61,13 +61,13 @@ public class RLAgent extends Agent {
      * but it is not recommended. If you do change them please let us know and explain your reasoning for
      * changing them.
      */
-    public final double gamma = 0.9;            //discount factor           [0.9]
-    public final double alpha = .0001;          //learning rate             [0.0001]
+    protected final double gamma = 0.9;         //discount factor           [0.9]
+    protected final double alpha = .0001;       //learning rate             [0.0001]
                                                 //if we choose to decay alpha, Lewicki says alpha = k / (k + episodeNumber)
-    public final double epsilon = .02;          //disobedience probability  [0.02]
+    protected final double epsilon = .02;       //disobedience probability  [0.02]
                                                 //we are currently epsilon-greedy --we don't decay epsilon
-    public boolean exploitationMode = false;    //exploration/exploitation setting.
-    public int currentEpisodeNumber = 0;        //what episode are we on?
+    protected boolean exploitationMode = false; //exploration/exploitation setting.
+    protected int currentEpisodeNumber = 0;     //what episode are we on?
     private List<Double> averageReward;         //reward across this epoch
     private double currentReward;               //reward across this game
     private FeatureVector featureVector;        //features and stuff
@@ -82,7 +82,6 @@ public class RLAgent extends Agent {
      */
     public RLAgent(int playernum, String[] args) {
         super(playernum);
-        if(debug) setVerbose(true);//"print out the action list each time it is chosen by getAction()"
 
         if (args.length >= 1) {
             numEpisodes = Integer.parseInt(args[0]);
@@ -91,11 +90,9 @@ public class RLAgent extends Agent {
             out("Warning! Number of episodes not specified. Defaulting to 50 episodes.");
             numEpisodes = 50;
         }
-        if(debug) out("deciding if I should load weights");
         boolean loadWeights = false;
         if (args.length >= 2) loadWeights = Boolean.parseBoolean(args[1]);
         else System.out.println("Warning! Load weights argument not specified. Defaulting to not loading.");
-        if(debug) out("weights-loading decision made.");
         if (loadWeights){
             if(debug)out("loading weights");
             weights = Utils.loadWeights();
@@ -108,10 +105,8 @@ public class RLAgent extends Agent {
                 weights[i] = random.nextDouble() * 2 - 1;
             }//end of for loop
         }//end of else statement
-        if(debug) out("converting weight types");
         this.featureVector = new FeatureVector();
         this.featureVector.featureWeights = Utils.convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
-        if(debug) out("RLAgent constructor finished");
         this.averageReward = new LinkedList<>();
     }//end of constructor
 
@@ -120,24 +115,14 @@ public class RLAgent extends Agent {
      */
     @Override
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
-        if(debug) out("Initial step hit");
-        if(currentEpisodeNumber > numEpisodes){
-            
-            out(String.format("final stats: played %d games, won %d games, %f win rate",
-                    this.currentEpisodeNumber, this.episodesWon, (float) this.episodesWon / (float) this.currentEpisodeNumber));
-            
-            if(debug)out("finished all epochs, exiting");
-            System.exit(0);
-        }
         this.unitHealth = new HashMap<>();
         this.unitLocations = new HashMap<>();
         // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % EPOCH_LENGTH > 2;//80% exploitation, 20% exploration
         if(!this.exploitationMode) {
-            if(debug) out("I'm in a non-learning (exploitation) episode");
             if(this.averageReward.size()<= epoch) this.averageReward.add(epoch, 0d);
-        } else if(debug) out("I'm in a learning (exploration) episode");
+        }
         for(Unit.UnitView view : stateView.getAllUnits()){
             this.unitHealth.put(view.getID(), view.getHP());
             this.unitLocations.put(view.getID(), new Position(view));
@@ -197,14 +182,12 @@ public class RLAgent extends Agent {
     @Override
     public void terminalStep(State.StateView stateView, History.HistoryView historyView) {
         updateUnits(historyView, stateView, stateView.getTurnNumber());//update for killed players
-        if(debug) out("terminal step reached");
         if(enemyFootmen.size()==0) {
-            out("victory");
+            System.out.print("W\t");
             episodesWon++;
         }
-        else if(myFootmen.size()==0) out("failure");
+        else if(myFootmen.size()==0) System.out.print("L\t");
         
-        out("finished total episode: "+currentEpisodeNumber+" categorized under epoch: "+epoch);
         //take my weights that I kept in the FeatureVector, and write it back here for all Devin's code to use on finishing
         weights = Utils.convertdoubleToDouble(featureVector.featureWeights);
 
@@ -212,14 +195,20 @@ public class RLAgent extends Agent {
                 (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % EPOCH_LENGTH,1));//don't divide by 0
         //avgReward +=(currReward-avgReward)/(episode number in this epoch, defaulting to 1 if first episode)
         //TODO: normalize averageReward?
-        
-        printTestData(this.averageReward);
-        saveWeights(Utils.convertdoubleToDouble(featureVector.featureWeights));
         currentEpisodeNumber++;
-        if(currentEpisodeNumber % EPOCH_LENGTH == 0) {
-            epoch++;
-            Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
+        if(currentEpisodeNumber == numEpisodes){
             out("");
+            Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
+            printTestData(this.averageReward);
+            saveWeights(Utils.convertdoubleToDouble(featureVector.featureWeights));
+            out(String.format("final stats: played %d games, won %d games, %f%% win rate",
+                    this.currentEpisodeNumber, this.episodesWon, 100*(float) this.episodesWon / (float) this.currentEpisodeNumber));
+            System.exit(0);
+        } else if(currentEpisodeNumber % EPOCH_LENGTH == 0) {
+            epoch++;
+            out("");
+            Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
+            printTestData(this.averageReward);
         }
     }
 
@@ -242,7 +231,6 @@ public class RLAgent extends Agent {
         exploreAction = (rand >= bestActionProbability);
         if(exploreAction && !exploitationMode){//we're not following the policy, and we're in exploitation
             //TODO: above 'if' statement may not depend on exploitation mode
-            if(debug) out("disobeying the policy");
             return randomEnemy();
         } else {//we're either following the policy, or not exploring
             double qOfBestEnemy = Double.NEGATIVE_INFINITY;
@@ -434,10 +422,8 @@ public class RLAgent extends Agent {
             int deadUnitsPlayer = deathLog.getController();
             if(deadUnitsPlayer == ENEMY_PLAYERNUM){//was the dead unit owned by the enemy?
                 this.enemyFootmen.remove(enemyFootmen.indexOf(deadUnitID));
-                out("Enemy player lost unit: "+deadUnitID+", they now have "+enemyFootmen.size()+" units left");
             } else if(deadUnitsPlayer == playernum){//the dead unit was owned by me
                 this.myFootmen.remove(myFootmen.indexOf(deadUnitID));
-                out("I lost unit: "+deadUnitID+", I now have "+myFootmen.size()+" units left");
             } else {
                 err("a unit owned by an unknown player died");
                 err("that player was " + deadUnitsPlayer);

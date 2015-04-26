@@ -86,13 +86,11 @@ public class Utils {
         if(stateView.getTurnNumber()<=0) return true;
         int turnNumber = stateView.getTurnNumber();
         if(historyView.getDeathLogs(turnNumber-1).size()>0) {
-            if(RLAgent.debug) RLAgent.out("a death was seen. an event occured between turns " + (turnNumber - 1) + " and " + turnNumber);
             return true;//death occured
         }
         for(DamageLog damageLog : historyView.getDamageLogs(turnNumber-1)){
             if(damageLog.getDefenderController() == playernum) return true;
         }
-        if(RLAgent.debug)RLAgent.out("No event was seen between turns " + (turnNumber - 1) + " and " + turnNumber);
         return false;
     }
 

@@ -67,24 +67,25 @@ public class FeatureVector {
         
         double[] featureVector = new double[NUM_FEATURES];
         featureVector[0] = 1;//first feature value is always 1, because Devin said so
-        featureVector[1] = unitHealth.get(enemyFootman);//enemy health
-        featureVector[2] = unitHealth.get(myFootman);//footman health
+        featureVector[1] = .04*unitHealth.get(enemyFootman);//enemy health
+        featureVector[2] = .08*unitHealth.get(myFootman);//footman health
         //determine the ratio of hit-points from enemy to those of footman
         featureVector[3] = unitHealth.get(myFootman) / Math.max(unitHealth.get(enemyFootman), .5d);//don't divide by 0, yo!
         
         //determine whether the enemy is the closest possible enemy
         if (isNearestEnemy(myFootman, enemyFootman, enemyFootmen, unitLocations)) featureVector[4] += .3;
-        else featureVector[4] -= .4;
+        else featureVector[4] = -.4;
         
         Position myPosition = unitLocations.get(myFootman);
         Position enemyPosition = unitLocations.get(enemyFootman);
         //determine if the enemy can be attacked based on range from current footman
-        if(myPosition.isAdjacent(enemyPosition)) featureVector[5] += .03;
+        if(myPosition.isAdjacent(enemyPosition)) featureVector[5] = .5; //[0.3]
         
-        int adjEnemyCount = getAdjacentEnemyCount(myFootman, enemyFootmen, unitLocations);
-        //determine how many enemies can currently attack the given footman
-        if (adjEnemyCount <= 2) featureVector[6] += ((0.02 * adjEnemyCount) / Math.random());
-        else featureVector[6] -= ((0.1 * adjEnemyCount) / Math.random());
+        featureVector[6] = getAdjacentEnemyCount(myFootman, enemyFootmen, unitLocations);
+//        int adjEnemyCount = getAdjacentEnemyCount(myFootman, enemyFootmen, unitLocations);
+//        //determine how many enemies can currently attack the given footman
+//        if (adjEnemyCount <= 2) featureVector[6] += ((0.02 * adjEnemyCount) / Math.random());
+//        else featureVector[6] -= ((0.1 * adjEnemyCount) / Math.random());
         
         return featureVector;
     }
