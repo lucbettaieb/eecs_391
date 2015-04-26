@@ -55,6 +55,7 @@ public class RLAgent extends Agent {
     @Deprecated
     protected Double[] weights; //q function weights
                              //this is read on startup into FeatureVector, and written from FeatureVector before finish
+    protected Map<Integer, Double> previousQValue;
 
     /**
      * These variables are set for you according to the assignment definition. You can change them,
@@ -108,6 +109,7 @@ public class RLAgent extends Agent {
         this.featureVector = new FeatureVector();
         this.featureVector.featureWeights = Utils.convertDoubleTodouble(weights);//it's all loaded up, put it where I use it
         this.averageReward = new LinkedList<>();
+        this.previousQValue = new HashMap<>();
     }//end of constructor
 
     /**
@@ -117,9 +119,9 @@ public class RLAgent extends Agent {
     public Map<Integer, Action> initialStep(State.StateView stateView, History.HistoryView historyView) {
         this.unitHealth = new HashMap<>();
         this.unitLocations = new HashMap<>();
-        // You will need to add code to check if you are in a testing or learning episode
         enumerateUnits(stateView);
         this.exploitationMode = this.currentEpisodeNumber % EPOCH_LENGTH > 2;//80% exploitation, 20% exploration
+        
         if(!this.exploitationMode) {
             if(this.averageReward.size()<= epoch) this.averageReward.add(epoch, 0d);
         }
@@ -193,8 +195,7 @@ public class RLAgent extends Agent {
 
         averageReward.set(epoch, averageReward.get(epoch) + 
                 (currentReward-averageReward.get(epoch))/ Math.max(currentEpisodeNumber % EPOCH_LENGTH,1));//don't divide by 0
-        //avgReward +=(currReward-avgReward)/(episode number in this epoch, defaulting to 1 if first episode)
-        //TODO: normalize averageReward?
+
         currentEpisodeNumber++;
         if(currentEpisodeNumber == numEpisodes){
             out("");
@@ -206,9 +207,10 @@ public class RLAgent extends Agent {
             System.exit(0);
         } else if(currentEpisodeNumber % EPOCH_LENGTH == 0) {
             epoch++;
+            System.out.print(epoch);
             out("");
-            Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
-            printTestData(this.averageReward);
+            //Utils.printWeights(Arrays.asList(Utils.convertdoubleToDouble(featureVector.featureWeights)));
+            //printTestData(this.averageReward);
         }
     }
 
@@ -229,10 +231,9 @@ public class RLAgent extends Agent {
         double rand = random.nextDouble();
         boolean exploreAction;
         exploreAction = (rand >= bestActionProbability);
-        if(exploreAction && !exploitationMode){//we're not following the policy, and we're in exploitation
-            //TODO: above 'if' statement may not depend on exploitation mode
+        if(exploreAction){//we're not following the policy
             return randomEnemy();
-        } else {//we're either following the policy, or not exploring
+        } else {//we're following the policy
             double qOfBestEnemy = Double.NEGATIVE_INFINITY;
             int bestEnemy = enemyFootmen.get(0);//arbitrary first enemy
             for(Integer enemyID : enemyFootmen){//for each enemy footman
@@ -281,17 +282,17 @@ public class RLAgent extends Agent {
      * @return The current reward
      */
     public double calculateReward(State.StateView stateView, History.HistoryView historyView, int footmanId) {
-        double reward = -.2d;
+        double reward = -.2d;//if you do nothing, that's bad too
+        int turnNumber = stateView.getTurnNumber();
+        if(turnNumber<=0) return reward;
+        
         if(!myFootmen.contains(footmanId)){
-            //this guy died.
+            //this guy died, that's extra bad.
             reward -= 10;
         }
-        int turnNumber  = stateView.getTurnNumber();
-        if(turnNumber<=0) return reward;
         for(DamageLog log :  historyView.getDamageLogs(turnNumber - 1)){
-            
             if(log.getDefenderController() == playernum) reward -= log.getDamage();
-            if(log.getAttackerController() == playernum) reward += log.getDamage();
+            if(log.getDefenderController() == ENEMY_PLAYERNUM) reward += log.getDamage();
         }
         for(DeathLog log : historyView.getDeathLogs(turnNumber-1)){
             if(log.getController() == playernum && myFootmen.contains(log.getDeadUnitID())){
@@ -446,6 +447,7 @@ public class RLAgent extends Agent {
             String unitName = unit.getTemplateView().getName().toLowerCase();
             if (unitName.equals("footman")) {
                 this.myFootmen.add(unitId);
+                this.previousQValue.put(unitId, random.nextDouble());
             } else {
                 System.err.println("Unknown unit type: " + unitName);
             }
@@ -525,22 +527,30 @@ public class RLAgent extends Agent {
      * @param actionMap map of my unitIDs to intended Actions as a K/V pair
      */
     private void updateRewardsAndWeights(State.StateView stateView, History.HistoryView historyView, Map<Integer, Action> actionMap){
+        //for each of my given units and their specified actions
+        //add the reward of taking that action to the reward for this episode
+        //if we're in evaluation mode, we're done.
+
+        for(Integer footmanID : actionMap.keySet()) {
+            this.currentReward += calculateReward(stateView, historyView, footmanID);
+        }
+        if(exploitationMode)return;
+
         for(Integer footmanID : actionMap.keySet()){
-            currentReward += calculateReward(stateView, historyView, footmanID);
-            //currentReward /= 2;//so I'm gonna cut it down
             int targetID = actionMap.get(footmanID).getUnitId();
-            if(!this.exploitationMode) {
-                double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
-                
-                //update the weights:
-                double oldQ = featureVector.qFunction(features);
-                int optimalEnemy = selectAction(footmanID);
-                double[] fValues = FeatureVector.fFunction(footmanID, optimalEnemy, myFootmen, enemyFootmen, unitHealth, unitLocations);
-                double newQ = featureVector.qFunction(fValues);
-                double td = Utils.temporalDifference(currentReward, gamma, newQ, oldQ);
-                //Qnew = Qold + \alpha*temporalDifference
-                featureVector.updateWeights(features, td, alpha);
-            }
+            double[] features = calculateFeatureVector(stateView, historyView, footmanID, targetID);
+
+            //update the weights:
+            double oldQ = previousQValue.get(footmanID);
+
+            double[] fValues = FeatureVector.fFunction(footmanID, actionMap.get(footmanID).getUnitId(),
+                    myFootmen, enemyFootmen, unitHealth, unitLocations);
+
+            double newQ = featureVector.qFunction(fValues);
+            previousQValue.put(footmanID, newQ);
+            double td = Utils.temporalDifference(currentReward, gamma, newQ, oldQ);//reward + gamma*newQ - oldQ
+            featureVector.updateWeights(features, td, alpha);
+
         }
     }
 }

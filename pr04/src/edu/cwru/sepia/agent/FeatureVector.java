@@ -82,10 +82,6 @@ public class FeatureVector {
         if(myPosition.isAdjacent(enemyPosition)) featureVector[5] = .5; //[0.3]
         
         featureVector[6] = getAdjacentEnemyCount(myFootman, enemyFootmen, unitLocations);
-//        int adjEnemyCount = getAdjacentEnemyCount(myFootman, enemyFootmen, unitLocations);
-//        //determine how many enemies can currently attack the given footman
-//        if (adjEnemyCount <= 2) featureVector[6] += ((0.02 * adjEnemyCount) / Math.random());
-//        else featureVector[6] -= ((0.1 * adjEnemyCount) / Math.random());
         
         return featureVector;
     }
@@ -100,8 +96,9 @@ public class FeatureVector {
     public double[] updateWeights(double[] updateVector, double temporalDifference, double alpha) {
         /**
          To reweight:
+                              |-------------------------------------------------|  << temporalDifference
          w_i = w_i + \alpha * (R(s,a) + \gamma * max_{a'}(Q_w(s',a')) - Q_w(s,a)) * f_i(s,a)
-         |---------------------------===========-----------|  << showing nested parentheses
+                              |---------------------------===========-----------|  << showing nested parentheses
          */
         
         
